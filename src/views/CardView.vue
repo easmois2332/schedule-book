@@ -1,15 +1,15 @@
 <script setup>
 import {cards} from "@/consts/cards";
-import CardDetails from "@/classes/cardDetails";
+import CardDetail from "@/classes/cardDetail";
 
 const cardLists = [];
 const saveLists = [];
 
 // サポートカードのリストを作成
 for (let index in cards) {
-  let cardDetails = new CardDetails(cards[index]);
-  console.log(cardDetails.getCardDetails());
-  cardLists.push(cardDetails.getCardDetails());
+  let cardDetail = new CardDetail(cards[index]);
+  console.log(cardDetail.getCardDetails());
+  cardLists.push(cardDetail.getCardDetails());
 }
 </script>
 

@@ -120,6 +120,33 @@ export const abilities = {
     CONSULTATION_DRINK_SALE: 'consultation_drink_sale',
 }
 
+export const abilityParameterThresholds = {
+    r: {
+        ability_2: [1, 15, 41],
+        ability_4: [5, 36, 41],
+        ability_5: [10, 26, 41],
+        ability_6: [21, 31, 40],
+    },
+    sr: {
+        ability_2: [1, 31, 51],
+        ability_4: [5, 46, 51],
+        ability_5: [10, 41, 51],
+        ability_6: [25, 36, 50],
+    },
+    ssr: {
+        ability_2: [1, 15, 46],
+        ability_4: [5, 30, 51],
+        ability_5: [10, 35, 56],
+        ability_6: [25, 41, 60],
+    },
+    ssr_event: {
+        ability_2: [1, 46, 61],
+        ability_4: [5, 56, 61],
+        ability_5: [10, 51, 61],
+        ability_6: [25, 41, 60],
+    },
+}
+
 export const cards = {
     // レアリティ:SSR
     1: {
