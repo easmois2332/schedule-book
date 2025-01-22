@@ -13,30 +13,30 @@ export default class CardDetail {
         this.calcMaxHpUp();
         this.calcInitPPoint();
         this.calcCardSupportRate();
-        this.calcEventEnhance();
+        this.calcEventStrengthen();
         this.calcSpLessonRate();
         this.calcLessonParameterUp();
         this.calcNormalLessonParameterUp();
         this.calcSpLessonParameterUp();
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
-        this.calcGoodCardParameterUp();
-        this.calcCardEnhanceParameterUp();
-        this.calcActiveCardEnhanceParameterUp();
-        this.calcMentalCardEnhanceParameterUp();
+        this.calcKotyoCardParameterUp();
+        this.calcCardStrengthenParameterUp();
+        this.calcActiveCardStrengthenParameterUp();
+        this.calcMentalCardStrengthenParameterUp();
         this.calcCardDeleteParameterUp();
-        this.calcClassesAndBusinessParameterUp();
-        this.calcActivitySupportAndGiftsParameterUp();
+        this.calcClassParameterUp();
+        this.calcGiftParameterUp();
         this.calcOutingParameterUp();
         this.calcConsultationParameterUp();
         this.calcConsultationDrinkParameterUp();
         this.calcRestParameterUp();
-        this.calcExamsAndAuditionsParameterUp();
+        this.calcExamParameterUp();
         this.calcLessonPPointUp();
         this.calcSpLessonPPointUp();
         this.calcSpLessonHpRecover();
-        this.calcActivitySupportAndGiftsHpRecover();
-        this.calcExamsAndAuditionsHpRecover();
+        this.calcGiftHpRecover();
+        this.calcExamHpRecover();
         this.calcConsultationDrinkSale();
 
         // イベントパラメータを計算
@@ -145,7 +145,7 @@ export default class CardDetail {
             let parameter = 0;
             switch (this.card.rarity) {
                 case rarities.RARITY_SSR:
-                    if (this.card.id === 1) {
+                    if (this.card.id === 17) {
                         // きみは、自慢の生徒です
                         if (this.card.level < 25) {
                             parameter = 4;
@@ -186,7 +186,7 @@ export default class CardDetail {
             let parameter = 0;
             switch (this.card.rarity) {
                 case rarities.RARITY_SR:
-                    if (this.card.id === 1001) {
+                    if (this.card.id === 1015) {
                         // はじめてのお友達
                         if (this.card.level < 5) {
                             parameter = 34;
@@ -259,8 +259,8 @@ export default class CardDetail {
     /**
      * サポートカードイベント2強化
      */
-    private calcEventEnhance() {
-        if (this.card.ability_6 === abilities.EVENT_ENHANCE) {
+    private calcEventStrengthen() {
+        if (this.card.ability_6 === abilities.EVENT_STRENGTHEN) {
             let parameter = {r: [50, 75, 100], sr: [50, 75, 100], ssr: [50, 75, 100], ssr_event: [50, 75, 100]};
             this.card.ability_6_parameter = this.getParameter('ability_6', parameter);
             if (this.card.events.event_2 === events.PARAMETER_UP) {
@@ -395,17 +395,17 @@ export default class CardDetail {
     /**
      * 好調効果カード獲得時パラメータ上昇
      */
-    private calcGoodCardParameterUp() {
+    private calcKotyoCardParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.GOOD_CARD_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.KOTYO_CARD_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `好調効果のスキルカード獲得時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.GOOD_CARD_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.KOTYO_CARD_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `好調効果のスキルカード獲得時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.GOOD_CARD_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.KOTYO_CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `好調効果のスキルカード獲得時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -414,17 +414,17 @@ export default class CardDetail {
     /**
      * スキルカード強化時パラメータ上昇
      */
-    private calcCardEnhanceParameterUp() {
+    private calcCardStrengthenParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `スキルカード強化時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `スキルカード強化時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `スキルカード強化時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -433,17 +433,17 @@ export default class CardDetail {
     /**
      * アクティブカード強化時パラメータ上昇
      */
-    private calcActiveCardEnhanceParameterUp() {
+    private calcActiveCardStrengthenParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.ACTIVE_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `アクティブスキルカード強化時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.ACTIVE_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `アクティブスキルカード強化時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.ACTIVE_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `アクティブスキルカード強化時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -452,17 +452,17 @@ export default class CardDetail {
     /**
      * メンタルカード強化時パラメータ上昇
      */
-    private calcMentalCardEnhanceParameterUp() {
+    private calcMentalCardStrengthenParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
-        if (this.card.ability_2 === abilities.MENTAL_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.MENTAL_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `メンタルスキルカード強化時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.MENTAL_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.MENTAL_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `メンタルスキルカード強化時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.MENTAL_CARD_ENHANCE_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.MENTAL_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `メンタルスキルカード強化時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -490,17 +490,17 @@ export default class CardDetail {
     /**
      * 授業・営業終了時パラメータ上昇
      */
-    private calcClassesAndBusinessParameterUp() {
+    private calcClassParameterUp() {
         let parameter = {r: [2, 3, 3], sr: [3, 5, 5], ssr: [4, 5, 7], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.CLASSES_AND_BUSINESS_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.CLASS_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `授業・営業終了時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.CLASSES_AND_BUSINESS_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.CLASS_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `授業・営業終了時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.CLASSES_AND_BUSINESS_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.CLASS_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `授業・営業終了時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -509,17 +509,17 @@ export default class CardDetail {
     /**
      * 活動支給・差し入れ選択時パラメータ上昇
      */
-    private calcActivitySupportAndGiftsParameterUp() {
+    private calcGiftParameterUp() {
         let parameter = {r: [4, 8, 8], sr: [6, 11, 11], ssr: [9, 12, 17], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.GIFT_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `活動支給・差し入れ選択時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.GIFT_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `活動支給・差し入れ選択時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.GIFT_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `活動支給・差し入れ選択時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -604,17 +604,17 @@ export default class CardDetail {
     /**
      * 試験・オーディション終了時パラメータ上昇
      */
-    private calcExamsAndAuditionsParameterUp() {
+    private calcExamParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [9, 17, 17], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
-        if (this.card.ability_2 === abilities.EXAMS_AND_AUDITIONS_PARAMETER_UP) {
+        if (this.card.ability_2 === abilities.EXAM_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `試験・オーディション終了時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.EXAMS_AND_AUDITIONS_PARAMETER_UP) {
+        if (this.card.ability_4 === abilities.EXAM_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `試験・オーディション終了時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.EXAMS_AND_AUDITIONS_PARAMETER_UP) {
+        if (this.card.ability_5 === abilities.EXAM_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `試験・オーディション終了時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
@@ -683,17 +683,17 @@ export default class CardDetail {
     /**
      * 活動支給・差し入れ選択時体力回復
      */
-    private calcActivitySupportAndGiftsHpRecover() {
+    private calcGiftHpRecover() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [0, 0, 0], ssr_event: [3, 4, 4]};
-        if (this.card.ability_2 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_HP_RECOVER) {
+        if (this.card.ability_2 === abilities.GIFT_HP_RECOVER) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `活動支給・差し入れ選択時、体力回復${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_HP_RECOVER) {
+        if (this.card.ability_4 === abilities.GIFT_HP_RECOVER) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `活動支給・差し入れ選択時、体力回復${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.ACTIVITY_SUPPORT_AND_GIFTS_HP_RECOVER) {
+        if (this.card.ability_5 === abilities.GIFT_HP_RECOVER) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `活動支給・差し入れ選択時、体力回復${this.card.ability_5_parameter}`;
         }
@@ -702,17 +702,17 @@ export default class CardDetail {
     /**
      * 試験・オーディション終了時体力回復
      */
-    private calcExamsAndAuditionsHpRecover() {
+    private calcExamHpRecover() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [4, 6, 8], ssr_event: [0, 0, 0]};
-        if (this.card.ability_2 === abilities.EXAMS_AND_AUDITIONS_HP_RECOVER) {
+        if (this.card.ability_2 === abilities.EXAM_HP_RECOVER) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `試験・オーディション終了時、体力回復${this.card.ability_2_parameter}`;
         }
-        if (this.card.ability_4 === abilities.EXAMS_AND_AUDITIONS_HP_RECOVER) {
+        if (this.card.ability_4 === abilities.EXAM_HP_RECOVER) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
             this.card.ability_4_display = `試験・オーディション終了時、体力回復${this.card.ability_4_parameter}`;
         }
-        if (this.card.ability_5 === abilities.EXAMS_AND_AUDITIONS_HP_RECOVER) {
+        if (this.card.ability_5 === abilities.EXAM_HP_RECOVER) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `試験・オーディション終了時、体力回復${this.card.ability_5_parameter}`;
         }
