@@ -1,4 +1,4 @@
-import {rarities, types, events, abilities, abilityParameterThresholds} from "@/consts/cards";
+import {rarities, types, events, abilities, abilityParameterThresholds} from "@/consts/cardConst";
 
 export default class CardDetail {
 
