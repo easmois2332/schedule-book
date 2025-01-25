@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from "@/views/HomeView.vue";
+import ScheduleView from "@/views/ScheduleView.vue";
 import IdolView from "@/views/IdolView.vue";
 import CardView from "@/views/CardView.vue";
-import ScheduleView from "@/views/ScheduleView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +13,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/schedule',
+      name: 'schedule',
+      component: ScheduleView,
+    },
+    {
       path: '/idol',
       name: 'idol',
       component: IdolView,
@@ -21,11 +26,7 @@ const router = createRouter({
       path: '/card',
       name: 'card',
       component: CardView,
-    },
-    {
-      path: '/schedule',
-      name: 'schedule',
-      component: ScheduleView,
+      props: true,
     },
   ],
 })

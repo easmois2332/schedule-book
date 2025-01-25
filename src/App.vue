@@ -1,8 +1,10 @@
 <script setup>
 import {RouterLink, RouterView, useRouter} from 'vue-router'
+import axios from 'axios';
+import {CARD_API} from '@/consts/api';
+import {onMounted, ref} from "vue";
 
 const router = useRouter();
-
 const buttonHome = () => {
   router.push('/')
 }
@@ -21,6 +23,21 @@ const buttonCard = () => {
 const buttonSetting = () => {
   router.push('/')
 }
+
+const cardList = ref();
+const getCards = async () => {
+  await axios.get(CARD_API)
+      .then((res) => {
+        cardList.value = res.data;
+      })
+      .catch((res) => {
+
+      })
+}
+
+onMounted(async () => {
+  await getCards();
+})
 </script>
 
 <template>
@@ -136,7 +153,9 @@ const buttonSetting = () => {
     </div>
   </header>
   <div class="contents-view-area">
-    <RouterView/>
+    <RouterView
+        :cardList="cardList"
+    />
   </div>
 </template>
 
