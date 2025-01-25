@@ -8,7 +8,11 @@ export default class Cards {
         this.cardList = cardList;
     }
 
-    getCardList() {
+    getCard(id: any) {
+        return this.cardList.find((card: bigint) => (card.id === id) && (card.enable === 1));
+    }
+
+    getAllCard() {
         return this.cardList;
     }
 
@@ -25,20 +29,20 @@ export default class Cards {
 
         let card = JSON.parse(JSON.stringify(findCard));
         card.level = level;
-
         let cardDetail = new CardDetail(card);
         return cardDetail.getCardDetails();
     }
 
     /**
-     * レベルMAXの全カードのCard詳細を取得
+     * レベルMAXの全カードのカード詳細を取得
      */
     getAllCardDetail() {
-        let cards = [];
-        for (let i in this.cardList) {
-            let cardDetail = new CardDetail(this.cardList[i]);
-            cards.push(cardDetail.getCardDetails());
+        let cardList = JSON.parse(JSON.stringify(this.cardList));
+        let cardDetails = [];
+        for (let i in cardList) {
+            let cardDetail = new CardDetail(cardList[i]);
+            cardDetails.push(cardDetail.getCardDetails());
         }
-        return cards;
+        return cardDetails;
     }
 }
