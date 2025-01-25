@@ -18,6 +18,7 @@ export default class CardDetail {
         this.calcLessonParameterUp();
         this.calcNormalLessonParameterUp();
         this.calcSpLessonParameterUp();
+        this.calcCardParameterUp();
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
         this.calcKotyoCardParameterUp();
@@ -175,6 +176,20 @@ export default class CardDetail {
             }
             this.card.ability_1_parameter = parameter;
             this.card.ability_1_display = `最大体力+${parameter}`;
+        } else {
+            let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+            if (this.card.ability_2 === abilities.MAX_HP_UP) {
+                this.card.ability_2_parameter = parameter;
+                this.card.ability_2_display = `最大体力+${parameter}`;
+            }
+            if (this.card.ability_4 === abilities.MAX_HP_UP) {
+                this.card.ability_4_parameter = parameter;
+                this.card.ability_4_display = `最大体力+${parameter}`;
+            }
+            if (this.card.ability_5 === abilities.MAX_HP_UP) {
+                this.card.ability_5_parameter = parameter;
+                this.card.ability_5_display = `最大体力+${parameter}`;
+            }
         }
     }
 
@@ -230,28 +245,7 @@ export default class CardDetail {
      */
     private calcCardSupportRate() {
         if (this.card.ability_3 === abilities.CARD_SUPPORT_RATE) {
-            let parameter = 0;
-            // if (this.card.level >= 2) {
-            //     switch (this.card.rarity) {
-            //         case rarities.RARITY_SSR:
-            //         case rarities.RARITY_SSR_EVENT:
-            //             if (this.card.level < 11) {
-            //                 parameter = (this.card.level - 1) * 1.7;
-            //             } else if (this.card.level < 31) {
-            //                 parameter = (this.card.level - 1) * 1.7 - 0.1;
-            //             } else if (this.card.level < 51) {
-            //                 parameter = (this.card.level - 1) * 1.7 - 0.2;
-            //             } else {
-            //                 parameter = (this.card.level - 1) * 1.7 - 0.3;
-            //             }
-            //             break;
-            //         case rarities.RARITY_SR:
-            //         case rarities.RARITY_R:
-            //         default:
-            //             break;
-            //     }
-            // }
-            this.card.ability_3_parameter = parameter;
+            this.card.ability_3_parameter = 0;
             this.card.ability_3_display = `このサポートカードのスキルカードサポート発生率を増加`;
         }
     }
@@ -351,6 +345,25 @@ export default class CardDetail {
         if (this.card.ability_5 === abilities.SP_LESSON_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `${this.card.type}SPレッスン終了時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
+        }
+    }
+
+    /**
+     * カード獲得時パラメータ上昇
+     */
+    private calcCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [1, 2, 2], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `スキルカード獲得時、${this.card.type}上昇+${this.card.ability_2_parameter}`;
+        }
+        if (this.card.ability_4 === abilities.CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `スキルカード獲得時、${this.card.type}上昇+${this.card.ability_4_parameter}`;
+        }
+        if (this.card.ability_5 === abilities.CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `スキルカード獲得時、${this.card.type}上昇+${this.card.ability_5_parameter}`;
         }
     }
 
