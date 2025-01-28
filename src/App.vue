@@ -1,47 +1,50 @@
 <script setup>
-import {RouterLink, RouterView, useRouter} from 'vue-router'
+import {onMounted, ref, shallowRef} from "vue";
 import axios from 'axios';
+import Cards from "@/classes/cards";
 import {CARD_API} from '@/consts/api';
-import {onMounted, ref} from "vue";
+import HomeView from "@/views/HomeView.vue";
+import IdolView from "@/views/IdolView.vue";
+import CardView from "@/views/CardView.vue";
 
-const router = useRouter();
+const currentComponent = shallowRef(HomeView);
+const cards = ref();
+const loading = ref(true);
+
 const buttonHome = () => {
-  router.push('/')
+  currentComponent.value = HomeView;
 }
 const buttonNewSchedule = () => {
-  router.push('/schedule')
 }
 const buttonOpenSchedule = () => {
-  router.push('/schedule')
 }
 const buttonIdol = () => {
-  router.push('/idol')
+  currentComponent.value = IdolView
 }
 const buttonCard = () => {
-  router.push('/card')
+  currentComponent.value = CardView
 }
 const buttonSetting = () => {
-  router.push('/')
 }
-
-const cardList = ref();
-const getCards = async () => {
-  await axios.get(CARD_API)
+const getCardMaster = async () => {
+  return await axios.get(CARD_API)
       .then((res) => {
-        cardList.value = res.data;
-      })
-      .catch((res) => {
-
+        return res.data;
       })
 }
 
 onMounted(async () => {
-  await getCards();
+  const cardMaster = await getCardMaster();
+  cards.value = new Cards(cardMaster, []);
+  loading.value = false;
 })
 </script>
 
 <template>
-  <header class="header-area color-china">
+  <div v-show="loading" class="loading-area">
+    <div class="loading-text">マスターデータ読み込み中...</div>
+  </div>
+  <header class="header-area color-default">
     <div class="header-tab-area">
       <div class="header-tab-left-area">
         <div class="header-tab home">
@@ -153,9 +156,12 @@ onMounted(async () => {
     </div>
   </header>
   <div class="contents-view-area">
-    <RouterView
-        :cardList="cardList"
-    />
+    <keep-alive>
+      <component
+          :is="currentComponent"
+          :cards="cards"
+      />
+    </keep-alive>
   </div>
 </template>
 

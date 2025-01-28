@@ -133,19 +133,6 @@ body {
     }
 }
 
-.color-rinami {
-    background: linear-gradient(to right, #f97dbd, #f0b7f9);
-    .header-tab-name {
-        color: #ffffff;
-    }
-    .header-tab-button {
-        color: #ffffff;
-    }
-    .header-operation-button {
-        color: #ffffff;
-    }
-}
-
 .color-ume {
     background: linear-gradient(to right, #f34a29, #ecc64b);
     .header-tab-name {
@@ -159,7 +146,20 @@ body {
     }
 }
 
-.color-asari {
+.color-rinami {
+    background: linear-gradient(to right, #f97dbd, #f0b7f9);
+    .header-tab-name {
+        color: #ffffff;
+    }
+    .header-tab-button {
+        color: #ffffff;
+    }
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.color-default {
     background: #958b7f;
     .header-tab-name {
         color: #ffffff;
@@ -170,6 +170,21 @@ body {
     .header-operation-button {
         color: #ffffff;
     }
+}
+
+.loading-area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483647;
+}
+
+.loading-text {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 50%;
 }
 
 .header-area {
