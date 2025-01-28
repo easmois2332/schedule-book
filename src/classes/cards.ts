@@ -12,19 +12,19 @@ export default class Cards {
     }
 
     getAllCard() {
-        return this.cardMaster.find((card: any) => card.enable === 1);
+        return this.cardMaster.filter((card: any) => card.enable === 1);
     }
 
     getVocalCard() {
-        return this.cardMaster.find((card: any) => (card.type === types.VOCAL) && (card.enable === 1));
+        return this.cardMaster.filter((card: any) => (card.type === types.VOCAL) && (card.enable === 1));
     }
 
     getDanceCard() {
-        return this.cardMaster.find((card: any) => (card.type === types.DANCE) && (card.enable === 1));
+        return this.cardMaster.filter((card: any) => (card.type === types.DANCE) && (card.enable === 1));
     }
 
     getVisualCard() {
-        return this.cardMaster.find((card: any) => (card.type === types.VISUAL) && (card.enable === 1));
+        return this.cardMaster.filter((card: any) => (card.type === types.VISUAL) && (card.enable === 1));
     }
 
     getCard(id: any) {

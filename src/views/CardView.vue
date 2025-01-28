@@ -1,14 +1,13 @@
 <script setup>
-import Cards from "@/classes/cards";
+const props = defineProps(['cards'])
+const cards = props.cards;
+const vocalCards = cards.getVocalCardDetail();
+const danceCards = cards.getDanceCardDetail();
+const visualCards = cards.getVisualCardDetail();
 
-const props = defineProps(['cardList'])
-const cards = new Cards(props.cardList);
-
-console.log(cards.getCardDetail(1, 39));
-console.log(cards.getAllCardDetail());
-
-console.log(cards.getCard(1));
-console.log(cards.getAllCard());
+console.log(cards.getVocalCardDetail());
+console.log(cards.getDanceCardDetail());
+console.log(cards.getVisualCardDetail());
 </script>
 
 <template>
