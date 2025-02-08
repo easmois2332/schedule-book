@@ -1,4 +1,4 @@
-import {rarities, types, events, abilities, abilityParameterThresholds} from "@/consts/cardConst";
+import {rarities, types, plans, events, abilities, abilityParameterThresholds} from "@/consts/cardConst";
 
 export default class CardDetail {
 
@@ -6,8 +6,8 @@ export default class CardDetail {
 
     constructor(card: any) {
         this.card = card
-        
-        // 表示用文言割り当て
+
+        // 表示用
         this.getDisplayText();
 
         // アビリティパラメータを計算
@@ -78,6 +78,44 @@ export default class CardDetail {
                 break;
             case types.ASSIST:
                 this.card.type_display = 'アシスト';
+                break;
+            default:
+                break;
+        }
+        switch (this.card.plan) {
+            case plans.FREE:
+                this.card.plan_display = 'プラン制限なし';
+                break;
+            case plans.SENSE:
+                this.card.plan_display = 'センス限定';
+                break;
+            case plans.LOGIC:
+                this.card.plan_display = 'ロジック限定';
+                break;
+            case plans.ANOMALY:
+                this.card.plan_display = 'アノマリー限定';
+                break;
+            default:
+                break;
+        }
+        switch (this.card.event_3) {
+            case events.GET_P_POINT:
+                this.card.event_3_display = 'Pポイント+10';
+                break;
+            case events.BASIC_CARD_CHANGE:
+                this.card.event_3_display = 'ランダムな名前に「基本」を含むスキルカードを異なるスキルカードにチェンジ';
+                break;
+            case events.CARD_RANDOM_STRENGTHEN:
+                this.card.event_3_display = 'ランダムなスキルカードを強化';
+                break;
+            case events.TROUBLE_CARD_DELETE:
+                this.card.event_3_display = 'ランダムなトラブルカードを削除';
+                break;
+            case events.CARD_SELECT_STRENGTHEN:
+                this.card.event_3_display = 'スキルカードを選択して強化';
+                break;
+            case events.CARD_SELECT_DELETE:
+                this.card.event_3_display = 'スキルカードを選択して削除';
                 break;
             default:
                 break;
@@ -215,16 +253,16 @@ export default class CardDetail {
         } else {
             let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
             if (this.card.ability_2 === abilities.MAX_HP_UP) {
-                this.card.ability_2_parameter = parameter;
-                this.card.ability_2_display = `最大体力+${parameter}`;
+                this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+                this.card.ability_2_display = `最大体力+${this.card.ability_2_parameter}`;
             }
             if (this.card.ability_4 === abilities.MAX_HP_UP) {
-                this.card.ability_4_parameter = parameter;
-                this.card.ability_4_display = `最大体力+${parameter}`;
+                this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+                this.card.ability_4_display = `最大体力+${this.card.ability_4_parameter}`;
             }
             if (this.card.ability_5 === abilities.MAX_HP_UP) {
-                this.card.ability_5_parameter = parameter;
-                this.card.ability_5_display = `最大体力+${parameter}`;
+                this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+                this.card.ability_5_display = `最大体力+${this.card.ability_5_parameter}`;
             }
         }
     }
@@ -315,15 +353,15 @@ export default class CardDetail {
         }
         if (this.card.ability_2 === abilities.SP_LESSON_RATE) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
-            this.card.ability_2_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_2_parameter}%`;
+            this.card.ability_2_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_2_parameter}%`;
         }
         if (this.card.ability_4 === abilities.SP_LESSON_RATE) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
-            this.card.ability_4_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_4_parameter}%`;
+            this.card.ability_4_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_4_parameter}%`;
         }
         if (this.card.ability_5 === abilities.SP_LESSON_RATE) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
-            this.card.ability_5_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_5_parameter}%`;
+            this.card.ability_5_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_5_parameter}%`;
         }
     }
 
@@ -483,7 +521,7 @@ export default class CardDetail {
      * アクティブカード強化時パラメータ上昇
      */
     private calcActiveCardStrengthenParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [5, 7, 9], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `アクティブスキルカード強化時、${this.card.type_display}上昇+${this.card.ability_2_parameter}`;
@@ -521,7 +559,7 @@ export default class CardDetail {
      * スキルカード削除時パラメータ上昇
      */
     private calcCardDeleteParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [4, 8, 8], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [4, 8, 8], ssr: [6, 8, 11], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.CARD_DELETE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `スキルカード削除時、${this.card.type_display}上昇+${this.card.ability_2_parameter}`;

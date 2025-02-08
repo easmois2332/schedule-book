@@ -7,9 +7,9 @@ import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import CardView from "@/views/CardView.vue";
 
-const currentComponent = shallowRef(HomeView);
-const cards = ref();
-const loading = ref(true);
+let currentComponent = shallowRef(HomeView);
+let cards = ref();
+let loading = ref(true);
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
@@ -32,10 +32,9 @@ const getCardMaster = async () => {
         return res.data;
       })
 }
-
 onMounted(async () => {
   const cardMaster = await getCardMaster();
-  cards.value = new Cards(cardMaster, []);
+  cards.value = new Cards(cardMaster, [{id: 1, level: 40},{id: 4, level: 50}]);
   loading.value = false;
 })
 </script>
@@ -44,7 +43,7 @@ onMounted(async () => {
   <div v-show="loading" class="loading-area">
     <div class="loading-text">マスターデータ読み込み中...</div>
   </div>
-  <header class="header-area color-default">
+  <header class="header-area color-china">
     <div class="header-tab-area">
       <div class="header-tab-left-area">
         <div class="header-tab home">
@@ -155,7 +154,7 @@ onMounted(async () => {
       </div>
     </div>
   </header>
-  <div class="contents-view-area">
+  <div class="contents-view-area color-china">
     <keep-alive>
       <component
           :is="currentComponent"

@@ -4,51 +4,56 @@ import {types} from "@/consts/cardConst";
 export default class Cards {
 
     cardMaster: any
+    cardList: any
     saveList: any
 
     constructor(cardMaster: any, saveList: any) {
         this.cardMaster = cardMaster;
+
+        // サポートカードリストを作成
+        this.cardList = this.getCardDetailList(this.deepCopy(cardMaster));
+
+        // TODO: 保存したサポートカードリストを作成
         this.saveList = saveList;
     }
 
     getAllCard() {
-        return this.cardMaster.filter((card: any) => card.enable === 1);
+        return this.cardList.filter((card: any) => card.enable === 1);
     }
 
     getVocalCard() {
-        return this.cardMaster.filter((card: any) => (card.type === types.VOCAL) && (card.enable === 1));
+        return this.cardList.filter((card: any) => (card.type === types.VOCAL) && (card.enable === 1));
     }
 
     getDanceCard() {
-        return this.cardMaster.filter((card: any) => (card.type === types.DANCE) && (card.enable === 1));
+        return this.cardList.filter((card: any) => (card.type === types.DANCE) && (card.enable === 1));
     }
 
     getVisualCard() {
-        return this.cardMaster.filter((card: any) => (card.type === types.VISUAL) && (card.enable === 1));
+        return this.cardList.filter((card: any) => (card.type === types.VISUAL) && (card.enable === 1));
     }
 
-    getCard(id: any) {
-        return this.cardMaster.find((card: any) => (card.id === id) && (card.enable === 1));
+    getAssistCard() {
+        return this.cardList.filter((card: any) => (card.type === types.ASSIST) && (card.enable === 1));
     }
 
-    getAllCardDetail() {
-        let cardMaster = this.deepCopy(this.getAllCard());
-        return this.getCardDetailList(cardMaster);
+    getCardFromId(id: any) {
+        return this.cardList.find((card: any) => (card.id === id) && (card.enable === 1));
     }
 
-    getVocalCardDetail() {
-        let cardMaster = this.deepCopy(this.getVocalCard());
-        return this.getCardDetailList(cardMaster);
-    }
-
-    getDanceCardDetail() {
-        let cardMaster = this.deepCopy(this.getDanceCard());
-        return this.getCardDetailList(cardMaster);
-    }
-
-    getVisualCardDetail() {
-        let cardMaster = this.deepCopy(this.getVisualCard());
-        return this.getCardDetailList(cardMaster);
+    getCardFromFilter(type: any, plan: any, event: any, ability: any) {
+        let cards = this.getAllCard();
+        let result = [];
+        for (let i in cards) {
+            if (type.find((type: any) => (type === cards[i].type)) &&
+                plan.find((plan: any) => (plan === cards[i].plan)) &&
+                event.find((event: any) => (event === cards[i].event_1) || (event === cards[i].event_2) || (event === cards[i].event_3)) &&
+                ability.find((ability: any) => (ability === cards[i].ability_1) || (ability === cards[i].ability_2) || (ability === cards[i].ability_3) || (ability === cards[i].ability_4) || (ability === cards[i].ability_5) || (ability === cards[i].ability_6))
+            ) {
+                result.push(cards[i])
+            }
+        }
+        return result;
     }
 
     /**
@@ -57,7 +62,7 @@ export default class Cards {
      * @param level
      */
     getCardDetail(id: any, level: any) {
-        let card = this.deepCopy(this.getCard(id));
+        let card = this.deepCopy(this.getCardFromId(id));
         card.level = level;
         let cardDetail = new CardDetail(card);
         return cardDetail.getCardDetails();
