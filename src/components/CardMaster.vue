@@ -105,7 +105,12 @@ const filterAbilityCheckAll = () => {
         </button>
       </div>
       <div class="card-filter-list-area" v-show="filterOpen">
-        <span class="card-filter-text">タイプ</span>
+        <div class="card-filter-list-header">
+          <span class="card-filter-text">タイプ</span>
+          <div class="card-filter-check-all" @click="filterTypeCheckAll">
+            <span class="card-filter-text">一括チェック</span>
+          </div>
+        </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
             <input class="common-checkbox" type="checkbox" id="card-filter-vocal" value="vocal" v-model="filterType">
@@ -124,7 +129,12 @@ const filterAbilityCheckAll = () => {
             <label for="card-filter-assist">アシスト</label>
           </div>
         </div>
-        <span class="card-filter-text">プラン</span>
+        <div class="card-filter-list-header">
+          <span class="card-filter-text">プラン</span>
+          <div class="card-filter-check-all" @click="filterPlanCheckAll">
+            <span class="card-filter-text">一括チェック</span>
+          </div>
+        </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
             <input class="common-checkbox" type="checkbox" id="card-filter-free" value="free" v-model="filterPlan">
@@ -143,7 +153,12 @@ const filterAbilityCheckAll = () => {
             <label for="card-filter-anomaly">アノマリー限定</label>
           </div>
         </div>
-        <span class="card-filter-text">イベント</span>
+        <div class="card-filter-list-header">
+          <span class="card-filter-text">イベント</span>
+          <div class="card-filter-check-all" @click="filterEventCheckAll">
+            <span class="card-filter-text">一括チェック</span>
+          </div>
+        </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
             <input class="common-checkbox" type="checkbox" id="card-filter-get_unique_p_item" value="get_unique_p_item" v-model="filterEvent">
@@ -162,7 +177,12 @@ const filterAbilityCheckAll = () => {
             <label for="card-filter-card_random_strengthen">ランダムなスキルカードを強化</label>
           </div>
         </div>
-        <span class="card-filter-text">アビリティ</span>
+        <div class="card-filter-list-header">
+          <span class="card-filter-text">アビリティ</span>
+          <div class="card-filter-check-all" @click="filterAbilityCheckAll">
+            <span class="card-filter-text">一括チェック</span>
+          </div>
+        </div>
         <div class="ability-filter-area">
           <span class="ability-filter-text">初期値関係</span>
           <div class="card-filter-checkbox-area">
