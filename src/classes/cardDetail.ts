@@ -346,22 +346,22 @@ export default class CardDetail {
      */
     private calcSpLessonRate() {
         let parameter = {r: [0, 0, 0], sr: [10.5, 21, 21], ssr: [14, 21, 28], ssr_event: [14, 21, 21]};
-        let typeDisplay = this.card.type;
+        let typeDisplay = this.card.type_display;
         if (this.card.type === types.ASSIST) {
             parameter = {r: [0, 0, 0], sr: [5.2, 10.5, 10.5], ssr: [7, 10.5, 14], ssr_event: [0, 0, 0]};
             typeDisplay = 'ボーカル、ダンス、ビジュアル全ての';
         }
         if (this.card.ability_2 === abilities.SP_LESSON_RATE) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
-            this.card.ability_2_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_2_parameter}%`;
+            this.card.ability_2_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_2_parameter}%`;
         }
         if (this.card.ability_4 === abilities.SP_LESSON_RATE) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
-            this.card.ability_4_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_4_parameter}%`;
+            this.card.ability_4_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_4_parameter}%`;
         }
         if (this.card.ability_5 === abilities.SP_LESSON_RATE) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
-            this.card.ability_5_display = `${this.card.type_display}SPレッスン発生率+${this.card.ability_5_parameter}%`;
+            this.card.ability_5_display = `${typeDisplay}SPレッスン発生率+${this.card.ability_5_parameter}%`;
         }
     }
 
@@ -750,20 +750,22 @@ export default class CardDetail {
      */
     private calcSpLessonHpRecover() {
         let parameter = {r: [0, 0, 0], sr: [3, 5, 5], ssr: [4, 5, 7], ssr_event: [4, 5, 5]};
+        let typeDisplay = this.card.type_display;
         if (this.card.type === types.ASSIST) {
             parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+            typeDisplay = '';
         }
         if (this.card.ability_2 === abilities.SP_LESSON_HP_RECOVER) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
-            this.card.ability_2_display = `${this.card.type_display}SPレッスン終了時、体力回復${this.card.ability_2_parameter}`;
+            this.card.ability_2_display = `${typeDisplay}SPレッスン終了時、体力回復${this.card.ability_2_parameter}`;
         }
         if (this.card.ability_4 === abilities.SP_LESSON_HP_RECOVER) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
-            this.card.ability_4_display = `${this.card.type_display}SPレッスン終了時、体力回復${this.card.ability_4_parameter}`;
+            this.card.ability_4_display = `${typeDisplay}SPレッスン終了時、体力回復${this.card.ability_4_parameter}`;
         }
         if (this.card.ability_5 === abilities.SP_LESSON_HP_RECOVER) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
-            this.card.ability_5_display = `${this.card.type_display}SPレッスン終了時、体力回復${this.card.ability_5_parameter}`;
+            this.card.ability_5_display = `${typeDisplay}SPレッスン終了時、体力回復${this.card.ability_5_parameter}`;
         }
     }
 
