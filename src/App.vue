@@ -1,15 +1,14 @@
 <script setup>
-import {onMounted, ref, shallowRef} from "vue";
-import axios from 'axios';
+import {shallowRef} from "vue";
 import Cards from "@/classes/cards";
-import {CARD_API} from '@/consts/api';
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import CardView from "@/views/CardView.vue";
+import SupportCardJson from "../public/json/support_cards.json";
 
 let currentComponent = shallowRef(HomeView);
-let cards = ref();
-let loading = ref(true);
+let cardMaster = SupportCardJson;
+let cards = new Cards(cardMaster, [{id: 1, level: 40}, {id: 4, level: 50}]);
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
@@ -26,23 +25,9 @@ const buttonCard = () => {
 }
 const buttonSetting = () => {
 }
-const getCardMaster = async () => {
-  return await axios.get(CARD_API)
-      .then((res) => {
-        return res.data;
-      })
-}
-onMounted(async () => {
-  const cardMaster = await getCardMaster();
-  cards.value = new Cards(cardMaster, [{id: 1, level: 40},{id: 4, level: 50}]);
-  loading.value = false;
-})
 </script>
 
 <template>
-  <div v-show="loading" class="loading-area">
-    <div class="loading-text">マスターデータ読み込み中...</div>
-  </div>
   <header class="header-area color-china">
     <div class="header-tab-area">
       <div class="header-tab-left-area">
