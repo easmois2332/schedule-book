@@ -777,12 +777,16 @@ body {
         }
     }
 
-    .card-master-area {
+    .card-master-area, .card-manager-area {
         padding: 16px 16px;
 
         span {
             color: #333333;
             font-size: 16px;
+        }
+
+        .description-area {
+            padding: 8px 0;
         }
 
         .card-filter-area {

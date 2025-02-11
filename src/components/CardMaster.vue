@@ -28,6 +28,7 @@ const buttonFilterOpen = () => {
 }
 const buttonFiltering = () => {
   cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  buttonFilterOpen();
 }
 const buttonFilterReset = () => {
   filterType.value = [
@@ -47,6 +48,7 @@ const buttonFilterReset = () => {
     'sp_lesson_hp_recover',
   ];
   cardList.value = cards.getAllCard();
+  buttonFilterOpen();
 }
 const filterTypeCheckAll = () => {
   let all = [
@@ -96,6 +98,9 @@ const filterAbilityCheckAll = () => {
 
 <template>
   <div class="card-master-area">
+    <div class="description-area">
+      <span class="description">最大レベルのサポートカードのイベント・アビリティの確認ができます。</span>
+    </div>
     <div class="card-filter-area">
       <div class="filter-button">
         <button class="common-button" @click="buttonFilterOpen">
