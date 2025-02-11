@@ -811,6 +811,7 @@ body {
             cursor: pointer;
             background: #fff;
             border: 2px solid #333333;
+            border-radius: 4px;
         }
 
         .card-filter-checkbox-area {
@@ -883,57 +884,70 @@ body {
             border-bottom: 2px solid #3CC743;
         }
 
-        .card-image {
-            width: 295px;
-            height: 166px;
-        }
-
-        .card-detail-left-area {
-            width: 360px;
-            padding-left: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-detail-left-area.vocal {
-            border-right: 2px dashed #FB0082;
-        }
-
-        .card-detail-left-area.dance {
-            border-right: 2px dashed #0086F0;
-        }
-
-        .card-detail-left-area.visual {
-            border-right: 2px dashed #FAA900;
-        }
-
-        .card-detail-left-area.assist {
-            border-right: 2px dashed #3CC743;
-        }
-
-        .card-detail-right-area {
-            width: 500px;
-            padding-left: 16px;
-        }
-
-        .card-ability-area {
-            height: 100%;
+        .card-image-area {
+            width: 400px;
+            height: 225px;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .card-name {
-            padding-left: 16px;
+            display: flex;
+            flex-direction: row;
+            padding: 4px 8px;
+
+            span {
+                color: #ffffff;
+                -webkit-text-stroke: 1px #333333;
+                font-size: 24px;
+                font-weight: bold;
+            }
         }
 
-        .card-rarity {
-            padding-left: 16px;
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            padding: 4px 8px;
+
+            span {
+                color: #ffffff;
+                -webkit-text-stroke: 1px #333333;
+                font-size: 24px;
+                font-weight: bold;
+            }
         }
 
-        .card-level {
+        .card-support-area {
+            width: 300px;
             padding-left: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-support-area.vocal {
+            border-right: 2px dashed #FB0082;
+        }
+
+        .card-support-area.dance {
+            border-right: 2px dashed #0086F0;
+        }
+
+        .card-support-area.visual {
+            border-right: 2px dashed #FAA900;
+        }
+
+        .card-support-area.assist {
+            border-right: 2px dashed #3CC743;
+        }
+
+        .card-ability-area {
+            padding-left: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     }
 }

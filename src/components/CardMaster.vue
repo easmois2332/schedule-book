@@ -292,51 +292,44 @@ const filterAbilityCheckAll = () => {
     </div>
     <div class="card-list-area">
       <div class="card" v-bind:class="Card.type" v-for="Card in cardList" :key="Card.id">
-        <img class="card-image" :src="`./image/cards/${Card.id}.png`" v-bind:alt="Card.name">
-        <div class="card-detail-left-area" v-bind:class="Card.type">
-          <div class="card-info-area">
-            <div class="card-info">
-              <span class="card-type">{{ Card.type_display }}</span>
-              <span class="card-name">{{ Card.name }}</span>
-            </div>
-            <div class="card-info">
-              <span class="card-plan">{{ Card.plan_display }}</span>
-              <span class="card-rarity">{{ Card.rarity_display }}</span>
-              <span class="card-level">Lv{{ Card.level }}</span>
-            </div>
+        <div class="card-image-area" :style="{ backgroundImage: 'url(./image/cards/' + Card.id + '.png)'}">
+          <div class="card-name">
+            <span class="card-name-text">{{ Card.name }}</span>
           </div>
-          <div class="card-support-area">
-            <div class="card-support">
-              <span class="card-event1">{{ Card.event_1 }}</span>
-            </div>
-            <div class="card-support">
-              <span class="card-event2">{{ Card.event_2_display }}</span>
-            </div>
-            <div class="card-support">
-              <span class="card-event3">{{ Card.event_3_display }}</span>
-            </div>
+          <div class="card-info">
+            <span class="card-info-text">{{ Card.type_display }} {{ Card.plan_display }}</span>
+            <span class="card-info-text">{{ Card.rarity_display }} Lv{{ Card.level }}</span>
           </div>
         </div>
-        <div class="card-detail-right-area">
-          <div class="card-ability-area">
-            <div class="card-ability">
-              <span class="card-ability1">{{ Card.ability_1_display }}</span>
-            </div>
-            <div class="card-ability">
-              <span class="card-ability2">{{ Card.ability_2_display }}</span>
-            </div>
-            <div class="card-ability">
-              <span class="card-ability3">{{ Card.ability_3_display }}</span>
-            </div>
-            <div class="card-ability">
-              <span class="card-ability4">{{ Card.ability_4_display }}</span>
-            </div>
-            <div class="card-ability">
-              <span class="card-ability5">{{ Card.ability_5_display }}</span>
-            </div>
-            <div class="card-ability">
-              <span class="card-ability6">{{ Card.ability_6_display }}</span>
-            </div>
+        <div class="card-support-area" v-bind:class="Card.type">
+          <div class="card-support">
+            <span class="card-event1">{{ Card.event_1 }}</span>
+          </div>
+          <div class="card-support">
+            <span class="card-event2">{{ Card.event_2_display }}</span>
+          </div>
+          <div class="card-support">
+            <span class="card-event3">{{ Card.event_3_display }}</span>
+          </div>
+        </div>
+        <div class="card-ability-area">
+          <div class="card-ability">
+            <span class="card-ability1">{{ Card.ability_1_display }}</span>
+          </div>
+          <div class="card-ability">
+            <span class="card-ability2">{{ Card.ability_2_display }}</span>
+          </div>
+          <div class="card-ability">
+            <span class="card-ability3">{{ Card.ability_3_display }}</span>
+          </div>
+          <div class="card-ability">
+            <span class="card-ability4">{{ Card.ability_4_display }}</span>
+          </div>
+          <div class="card-ability">
+            <span class="card-ability5">{{ Card.ability_5_display }}</span>
+          </div>
+          <div class="card-ability">
+            <span class="card-ability6">{{ Card.ability_6_display }}</span>
           </div>
         </div>
       </div>
