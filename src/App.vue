@@ -4,7 +4,7 @@ import Cards from "@/classes/cards";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import CardView from "@/views/CardView.vue";
-import SupportCardJson from "../public/json/support_cards.json";
+import SupportCardJson from "@/assets/json/support_cards.json";
 
 let currentComponent = shallowRef(HomeView);
 let cardMaster = SupportCardJson;
