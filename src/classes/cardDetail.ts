@@ -5,7 +5,7 @@ export default class CardDetail {
     card: any
 
     constructor(card: any) {
-        this.card = card
+        this.card = card;
 
         // 表示用
         this.getDisplayText();
@@ -48,7 +48,7 @@ export default class CardDetail {
     }
 
     getCardDetails() {
-        return this.card
+        return this.card;
     }
 
     private getDisplayText() {

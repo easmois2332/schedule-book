@@ -1,8 +1,10 @@
 <script setup>
 import {ref} from "vue";
+import Items from "@/classes/items";
 
 const props = defineProps(['cards'])
 const cards = props.cards;
+const items = new Items();
 
 let filterOpen = ref(false);
 let filterType = ref([
@@ -93,6 +95,9 @@ const filterAbilityCheckAll = () => {
   } else {
     filterAbility.value = all;
   }
+}
+const getPItemDetail = (id) => {
+  return items.getItemFromId(id);
 }
 </script>
 
@@ -307,13 +312,16 @@ const filterAbilityCheckAll = () => {
           </div>
         </div>
         <div class="card-support-area" v-bind:class="Card.type">
-          <div class="card-support">
-            <span class="card-event1">{{ Card.event_1 }}</span>
+          <div class="card-support" v-if="Card.event_1 === 'get_unique_p_item'">
+            <span class="card-event1">Pアイテム『{{ getPItemDetail(Card.p_item_id).name }}』</span>
           </div>
-          <div class="card-support">
+          <div class="card-support" v-if="Card.event_1 === 'get_unique_card'">
+            <span class="card-event1">スキルカード『スキルカード名』</span>
+          </div>
+          <div class="card-support" v-if="Card.event_2 !== 'none'">
             <span class="card-event2">{{ Card.event_2_display }}</span>
           </div>
-          <div class="card-support">
+          <div class="card-support" v-if="Card.event_3 !== 'none'">
             <span class="card-event3">{{ Card.event_3_display }}</span>
           </div>
         </div>

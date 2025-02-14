@@ -904,9 +904,12 @@ body {
 
             span {
                 color: #ffffff;
-                -webkit-text-stroke: 1px #333333;
+                text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
                 font-size: 24px;
                 font-weight: bold;
+                font-family: "Noto Sans JP", serif;
+                font-optical-sizing: auto;
+                font-style: normal;
             }
         }
 
@@ -917,9 +920,12 @@ body {
 
             span {
                 color: #ffffff;
-                -webkit-text-stroke: 1px #333333;
+                text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
                 font-size: 24px;
                 font-weight: bold;
+                font-family: "Noto Sans JP", serif;
+                font-optical-sizing: auto;
+                font-style: normal;
             }
         }
 
@@ -928,7 +934,6 @@ body {
             padding-left: 16px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .card-support-area.vocal {
@@ -945,6 +950,12 @@ body {
 
         .card-support-area.assist {
             border-right: 2px dashed #3CC743;
+        }
+
+        .card-support {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 16px;
         }
 
         .card-ability-area {
