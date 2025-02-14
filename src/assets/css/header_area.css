@@ -1,0 +1,309 @@
+.header-area.color-saki {
+    background: linear-gradient(to right, #fb4f60, #fbb7a1);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-temari {
+    background: linear-gradient(to right, #23b3e6, #81e5de);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-kotone {
+    background: linear-gradient(to right, #f3d51d, #fbb5d1);
+
+    .header-tab-name {
+        color: #333333;
+    }
+
+    .header-tab-button {
+        color: #333333;
+    }
+
+    .header-operation-button {
+        color: #333333;
+    }
+}
+
+.header-area.color-mao {
+    background: linear-gradient(to right, #bf5cc4, #f6aba4);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-lilja {
+    background: linear-gradient(to right, #cee0e0, #92cad4);
+
+    .header-tab-name {
+        color: #333333;
+    }
+
+    .header-tab-button {
+        color: #333333;
+    }
+
+    .header-operation-button {
+        color: #333333;
+    }
+}
+
+.header-area.color-china {
+    background: linear-gradient(to right, #fa891e, #fb5e52);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-sumika {
+    background: linear-gradient(to right, #8fdc57, #c8e01b);
+
+    .header-tab-name {
+        color: #333333;
+    }
+
+    .header-tab-button {
+        color: #333333;
+    }
+
+    .header-operation-button {
+        color: #333333;
+    }
+}
+
+.header-area.color-hiro {
+    background: linear-gradient(to right, #00bcd3, #507ff9);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-sena {
+    background: linear-gradient(to right, #fbac26, #f1e769);
+
+    .header-tab-name {
+        color: #333333;
+    }
+
+    .header-tab-button {
+        color: #333333;
+    }
+
+    .header-operation-button {
+        color: #333333;
+    }
+}
+
+.header-area.color-misuzu {
+    background: linear-gradient(to right, #6ba2f7, #cdadfa);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-ume {
+    background: linear-gradient(to right, #f34a29, #ecc64b);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-rinami {
+    background: linear-gradient(to right, #f97dbd, #f0b7f9);
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area.color-default {
+    background: #958b7f;
+
+    .header-tab-name {
+        color: #ffffff;
+    }
+
+    .header-tab-button {
+        color: #ffffff;
+    }
+
+    .header-operation-button {
+        color: #ffffff;
+    }
+}
+
+.header-area {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 8px 8px 0;
+
+    .header-tab-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+
+        .header-tab-left-area {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .header-tab-right-area {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .header-tab {
+            margin: 0 8px;
+        }
+
+        .header-tab-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            appearance: none;
+        }
+
+        .header-tab-name {
+            font-size: 16px;
+            padding-left: 4px;
+            vertical-align: super
+        }
+
+        .header-tab-button:hover {
+        }
+    }
+
+    .header-operation-area {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 8px;
+
+        .header-operation {
+            margin: 0 8px;
+        }
+
+        .header-operation-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            appearance: none;
+        }
+    }
+
+    .schedule-tab-area {
+        display: flex;
+        flex-wrap: nowrap;
+
+        .schedule-tab {
+            background: #efefef;
+            border-top: 2px solid #616b6a;
+            border-right: 2px solid #616b6a;
+            border-left: none;
+            border-bottom: none;
+            cursor: default;
+        }
+
+        .schedule-tab.active {
+            background: #ffffff;
+        }
+
+        .schedule-tab-name {
+            color: #333333;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 4px;
+        }
+
+        .schedule-tab-close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            appearance: none;
+        }
+    }
+}

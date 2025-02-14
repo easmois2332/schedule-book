@@ -1,0 +1,324 @@
+.modal-area.color-saki {
+    .common-button {
+        background: linear-gradient(to right, #fb4f60, #fbb7a1);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fb4f60, #ffffff 30%),
+                color-mix(in srgb, #fbb7a1, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-temari {
+    .common-button {
+        background: linear-gradient(to right, #23b3e6, #81e5de);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #23b3e6, #ffffff 30%),
+                color-mix(in srgb, #81e5de, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-kotone {
+    .common-button {
+        background: linear-gradient(to right, #f3d51d, #fbb5d1);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f3d51d, #ffffff 30%),
+                color-mix(in srgb, #fbb5d1, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-mao {
+    .common-button {
+        background: linear-gradient(to right, #bf5cc4, #f6aba4);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #bf5cc4, #ffffff 30%),
+                color-mix(in srgb, #f6aba4, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-lilja {
+    .common-button {
+        background: linear-gradient(to right, #cee0e0, #92cad4);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #cee0e0, #ffffff 30%),
+                color-mix(in srgb, #92cad4, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-china {
+    .common-button {
+        background: linear-gradient(to right, #fa891e, #fb5e52);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fa891e, #ffffff 30%),
+                color-mix(in srgb, #fb5e52, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-sumika {
+    .common-button {
+        background: linear-gradient(to right, #8fdc57, #c8e01b);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #8fdc57, #ffffff 30%),
+                color-mix(in srgb, #c8e01b, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-hiro {
+    .common-button {
+        background: linear-gradient(to right, #00bcd3, #507ff9);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #00bcd3, #ffffff 30%),
+                color-mix(in srgb, #507ff9, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-sena {
+    .common-button {
+        background: linear-gradient(to right, #fbac26, #f1e769);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fbac26, #ffffff 30%),
+                color-mix(in srgb, #f1e769, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-misuzu {
+    .common-button {
+        background: linear-gradient(to right, #6ba2f7, #cdadfa);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #6ba2f7, #ffffff 30%),
+                color-mix(in srgb, #cdadfa, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-ume {
+    .common-button {
+        background: linear-gradient(to right, #f34a29, #ecc64b);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f34a29, #ffffff 30%),
+                color-mix(in srgb, #ecc64b, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-rinami {
+    .common-button {
+        background: linear-gradient(to right, #f97dbd, #f0b7f9);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f97dbd, #ffffff 30%),
+                color-mix(in srgb, #f0b7f9, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area.color-default {
+    .common-button {
+        background: #958b7f;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: color-mix(in srgb, #958b7f, #ffffff 30%);
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+    }
+}
+
+.modal-area {
+
+}
