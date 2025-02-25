@@ -1,4 +1,5 @@
 import CardDetail from "@/classes/cardDetail";
+import CardModel from "@/models/cards";
 
 export default class Cards {
 
@@ -12,8 +13,12 @@ export default class Cards {
         // サポートカードリストを作成
         this.cardList = this.getCardDetailList(this.deepCopy(cardMaster));
 
+        // 保存したサポートカードリストを取得
+        this.getSaveCardList();
+        let saveCardList = [{id: 1, card_id: 1, level: 40}, {id: 2, card_id: 4, level: 50}];
+
         // 保存したサポートカードリストを作成
-        this.saveList = this.getSaveCardDetailList(this.getSaveCardList());
+        this.saveList = this.getSaveCardDetailList(saveCardList);
     }
 
     getAllCard() {
@@ -24,7 +29,7 @@ export default class Cards {
         return this.saveList.filter((card: any) => card.enable === 1);
     }
 
-    getCardFromFilter(type: any, plan: any, event: any, ability: any) {
+    getCardFromFilter(type: string, plan: string, event: string, ability: string) {
         let cards = this.getAllCard();
         let result = [];
         for (let i in cards) {
@@ -39,7 +44,7 @@ export default class Cards {
         return result;
     }
 
-    getSaveCardFromFilter(type: any, plan: any, event: any, ability: any) {
+    getSaveCardFromFilter(type: string, plan: string, event: string, ability: string) {
         let cards = this.getAllSaveCard();
         let result = [];
         for (let i in cards) {
@@ -54,7 +59,7 @@ export default class Cards {
         return result;
     }
 
-    getCardFromId(id: any) {
+    getCardFromId(id: number) {
         return this.cardList.find((card: any) => (card.id === id) && (card.enable === 1));
     }
 
@@ -63,7 +68,7 @@ export default class Cards {
      * @param id
      * @param level
      */
-    getCardDetail(id: any, level: any) {
+    getCardDetail(id: number, level: number) {
         let card = this.deepCopy(this.getCardFromId(id));
         card.level = level;
         let cardDetail = new CardDetail(card);
@@ -89,11 +94,15 @@ export default class Cards {
         return cardDetails;
     }
 
-    private getSaveCardList() {
-        return [{id: 1, card_id: 1, level: 40}, {id: 2, card_id: 4, level: 50}];
-    }
-
     private deepCopy(array: any) {
         return JSON.parse(JSON.stringify(array));
+    }
+
+    private async getSaveCardList() {
+        let model = new CardModel();
+        let msg1 = await model.connect();
+        console.log(msg1);
+        let msg2 = await model.findAll();
+        console.log(msg2);
     }
 }

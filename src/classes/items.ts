@@ -8,7 +8,7 @@ export default class Items {
         this.itemMaster = PItemJson;
     }
 
-    getItemFromId(id: any) {
+    getItemFromId(id: number) {
         return this.itemMaster.find((item: any) => (item.id === id) && (item.enable === 1));
     }
 }
