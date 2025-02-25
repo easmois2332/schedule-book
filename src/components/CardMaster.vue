@@ -117,9 +117,11 @@ const getPItemDetail = (id) => {
       <div class="card-filter-list-area" v-show="filterOpen">
         <div class="card-filter-list-header">
           <span class="card-filter-text">タイプ</span>
-          <div class="card-filter-check-all" @click="filterTypeCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterTypeCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -141,9 +143,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">プラン</span>
-          <div class="card-filter-check-all" @click="filterPlanCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterPlanCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -165,9 +169,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">イベント</span>
-          <div class="card-filter-check-all" @click="filterEventCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterEventCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -189,9 +195,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">アビリティ</span>
-          <div class="card-filter-check-all" @click="filterAbilityCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterAbilityCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="ability-filter-area">
           <span class="ability-filter-text">初期値関係</span>

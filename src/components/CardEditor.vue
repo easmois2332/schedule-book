@@ -104,7 +104,7 @@ const getPItemDetail = (id) => {
       </div>
       <div class="edit-button-area">
         <div class="edit-button">
-          <button class="common-button" @click="$emit('close')">
+          <button class="common-button" v-bind:disabled="cardId == null" @click="$emit('close')">
             <span class="common-button-name">保存</span>
           </button>
         </div>

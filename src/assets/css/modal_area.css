@@ -385,6 +385,10 @@
 }
 
 .modal-area {
+    .common-button:disabled {
+        cursor: not-allowed;
+    }
+
     .modal-window-area {
         position: fixed;
         top: 0;

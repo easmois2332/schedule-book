@@ -7,7 +7,10 @@ const props = defineProps(['cards'])
 const cards = props.cards;
 const items = new Items();
 
-let showEditor = ref(false);
+let editorOpen = ref(false);
+let editorSaveId = ref(false);
+let editorCardId = ref(false);
+let editorCardLevel = ref(false);
 let filterOpen = ref(false);
 let filterType = ref([
   'vocal', 'dance', 'visual', 'assist',
@@ -27,6 +30,12 @@ let filterAbility = ref([
 ]);
 let cardList = ref(cards.getAllSaveCard());
 
+const buttonEditor = (saveId, cardId, cardLevel) => {
+  editorSaveId.value = saveId;
+  editorCardId.value = cardId;
+  editorCardLevel.value = cardLevel;
+  editorOpen.value = true;
+}
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
 }
@@ -110,19 +119,19 @@ const getPItemDetail = (id) => {
     </div>
     <div class="card-edit-area">
       <div class="add-button">
-        <button class="common-button" @click="showEditor = true">
+        <button class="common-button" @click="buttonEditor(null, null, 1)">
           <span class="common-button-name">
             サポートカードを追加
           </span>
         </button>
       </div>
       <Teleport to="#modal-area">
-        <CardEditor v-if="showEditor"
+        <CardEditor v-if="editorOpen"
             :cards="cards"
-            :save-id="null"
-            :card-id="1"
-            :card-level="1"
-            @close="showEditor = false"
+            :save-id="editorSaveId"
+            :card-id="editorCardId"
+            :card-level="editorCardLevel"
+            @close="editorOpen = false"
         />
       </Teleport>
     </div>
@@ -137,9 +146,11 @@ const getPItemDetail = (id) => {
       <div class="card-filter-list-area" v-show="filterOpen">
         <div class="card-filter-list-header">
           <span class="card-filter-text">タイプ</span>
-          <div class="card-filter-check-all" @click="filterTypeCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterTypeCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -161,9 +172,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">プラン</span>
-          <div class="card-filter-check-all" @click="filterPlanCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterPlanCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -185,9 +198,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">イベント</span>
-          <div class="card-filter-check-all" @click="filterEventCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterEventCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="card-filter-checkbox-area">
           <div class="card-filter-checkbox">
@@ -209,9 +224,11 @@ const getPItemDetail = (id) => {
         </div>
         <div class="card-filter-list-header">
           <span class="card-filter-text">アビリティ</span>
-          <div class="card-filter-check-all" @click="filterAbilityCheckAll">
-            <span class="card-filter-text">一括チェック</span>
-          </div>
+          <button class="basic-button" @click="filterAbilityCheckAll">
+            <span class="basic-button-name">
+              一括チェック
+            </span>
+          </button>
         </div>
         <div class="ability-filter-area">
           <span class="ability-filter-text">初期値関係</span>
@@ -322,7 +339,7 @@ const getPItemDetail = (id) => {
     </div>
     <div class="card-list-area">
       <div class="card" v-bind:class="card.type" v-for="card in cardList" :key="card.id">
-        <div class="card-image-area" :style="{ backgroundImage: 'url(./image/cards/' + card.id + '.png)'}">
+        <div class="card-image-area editor" :style="{ backgroundImage: 'url(./image/cards/' + card.id + '.png)'}" @click="buttonEditor(card.save_id, card.id, card.level)">
           <div class="card-name">
             <span class="card-name-text">{{ card.name }}</span>
           </div>

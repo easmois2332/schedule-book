@@ -385,6 +385,33 @@
 }
 
 .contents-view-area {
+    .basic-button {
+        background: #ffffff;
+        border: 2px solid #333333;
+        border-radius: 16px;
+        cursor: pointer;
+        outline: none;
+        padding: 4px 8px;
+        appearance: none;
+    }
+
+    .basic-button:hover {
+        background: #efefef;
+    }
+
+    .basic-button:disabled {
+        cursor: not-allowed;
+    }
+
+    .basic-button-name {
+        color: #333333;
+        font-size: 16px;
+    }
+
+    .common-button:disabled {
+        cursor: not-allowed;
+    }
+
     .headline-area {
         padding: 16px 16px 8px 16px;
 
@@ -450,17 +477,6 @@
             justify-content: space-between;
             border-bottom: 2px solid;
             padding-top: 16px;
-        }
-
-        .card-filter-check-all {
-            position: relative;
-            top: 16px;
-            z-index: 1;
-            padding: 2px;
-            cursor: pointer;
-            background: #fff;
-            border: 2px solid #333333;
-            border-radius: 4px;
         }
 
         .card-filter-checkbox-area {
@@ -540,6 +556,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .card-image-area.editor {
+            cursor: pointer;
         }
 
         .card-name {
