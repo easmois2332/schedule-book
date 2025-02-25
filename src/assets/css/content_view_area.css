@@ -20,13 +20,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #fb4f60, #fbb7a1) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #fb4f60, #fbb7a1) 1;
     }
 }
@@ -53,13 +50,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #23b3e6, #81e5de) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #23b3e6, #81e5de) 1;
     }
 }
@@ -86,13 +80,10 @@
     .common-button-name {
         color: #333333;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #f3d51d, #fbb5d1) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #f3d51d, #fbb5d1) 1;
     }
 }
@@ -119,13 +110,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #bf5cc4, #f6aba4) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list {
         border-image: linear-gradient(to right, #bf5cc4, #f6aba4) 1;
     }
 }
@@ -152,13 +140,10 @@
     .common-button-name {
         color: #333333;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #cee0e0, #92cad4) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #cee0e0, #92cad4) 1;
     }
 }
@@ -185,13 +170,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #fa891e, #fb5e52) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #fa891e, #fb5e52) 1;
     }
 }
@@ -218,13 +200,10 @@
     .common-button-name {
         color: #333333;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #8fdc57, #c8e01b) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #8fdc57, #c8e01b) 1;
     }
 }
@@ -251,13 +230,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #00bcd3, #507ff9) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #00bcd3, #507ff9) 1;
     }
 }
@@ -284,13 +260,10 @@
     .common-button-name {
         color: #333333;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #fbac26, #f1e769) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #fbac26, #f1e769) 1;
     }
 }
@@ -317,13 +290,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #6ba2f7, #cdadfa) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #6ba2f7, #cdadfa) 1;
     }
 }
@@ -350,13 +320,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #f34a29, #ecc64b) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #f34a29, #ecc64b) 1;
     }
 }
@@ -383,13 +350,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #f97dbd, #f0b7f9) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #f97dbd, #f0b7f9) 1;
     }
 }
@@ -412,13 +376,10 @@
     .common-button-name {
         color: #ffffff;
         font-weight: bold;
+        font-size: 16px;
     }
 
-    .card-tab.active {
-        border-image: linear-gradient(to right, #958b7f, #958b7f) 1;
-    }
-
-    .card-filter-list-header {
+    .card-tab.active, .card-filter-list-header {
         border-image: linear-gradient(to right, #958b7f, #958b7f) 1;
     }
 }
@@ -464,11 +425,6 @@
 
     .card-master-area, .card-manager-area {
         padding: 16px 16px;
-
-        span {
-            color: #333333;
-            font-size: 16px;
-        }
 
         .description-area {
             padding: 8px 0;
@@ -618,37 +574,35 @@
             }
         }
 
-        .card-support-area {
+        .card-event-area {
             width: 300px;
-            padding-left: 16px;
+            padding-left: 8px;
             display: flex;
             flex-direction: column;
         }
 
-        .card-support-area.vocal {
+        .card-event-area.vocal {
             border-right: 2px dashed #FB0082;
         }
 
-        .card-support-area.dance {
+        .card-event-area.dance {
             border-right: 2px dashed #0086F0;
         }
 
-        .card-support-area.visual {
+        .card-event-area.visual {
             border-right: 2px dashed #FAA900;
         }
 
-        .card-support-area.assist {
+        .card-event-area.assist {
             border-right: 2px dashed #3CC743;
         }
 
-        .card-support {
-            display: flex;
-            flex-direction: column;
+        .card-event {
             padding-bottom: 16px;
         }
 
         .card-ability-area {
-            padding-left: 16px;
+            padding-left: 8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

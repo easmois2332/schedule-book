@@ -6,14 +6,14 @@ export default class Cards {
     cardList: any
     saveList: any
 
-    constructor(cardMaster: any, saveList: any) {
+    constructor(cardMaster: any) {
         this.cardMaster = cardMaster;
 
         // サポートカードリストを作成
         this.cardList = this.getCardDetailList(this.deepCopy(cardMaster));
 
         // 保存したサポートカードリストを作成
-        this.saveList = this.getSaveCardDetailList(saveList);
+        this.saveList = this.getSaveCardDetailList(this.getSaveCardList());
     }
 
     getAllCard() {
@@ -82,9 +82,15 @@ export default class Cards {
     private getSaveCardDetailList(cards: any) {
         let cardDetails = [];
         for (let i in cards) {
-            cardDetails.push(this.getCardDetail(cards[i].id, cards[i].level));
+            let cardDetail = this.getCardDetail(cards[i].card_id, cards[i].level);
+            cardDetail.save_id = cards[i].id;
+            cardDetails.push(cardDetail);
         }
         return cardDetails;
+    }
+
+    private getSaveCardList() {
+        return [{id: 1, card_id: 1, level: 40}, {id: 2, card_id: 4, level: 50}];
     }
 
     private deepCopy(array: any) {

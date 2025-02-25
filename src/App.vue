@@ -8,7 +8,7 @@ import SupportCardJson from "@/assets/json/support_cards.json";
 
 let currentComponent = shallowRef(HomeView);
 let cardMaster = SupportCardJson;
-let cards = new Cards(cardMaster, [{id: 1, level: 40}, {id: 4, level: 50}]);
+let cards = new Cards(cardMaster);
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
@@ -28,7 +28,8 @@ const buttonSetting = () => {
 </script>
 
 <template>
-  <header class="header-area color-china">
+  <div id="modal-area" class="modal-area color-china"></div>
+  <header id="header-area" class="header-area color-china">
     <div class="header-tab-area">
       <div class="header-tab-left-area">
         <div class="header-tab home">
@@ -139,7 +140,7 @@ const buttonSetting = () => {
       </div>
     </div>
   </header>
-  <div class="contents-view-area color-china">
+  <div id="content-view-area" class="contents-view-area color-china">
     <keep-alive>
       <component
           :is="currentComponent"

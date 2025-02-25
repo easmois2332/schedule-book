@@ -6,3 +6,12 @@ body {
     margin: 0;
     overflow-y: scroll;
 }
+
+span {
+    color: #333333;
+    font-size: 16px;
+}
+
+span.font-bold {
+    font-weight: bold;
+}
