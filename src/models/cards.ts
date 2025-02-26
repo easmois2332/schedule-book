@@ -8,7 +8,7 @@ export default class Cards {
     }
 
     async connect() {
-        const promise: Promise<string> = new Promise<string>((resolve: any, reject: any) => {
+        const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
             let indexedDB = window.indexedDB;
             let request = indexedDB.open(this.dbName);
 
@@ -20,65 +20,90 @@ export default class Cards {
             // 既にDBが存在している場合
             request.onsuccess = (event: any) => {
                 this.db = (<IDBRequest>event.target).result;
-                resolve('indexedDB open success.');
+                resolve(true);
             }
             // エラーが発生した場合
             request.onerror = (event: any) => {
                 console.log(event.message);
-                reject('indexedDB open error.');
+                reject(false);
             }
         });
         return promise;
     }
 
     async findAll() {
-        const promise: Promise<string> = new Promise<string>((resolve: any, reject: any) => {
+        const promise: Promise<any> = new Promise<string>((resolve: any, reject: any) => {
             let trans = this.db.transaction(this.storeName, 'readonly');
             let store = trans.objectStore(this.storeName);
             let request = store.openCursor();
+            let list = [];
+
+            request.onsuccess = (event: any) => {
+                let cursor = <IDBCursorWithValue>(<IDBRequest>event.target).result;
+                if (cursor) {
+                    list[cursor.key] = cursor.value;
+                    cursor.continue();
+                } else {
+                    resolve(list);
+                }
+            }
+            request.onerror = (event: any) => {
+                console.log(event.message);
+                reject([]);
+            }
+
+        });
+        return promise;
+    }
+
+    async insert(card_id: number, level: number) {
+        const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
+            let trans = this.db.transaction(this.storeName, 'readwrite');
+            let store = trans.objectStore(this.storeName);
+            let request = store.add({card_id: card_id, level: level});
 
             request.onsuccess = (event: any) => {
                 resolve(<IDBCursorWithValue>(<IDBRequest>event.target).result);
             }
             request.onerror = (event: any) => {
                 console.log(event.message);
-                reject('indexedDB cursor error.');
+                reject(false);
             }
 
         });
         return promise;
     }
 
-    async update(id: number, card_id: number, level: number) {
-        const promise: Promise<string> = new Promise<string>((resolve: any, reject: any) => {
+    async update(key: number, card_id: number, level: number) {
+        const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
             let trans = this.db.transaction(this.storeName, 'readwrite');
             let store = trans.objectStore(this.storeName);
-            let request = store.put({id: id, card_id: card_id, level: level});
+            let request = store.put({card_id: card_id, level: level}, Number(key));
 
             request.onsuccess = (event: any) => {
-                resolve('indexedDB put success.');
+                resolve(true);
             }
             request.onerror = (event: any) => {
                 console.log(event.message);
-                reject('indexedDB put error.');
+                reject(false);
             }
 
         });
         return promise;
     }
 
-    async delete(id: number) {
-        const promise: Promise<string> = new Promise<string>((resolve: any, reject: any) => {
+    async delete(key: number) {
+        const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
             let trans = this.db.transaction(this.storeName, 'readwrite');
             let store = trans.objectStore(this.storeName);
-            let request = store.delete(id);
+            let request = store.delete(Number(key));
 
             request.onsuccess = (event: any) => {
-                resolve('indexedDB delete success.');
+                resolve(true);
             }
             request.onerror = (event: any) => {
                 console.log(event.message);
-                reject('indexedDB delete error.');
+                reject(false);
             }
 
         });

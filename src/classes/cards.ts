@@ -3,22 +3,18 @@ import CardModel from "@/models/cards";
 
 export default class Cards {
 
-    cardMaster: any
-    cardList: any
-    saveList: any
+    cardMaster: any = [];
+    cardList: any = [];
+    saveList: any = [];
 
     constructor(cardMaster: any) {
         this.cardMaster = cardMaster;
 
         // サポートカードリストを作成
-        this.cardList = this.getCardDetailList(this.deepCopy(cardMaster));
-
-        // 保存したサポートカードリストを取得
-        this.getSaveCardList();
-        let saveCardList = [{id: 1, card_id: 1, level: 40}, {id: 2, card_id: 4, level: 50}];
+        this.getCardList(this.deepCopy(cardMaster));
 
         // 保存したサポートカードリストを作成
-        this.saveList = this.getSaveCardDetailList(saveCardList);
+        this.getSaveCardList();
     }
 
     getAllCard() {
@@ -75,34 +71,77 @@ export default class Cards {
         return cardDetail.getCardDetails();
     }
 
-    private getCardDetailList(cards: any) {
-        let cardDetails = [];
-        for (let i in cards) {
-            let cardDetail = new CardDetail(cards[i]);
-            cardDetails.push(cardDetail.getCardDetails());
+    async insertSaveCard(id: number, level: number) {
+        let model = new CardModel();
+        if (await model.connect()) {
+            let saveId = await model.insert(id, level);
+            if (saveId) {
+                let card = this.getCardDetail(id, level);
+                card.save_id = saveId;
+                this.saveList.push(card);
+                console.log(this.saveList);
+            }
         }
-        return cardDetails;
     }
 
-    private getSaveCardDetailList(cards: any) {
-        let cardDetails = [];
-        for (let i in cards) {
-            let cardDetail = this.getCardDetail(cards[i].card_id, cards[i].level);
-            cardDetail.save_id = cards[i].id;
-            cardDetails.push(cardDetail);
+    async updateSaveCard(saveId: number, id: number, level: number) {
+        let model = new CardModel();
+        if (await model.connect()) {
+            if (await model.update(saveId, id, level)) {
+                let card = this.getCardDetail(id, level);
+                card.save_id = saveId;
+                let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
+                if (index !== -1) {
+                    this.saveList[index] = card;
+                    console.log(this.saveList);
+                }
+            }
         }
-        return cardDetails;
+    }
+
+    async deleteSaveCard(saveId: number) {
+        let model = new CardModel();
+        if (await model.connect()) {
+            if (await model.delete(saveId)) {
+                let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
+                if (index !== -1) {
+                    this.saveList[index].enable = 0;
+                    console.log(this.saveList);
+                }
+            }
+        }
     }
 
     private deepCopy(array: any) {
         return JSON.parse(JSON.stringify(array));
     }
 
+    private getCardList(cards: any) {
+        let cardList = [];
+        for (let i in cards) {
+            let cardDetail = new CardDetail(cards[i]);
+            cardList.push(cardDetail.getCardDetails());
+        }
+        this.cardList = cardList;
+    }
+
     private async getSaveCardList() {
+        let saveCardList = []
         let model = new CardModel();
-        let msg1 = await model.connect();
-        console.log(msg1);
-        let msg2 = await model.findAll();
-        console.log(msg2);
+        if (await model.connect()) {
+            let cards = await model.findAll();
+            saveCardList = this.getSaveCardDetailList(cards);
+            this.saveList = saveCardList;
+        }
+    }
+
+    private getSaveCardDetailList(cards: any) {
+        let cardList = [];
+        for (let i in cards) {
+            let cardDetail = this.getCardDetail(cards[i].card_id, cards[i].level);
+            cardDetail.save_id = i;
+            cardList.push(cardDetail);
+        }
+        return cardList;
     }
 }

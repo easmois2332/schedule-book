@@ -36,6 +36,10 @@ const buttonEditor = (saveId, cardId, cardLevel) => {
   editorCardLevel.value = cardLevel;
   editorOpen.value = true;
 }
+const closeCardEditor = () => {
+  cardList.value = cards.getAllSaveCard();
+  editorOpen.value = false;
+}
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
 }
@@ -131,7 +135,7 @@ const getPItemDetail = (id) => {
             :save-id="editorSaveId"
             :card-id="editorCardId"
             :card-level="editorCardLevel"
-            @close="editorOpen = false"
+            @close="closeCardEditor"
         />
       </Teleport>
     </div>

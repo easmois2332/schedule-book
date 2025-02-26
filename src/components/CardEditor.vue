@@ -3,6 +3,7 @@ import {ref} from "vue";
 import Items from "@/classes/items";
 
 const props = defineProps(['cards', 'saveId', 'cardId', 'cardLevel'])
+const emit = defineEmits(['close'])
 const cards = props.cards;
 const items = new Items();
 
@@ -18,6 +19,10 @@ if (cardId.value !== null) {
   cardMaxLevel.value = cards.getCardFromId(cardId.value).level;
 }
 
+const buttonSelectCard = () => {
+  cardId.value = Math.floor(Math.random() * 46) + 1;
+  updateCardDetail();
+}
 const updateCardDetail = () => {
   if (cardId.value !== null) {
     cardDetail.value = cards.getCardDetail(cardId.value, cardLevel.value);
@@ -26,6 +31,18 @@ const updateCardDetail = () => {
 }
 const getPItemDetail = (id) => {
   return items.getItemFromId(id);
+}
+const buttonSave = async () => {
+  if (saveId === null) {
+    await cards.insertSaveCard(cardId.value, cardLevel.value);
+  } else {
+    await cards.updateSaveCard(saveId, cardId.value, cardLevel.value)
+  }
+  emit('close');
+}
+const buttonDelete = async () => {
+  await cards.deleteSaveCard(saveId);
+  emit('close');
 }
 </script>
 
@@ -40,7 +57,7 @@ const getPItemDetail = (id) => {
       </div>
       <div class="card-info-area">
         <div class="card-image">
-          <button class="card-select-button" :style="{ backgroundImage: [cardDetail !== null ? 'url(./image/cards/' + cardDetail.id + '.png)' : 'none']}">
+          <button class="card-select-button" :style="{ backgroundImage: [cardDetail !== null ? 'url(./image/cards/' + cardDetail.id + '.png)' : 'none']}" @click="buttonSelectCard">
             <span class="card-select-text" v-show="cardDetail === null">サポートカードを選択</span>
           </button>
         </div>
@@ -104,12 +121,12 @@ const getPItemDetail = (id) => {
       </div>
       <div class="edit-button-area">
         <div class="edit-button">
-          <button class="common-button" v-bind:disabled="cardId == null" @click="$emit('close')">
+          <button class="common-button" v-bind:disabled="cardId === null" @click="buttonSave">
             <span class="common-button-name">保存</span>
           </button>
         </div>
         <div class="edit-button" v-if="saveId !== null">
-          <button class="common-button" @click="$emit('close')">
+          <button class="common-button" @click="buttonDelete">
             <span class="common-button-name">削除</span>
           </button>
         </div>
