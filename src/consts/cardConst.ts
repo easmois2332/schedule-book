@@ -80,6 +80,8 @@ export const abilities = {
     MENTAL_CARD_PARAMETER_UP: 'mental_card_parameter_up',
     // 好調効果カード獲得時パラメータ上昇
     KOTYO_CARD_PARAMETER_UP: 'kotyo_card_parameter_up',
+    // 好印象効果カード獲得時パラメータ上昇
+    KOINSYO_CARD_PARAMETER_UP: 'koinsyo_card_parameter_up',
     // スキルカード強化時パラメータ上昇
     CARD_STRENGTHEN_PARAMETER_UP: 'card_strengthen_parameter_up',
     // アクティブカード強化時パラメータ上昇

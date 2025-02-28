@@ -504,6 +504,30 @@
     "enable": 1
   },
   {
+    "id": 20028,
+    "name": "お姉さまビッグラブ",
+    "category": "support_card",
+    "rarity": "ssr",
+    "type": "vocal",
+    "plan": "logic",
+    "event_text": "【ボーカルレッスン・ボーカルターンのみ】\nアクティブスキルカード使用時、パラメータ上昇量増加50%（1ターン）\n元気+2（やる気効果を1.3倍適用）\n（レッスン内1回）",
+    "event_parameter": null,
+    "event_count": null,
+    "enable": 1
+  },
+  {
+    "id": 20029,
+    "name": "ゆうじょーのきろく",
+    "category": "support_card",
+    "rarity": "ssr",
+    "type": "dance",
+    "plan": "logic",
+    "event_text": "好印象効果のスキルカード獲得時、ダンスが700以上の場合、スキルカードを選択して強化\n（プロデュース中2回）",
+    "event_parameter": null,
+    "event_count": 2,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "美鈴からの贈り物",
     "category": "support_card",

@@ -25,6 +25,7 @@ export default class CardDetail {
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
         this.calcKotyoCardParameterUp();
+        this.calcKoinsyoCardParameterUp();
         this.calcCardStrengthenParameterUp();
         this.calcActiveCardStrengthenParameterUp();
         this.calcMentalCardStrengthenParameterUp();
@@ -483,7 +484,7 @@ export default class CardDetail {
      * 好調効果カード獲得時パラメータ上昇
      */
     private calcKotyoCardParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.KOTYO_CARD_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `好調効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -495,6 +496,25 @@ export default class CardDetail {
         if (this.card.ability_5 === abilities.KOTYO_CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `好調効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 好印象効果カード獲得時パラメータ上昇
+     */
+    private calcKoinsyoCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.KOINSYO_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `好印象効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.KOINSYO_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `好印象効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.KOINSYO_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `好印象効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 
@@ -521,7 +541,7 @@ export default class CardDetail {
      * アクティブカード強化時パラメータ上昇
      */
     private calcActiveCardStrengthenParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [5, 7, 9], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [4, 6, 6], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
         if (this.card.ability_2 === abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `アクティブスキルカード強化時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -540,7 +560,7 @@ export default class CardDetail {
      * メンタルカード強化時パラメータ上昇
      */
     private calcMentalCardStrengthenParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
+        let parameter = {r: [0, 0, 0], sr: [4, 6, 6], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
         if (this.card.ability_2 === abilities.MENTAL_CARD_STRENGTHEN_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `メンタルスキルカード強化時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
