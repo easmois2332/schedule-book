@@ -854,13 +854,13 @@ export default class CardDetail {
             switch (this.card.rarity) {
                 case rarities.RARITY_SSR:
                 case rarities.RARITY_SSR_EVENT:
-                    this.card.event_2_parameter = 20 + (20 * (this.card.ability_6_parameter / 100))
+                    this.card.event_2_parameter = Math.floor(20 + (20 * (this.card.ability_6_parameter / 100)));
                     break;
                 case rarities.RARITY_SR:
-                    this.card.event_2_parameter = 15 + (15 * (this.card.ability_6_parameter / 100))
+                    this.card.event_2_parameter = Math.floor(15 + (15 * (this.card.ability_6_parameter / 100)));
                     break;
                 case rarities.RARITY_R:
-                    this.card.event_2_parameter = 10 + (10 * (this.card.ability_6_parameter / 100))
+                    this.card.event_2_parameter = Math.floor(10 + (10 * (this.card.ability_6_parameter / 100)));
                     break;
                 default:
                     break;
@@ -870,7 +870,7 @@ export default class CardDetail {
         if (this.card.event_2 === events.HP_RECOVER) {
             switch (this.card.rarity) {
                 case rarities.RARITY_SSR:
-                    this.card.event_2_parameter = 7 + (7 * (this.card.ability_6_parameter / 100))
+                    this.card.event_2_parameter = Math.floor(7 + (7 * (this.card.ability_6_parameter / 100)));
                     break;
                 case rarities.RARITY_SSR_EVENT:
                 case rarities.RARITY_SR:
@@ -883,7 +883,7 @@ export default class CardDetail {
         if (this.card.event_2 === events.GET_P_POINT) {
             switch (this.card.rarity) {
                 case rarities.RARITY_SR:
-                    this.card.event_2_parameter = 25 + (25 * (this.card.ability_6_parameter / 100))
+                    this.card.event_2_parameter = Math.floor(25 + (25 * (this.card.ability_6_parameter / 100)));
                     break;
                 case rarities.RARITY_SSR:
                 case rarities.RARITY_SSR_EVENT:
