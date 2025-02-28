@@ -553,9 +553,11 @@
             width: 400px;
             height: 225px;
             background-size: cover;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 2px solid #333333;
         }
 
         .card-image-area.editor {

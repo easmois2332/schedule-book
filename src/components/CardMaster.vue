@@ -5,6 +5,7 @@ import Items from "@/classes/items";
 const props = defineProps(['cards'])
 const cards = props.cards;
 const items = new Items();
+const allCardList = cards.getAllCard();
 
 let filterOpen = ref(false);
 let filterType = ref([
@@ -23,7 +24,7 @@ let filterAbility = ref([
   'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
   'sp_lesson_hp_recover',
 ]);
-let cardList = ref(cards.getAllCard());
+let cardList = ref(allCardList);
 
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
@@ -49,7 +50,7 @@ const buttonFilterReset = () => {
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
-  cardList.value = cards.getAllCard();
+  cardList.value = allCardList;
   buttonFilterOpen();
 }
 const filterTypeCheckAll = () => {

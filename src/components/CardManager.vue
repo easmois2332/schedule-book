@@ -135,7 +135,7 @@ const getPItemDetail = (id) => {
             :save-id="editorSaveId"
             :card-id="editorCardId"
             :card-level="editorCardLevel"
-            @close="closeCardEditor"
+            @editor-close="closeCardEditor"
         />
       </Teleport>
     </div>
