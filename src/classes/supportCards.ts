@@ -1,17 +1,17 @@
-import CardDetail from "@/classes/cardDetail";
-import CardModel from "@/models/cards";
+import SupportCardDetail from "@/classes/supportCardDetail";
+import SupportCardModel from "@/models/supportCards";
 
-export default class Cards {
+export default class SupportCards {
 
-    cardMaster: any = [];
+    masterData: any = [];
     cardList: any = [];
     saveList: any = [];
 
-    constructor(cardMaster: any) {
-        this.cardMaster = cardMaster;
+    constructor(masterData: any) {
+        this.masterData = masterData;
 
         // サポートカードリストを作成
-        this.getCardList(this.deepCopy(cardMaster));
+        this.getCardList(this.deepCopy(masterData));
 
         // 保存したサポートカードリストを作成
         this.getSaveCardList();
@@ -67,12 +67,12 @@ export default class Cards {
     getCardDetail(id: number, level: number) {
         let card = this.deepCopy(this.getCardFromId(id));
         card.level = level;
-        let cardDetail = new CardDetail(card);
-        return cardDetail.getCardDetails();
+        let cardDetail = new SupportCardDetail(card);
+        return cardDetail.getDetails();
     }
 
     async insertSaveCard(id: number, level: number) {
-        let model = new CardModel();
+        let model = new SupportCardModel();
         if (await model.connect()) {
             let saveId = await model.insert(id, level);
             if (saveId) {
@@ -85,7 +85,7 @@ export default class Cards {
     }
 
     async updateSaveCard(saveId: number, id: number, level: number) {
-        let model = new CardModel();
+        let model = new SupportCardModel();
         if (await model.connect()) {
             if (await model.update(saveId, id, level)) {
                 let card = this.getCardDetail(id, level);
@@ -100,7 +100,7 @@ export default class Cards {
     }
 
     async deleteSaveCard(saveId: number) {
-        let model = new CardModel();
+        let model = new SupportCardModel();
         if (await model.connect()) {
             if (await model.delete(saveId)) {
                 let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
@@ -119,15 +119,17 @@ export default class Cards {
     private getCardList(cards: any) {
         let cardList = [];
         for (let i in cards) {
-            let cardDetail = new CardDetail(cards[i]);
-            cardList.push(cardDetail.getCardDetails());
+            if (cards[i].enable === 1) {
+                let cardDetail = new SupportCardDetail(cards[i]);
+                cardList.push(cardDetail.getDetails());
+            }
         }
         this.cardList = cardList;
     }
 
     private async getSaveCardList() {
         let saveCardList = []
-        let model = new CardModel();
+        let model = new SupportCardModel();
         if (await model.connect()) {
             let cards = await model.findAll();
             saveCardList = this.getSaveCardDetailList(cards);

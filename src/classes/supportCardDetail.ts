@@ -1,6 +1,6 @@
-import {rarities, types, plans, events, abilities, abilityParameterThresholds} from "@/consts/cardConst";
+import {rarities, types, plans, events, abilities, abilityParameterThresholds} from "@/consts/supportCardConst";
 
-export default class CardDetail {
+export default class SupportCardDetail {
 
     card: any
 
@@ -48,7 +48,7 @@ export default class CardDetail {
         this.calcEventParameter();
     }
 
-    getCardDetails() {
+    getDetails() {
         return this.card;
     }
 

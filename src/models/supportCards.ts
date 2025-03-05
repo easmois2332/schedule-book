@@ -1,4 +1,4 @@
-export default class Cards {
+export default class SupportCards {
 
     dbName: string = 'schedule-book';
     storeName: string = 'cards';

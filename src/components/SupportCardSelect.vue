@@ -1,9 +1,8 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['cards'])
-const emit = defineEmits(['selector-close'])
-const cards = props.cards;
+const props = defineProps(['supportCards'])
+const cards = props.supportCards;
 const allCardList = cards.getAllCard();
 const allSaveCardList = cards.getAllSaveCard();
 
@@ -334,7 +333,7 @@ const filterAbilityCheckAll = () => {
         </div>
         <div class="card-list-area">
           <div class="card" v-for="card in cardList" :key="card.id">
-            <div class="card-image-area" :style="{ backgroundImage: 'url(./image/cards/' + card.id + '.png)'}" @click="$emit('selector-close', card.id)">
+            <div class="card-image-area" :style="{ backgroundImage: 'url(./image/supportCards/' + card.id + '.png)'}" @click="$emit('selector-close', card.id)">
               <div class="card-name">
                 <span class="card-name-text">{{ card.name }}</span>
               </div>

@@ -1,12 +1,16 @@
 <script setup>
+import SupportCardEditor from "@/components/SupportCardEditor.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
 
-const props = defineProps(['cards'])
-const cards = props.cards;
+const props = defineProps(['supportCards'])
+const cards = props.supportCards;
 const items = new Items();
-const allCardList = cards.getAllCard();
 
+let editorOpen = ref(false);
+let editorSaveId = ref(false);
+let editorCardId = ref(false);
+let editorCardLevel = ref(false);
 let filterOpen = ref(false);
 let filterType = ref([
   'vocal', 'dance', 'visual', 'assist',
@@ -24,13 +28,23 @@ let filterAbility = ref([
   'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
   'sp_lesson_hp_recover',
 ]);
-let cardList = ref(allCardList);
+let cardList = ref(cards.getAllSaveCard());
 
+const buttonEditor = (saveId, cardId, cardLevel) => {
+  editorSaveId.value = saveId;
+  editorCardId.value = cardId;
+  editorCardLevel.value = cardLevel;
+  editorOpen.value = true;
+}
+const closeEditor = () => {
+  cardList.value = cards.getAllSaveCard();
+  editorOpen.value = false;
+}
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
 }
 const buttonFiltering = () => {
-  cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
   buttonFilterOpen();
 }
 const buttonFilterReset = () => {
@@ -50,7 +64,7 @@ const buttonFilterReset = () => {
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
-  cardList.value = allCardList;
+  cardList.value = cards.getAllSaveCard();
   buttonFilterOpen();
 }
 const filterTypeCheckAll = () => {
@@ -103,9 +117,27 @@ const getPItemDetail = (id) => {
 </script>
 
 <template>
-  <div class="card-master-area">
+  <div class="card-manager-area">
     <div class="description-area">
-      <span class="description">最大レベルのサポートカードのイベント・アビリティの確認ができます。</span>
+      <span class="description">保存したサポートカードの追加、編集、削除ができます。</span>
+    </div>
+    <div class="card-edit-area">
+      <div class="add-button">
+        <button class="common-button" @click="buttonEditor(null, null, 1)">
+          <span class="common-button-name">
+            サポートカードを追加
+          </span>
+        </button>
+      </div>
+      <Teleport to="#modal-area">
+        <SupportCardEditor v-if="editorOpen"
+            :support-cards="cards"
+            :save-id="editorSaveId"
+            :card-id="editorCardId"
+            :card-level="editorCardLevel"
+            @editor-close="closeEditor"
+        />
+      </Teleport>
     </div>
     <div class="card-filter-area">
       <div class="filter-button">
@@ -311,7 +343,7 @@ const getPItemDetail = (id) => {
     </div>
     <div class="card-list-area">
       <div class="card" v-bind:class="card.type" v-for="card in cardList" :key="card.id">
-        <div class="card-image-area" :style="{ backgroundImage: 'url(./image/cards/' + card.id + '.png)'}">
+        <div class="card-image-area editor" :style="{ backgroundImage: 'url(./image/supportCards/' + card.id + '.png)'}" @click="buttonEditor(card.save_id, card.id, card.level)">
           <div class="card-name">
             <span class="card-name-text">{{ card.name }}</span>
           </div>

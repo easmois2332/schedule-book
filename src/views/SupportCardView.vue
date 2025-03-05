@@ -1,18 +1,18 @@
 <script setup>
-import CardMaster from "@/components/CardMaster.vue";
-import CardManager from "@/components/CardManager.vue";
+import SupportCardMaster from "@/components/SupportCardMaster.vue";
+import SupportCardManager from "@/components/SupportCardManager.vue";
 import {shallowRef} from "vue";
 
-const props = defineProps(['cards'])
-const cards = props.cards;
+const props = defineProps(['supportCards'])
+const supportCards = props.supportCards;
 
-let currentComponent = shallowRef(CardMaster);
+let currentComponent = shallowRef(SupportCardMaster);
 
 const buttonCardMaster = () => {
-  currentComponent.value = CardMaster;
+  currentComponent.value = SupportCardMaster;
 }
 const buttonCardManager = () => {
-  currentComponent.value = CardManager;
+  currentComponent.value = SupportCardManager;
 }
 </script>
 
@@ -24,12 +24,12 @@ const buttonCardManager = () => {
     <span class="headline-text">サポートカード</span>
   </div>
   <div class="card-tab-area">
-    <div class="card-tab" v-bind:class="{'active': currentComponent === CardMaster}">
+    <div class="card-tab" v-bind:class="{'active': currentComponent === SupportCardMaster}">
       <button class="card-tab-button" @click="buttonCardMaster">
         <span class="card-tab-name">一覧</span>
       </button>
     </div>
-    <div class="card-tab" v-bind:class="{'active': currentComponent === CardManager}">
+    <div class="card-tab" v-bind:class="{'active': currentComponent === SupportCardManager}">
       <button class="card-tab-button" @click="buttonCardManager">
         <span class="card-tab-name">管理</span>
       </button>
@@ -39,7 +39,7 @@ const buttonCardManager = () => {
     <keep-alive>
       <component
           :is="currentComponent"
-          :cards="cards"
+          :support-cards="supportCards"
       />
     </keep-alive>
   </div>

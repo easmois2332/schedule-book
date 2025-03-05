@@ -1,14 +1,13 @@
 <script setup>
 import {shallowRef} from "vue";
-import Cards from "@/classes/cards";
+import SupportCards from "@/classes/supportCards";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
-import CardView from "@/views/CardView.vue";
+import SupportCardView from "@/views/SupportCardView.vue";
 import SupportCardJson from "@/assets/json/support_cards.json";
 
 let currentComponent = shallowRef(HomeView);
-let cardMaster = SupportCardJson;
-let cards = new Cards(cardMaster);
+let supportCards = new SupportCards(SupportCardJson);
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
@@ -21,7 +20,7 @@ const buttonIdol = () => {
   currentComponent.value = IdolView
 }
 const buttonCard = () => {
-  currentComponent.value = CardView
+  currentComponent.value = SupportCardView
 }
 const buttonSetting = () => {
 }
@@ -144,7 +143,7 @@ const buttonSetting = () => {
     <keep-alive>
       <component
           :is="currentComponent"
-          :cards="cards"
+          :support-cards="supportCards"
       />
     </keep-alive>
   </div>

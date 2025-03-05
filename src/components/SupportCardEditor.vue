@@ -1,11 +1,11 @@
 <script setup>
-import CardSelect from "@/components/CardSelect.vue";
+import SupportCardSelect from "@/components/SupportCardSelect.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
 
-const props = defineProps(['cards', 'saveId', 'cardId', 'cardLevel'])
+const props = defineProps(['supportCards', 'saveId', 'cardId', 'cardLevel'])
 const emit = defineEmits(['editor-close'])
-const cards = props.cards;
+const cards = props.supportCards;
 const items = new Items();
 
 let saveId = props.saveId;
@@ -24,7 +24,7 @@ if (cardId.value !== null) {
 const buttonSelectCard = () => {
   selectorOpen.value = true;
 }
-const closeCardSelector = (id) => {
+const closeSelector = (id) => {
   if (id !== null) {
     cardId.value = id;
     updateCardDetail();
@@ -66,14 +66,14 @@ const buttonDelete = async () => {
       <div class="content-area">
         <div class="card-info-area">
           <div class="card-image">
-            <button class="card-select-button" :style="{ backgroundImage: [cardDetail !== null ? 'url(./image/cards/' + cardDetail.id + '.png)' : 'none']}" @click="buttonSelectCard">
+            <button class="card-select-button" :style="{ backgroundImage: [cardDetail !== null ? 'url(./image/supportCards/' + cardDetail.id + '.png)' : 'none']}" @click="buttonSelectCard">
               <span class="card-select-text" v-show="cardDetail === null">サポートカードを選択</span>
             </button>
           </div>
           <Teleport to="#modal-area">
-            <CardSelect v-if="selectorOpen"
-                        :cards="cards"
-                        @selector-close="closeCardSelector"
+            <SupportCardSelect v-if="selectorOpen"
+                        :support-cards="cards"
+                        @selector-close="closeSelector"
             />
           </Teleport>
           <div class="card-info">
