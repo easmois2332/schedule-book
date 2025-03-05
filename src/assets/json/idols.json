@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "sort_id": 1,
+    "name": "花海咲季",
+    "enable": 1
+  },
+  {
+    "id": 2,
+    "sort_id": 2,
+    "name": "月村手毬",
+    "enable": 1
+  },
+  {
+    "id": 3,
+    "sort_id": 3,
+    "name": "藤田ことね",
+    "enable": 1
+  },
+  {
+    "id": 4,
+    "sort_id": 4,
+    "name": "有村麻央",
+    "enable": 1
+  },
+  {
+    "id": 5,
+    "sort_id": 5,
+    "name": "葛城リーリヤ",
+    "enable": 1
+  },
+  {
+    "id": 6,
+    "sort_id": 6,
+    "name": "倉本千奈",
+    "enable": 1
+  },
+  {
+    "id": 7,
+    "sort_id": 7,
+    "name": "紫雲清夏",
+    "enable": 1
+  },
+  {
+    "id": 8,
+    "sort_id": 8,
+    "name": "篠澤広",
+    "enable": 1
+  },
+  {
+    "id": 11,
+    "sort_id": 9,
+    "name": "十王星南",
+    "enable": 1
+  },
+  {
+    "id": 12,
+    "sort_id": 10,
+    "name": "秦谷美鈴",
+    "enable": 0
+  },
+  {
+    "id": 10,
+    "sort_id": 11,
+    "name": "花海佑芽",
+    "enable": 1
+  },
+  {
+    "id": 9,
+    "sort_id": 12,
+    "name": "姫崎莉波",
+    "enable": 1
+  }
+]
