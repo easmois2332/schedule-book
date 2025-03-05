@@ -25,7 +25,7 @@ export default class SupportCards {
         return this.saveList.filter((card: any) => card.enable === 1);
     }
 
-    getCardFromFilter(type: string, plan: string, event: string, ability: string) {
+    getCardFromFilter(type: any, plan: any, event: any, ability: any) {
         let cards = this.getAllCard();
         let result = [];
         for (let i in cards) {
@@ -40,7 +40,7 @@ export default class SupportCards {
         return result;
     }
 
-    getSaveCardFromFilter(type: string, plan: string, event: string, ability: string) {
+    getSaveCardFromFilter(type: any, plan: any, event: any, ability: any) {
         let cards = this.getAllSaveCard();
         let result = [];
         for (let i in cards) {
