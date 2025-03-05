@@ -2,10 +2,12 @@
 import SupportCardEditor from "@/components/SupportCardEditor.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
+import SkillCards from "@/classes/skillCards";
 
 const props = defineProps(['supportCards'])
 const cards = props.supportCards;
 const items = new Items();
+const skillCards = new SkillCards();
 
 let editorOpen = ref(false);
 let editorSaveId = ref(false);
@@ -113,6 +115,9 @@ const filterAbilityCheckAll = () => {
 }
 const getPItemDetail = (id) => {
   return items.getItemFromId(id);
+}
+const getSkillCardDetail = (id) => {
+  return skillCards.getItemFromId(id);
 }
 </script>
 
@@ -357,7 +362,7 @@ const getPItemDetail = (id) => {
             <span class="card-event1">Pアイテム<span class="font-bold">『{{ getPItemDetail(card.p_item_id).name }}』</span></span>
           </div>
           <div class="card-event" v-if="card.event_1 === 'get_unique_card'">
-            <span class="card-event1">スキルカード<span class="font-bold">『スキルカード名』</span></span>
+            <span class="card-event1">スキルカード<span class="font-bold">『{{ getSkillCardDetail(card.skill_card_id).name }}』</span></span>
           </div>
           <div class="card-event" v-if="card.event_2 !== 'none'">
             <span class="card-event2" v-html="card.event_2_display"></span>

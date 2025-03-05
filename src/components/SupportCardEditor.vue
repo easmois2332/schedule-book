@@ -2,11 +2,13 @@
 import SupportCardSelect from "@/components/SupportCardSelect.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
+import SkillCards from "@/classes/skillCards";
 
 const props = defineProps(['supportCards', 'saveId', 'cardId', 'cardLevel'])
 const emit = defineEmits(['editor-close'])
 const cards = props.supportCards;
 const items = new Items();
+const skillCards = new SkillCards();
 
 let saveId = props.saveId;
 let cardId = ref(props.cardId);
@@ -39,6 +41,9 @@ const updateCardDetail = () => {
 }
 const getPItemDetail = (id) => {
   return items.getItemFromId(id);
+}
+const getSkillCardDetail = (id) => {
+  return skillCards.getItemFromId(id);
 }
 const buttonSave = async () => {
   if (saveId === null) {
@@ -94,7 +99,7 @@ const buttonDelete = async () => {
           <div class="card-event">
             <span class="card-event1" v-if="cardDetail === null">サポートイベント 1</span>
             <span class="card-event1" v-else-if="cardDetail.event_1 === 'get_unique_p_item'">Pアイテム<span class="font-bold">『{{ getPItemDetail(cardDetail.p_item_id).name }}』</span></span>
-            <span class="card-event1" v-else-if="cardDetail.event_1 === 'get_unique_card'">スキルカード<span class="font-bold">『スキルカード名』</span></span>
+            <span class="card-event1" v-else-if="cardDetail.event_1 === 'get_unique_card'">スキルカード<span class="font-bold">『{{ getSkillCardDetail(cardDetail.skill_card_id).name }}』</span></span>
           </div>
           <div class="card-event">
             <span class="card-event2" v-if="cardDetail === null">サポートイベント 2</span>

@@ -4,10 +4,9 @@ import SupportCards from "@/classes/supportCards";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
-import SupportCardJson from "@/assets/json/support_cards.json";
 
 let currentComponent = shallowRef(HomeView);
-let supportCards = new SupportCards(SupportCardJson);
+let supportCards = new SupportCards();
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
