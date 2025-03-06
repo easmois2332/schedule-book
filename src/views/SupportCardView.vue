@@ -3,7 +3,7 @@ import SupportCardMaster from "@/components/SupportCardMaster.vue";
 import SupportCardManager from "@/components/SupportCardManager.vue";
 import {shallowRef} from "vue";
 
-const props = defineProps(['supportCards'])
+const props = defineProps(['idols', 'supportCards'])
 const supportCards = props.supportCards;
 
 let currentComponent = shallowRef(SupportCardMaster);

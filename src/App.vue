@@ -1,11 +1,13 @@
 <script setup>
 import {shallowRef} from "vue";
+import Idols from "@/classes/idols";
 import SupportCards from "@/classes/supportCards";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 
 let currentComponent = shallowRef(HomeView);
+let idols = new Idols();
 let supportCards = new SupportCards();
 
 const buttonHome = () => {
@@ -142,6 +144,7 @@ const buttonSetting = () => {
     <keep-alive>
       <component
           :is="currentComponent"
+          :idols="idols"
           :support-cards="supportCards"
       />
     </keep-alive>

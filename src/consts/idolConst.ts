@@ -9,12 +9,6 @@ export const rarities = {
     RARITY_SSR_EVENT: 'ssr_event',
 }
 
-export const displayRarities = {
-    RARITY_R: 'R',
-    RARITY_SR: 'SR',
-    RARITY_SSR: 'SSR',
-}
-
 export const plans = {
     SENSE: 'sense',
     LOGIC: 'logic',
@@ -34,4 +28,10 @@ export const abilities = {
     BASIC: 'basic',
     SEASON: 'season',
     FESU: 'fesu',
+}
+
+export const types = {
+    VOCAL: 'vocal',
+    DANCE: 'dance',
+    VISUAL: 'visual',
 }

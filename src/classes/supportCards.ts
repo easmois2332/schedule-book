@@ -4,15 +4,12 @@ import SupportCardModel from "@/models/supportCards";
 
 export default class SupportCards {
 
-    masterData: any = [];
     cardList: any = [];
     saveList: any = [];
 
     constructor() {
-        this.masterData = SupportCardJson;
-
         // サポートカードリストを作成
-        this.getCardList(this.deepCopy(SupportCardJson));
+        this.getCardList(SupportCardJson);
 
         // 保存したサポートカードリストを作成
         this.getSaveCardList();
