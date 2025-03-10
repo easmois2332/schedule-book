@@ -2,73 +2,85 @@
   {
     "id": 1,
     "sort_id": 1,
-    "name": "花海咲季",
+    "name": "花海 咲季",
+    "first_name": "Saki",
     "enable": 1
   },
   {
     "id": 2,
     "sort_id": 2,
-    "name": "月村手毬",
+    "name": "月村 手毬",
+    "first_name": "Temari",
     "enable": 1
   },
   {
     "id": 3,
     "sort_id": 3,
-    "name": "藤田ことね",
+    "name": "藤田 ことね",
+    "first_name": "Kotone",
     "enable": 1
   },
   {
     "id": 4,
     "sort_id": 4,
-    "name": "有村麻央",
+    "name": "有村 麻央",
+    "first_name": "Mao",
     "enable": 1
   },
   {
     "id": 5,
     "sort_id": 5,
-    "name": "葛城リーリヤ",
+    "name": "葛城 リーリヤ",
+    "first_name": "Lilja",
     "enable": 1
   },
   {
     "id": 6,
     "sort_id": 6,
-    "name": "倉本千奈",
+    "name": "倉本 千奈",
+    "first_name": "China",
     "enable": 1
   },
   {
     "id": 7,
     "sort_id": 7,
-    "name": "紫雲清夏",
+    "name": "紫雲 清夏",
+    "first_name": "Sumika",
     "enable": 1
   },
   {
     "id": 8,
     "sort_id": 8,
-    "name": "篠澤広",
+    "name": "篠澤 広",
+    "first_name": "Hiro",
     "enable": 1
   },
   {
     "id": 11,
     "sort_id": 9,
-    "name": "十王星南",
+    "name": "十王 星南",
+    "first_name": "Sena",
     "enable": 1
   },
   {
     "id": 12,
     "sort_id": 10,
-    "name": "秦谷美鈴",
+    "name": "秦谷 美鈴",
+    "first_name": "Misuzu",
     "enable": 0
   },
   {
     "id": 10,
     "sort_id": 11,
-    "name": "花海佑芽",
+    "name": "花海 佑芽",
+    "first_name": "Ume",
     "enable": 1
   },
   {
     "id": 9,
     "sort_id": 12,
-    "name": "姫崎莉波",
+    "name": "姫崎 莉波",
+    "first_name": "Rinami",
     "enable": 1
   }
 ]

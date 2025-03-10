@@ -35,12 +35,10 @@ const buttonCardManager = () => {
       </button>
     </div>
   </div>
-  <div class="card-view-area">
-    <keep-alive>
-      <component
-          :is="currentComponent"
-          :support-cards="supportCards"
-      />
-    </keep-alive>
-  </div>
+  <keep-alive>
+    <component
+        :is="currentComponent"
+        :support-cards="supportCards"
+    />
+  </keep-alive>
 </template>

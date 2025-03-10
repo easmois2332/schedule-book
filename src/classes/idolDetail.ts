@@ -300,9 +300,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VISUAL);
@@ -434,9 +434,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VOCAL);
@@ -575,9 +575,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.DANCE);
@@ -708,9 +708,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VOCAL);
@@ -855,9 +855,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VISUAL);
@@ -990,9 +990,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.DANCE);
@@ -1122,9 +1122,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.DANCE);
@@ -1257,9 +1257,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VOCAL);
@@ -1391,9 +1391,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VISUAL);
@@ -1528,9 +1528,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.DANCE);
@@ -1678,9 +1678,9 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
-        this.pIdol.bonus_vocal = bonusVo / 10;
-        this.pIdol.bonus_dance = bonusDa / 10;
-        this.pIdol.bonus_visual = bonusVi / 10;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
 
         // SPレッスン発生率
         this.calcSpLessonRate(types.VISUAL);

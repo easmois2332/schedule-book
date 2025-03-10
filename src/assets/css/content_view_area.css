@@ -630,4 +630,200 @@
             justify-content: space-between;
         }
     }
+
+    .idol-view-area {
+        padding: 16px 16px;
+
+        .description-area {
+            padding: 8px 0;
+        }
+
+        .idol-list-area {
+            padding: 8px 0;
+        }
+
+        .idol {
+            padding-bottom: 8px;
+        }
+
+        .idol-info-area {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            border-bottom: 2px solid;
+        }
+
+        .idol-info-area.saki {
+            border-image: linear-gradient(to right, #fb4f60, #fbb7a1) 1;
+        }
+
+        .idol-info-area.temari {
+            border-image: linear-gradient(to right, #23b3e6, #81e5de) 1;
+        }
+
+        .idol-info-area.kotone {
+            border-image: linear-gradient(to right, #f3d51d, #fbb5d1) 1;
+        }
+
+        .idol-info-area.mao {
+            border-image: linear-gradient(to right, #bf5cc4, #f6aba4) 1;
+        }
+
+        .idol-info-area.lilja {
+            border-image: linear-gradient(to right, #cee0e0, #92cad4) 1;
+        }
+
+        .idol-info-area.china {
+            border-image: linear-gradient(to right, #fa891e, #fb5e52) 1;
+        }
+
+        .idol-info-area.sumika {
+            border-image: linear-gradient(to right, #8fdc57, #c8e01b) 1;
+        }
+
+        .idol-info-area.hiro {
+            border-image: linear-gradient(to right, #00bcd3, #507ff9) 1;
+        }
+
+        .idol-info-area.sena {
+            border-image: linear-gradient(to right, #fbac26, #f1e769) 1;
+        }
+
+        .idol-info-area.misuzu {
+            border-image: linear-gradient(to right, #6ba2f7, #cdadfa) 1;
+        }
+
+        .idol-info-area.ume {
+            border-image: linear-gradient(to right, #f34a29, #ecc64b) 1;
+        }
+
+        .idol-info-area.rinami {
+            border-image: linear-gradient(to right, #f97dbd, #f0b7f9) 1;
+        }
+
+        .idol-name-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .idol-dear-level {
+            padding-left: 24px;
+        }
+
+        .produce-idol-area {
+            padding: 8px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .produce-idol {
+            width: 500px;
+            padding: 8px 8px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .produce-idol-image-area {
+            width: 154px;
+            height: 205px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 2px solid #333333;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .produce-idol-level-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .produce-idol-level-text {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
+            font-size: 32px;
+            font-weight: bold;
+            font-family: "Noto Sans JP", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+
+        .produce-idol-info-area {
+            padding: 0 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-name-text {
+            font-size: 24px;
+        }
+
+        .produce-idol-plan-area {
+            padding: 4px;
+        }
+
+        .produce-idol-hp {
+            width: 90px;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-hp-text {
+            border-bottom: 2px solid #3CC743;
+        }
+
+        .produce-idol-hp-value {
+            display: flex;
+            flex-direction: column;
+            background: rgba(60, 199, 67, 0.1);
+        }
+
+        .produce-idol-parameter-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        .produce-idol-parameter {
+            width: 90px;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-parameter-text.vocal {
+            border-bottom: 2px solid #FB0082;
+        }
+
+        .produce-idol-parameter-text.dance {
+            border-bottom: 2px solid #0086F0;
+        }
+
+        .produce-idol-parameter-text.visual {
+            border-bottom: 2px solid #FAA900;
+        }
+
+        .produce-idol-parameter-value {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-parameter-value.vocal {
+            background: rgba(251, 0, 130, 0.1);
+        }
+
+        .produce-idol-parameter-value.dance {
+            background: rgba(0, 134, 240, 0.1);
+        }
+
+        .produce-idol-parameter-value.visual {
+            background: rgba(250, 169, 0, 0.1);
+        }
+    }
 }

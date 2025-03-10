@@ -162,7 +162,7 @@
     "rarity": "ssr_event",
     "plan": "sense",
     "effect": "syutyu",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -210,7 +210,7 @@
     "rarity": "ssr_event",
     "plan": "logic",
     "effect": "koinsyo",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -294,7 +294,7 @@
     "rarity": "ssr_event",
     "plan": "sense",
     "effect": "syutyu",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -366,7 +366,7 @@
     "rarity": "ssr_event",
     "plan": "logic",
     "effect": "yaruki",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -546,7 +546,7 @@
     "rarity": "ssr_event",
     "plan": "anomaly",
     "effect": "zenryoku",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -582,7 +582,7 @@
     "rarity": "ssr_event",
     "plan": "anomaly",
     "effect": "tuyoki",
-    "ability": "season",
+    "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
@@ -594,6 +594,18 @@
     "rarity": "ssr",
     "plan": "logic",
     "effect": "koinsyo",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 51,
+    "idol_id": 4,
+    "name": "雪解けに",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "zenryoku",
     "ability": "season",
     "p_item_id": null,
     "skill_card_id": null,
