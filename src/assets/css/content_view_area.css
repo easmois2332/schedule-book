@@ -432,6 +432,11 @@
 
         .card-tab {
             padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .card-tab:hover {
+            background: #efefef;
         }
 
         .card-tab.active {
@@ -485,7 +490,14 @@
         .card-filter-checkbox-area {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             padding-top: 8px;
+
+            @media (max-width: 600px) {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
         }
 
         .card-filter-checkbox {
@@ -572,6 +584,11 @@
 
         .card-image-area.editor {
             cursor: pointer;
+        }
+
+        .card-image-area.editor:hover {
+            opacity: 0.7;
+            transition: 0.3s;
         }
 
         .card-name {
@@ -818,6 +835,11 @@
                 min-width: 102px;
                 min-height: 136px;
             }
+        }
+
+        .produce-idol-image-area:hover {
+            opacity: 0.7;
+            transition: 0.3s;
         }
 
         .produce-idol-level-area {

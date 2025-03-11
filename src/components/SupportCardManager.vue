@@ -135,12 +135,13 @@ const getSkillCardDetail = (id) => {
         </button>
       </div>
       <Teleport to="#modal-area">
-        <SupportCardEditor v-if="editorOpen"
-                           :support-cards="cards"
-                           :save-id="editorSaveId"
-                           :card-id="editorCardId"
-                           :card-level="editorCardLevel"
-                           @editor-close="closeEditor"
+        <SupportCardEditor
+            v-if="editorOpen"
+            :support-cards="cards"
+            :save-id="editorSaveId"
+            :card-id="editorCardId"
+            :card-level="editorCardLevel"
+            @editor-close="closeEditor"
         />
       </Teleport>
     </div>
