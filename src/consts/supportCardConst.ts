@@ -82,6 +82,8 @@ export const abilities = {
     KOTYO_CARD_PARAMETER_UP: 'kotyo_card_parameter_up',
     // 好印象効果カード獲得時パラメータ上昇
     KOINSYO_CARD_PARAMETER_UP: 'koinsyo_card_parameter_up',
+    // 温存効果カード獲得時パラメータ上昇
+    ONZON_CARD_PARAMETER_UP: 'onzon_card_parameter_up',
     // スキルカード強化時パラメータ上昇
     CARD_STRENGTHEN_PARAMETER_UP: 'card_strengthen_parameter_up',
     // アクティブカード強化時パラメータ上昇

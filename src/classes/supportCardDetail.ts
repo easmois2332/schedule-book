@@ -26,6 +26,7 @@ export default class SupportCardDetail {
         this.calcMentalCardParameterUp();
         this.calcKotyoCardParameterUp();
         this.calcKoinsyoCardParameterUp();
+        this.calcOnzonCardParameterUp();
         this.calcCardStrengthenParameterUp();
         this.calcActiveCardStrengthenParameterUp();
         this.calcMentalCardStrengthenParameterUp();
@@ -516,6 +517,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.KOINSYO_CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `好印象効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 温存効果カード獲得時パラメータ上昇
+     */
+    private calcOnzonCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.ONZON_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `温存効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.ONZON_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `温存効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.ONZON_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `温存効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

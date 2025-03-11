@@ -616,6 +616,20 @@
     "enable": 1
   },
   {
+    "id": 20030,
+    "name": "体力自慢の本気",
+    "category": "support_card",
+    "category_type": "produce",
+    "rarity": "ssr",
+    "type": "visual",
+    "plan": "anomaly",
+    "event_text": "お出かけ終了時、ビジュアルが400以上の場合、ビジュアル上昇+15\nスキルカードを選択して異なるスキルカードにチェンジ",
+    "event_parameter": 15,
+    "event_count": null,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "美鈴からの贈り物",
     "category": "support_card",

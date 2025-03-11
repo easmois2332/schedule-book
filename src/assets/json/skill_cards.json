@@ -559,5 +559,16 @@
     "effect": null,
     "effect_strengthened": null,
     "enable": 1
+  },
+  {
+    "id": 21015,
+    "name": "小さなお客さん",
+    "category": "support_card",
+    "rarity": "sr",
+    "plan": "anomaly",
+    "card_type": "active",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
   }
 ]
