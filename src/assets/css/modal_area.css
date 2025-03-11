@@ -717,4 +717,161 @@
             }
         }
     }
+
+    .produce-idol-edit-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 50%;
+        max-height: 70%;
+        margin: 10% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 1000px) {
+            width: 90%;
+            max-height: 90%;
+        }
+
+        @media (max-width: 600px) {
+            margin: 5% auto;
+        }
+
+        .produce-idol-info-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding-bottom: 16px;
+        }
+
+        .produce-idol-image-area {
+            padding-right: 8px;
+            padding-bottom: 8px;
+        }
+
+        .produce-idol-image {
+            width: 102px;
+            height: 136px;
+            min-width: 102px;
+            min-height: 136px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 2px solid #333333;
+        }
+
+        .produce-idol-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-info-text {
+            padding-bottom: 16px;
+        }
+
+        .produce-idol-level {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-level-text {
+            padding-right: 8px;
+        }
+
+        .produce-idol-training-level {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 16px;
+        }
+
+        .produce-idol-blossoming-level {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .produce-idol-hp-area {
+            padding-bottom: 16px;
+        }
+
+        .produce-idol-hp {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produce-idol-hp-text {
+            border-bottom: 2px solid #3CC743;
+        }
+
+        .produce-idol-hp-value {
+            text-align: end;
+            background: rgba(60, 199, 67, 0.1);
+        }
+
+        .produce-idol-parameter-area {
+            padding-bottom: 16px;
+        }
+
+        .table-header {
+            text-align: start;
+        }
+
+        .table-header-type {
+            text-align: start;
+            width: 80px;
+
+            @media (max-width: 500px) {
+                width: 60px;
+            }
+        }
+
+        .table-header-type.vocal {
+            border-bottom: 2px solid #FB0082;
+        }
+
+        .table-header-type.dance {
+            border-bottom: 2px solid #0086F0;
+        }
+
+        .table-header-type.visual {
+            border-bottom: 2px solid #FAA900;
+        }
+
+        .table-header-text {
+            @media (max-width: 500px) {
+                display: none;
+            }
+        }
+
+        .table-header-text-abbr {
+            @media (min-width: 501px) {
+                display: none;
+            }
+        }
+
+        .table-data {
+            text-align: end;
+        }
+
+        .table-data.vocal {
+            background: rgba(251, 0, 130, 0.1);
+        }
+
+        .table-data.dance {
+            background: rgba(0, 134, 240, 0.1);
+        }
+
+        .table-data.visual {
+            background: rgba(250, 169, 0, 0.1);
+        }
+
+        .edit-button-area {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .edit-button {
+            padding-right: 8px;
+        }
+    }
 }

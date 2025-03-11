@@ -1,10 +1,27 @@
 <script setup xmlns="http://www.w3.org/1999/html">
+import ProduceIdolEditor from "@/components/ProduceIdolEditor.vue";
 import {ref} from "vue";
 
 const props = defineProps(['idols', 'supportCards'])
 const idols = props.idols;
 
 let allIdolList = ref(idols.getAllIdol());
+
+let editorOpen = ref(false);
+let editorId = ref(null);
+let editorTrainingLevel = ref(0);
+let editorBlossomingLevel = ref(0);
+
+const buttonEditor = (id, trainingLevel, blossomingLevel) => {
+  editorId.value = id;
+  editorTrainingLevel.value = trainingLevel;
+  editorBlossomingLevel.value = blossomingLevel;
+  editorOpen.value = true;
+}
+
+const closeEditor = () => {
+  editorOpen.value = false;
+}
 </script>
 
 <template>
@@ -30,10 +47,10 @@ let allIdolList = ref(idols.getAllIdol());
         </div>
         <div class="produce-idol-area">
           <div class="produce-idol" v-for="produce in idols.getPIdolFromIdolId(idol.id)" :key="produce.id">
-            <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }">
+            <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="buttonEditor(produce.id, produce.training_level, produce.blossoming_level)">
               <div class="produce-idol-level-area">
-                <span class="produce-idol-level-text">✨{{ produce.training_level }}</span>
-                <span class="produce-idol-level-text">🍀{{ produce.blossoming_level }}</span>
+                <span class="produce-idol-level-text">✦ {{ produce.training_level }}</span>
+                <span class="produce-idol-level-text">✤ {{ produce.blossoming_level }}</span>
               </div>
             </div>
             <div class="produce-idol-info-area">
@@ -45,37 +62,34 @@ let allIdolList = ref(idols.getAllIdol());
               </div>
               <div class="produce-idol-hp-area">
                 <div class="produce-idol-hp">
-                  <span class="produce-idol-hp-text">体力</span>
+                  <span class="produce-idol-hp-text font-bold">体力</span>
                   <div class="produce-idol-hp-value">
                     <span class="produce-idol-hp-value-text">{{ produce.init_hp }}</span>
                   </div>
                 </div>
               </div>
               <div class="produce-idol-parameter-area">
-                <div class="produce-idol-parameter">
-                  <span class="produce-idol-parameter-text vocal">ボーカル</span>
-                  <span class="produce-idol-parameter-text-abbr vocal">Vo</span>
-                  <div class="produce-idol-parameter-value vocal">
-                    <span class="produce-idol-parameter-value-text">{{ produce.init_vocal }}</span>
-                    <span class="produce-idol-parameter-value-text">{{ produce.bonus_vocal }}%</span>
-                  </div>
-                </div>
-                <div class="produce-idol-parameter">
-                  <span class="produce-idol-parameter-text dance">ダンス</span>
-                  <span class="produce-idol-parameter-text-abbr dance">Da</span>
-                  <div class="produce-idol-parameter-value dance">
-                    <span class="produce-idol-parameter-value-text">{{ produce.init_dance }}</span>
-                    <span class="produce-idol-parameter-value-text">{{ produce.bonus_dance }}%</span>
-                  </div>
-                </div>
-                <div class="produce-idol-parameter">
-                  <span class="produce-idol-parameter-text visual">ビジュアル</span>
-                  <span class="produce-idol-parameter-text-abbr visual">Vi</span>
-                  <div class="produce-idol-parameter-value visual">
-                    <span class="produce-idol-parameter-value-text">{{ produce.init_visual }}</span>
-                    <span class="produce-idol-parameter-value-text">{{ produce.bonus_visual }}%</span>
-                  </div>
-                </div>
+                <table class="produce-idol-parameter-table">
+                  <thead>
+                  <tr>
+                    <th class="table-header-type vocal"><span class="table-header-text">ボーカル</span><span class="table-header-text-abbr">Vo</span></th>
+                    <th class="table-header-type dance"><span class="table-header-text">ダンス</span><span class="table-header-text-abbr">Da</span></th>
+                    <th class="table-header-type visual"><span class="table-header-text">ビジュアル</span><span class="table-header-text-abbr">Vi</span></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="table-data vocal"><span>{{ produce.init_vocal }}</span></td>
+                    <td class="table-data dance"><span>{{ produce.init_dance }}</span></td>
+                    <td class="table-data visual"><span>{{ produce.init_visual }}</span></td>
+                  </tr>
+                  <tr>
+                    <td class="table-data vocal"><span>{{ produce.bonus_vocal }}%</span></td>
+                    <td class="table-data dance"><span>{{ produce.bonus_dance }}%</span></td>
+                    <td class="table-data visual"><span>{{ produce.bonus_visual }}%</span></td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -83,4 +97,14 @@ let allIdolList = ref(idols.getAllIdol());
       </div>
     </div>
   </div>
+  <Teleport to="#modal-area">
+    <ProduceIdolEditor
+        v-if="editorOpen"
+        :idols="idols"
+        :id="editorId"
+        :training-level="editorTrainingLevel"
+        :blossoming-level="editorBlossomingLevel"
+        @editor-close="closeEditor"
+    />
+  </Teleport>
 </template>

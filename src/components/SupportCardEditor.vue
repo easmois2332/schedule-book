@@ -84,13 +84,6 @@ const buttonDelete = async () => {
               <span class="card-select-text" v-show="cardDetail === null">サポートカードを選択</span>
             </button>
           </div>
-          <Teleport to="#modal-area">
-            <SupportCardSelect
-                v-if="selectorOpen"
-                :support-cards="cards"
-                @selector-close="closeSelector"
-            />
-          </Teleport>
           <div class="card-info">
             <span class="card-info-text font-bold" v-if="cardDetail === null">サポートカード名</span>
             <span class="card-info-text font-bold" v-else>{{ cardDetail.name }}</span>
@@ -103,7 +96,7 @@ const buttonDelete = async () => {
           </div>
         </div>
         <div class="card-event-headline">
-          <span class="card-event-headline-text">サポートイベント</span>
+          <span class="card-event-headline-text font-bold">サポートイベント</span>
         </div>
         <div class="card-event-area">
           <div class="card-event">
@@ -121,7 +114,7 @@ const buttonDelete = async () => {
           </div>
         </div>
         <div class="card-ability-headline">
-          <span class="card-ability-headline-text">サポートアビリティ</span>
+          <span class="card-ability-headline-text font-bold">サポートアビリティ</span>
         </div>
         <div class="card-ability-area">
           <div class="card-ability">
@@ -161,4 +154,11 @@ const buttonDelete = async () => {
       </div>
     </div>
   </div>
+  <Teleport to="#modal-area">
+    <SupportCardSelect
+        v-if="selectorOpen"
+        :support-cards="cards"
+        @selector-close="closeSelector"
+    />
+  </Teleport>
 </template>

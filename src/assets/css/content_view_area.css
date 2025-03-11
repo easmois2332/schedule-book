@@ -878,10 +878,16 @@
         }
 
         .produce-idol-plan-area {
-            padding: 4px;
+            padding-bottom: 4px;
+
+            @media (max-width: 500px) {
+                padding-bottom: 0;
+            }
         }
 
         .produce-idol-hp-area {
+            padding-bottom: 4px;
+
             @media (max-width: 500px) {
                 display: none;
             }
@@ -889,7 +895,6 @@
 
         .produce-idol-hp {
             width: 80px;
-            padding: 4px;
             display: flex;
             flex-direction: column;
         }
@@ -899,8 +904,7 @@
         }
 
         .produce-idol-hp-value {
-            display: flex;
-            flex-direction: column;
+            text-align: end;
             background: rgba(60, 199, 67, 0.1);
         }
 
@@ -911,67 +915,56 @@
             justify-content: flex-start;
         }
 
-        .produce-idol-parameter {
+        .table-header {
+            text-align: start;
+        }
+
+        .table-header-type {
+            text-align: start;
             width: 80px;
-            padding: 4px;
-            display: flex;
-            flex-direction: column;
 
             @media (max-width: 500px) {
                 width: 60px;
             }
         }
 
-        .produce-idol-parameter-text {
+        .table-header-type.vocal {
+            border-bottom: 2px solid #FB0082;
+        }
+
+        .table-header-type.dance {
+            border-bottom: 2px solid #0086F0;
+        }
+
+        .table-header-type.visual {
+            border-bottom: 2px solid #FAA900;
+        }
+
+        .table-header-text {
             @media (max-width: 500px) {
                 display: none;
             }
         }
 
-        .produce-idol-parameter-text.vocal {
-            border-bottom: 2px solid #FB0082;
-        }
-
-        .produce-idol-parameter-text.dance {
-            border-bottom: 2px solid #0086F0;
-        }
-
-        .produce-idol-parameter-text.visual {
-            border-bottom: 2px solid #FAA900;
-        }
-
-        .produce-idol-parameter-text-abbr {
+        .table-header-text-abbr {
             @media (min-width: 501px) {
                 display: none;
             }
         }
 
-        .produce-idol-parameter-text-abbr.vocal {
-            border-bottom: 2px solid #FB0082;
+        .table-data {
+            text-align: end;
         }
 
-        .produce-idol-parameter-text-abbr.dance {
-            border-bottom: 2px solid #0086F0;
-        }
-
-        .produce-idol-parameter-text-abbr.visual {
-            border-bottom: 2px solid #FAA900;
-        }
-
-        .produce-idol-parameter-value {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .produce-idol-parameter-value.vocal {
+        .table-data.vocal {
             background: rgba(251, 0, 130, 0.1);
         }
 
-        .produce-idol-parameter-value.dance {
+        .table-data.dance {
             background: rgba(0, 134, 240, 0.1);
         }
 
-        .produce-idol-parameter-value.visual {
+        .table-data.visual {
             background: rgba(250, 169, 0, 0.1);
         }
     }

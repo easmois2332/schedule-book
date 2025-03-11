@@ -10,9 +10,9 @@ const items = new Items();
 const skillCards = new SkillCards();
 
 let editorOpen = ref(false);
-let editorSaveId = ref(false);
-let editorCardId = ref(false);
-let editorCardLevel = ref(false);
+let editorSaveId = ref(null);
+let editorCardId = ref(null);
+let editorCardLevel = ref(1);
 let filterOpen = ref(false);
 let filterType = ref([
   'vocal', 'dance', 'visual', 'assist',
@@ -134,16 +134,6 @@ const getSkillCardDetail = (id) => {
           </span>
         </button>
       </div>
-      <Teleport to="#modal-area">
-        <SupportCardEditor
-            v-if="editorOpen"
-            :support-cards="cards"
-            :save-id="editorSaveId"
-            :card-id="editorCardId"
-            :card-level="editorCardLevel"
-            @editor-close="closeEditor"
-        />
-      </Teleport>
     </div>
     <div class="card-filter-area">
       <div class="filter-button">
@@ -391,4 +381,14 @@ const getSkillCardDetail = (id) => {
       </div>
     </div>
   </div>
+  <Teleport to="#modal-area">
+    <SupportCardEditor
+        v-if="editorOpen"
+        :support-cards="cards"
+        :save-id="editorSaveId"
+        :card-id="editorCardId"
+        :card-level="editorCardLevel"
+        @editor-close="closeEditor"
+    />
+  </Teleport>
 </template>
