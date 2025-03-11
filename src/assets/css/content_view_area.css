@@ -385,6 +385,9 @@
 }
 
 .contents-view-area {
+    max-width: 1300px;
+    margin: 0 auto;
+
     .basic-button {
         background: #ffffff;
         border: 2px solid #333333;
@@ -527,6 +530,11 @@
             padding: 8px 8px;
             display: flex;
             flex-direction: row;
+
+            @media (max-width: 600px) {
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         .card.vocal {
@@ -550,8 +558,10 @@
         }
 
         .card-image-area {
-            width: 400px;
-            height: 225px;
+            width: 295px;
+            height: 166px;
+            min-width: 295px;
+            min-height: 166px;
             background-size: cover;
             background-repeat: no-repeat;
             display: flex;
@@ -572,7 +582,7 @@
             span {
                 color: #ffffff;
                 text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: bold;
                 font-family: "Noto Sans JP", serif;
                 font-optical-sizing: auto;
@@ -588,7 +598,7 @@
             span {
                 color: #ffffff;
                 text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: bold;
                 font-family: "Noto Sans JP", serif;
                 font-optical-sizing: auto;
@@ -596,31 +606,81 @@
             }
         }
 
+        .card-event-and-ability-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            @media (max-width: 1000px) {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
         .card-event-area {
             width: 300px;
+            min-width: 300px;
             padding-left: 8px;
             display: flex;
             flex-direction: column;
+
+            @media (max-width: 1000px) {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            @media (max-width: 600px) {
+                padding-top: 8px;
+                padding-bottom: 8px;
+                padding-left: 4px;
+            }
         }
 
         .card-event-area.vocal {
             border-right: 2px dashed #FB0082;
+
+            @media (max-width: 1000px) {
+                border-right: none;
+                border-bottom: 2px dashed #FB0082;
+            }
         }
 
         .card-event-area.dance {
             border-right: 2px dashed #0086F0;
+
+            @media (max-width: 1000px) {
+                border-right: none;
+                border-bottom: 2px dashed #0086F0;
+            }
         }
 
         .card-event-area.visual {
             border-right: 2px dashed #FAA900;
+
+            @media (max-width: 1000px) {
+                border-right: none;
+                border-bottom: 2px dashed #FAA900;
+            }
         }
 
         .card-event-area.assist {
             border-right: 2px dashed #3CC743;
+
+            @media (max-width: 1000px) {
+                border-right: none;
+                border-bottom: 2px dashed #3CC743;
+            }
         }
 
         .card-event {
             padding-bottom: 16px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            @media (max-width: 1000px) {
+                padding-bottom: 0;
+            }
         }
 
         .card-ability-area {
@@ -628,6 +688,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            @media (max-width: 600px) {
+                padding-top: 8px;
+                padding-left: 4px;
+            }
         }
     }
 
@@ -715,18 +780,30 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+
+            @media (max-width: 500px) {
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         .produce-idol {
             width: 500px;
-            padding: 8px 8px;
+            padding-bottom: 16px;
             display: flex;
             flex-direction: row;
+
+            @media (max-width: 500px) {
+                width: auto;
+                padding-bottom: 8px;
+            }
         }
 
         .produce-idol-image-area {
             width: 154px;
             height: 205px;
+            min-width: 154px;
+            min-height: 205px;
             background-size: cover;
             background-repeat: no-repeat;
             border: 2px solid #333333;
@@ -734,6 +811,13 @@
             flex-direction: row;
             align-items: flex-end;
             cursor: pointer;
+
+            @media (max-width: 500px) {
+                width: 102px;
+                height: 136px;
+                min-width: 102px;
+                min-height: 136px;
+            }
         }
 
         .produce-idol-level-area {
@@ -751,6 +835,10 @@
             font-family: "Noto Sans JP", serif;
             font-optical-sizing: auto;
             font-style: normal;
+
+            @media (max-width: 500px) {
+                font-size: 24px;
+            }
         }
 
         .produce-idol-info-area {
@@ -761,14 +849,24 @@
 
         .produce-idol-name-text {
             font-size: 24px;
+
+            @media (max-width: 500px) {
+                font-size: 20px;
+            }
         }
 
         .produce-idol-plan-area {
             padding: 4px;
         }
 
+        .produce-idol-hp-area {
+            @media (max-width: 500px) {
+                display: none;
+            }
+        }
+
         .produce-idol-hp {
-            width: 90px;
+            width: 80px;
             padding: 4px;
             display: flex;
             flex-direction: column;
@@ -787,14 +885,25 @@
         .produce-idol-parameter-area {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             justify-content: flex-start;
         }
 
         .produce-idol-parameter {
-            width: 90px;
+            width: 80px;
             padding: 4px;
             display: flex;
             flex-direction: column;
+
+            @media (max-width: 500px) {
+                width: 60px;
+            }
+        }
+
+        .produce-idol-parameter-text {
+            @media (max-width: 500px) {
+                display: none;
+            }
         }
 
         .produce-idol-parameter-text.vocal {
@@ -806,6 +915,24 @@
         }
 
         .produce-idol-parameter-text.visual {
+            border-bottom: 2px solid #FAA900;
+        }
+
+        .produce-idol-parameter-text-abbr {
+            @media (min-width: 501px) {
+                display: none;
+            }
+        }
+
+        .produce-idol-parameter-text-abbr.vocal {
+            border-bottom: 2px solid #FB0082;
+        }
+
+        .produce-idol-parameter-text-abbr.dance {
+            border-bottom: 2px solid #0086F0;
+        }
+
+        .produce-idol-parameter-text-abbr.visual {
             border-bottom: 2px solid #FAA900;
         }
 

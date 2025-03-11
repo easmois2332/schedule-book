@@ -325,38 +325,34 @@ const getSkillCardDetail = (id) => {
             <span class="card-info-text">{{ card.rarity_display }} Lv{{ card.level }}</span>
           </div>
         </div>
-        <div class="card-event-area" v-bind:class="card.type">
-          <div class="card-event" v-if="card.event_1 === 'get_unique_p_item'">
-            <span class="card-event1">Pアイテム<span class="font-bold">『{{ getPItemDetail(card.p_item_id).name }}』</span></span>
+        <div class="card-event-and-ability-area">
+          <div class="card-event-area" v-bind:class="card.type">
+            <div class="card-event" v-if="card.event_1 === 'get_unique_p_item'">
+              <span class="card-event1">Pアイテム</span><span class="font-bold">『{{ getPItemDetail(card.p_item_id).name }}』</span>
+            </div>
+            <div class="card-event" v-if="card.event_1 === 'get_unique_card'">
+              <span class="card-event1">スキルカード</span><span class="font-bold">『{{ getSkillCardDetail(card.skill_card_id).name }}』</span>
+            </div>
+            <div class="card-event" v-if="card.event_2 !== 'none'">
+              <span class="card-event2" v-html="card.event_2_display"></span>
+            </div>
+            <div class="card-event" v-if="card.event_3 !== 'none'">
+              <span class="card-event3" v-html="card.event_3_display"></span>
+            </div>
           </div>
-          <div class="card-event" v-if="card.event_1 === 'get_unique_card'">
-            <span class="card-event1">スキルカード<span class="font-bold">『{{ getSkillCardDetail(card.skill_card_id).name }}』</span></span>
-          </div>
-          <div class="card-event" v-if="card.event_2 !== 'none'">
-            <span class="card-event2" v-html="card.event_2_display"></span>
-          </div>
-          <div class="card-event" v-if="card.event_3 !== 'none'">
-            <span class="card-event3" v-html="card.event_3_display"></span>
-          </div>
-        </div>
-        <div class="card-ability-area">
-          <div class="card-ability">
-            <span class="card-ability1" v-html="card.ability_1_display"></span>
-          </div>
-          <div class="card-ability">
-            <span class="card-ability2" v-html="card.ability_2_display"></span>
-          </div>
-          <div class="card-ability">
-            <span class="card-ability3" v-html="card.ability_3_display"></span>
-          </div>
-          <div class="card-ability">
-            <span class="card-ability4" v-html="card.ability_4_display"></span>
-          </div>
-          <div class="card-ability">
-            <span class="card-ability5" v-html="card.ability_5_display"></span>
-          </div>
-          <div class="card-ability">
-            <span class="card-ability6" v-html="card.ability_6_display"></span>
+          <div class="card-ability-area">
+            <div class="card-ability">
+              <span class="card-ability1" v-html="card.ability_1_display"></span>
+            </div>
+            <div class="card-ability">
+              <span class="card-ability2" v-html="card.ability_2_display"></span>
+            </div>
+            <div class="card-ability">
+              <span class="card-ability4" v-html="card.ability_4_display"></span>
+            </div>
+            <div class="card-ability">
+              <span class="card-ability5" v-html="card.ability_5_display"></span>
+            </div>
           </div>
         </div>
       </div>

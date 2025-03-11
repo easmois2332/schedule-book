@@ -104,7 +104,8 @@ export default class SupportCardDetail {
                 this.card.event_3_display = 'Pポイント+10';
                 break;
             case events.BASIC_CARD_CHANGE:
-                this.card.event_3_display = 'ランダムな名前に「基本」を含むスキルカードを異なるスキルカードにチェンジ';
+                this.card.event_3_display = 'ランダムな基本スキルカードを変換';
+                this.card.event_3_display_formal = 'ランダムな名前に「基本」を含むスキルカードを異なるスキルカードにチェンジ';
                 break;
             case events.CARD_RANDOM_STRENGTHEN:
                 this.card.event_3_display = 'ランダムなスキルカードを強化';

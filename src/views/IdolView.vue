@@ -54,6 +54,7 @@ let allIdolList = ref(idols.getAllIdol());
               <div class="produce-idol-parameter-area">
                 <div class="produce-idol-parameter">
                   <span class="produce-idol-parameter-text vocal">ボーカル</span>
+                  <span class="produce-idol-parameter-text-abbr vocal">Vo</span>
                   <div class="produce-idol-parameter-value vocal">
                     <span class="produce-idol-parameter-value-text">{{ produce.init_vocal }}</span>
                     <span class="produce-idol-parameter-value-text">{{ produce.bonus_vocal }}%</span>
@@ -61,6 +62,7 @@ let allIdolList = ref(idols.getAllIdol());
                 </div>
                 <div class="produce-idol-parameter">
                   <span class="produce-idol-parameter-text dance">ダンス</span>
+                  <span class="produce-idol-parameter-text-abbr dance">Da</span>
                   <div class="produce-idol-parameter-value dance">
                     <span class="produce-idol-parameter-value-text">{{ produce.init_dance }}</span>
                     <span class="produce-idol-parameter-value-text">{{ produce.bonus_dance }}%</span>
@@ -68,6 +70,7 @@ let allIdolList = ref(idols.getAllIdol());
                 </div>
                 <div class="produce-idol-parameter">
                   <span class="produce-idol-parameter-text visual">ビジュアル</span>
+                  <span class="produce-idol-parameter-text-abbr visual">Vi</span>
                   <div class="produce-idol-parameter-value visual">
                     <span class="produce-idol-parameter-value-text">{{ produce.init_visual }}</span>
                     <span class="produce-idol-parameter-value-text">{{ produce.bonus_visual }}%</span>
