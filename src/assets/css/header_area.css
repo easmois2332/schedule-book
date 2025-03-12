@@ -111,8 +111,8 @@
     .header-tab-area {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         flex-wrap: wrap;
+        justify-content: space-between;
         margin-bottom: 8px;
 
         .header-tab-left-area {
@@ -125,8 +125,19 @@
             flex-direction: row;
         }
 
+        .header-tab-right-area > .header-tab:not(.setting) {
+            @media (max-width: 500px) {
+                display: none;
+            }
+        }
+
         .header-tab {
-            margin: 0 8px;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .header-tab:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .header-tab-button {
@@ -143,9 +154,6 @@
             padding-left: 4px;
             vertical-align: super
         }
-
-        .header-tab-button:hover {
-        }
     }
 
     .header-operation-area {
@@ -154,7 +162,12 @@
         margin-bottom: 8px;
 
         .header-operation {
-            margin: 0 8px;
+            padding: 0 8px;
+            border-radius: 4px;
+        }
+
+        .header-operation:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .header-operation-button {
