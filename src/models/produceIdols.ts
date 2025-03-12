@@ -1,32 +1,48 @@
-export default class ProduceIdols {
+import IndexedDB from "@/models/indexedDB";
 
-    dbName: string = 'schedule-book';
+export default class ProduceIdols extends IndexedDB {
+
     storeName: string = 'produce-idols';
-    db: IDBDatabase = null;
 
-    constructor() {
+    async findAll() {
+        const promise: Promise<any> = new Promise<string>((resolve: any, reject: any) => {
+            let trans = this.db.transaction(this.storeName, 'readonly');
+            let store = trans.objectStore(this.storeName);
+            let request = store.openCursor();
+            let list = [];
+
+            request.onsuccess = (event: any) => {
+                let cursor = <IDBCursorWithValue>(<IDBRequest>event.target).result;
+                if (cursor) {
+                    list[cursor.key] = cursor.value;
+                    cursor.continue();
+                } else {
+                    resolve(list);
+                }
+            }
+            request.onerror = (event: any) => {
+                console.log(event.message);
+                reject([]);
+            }
+
+        });
+        return promise;
     }
 
-    async connect() {
+    async update(key: number, trainingLevel: number, blossomingLevel: number) {
         const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
-            let indexedDB = window.indexedDB;
-            let request = indexedDB.open(this.dbName);
+            let trans = this.db.transaction(this.storeName, 'readwrite');
+            let store = trans.objectStore(this.storeName);
+            let request = store.put({id: key, training_level: trainingLevel, blossoming_level: blossomingLevel});
 
-            // 初回・DBバージョンが変わった場合
-            request.onupgradeneeded = (event: any) => {
-                this.db = (<IDBRequest>event.target).result;
-                this.db.createObjectStore(this.storeName, {autoIncrement: true, keyPath: 'id'});
-            }
-            // 既にDBが存在している場合
             request.onsuccess = (event: any) => {
-                this.db = (<IDBRequest>event.target).result;
                 resolve(true);
             }
-            // エラーが発生した場合
             request.onerror = (event: any) => {
                 console.log(event.message);
                 reject(false);
             }
+
         });
         return promise;
     }

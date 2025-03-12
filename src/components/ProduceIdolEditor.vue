@@ -10,7 +10,8 @@ let trainingLevel = ref(props.trainingLevel);
 let blossomingLevel = ref(props.blossomingLevel);
 let idolDetail = ref(idols.getPIdolDetail(id.value, trainingLevel.value, blossomingLevel.value));
 
-const buttonSave = () => {
+const buttonSave = async () => {
+  await idols.updatePIdol(id.value, trainingLevel.value, blossomingLevel.value);
   emit('editor-close');
 }
 const updateIdolDetail = () => {

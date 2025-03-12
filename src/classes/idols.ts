@@ -2,6 +2,7 @@ import IdolJson from "@/assets/json/idols.json"
 import PIdolJson from "@/assets/json/p_idols.json"
 import {DEAR_MAX_LEVEL, TRAINING_MAX_LEVEL, BLOSSOMING_MAX_LEVEL} from "@/consts/idolConst";
 import IdolDetail from "@/classes/idolDetail";
+import ProduceIdolModel from "@/models/produceIdols";
 
 export default class Idols {
 
@@ -53,6 +54,19 @@ export default class Idols {
         return idolDetail.getDetails();
     }
 
+    async updatePIdol(id: number, trainingLevel: number, blossomingLevel: number) {
+        let model = new ProduceIdolModel();
+        if (await model.connect()) {
+            if (await model.update(id, trainingLevel, blossomingLevel)) {
+                let pIdol = this.getPIdolDetail(id, trainingLevel, blossomingLevel);
+                let index = this.pIdolList.findIndex((pIdol: any) => (pIdol.id === id) && (pIdol.enable === 1));
+                if (index !== -1) {
+                    this.pIdolList[index] = pIdol;
+                }
+            }
+        }
+    }
+
     private deepCopy(array: any) {
         return JSON.parse(JSON.stringify(array));
     }
@@ -75,17 +89,22 @@ export default class Idols {
         this.idolList = idolList;
     }
 
-    private getPIdolList(pIdols: any) {
+    private async getPIdolList(pIdols: any) {
         let pIdolList = [];
         let saveLevelList = [];
+
+        let model = new ProduceIdolModel();
+        if (await model.connect()) {
+            saveLevelList = await model.findAll();
+        }
 
         for (let i in pIdols) {
             if (pIdols[i].enable === 1) {
                 let idol = this.getIdolFromId(pIdols[i].idol_id);
                 let pIdol = pIdols[i];
-                if (i in saveLevelList) {
-                    pIdol.training_level = saveLevelList[i].training_level;
-                    pIdol.blossoming_level = saveLevelList[i].blossoming_level;
+                if (saveLevelList[pIdol.id]) {
+                    pIdol.training_level = saveLevelList[pIdol.id].training_level;
+                    pIdol.blossoming_level = saveLevelList[pIdol.id].blossoming_level;
                 } else {
                     pIdol.training_level = TRAINING_MAX_LEVEL;
                     pIdol.blossoming_level = BLOSSOMING_MAX_LEVEL;

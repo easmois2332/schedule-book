@@ -77,7 +77,6 @@ export default class SupportCards {
                 let card = this.getCardDetail(id, level);
                 card.save_id = saveId;
                 this.saveList.push(card);
-                console.log(this.saveList);
             }
         }
     }
@@ -91,7 +90,6 @@ export default class SupportCards {
                 let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
                 if (index !== -1) {
                     this.saveList[index] = card;
-                    console.log(this.saveList);
                 }
             }
         }
@@ -104,7 +102,6 @@ export default class SupportCards {
                 let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
                 if (index !== -1) {
                     this.saveList[index].enable = 0;
-                    console.log(this.saveList);
                 }
             }
         }
