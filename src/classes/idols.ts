@@ -57,7 +57,13 @@ export default class Idols {
     async updatePIdol(id: number, trainingLevel: number, blossomingLevel: number) {
         let model = new ProduceIdolModel();
         if (await model.connect()) {
-            if (await model.update(id, trainingLevel, blossomingLevel)) {
+            let updated = false;
+            if ((trainingLevel === TRAINING_MAX_LEVEL) && (blossomingLevel === BLOSSOMING_MAX_LEVEL)) {
+                updated = await model.delete(id);
+            } else {
+                updated = await model.update(id, trainingLevel, blossomingLevel);
+            }
+            if (updated) {
                 let pIdol = this.getPIdolDetail(id, trainingLevel, blossomingLevel);
                 let index = this.pIdolList.findIndex((pIdol: any) => (pIdol.id === id) && (pIdol.enable === 1));
                 if (index !== -1) {

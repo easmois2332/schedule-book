@@ -46,4 +46,22 @@ export default class ProduceIdols extends IndexedDB {
         });
         return promise;
     }
+
+    async delete(key: number) {
+        const promise: Promise<boolean> = new Promise<string>((resolve: any, reject: any) => {
+            let trans = this.db.transaction(this.storeName, 'readwrite');
+            let store = trans.objectStore(this.storeName);
+            let request = store.delete(Number(key));
+
+            request.onsuccess = (event: any) => {
+                resolve(true);
+            }
+            request.onerror = (event: any) => {
+                console.log(event.message);
+                reject(false);
+            }
+
+        });
+        return promise;
+    }
 }
