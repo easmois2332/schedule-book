@@ -4,8 +4,8 @@ import {ref} from "vue";
 import Items from "@/classes/items";
 import SkillCards from "@/classes/skillCards";
 
-const props = defineProps(['supportCards', 'saveId', 'cardId', 'cardLevel'])
-const emit = defineEmits(['editor-close'])
+const props = defineProps(['supportCards', 'saveId', 'cardId', 'cardLevel']);
+const emit = defineEmits(['editor-close']);
 const cards = props.supportCards;
 const items = new Items();
 const skillCards = new SkillCards();
@@ -95,8 +95,8 @@ const buttonDelete = async () => {
             </div>
           </div>
         </div>
-        <div class="card-event-headline">
-          <span class="card-event-headline-text font-bold">サポートイベント</span>
+        <div class="common-headline">
+          <span class="common-headline-text font-bold">サポートイベント</span>
         </div>
         <div class="card-event-area">
           <div class="card-event">
@@ -113,8 +113,8 @@ const buttonDelete = async () => {
             <span class="card-event3" v-else v-html="cardDetail.event_3_display"></span>
           </div>
         </div>
-        <div class="card-ability-headline">
-          <span class="card-ability-headline-text font-bold">サポートアビリティ</span>
+        <div class="common-headline">
+          <span class="common-headline-text font-bold">サポートアビリティ</span>
         </div>
         <div class="card-ability-area">
           <div class="card-ability">

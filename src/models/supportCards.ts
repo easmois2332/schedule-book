@@ -1,6 +1,6 @@
 import IndexedDB from "@/models/indexedDB";
 
-export default class SupportCards extends IndexedDB{
+export default class SupportCards extends IndexedDB {
 
     storeName: string = 'support-cards';
 

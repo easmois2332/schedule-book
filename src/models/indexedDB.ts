@@ -16,7 +16,7 @@ export default abstract class IndexedDB {
             request.onupgradeneeded = (event: any) => {
                 this.db = (<IDBRequest>event.target).result;
                 if (!this.db.objectStoreNames.contains('produce-idols')) {
-                    this.db.createObjectStore('produce-idols', {autoIncrement: true, keyPath: 'id'});
+                    this.db.createObjectStore('produce-idols', {keyPath: 'id'});
                 }
                 if (!this.db.objectStoreNames.contains('support-cards')) {
                     this.db.createObjectStore('support-cards', {autoIncrement: true});

@@ -15,3 +15,788 @@ span {
 span.font-bold {
     font-weight: bold;
 }
+
+.color-saki {
+    .common-button {
+        background: linear-gradient(to right, #fb4f60, #fbb7a1);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fb4f60, #ffffff 30%),
+                color-mix(in srgb, #fbb7a1, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #fb4f60, #fbb7a1) 1;
+    }
+}
+
+.color-button.saki {
+    background: linear-gradient(to right, #fb4f60, #fbb7a1);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.saki:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #fb4f60, #ffffff 30%),
+            color-mix(in srgb, #fbb7a1, #ffffff 30%)
+    );
+}
+
+.color-button-name.saki {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.saki {
+    border-image: linear-gradient(to right, #fb4f60, #fbb7a1) 1;
+}
+
+.color-temari {
+    .common-button {
+        background: linear-gradient(to right, #23b3e6, #81e5de);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #23b3e6, #ffffff 30%),
+                color-mix(in srgb, #81e5de, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #23b3e6, #81e5de) 1;
+    }
+}
+
+.color-button.temari {
+    background: linear-gradient(to right, #23b3e6, #81e5de);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.temari:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #23b3e6, #ffffff 30%),
+            color-mix(in srgb, #81e5de, #ffffff 30%)
+    );
+}
+
+.color-button-name.temari {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.temari {
+    border-image: linear-gradient(to right, #23b3e6, #81e5de) 1;
+}
+
+.color-kotone {
+    .common-button {
+        background: linear-gradient(to right, #f3d51d, #fbb5d1);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f3d51d, #ffffff 30%),
+                color-mix(in srgb, #fbb5d1, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #f3d51d, #fbb5d1) 1;
+    }
+}
+
+.color-button.kotone {
+    background: linear-gradient(to right, #f3d51d, #fbb5d1);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.kotone:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #f3d51d, #ffffff 30%),
+            color-mix(in srgb, #fbb5d1, #ffffff 30%)
+    );
+}
+
+.color-button-name.kotone {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.kotone {
+    border-image: linear-gradient(to right, #f3d51d, #fbb5d1) 1;
+}
+
+.color-mao {
+    .common-button {
+        background: linear-gradient(to right, #bf5cc4, #f6aba4);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #bf5cc4, #ffffff 30%),
+                color-mix(in srgb, #f6aba4, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #bf5cc4, #f6aba4) 1;
+    }
+}
+
+.color-button.mao {
+    background: linear-gradient(to right, #bf5cc4, #f6aba4);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.mao:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #bf5cc4, #ffffff 30%),
+            color-mix(in srgb, #f6aba4, #ffffff 30%)
+    );
+}
+
+.color-button-name.mao {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.mao {
+    border-image: linear-gradient(to right, #bf5cc4, #f6aba4) 1;
+}
+
+.color-lilja {
+    .common-button {
+        background: linear-gradient(to right, #cee0e0, #92cad4);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #cee0e0, #ffffff 30%),
+                color-mix(in srgb, #92cad4, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #cee0e0, #92cad4) 1;
+    }
+}
+
+.color-button.lilja {
+    background: linear-gradient(to right, #cee0e0, #92cad4);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.lilja:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #cee0e0, #ffffff 30%),
+            color-mix(in srgb, #92cad4, #ffffff 30%)
+    );
+}
+
+.color-button-name.lilja {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.lilja {
+    border-image: linear-gradient(to right, #cee0e0, #92cad4) 1;
+}
+
+.color-china {
+    .common-button {
+        background: linear-gradient(to right, #fa891e, #fb5e52);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fa891e, #ffffff 30%),
+                color-mix(in srgb, #fb5e52, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #fa891e, #fb5e52) 1;
+    }
+}
+
+.color-button.china {
+    background: linear-gradient(to right, #fa891e, #fb5e52);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.china:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #fa891e, #ffffff 30%),
+            color-mix(in srgb, #fb5e52, #ffffff 30%)
+    );
+}
+
+.color-button-name.china {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.china {
+    border-image: linear-gradient(to right, #fa891e, #fb5e52) 1;
+}
+
+.color-sumika {
+    .common-button {
+        background: linear-gradient(to right, #8fdc57, #c8e01b);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #8fdc57, #ffffff 30%),
+                color-mix(in srgb, #c8e01b, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #8fdc57, #c8e01b) 1;
+    }
+}
+
+.color-button.sumika {
+    background: linear-gradient(to right, #8fdc57, #c8e01b);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.sumika:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #8fdc57, #ffffff 30%),
+            color-mix(in srgb, #c8e01b, #ffffff 30%)
+    );
+}
+
+.color-button-name.sumika {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.sumika {
+    border-image: linear-gradient(to right, #8fdc57, #c8e01b) 1;
+}
+
+.color-hiro {
+    .common-button {
+        background: linear-gradient(to right, #00bcd3, #507ff9);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #00bcd3, #ffffff 30%),
+                color-mix(in srgb, #507ff9, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #00bcd3, #507ff9) 1;
+    }
+}
+
+.color-button.hiro {
+    background: linear-gradient(to right, #00bcd3, #507ff9);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.hiro:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #00bcd3, #ffffff 30%),
+            color-mix(in srgb, #507ff9, #ffffff 30%)
+    );
+}
+
+.color-button-name.hiro {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.hiro {
+    border-image: linear-gradient(to right, #00bcd3, #507ff9) 1;
+}
+
+.color-sena {
+    .common-button {
+        background: linear-gradient(to right, #fbac26, #f1e769);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #fbac26, #ffffff 30%),
+                color-mix(in srgb, #f1e769, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #fbac26, #f1e769) 1;
+    }
+}
+
+.color-button.sena {
+    background: linear-gradient(to right, #fbac26, #f1e769);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.sena:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #fbac26, #ffffff 30%),
+            color-mix(in srgb, #f1e769, #ffffff 30%)
+    );
+}
+
+.color-button-name.sena {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.sena {
+    border-image: linear-gradient(to right, #fbac26, #f1e769) 1;
+}
+
+.color-misuzu {
+    .common-button {
+        background: linear-gradient(to right, #6ba2f7, #cdadfa);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #6ba2f7, #ffffff 30%),
+                color-mix(in srgb, #cdadfa, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #6ba2f7, #cdadfa) 1;
+    }
+}
+
+.color-button.misuzu {
+    background: linear-gradient(to right, #6ba2f7, #cdadfa);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.misuzu:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #6ba2f7, #ffffff 30%),
+            color-mix(in srgb, #cdadfa, #ffffff 30%)
+    );
+}
+
+.color-button-name.misuzu {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.misuzu {
+    border-image: linear-gradient(to right, #6ba2f7, #cdadfa) 1;
+}
+
+.color-ume {
+    .common-button {
+        background: linear-gradient(to right, #f34a29, #ecc64b);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f34a29, #ffffff 30%),
+                color-mix(in srgb, #ecc64b, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #f34a29, #ecc64b) 1;
+    }
+}
+
+.color-button.ume {
+    background: linear-gradient(to right, #f34a29, #ecc64b);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.ume:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #f34a29, #ffffff 30%),
+            color-mix(in srgb, #ecc64b, #ffffff 30%)
+    );
+}
+
+.color-button-name.ume {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.ume {
+    border-image: linear-gradient(to right, #f34a29, #ecc64b) 1;
+}
+
+.color-rinami {
+    .common-button {
+        background: linear-gradient(to right, #f97dbd, #f0b7f9);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, #f97dbd, #ffffff 30%),
+                color-mix(in srgb, #f0b7f9, #ffffff 30%)
+        );
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #f97dbd, #f0b7f9) 1;
+    }
+}
+
+.color-button.rinami {
+    background: linear-gradient(to right, #f97dbd, #f0b7f9);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.rinami:hover {
+    background: linear-gradient(
+            to right,
+            color-mix(in srgb, #f97dbd, #ffffff 30%),
+            color-mix(in srgb, #f0b7f9, #ffffff 30%)
+    );
+}
+
+.color-button-name.rinami {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline.rinami {
+    border-image: linear-gradient(to right, #f97dbd, #f0b7f9) 1;
+}
+
+.color-default {
+    .common-button {
+        background: #958b7f;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        appearance: none;
+    }
+
+    .common-button:hover {
+        background: color-mix(in srgb, #958b7f, #ffffff 30%);
+    }
+
+    .common-button-name {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .common-headline {
+        border-image: linear-gradient(to right, #958b7f, #958b7f) 1;
+    }
+}
+
+.color-button {
+    background: #958b7f;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button:hover {
+    background: color-mix(in srgb, #958b7f, #ffffff 30%);
+}
+
+.color-button-name {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-headline {
+    border-image: linear-gradient(to right, #958b7f, #958b7f) 1;
+}
+
+.basic-button {
+    background: #ffffff;
+    border: 2px solid #333333;
+    border-radius: 16px;
+    cursor: pointer;
+    outline: none;
+    padding: 4px 8px;
+    appearance: none;
+}
+
+.basic-button:hover {
+    background: #efefef;
+}
+
+.basic-button:disabled {
+    cursor: not-allowed;
+}
+
+.basic-button-name {
+    color: #333333;
+    font-size: 16px;
+}
+
+.common-button:disabled {
+    cursor: not-allowed;
+}
+
+.common-headline {
+    border-bottom: 2px solid;
+}
+
+.color-button:disabled {
+    cursor: not-allowed;
+}
+
+.color-headline {
+    border-bottom: 2px solid;
+}

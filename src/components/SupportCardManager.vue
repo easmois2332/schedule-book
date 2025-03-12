@@ -4,7 +4,7 @@ import {ref} from "vue";
 import Items from "@/classes/items";
 import SkillCards from "@/classes/skillCards";
 
-const props = defineProps(['supportCards'])
+const props = defineProps(['supportCards']);
 const cards = props.supportCards;
 const items = new Items();
 const skillCards = new SkillCards();
@@ -144,7 +144,7 @@ const getSkillCardDetail = (id) => {
         </button>
       </div>
       <div class="card-filter-list-area" v-show="filterOpen">
-        <div class="card-filter-list-header">
+        <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">タイプ</span>
           <button class="basic-button" @click="filterTypeCheckAll">
             <span class="basic-button-name">
@@ -170,7 +170,7 @@ const getSkillCardDetail = (id) => {
             <label for="card-filter-assist">アシスト</label>
           </div>
         </div>
-        <div class="card-filter-list-header">
+        <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">プラン</span>
           <button class="basic-button" @click="filterPlanCheckAll">
             <span class="basic-button-name">
@@ -196,7 +196,7 @@ const getSkillCardDetail = (id) => {
             <label for="card-filter-anomaly">アノマリー限定</label>
           </div>
         </div>
-        <div class="card-filter-list-header">
+        <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">イベント</span>
           <button class="basic-button" @click="filterEventCheckAll">
             <span class="basic-button-name">
@@ -222,7 +222,7 @@ const getSkillCardDetail = (id) => {
             <label for="card-filter-card_random_strengthen">ランダムなスキルカードを強化</label>
           </div>
         </div>
-        <div class="card-filter-list-header">
+        <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">アビリティ</span>
           <button class="basic-button" @click="filterAbilityCheckAll">
             <span class="basic-button-name">

@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['idols', 'id', 'trainingLevel', 'blossomingLevel'])
-const emit = defineEmits(['editor-close'])
+const props = defineProps(['idols', 'id', 'trainingLevel', 'blossomingLevel']);
+const emit = defineEmits(['editor-close']);
 const idols = props.idols;
 
 let id = ref(props.id);

@@ -37,7 +37,7 @@ const closeEditor = () => {
     </div>
     <div class="idol-list-area">
       <div class="idol" v-bind:class="(idol.first_name).toLowerCase()" v-for="idol in allIdolList" :key="idol.id">
-        <div class="idol-info-area" v-bind:class="(idol.first_name).toLowerCase()">
+        <div class="idol-info-area color-headline" v-bind:class="(idol.first_name).toLowerCase()">
           <div class="idol-name">
             <span class="idol-name-text">{{ idol.name }}</span>
           </div>

@@ -24,12 +24,12 @@ const buttonCardManager = () => {
     <span class="headline-text">サポートカード</span>
   </div>
   <div class="card-tab-area">
-    <div class="card-tab" v-bind:class="{'active': currentComponent === SupportCardMaster}">
+    <div class="card-tab" v-bind:class="{'common-headline': currentComponent === SupportCardMaster}">
       <button class="card-tab-button" @click="buttonCardMaster">
         <span class="card-tab-name">一覧</span>
       </button>
     </div>
-    <div class="card-tab" v-bind:class="{'active': currentComponent === SupportCardManager}">
+    <div class="card-tab" v-bind:class="{'common-headline': currentComponent === SupportCardManager}">
       <button class="card-tab-button" @click="buttonCardManager">
         <span class="card-tab-name">管理</span>
       </button>

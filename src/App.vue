@@ -1,14 +1,21 @@
 <script setup>
 import {shallowRef} from "vue";
+import {ref} from "vue";
 import Idols from "@/classes/idols";
 import SupportCards from "@/classes/supportCards";
+import Setting from "@/classes/setting";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
+import SettingView from "@/components/SettingView.vue";
 
 let currentComponent = shallowRef(HomeView);
 let idols = new Idols();
 let supportCards = new SupportCards();
+let setting = new Setting();
+
+let settingOpen = ref(false);
+let settingColor = ref(setting.getColor());
 
 const buttonHome = () => {
   currentComponent.value = HomeView;
@@ -26,12 +33,16 @@ const buttonCard = () => {
 const buttonCalculator = () => {
 }
 const buttonSetting = () => {
+  settingOpen.value = true;
+}
+const closeSetting = () => {
+  settingOpen.value = false;
 }
 </script>
 
 <template>
-  <div id="modal-area" class="modal-area color-china"></div>
-  <header id="header-area" class="header-area color-china">
+  <div id="modal-area" class="modal-area" v-bind:class="settingColor"></div>
+  <header id="header-area" class="header-area" v-bind:class="settingColor">
     <div class="header-tab-area">
       <div class="header-tab-left-area">
         <div class="header-tab home">
@@ -150,7 +161,7 @@ const buttonSetting = () => {
       </div>
     </div>
   </header>
-  <div id="content-view-area" class="contents-view-area color-china">
+  <div id="content-view-area" class="contents-view-area" v-bind:class="settingColor">
     <keep-alive>
       <component
           :is="currentComponent"
@@ -159,6 +170,14 @@ const buttonSetting = () => {
       />
     </keep-alive>
   </div>
+  <Teleport to="#modal-area">
+    <SettingView
+        v-if="settingOpen"
+        v-model="settingColor"
+        :setting="setting"
+        @setting-close="closeSetting"
+    />
+  </Teleport>
 </template>
 
 <style scoped>

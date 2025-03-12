@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['supportCards'])
+const props = defineProps(['supportCards']);
 const cards = props.supportCards;
 const allCardList = cards.getAllCard();
 const allSaveCardList = cards.getAllSaveCard();
@@ -147,7 +147,7 @@ const filterAbilityCheckAll = () => {
             </button>
           </div>
           <div class="card-filter-list-area" v-show="filterOpen">
-            <div class="card-filter-list-header">
+            <div class="card-filter-list-header common-headline">
               <span class="card-filter-text">タイプ</span>
               <button class="basic-button" @click="filterTypeCheckAll">
             <span class="basic-button-name">
@@ -173,7 +173,7 @@ const filterAbilityCheckAll = () => {
                 <label for="card-filter-assist">アシスト</label>
               </div>
             </div>
-            <div class="card-filter-list-header">
+            <div class="card-filter-list-header common-headline">
               <span class="card-filter-text">プラン</span>
               <button class="basic-button" @click="filterPlanCheckAll">
             <span class="basic-button-name">
@@ -199,7 +199,7 @@ const filterAbilityCheckAll = () => {
                 <label for="card-filter-anomaly">アノマリー限定</label>
               </div>
             </div>
-            <div class="card-filter-list-header">
+            <div class="card-filter-list-header common-headline">
               <span class="card-filter-text">イベント</span>
               <button class="basic-button" @click="filterEventCheckAll">
             <span class="basic-button-name">
@@ -225,7 +225,7 @@ const filterAbilityCheckAll = () => {
                 <label for="card-filter-card_random_strengthen">ランダムなスキルカードを強化</label>
               </div>
             </div>
-            <div class="card-filter-list-header">
+            <div class="card-filter-list-header common-headline">
               <span class="card-filter-text">アビリティ</span>
               <button class="basic-button" @click="filterAbilityCheckAll">
             <span class="basic-button-name">
