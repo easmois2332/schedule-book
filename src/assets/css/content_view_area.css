@@ -13,6 +13,47 @@
         }
     }
 
+    .home-view-area {
+        padding: 16px 16px;
+
+        .content-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding-bottom: 16px;
+        }
+
+        .content {
+            padding: 16px 8px;
+        }
+
+        .content-button {
+            background: #efefef;
+            border-radius: 4px;
+            border: 2px solid #666666;
+            cursor: pointer;
+            outline: none;
+            padding: 8px;
+            appearance: none;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-button:hover {
+            background: #ffffff;
+            transition: 0.3s;
+        }
+
+        .content-button-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+
     .card-tab-area {
         display: flex;
         padding: 0 16px;

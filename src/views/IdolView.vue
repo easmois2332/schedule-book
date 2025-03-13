@@ -2,7 +2,7 @@
 import ProduceIdolEditor from "@/components/ProduceIdolEditor.vue";
 import {ref} from "vue";
 
-const props = defineProps(['idols', 'supportCards'])
+const props = defineProps(['idols']);
 const idols = props.idols;
 
 let allIdolList = ref(idols.getAllIdol());

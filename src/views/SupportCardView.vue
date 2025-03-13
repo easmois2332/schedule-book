@@ -3,7 +3,7 @@ import SupportCardMaster from "@/components/SupportCardMaster.vue";
 import SupportCardManager from "@/components/SupportCardManager.vue";
 import {shallowRef} from "vue";
 
-const props = defineProps(['idols', 'supportCards'])
+const props = defineProps(['supportCards']);
 const supportCards = props.supportCards;
 
 let currentComponent = shallowRef(SupportCardMaster);
@@ -35,10 +35,8 @@ const buttonCardManager = () => {
       </button>
     </div>
   </div>
-  <keep-alive>
-    <component
-        :is="currentComponent"
-        :support-cards="supportCards"
-    />
-  </keep-alive>
+  <component
+      :is="currentComponent"
+      :support-cards="supportCards"
+  />
 </template>

@@ -1,5 +1,4 @@
 <script setup>
-
 const props = defineProps(['setting']);
 const emit = defineEmits(['setting-close']);
 const setting = props.setting;
