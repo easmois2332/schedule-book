@@ -7,7 +7,7 @@ import Setting from "@/classes/setting";
 import HomeView from "@/views/HomeView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
-import SettingView from "@/components/SettingView.vue";
+import SettingView from "@/components/modals/SettingView.vue";
 
 let currentComponent = shallowRef(HomeView);
 let idols = new Idols();

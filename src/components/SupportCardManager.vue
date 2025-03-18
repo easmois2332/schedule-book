@@ -1,5 +1,5 @@
 <script setup>
-import SupportCardEditor from "@/components/SupportCardEditor.vue";
+import SupportCardEditor from "@/components/modals/SupportCardEditor.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
 import SkillCards from "@/classes/skillCards";

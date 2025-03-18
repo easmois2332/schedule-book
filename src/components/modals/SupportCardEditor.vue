@@ -1,5 +1,5 @@
 <script setup>
-import SupportCardSelect from "@/components/SupportCardSelect.vue";
+import SupportCardSelect from "@/components/modals/SupportCardSelect.vue";
 import {ref} from "vue";
 import Items from "@/classes/items";
 import SkillCards from "@/classes/skillCards";

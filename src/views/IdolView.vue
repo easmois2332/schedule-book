@@ -1,5 +1,5 @@
 <script setup xmlns="http://www.w3.org/1999/html">
-import ProduceIdolEditor from "@/components/ProduceIdolEditor.vue";
+import ProduceIdolEditor from "@/components/modals/ProduceIdolEditor.vue";
 import {ref} from "vue";
 
 const props = defineProps(['idols']);
