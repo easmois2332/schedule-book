@@ -338,7 +338,7 @@ const getSkillCardDetail = (id) => {
       </div>
     </div>
     <div class="card-list-area">
-      <div class="card" v-bind:class="card.type" v-for="card in cardList" :key="card.id">
+      <div class="card" v-bind:class="card.type" v-for="card in cardList" :key="card.save_id">
         <div class="card-image-area editor" :style="{ backgroundImage: 'url(./image/supportCards/' + card.id + '.png)'}" @click="buttonEditor(card.save_id, card.id, card.level)">
           <div class="card-name">
             <span class="card-name-text">{{ card.name }}</span>

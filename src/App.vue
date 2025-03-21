@@ -1,17 +1,24 @@
 <script setup>
 import {shallowRef} from "vue";
 import {ref} from "vue";
+import Schedules from "@/classes/schedules";
 import Idols from "@/classes/idols";
 import SupportCards from "@/classes/supportCards";
 import Setting from "@/classes/setting";
 import HomeView from "@/views/HomeView.vue";
+import ScheduleView from "@/views/ScheduleView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
 
 let currentComponent = shallowRef(HomeView);
+
+let schedules = new Schedules();
 let idols = new Idols();
 let supportCards = new SupportCards();
+
+let scheduleList = ref([]);
+let currentSchedule = ref([]);
 
 let setting = new Setting();
 let settingOpen = ref(false);
@@ -21,19 +28,40 @@ const buttonHome = () => {
   currentComponent.value = HomeView;
 }
 const buttonNewSchedule = () => {
+  let newSchedule = schedules.crateNewSchedule();
+  scheduleList.value.push(newSchedule);
+  currentSchedule.value = newSchedule;
+  currentComponent.value = ScheduleView;
 }
 const buttonOpenSchedule = () => {
 }
 const buttonIdol = () => {
-  currentComponent.value = IdolView
+  currentComponent.value = IdolView;
 }
 const buttonSupportCard = () => {
-  currentComponent.value = SupportCardView
+  currentComponent.value = SupportCardView;
 }
 const buttonCalculator = () => {
 }
 const buttonSetting = () => {
   settingOpen.value = true;
+}
+const buttonScheduleTab = (index) => {
+  currentSchedule.value = scheduleList.value[index];
+  currentComponent.value = ScheduleView;
+}
+const closeScheduleTab = (index) => {
+  if (currentSchedule.value.id === scheduleList.value[index].id) {
+    if (index === 0) {
+      currentSchedule.value = scheduleList.value[1];
+    } else {
+      currentSchedule.value = scheduleList.value[index - 1];
+    }
+  }
+  scheduleList.value.splice(index, 1);
+  if ((scheduleList.value.length === 0) && (currentComponent.value === ScheduleView)) {
+    currentComponent.value = HomeView;
+  }
 }
 const changeCurrentComponent = (component) => {
   currentComponent.value = component;
@@ -146,18 +174,12 @@ const closeSetting = () => {
       </div>
     </div>
     <div class="schedule-tab-area">
-      <div class="schedule-tab active">
-        <span class="schedule-tab-name">「初」千奈 Wonder Scale</span>
-        <button class="schedule-tab-close-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
-            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-          </svg>
-        </button>
-      </div>
-      <div class="schedule-tab">
-        <span class="schedule-tab-name">「初」千奈 日々、発見的ステップ！</span>
-        <button class="schedule-tab-close-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+      <div class="schedule-tab" v-bind:class="{'active': currentSchedule.id === schedule.id}" v-for="(schedule, index) in scheduleList" :key="schedule.id">
+        <div class="schedule-tab-name-area" @click="buttonScheduleTab(index)">
+          <span class="schedule-tab-name">{{ schedule.name }}</span>
+        </div>
+        <button class="schedule-tab-close-button" @click="closeScheduleTab(index)">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368">
             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
           </svg>
         </button>
@@ -178,6 +200,13 @@ const closeSetting = () => {
         v-if="currentComponent === SupportCardView"
         :support-cards="supportCards"
     />
+    <keep-alive v-for="schedule in scheduleList" :key="schedule.id">
+      <ScheduleView
+          v-if="(currentComponent === ScheduleView) && (currentSchedule.id === schedule.id)"
+          :schedules="schedules"
+          :schedule-data="currentSchedule"
+      />
+    </keep-alive>
   </div>
   <Teleport to="#modal-area">
     <SettingView
