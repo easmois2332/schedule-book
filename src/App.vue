@@ -1,5 +1,5 @@
 <script setup>
-import {shallowRef} from "vue";
+import {onMounted, onUpdated, shallowRef} from "vue";
 import {ref} from "vue";
 import Schedules from "@/classes/schedules";
 import Idols from "@/classes/idols";
@@ -63,12 +63,42 @@ const closeScheduleTab = (index) => {
     currentComponent.value = HomeView;
   }
 }
+const scrollLeftScheduleTab = () => {
+  document.querySelector('.schedule-tab-card-area').scrollBy({
+    left: -250,
+    behavior: "smooth"
+  });
+}
+const scrollRightScheduleTab = () => {
+  document.querySelector('.schedule-tab-card-area').scrollBy({
+    left: 250,
+    behavior: "smooth"
+  });
+}
 const changeCurrentComponent = (component) => {
   currentComponent.value = component;
 }
 const closeSetting = () => {
   settingOpen.value = false;
 }
+
+onMounted(() => {
+  let scheduleTabArea = document.querySelector('.schedule-tab-card-area');
+  scheduleTabArea.addEventListener('wheel', function (event) {
+    event.preventDefault();
+    scheduleTabArea.scrollLeft += event.deltaX;
+    scheduleTabArea.scrollLeft += event.deltaY;
+  })
+});
+onUpdated(() => {
+  if (scheduleList.value.length !== 0 && currentSchedule.value.length !== 0 && (scheduleList.value.length === currentSchedule.value.id)) {
+    let scheduleTabArea = document.querySelector('.schedule-tab-card-area');
+    scheduleTabArea.scroll({
+      left: scheduleTabArea.scrollWidth,
+      behavior: "smooth"
+    });
+  }
+})
 </script>
 
 <template>
@@ -174,15 +204,33 @@ const closeSetting = () => {
       </div>
     </div>
     <div class="schedule-tab-area">
-      <div class="schedule-tab" v-bind:class="{'active': currentSchedule.id === schedule.id}" v-for="(schedule, index) in scheduleList" :key="schedule.id">
-        <div class="schedule-tab-name-area" @click="buttonScheduleTab(index)">
-          <span class="schedule-tab-name">{{ schedule.name }}</span>
+      <div class="schedule-tab-scroll-area">
+        <div class="schedule-tab-scroll left">
+          <button class="schedule-tab-scroll-button" @click="scrollLeftScheduleTab()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+              <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+            </svg>
+          </button>
         </div>
-        <button class="schedule-tab-close-button" @click="closeScheduleTab(index)">
-          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368">
-            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-          </svg>
-        </button>
+        <div class="schedule-tab-scroll right">
+          <button class="schedule-tab-scroll-button" @click="scrollRightScheduleTab()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+              <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="schedule-tab-card-area">
+        <div class="schedule-tab-card" v-bind:class="{'active': (currentComponent === ScheduleView) && (currentSchedule.id === schedule.id)}" v-for="(schedule, index) in scheduleList" :key="schedule.id">
+          <div class="schedule-tab-card-name-area" @click="buttonScheduleTab(index)">
+            <span class="schedule-tab-card-name">{{ schedule.name }}</span>
+          </div>
+          <button class="schedule-tab-card-close-button" @click="closeScheduleTab(index)">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368">
+              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -190,6 +238,7 @@ const closeSetting = () => {
     <HomeView
         v-if="currentComponent === HomeView"
         @component-change="changeCurrentComponent"
+        @new-schedule-open="buttonNewSchedule"
         @setting-open="buttonSetting"
     />
     <IdolView
