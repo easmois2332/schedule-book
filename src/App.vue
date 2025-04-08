@@ -19,6 +19,7 @@ let supportCards = new SupportCards();
 
 let scheduleList = ref([]);
 let currentSchedule = ref([]);
+let newScheduleOpen = ref(false);
 
 let setting = new Setting();
 let settingOpen = ref(false);
@@ -32,6 +33,7 @@ const buttonNewSchedule = () => {
   scheduleList.value.push(newSchedule);
   currentSchedule.value = newSchedule;
   currentComponent.value = ScheduleView;
+  newScheduleOpen.value = true;
 }
 const buttonOpenSchedule = () => {
 }
@@ -91,12 +93,13 @@ onMounted(() => {
   })
 });
 onUpdated(() => {
-  if (scheduleList.value.length !== 0 && currentSchedule.value.length !== 0 && (scheduleList.value.length === currentSchedule.value.id)) {
+  if (newScheduleOpen.value) {
     let scheduleTabArea = document.querySelector('.schedule-tab-card-area');
     scheduleTabArea.scroll({
       left: scheduleTabArea.scrollWidth,
       behavior: "smooth"
     });
+    newScheduleOpen.value = false;
   }
 })
 </script>
