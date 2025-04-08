@@ -113,7 +113,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
 
         .header-tab-left-area {
             display: flex;
@@ -159,7 +159,7 @@
     .header-operation-area {
         display: flex;
         flex-direction: row;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
 
         .header-operation {
             padding: 0 8px;
@@ -177,6 +177,11 @@
             outline: none;
             padding: 0;
             appearance: none;
+        }
+
+        .header-operation-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.3;
         }
     }
 

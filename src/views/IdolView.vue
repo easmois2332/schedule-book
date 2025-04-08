@@ -18,7 +18,6 @@ const buttonEditor = (id, trainingLevel, blossomingLevel) => {
   editorBlossomingLevel.value = blossomingLevel;
   editorOpen.value = true;
 }
-
 const closeEditor = () => {
   editorOpen.value = false;
 }

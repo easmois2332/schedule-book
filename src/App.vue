@@ -11,6 +11,8 @@ import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
 
+const scheduleViewRef = ref();
+
 let currentComponent = shallowRef(HomeView);
 
 let schedules = new Schedules();
@@ -25,9 +27,12 @@ let setting = new Setting();
 let settingOpen = ref(false);
 let settingColor = ref(setting.getColor());
 
+// ホーム
 const buttonHome = () => {
   currentComponent.value = HomeView;
 }
+
+// 新規スケジュール作成
 const buttonNewSchedule = () => {
   let newSchedule = schedules.crateNewSchedule();
   scheduleList.value.push(newSchedule);
@@ -35,23 +40,59 @@ const buttonNewSchedule = () => {
   currentComponent.value = ScheduleView;
   newScheduleOpen.value = true;
 }
+
+// スケジュールを開く
 const buttonOpenSchedule = () => {
 }
+
+// Pアイドル管理
 const buttonIdol = () => {
   currentComponent.value = IdolView;
 }
+
+// サポートカード管理
 const buttonSupportCard = () => {
   currentComponent.value = SupportCardView;
 }
+
+// 各種計算機
 const buttonCalculator = () => {
 }
+
+// サイト設定
 const buttonSetting = () => {
   settingOpen.value = true;
 }
+
+// サイト設定を閉じる
+const closeSetting = () => {
+  settingOpen.value = false;
+}
+
+// スケジュール編集を元に戻す
+const buttonUndo = () => {
+  scheduleViewRef.value[0].buttonUndo();
+}
+
+// スケジュール編集をやり直す
+const buttonRedo = () => {
+  scheduleViewRef.value[0].buttonRedo();
+}
+
+// スケジュール編集を元に戻す・やり直すの無効化
+const buttonUndoRedoDisabled = (id, undo, redo) => {
+  let index = scheduleList.value.findIndex((schedule) => schedule.id === id);
+  scheduleList.value[index].undo_disabled = undo;
+  scheduleList.value[index].redo_disabled = redo;
+}
+
+// スケジュールタブ
 const buttonScheduleTab = (index) => {
   currentSchedule.value = scheduleList.value[index];
   currentComponent.value = ScheduleView;
 }
+
+// スケジュールタブを閉じる
 const closeScheduleTab = (index) => {
   if (currentSchedule.value.id === scheduleList.value[index].id) {
     if (index === 0) {
@@ -65,23 +106,26 @@ const closeScheduleTab = (index) => {
     currentComponent.value = HomeView;
   }
 }
+
+// スケジュールタブを左にスクロール
 const scrollLeftScheduleTab = () => {
   document.querySelector('.schedule-tab-card-area').scrollBy({
     left: -250,
     behavior: "smooth"
   });
 }
+
+// スケジュールタブを右にスクロール
 const scrollRightScheduleTab = () => {
   document.querySelector('.schedule-tab-card-area').scrollBy({
     left: 250,
     behavior: "smooth"
   });
 }
+
+// 表示しているコンポーネントを変更
 const changeCurrentComponent = (component) => {
   currentComponent.value = component;
-}
-const closeSetting = () => {
-  settingOpen.value = false;
 }
 
 onMounted(() => {
@@ -92,6 +136,7 @@ onMounted(() => {
     scheduleTabArea.scrollLeft += event.deltaY;
   })
 });
+
 onUpdated(() => {
   if (newScheduleOpen.value) {
     let scheduleTabArea = document.querySelector('.schedule-tab-card-area');
@@ -171,35 +216,35 @@ onUpdated(() => {
     </div>
     <div class="header-operation-area">
       <div class="header-operation save">
-        <button class="header-operation-button">
+        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/>
           </svg>
         </button>
       </div>
       <div class="header-operation save-as">
-        <button class="header-operation-button">
+        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160v212q-19-8-39.5-10.5t-40.5.5v-169L647-760H200v560h240v80H200Zm0-640v560-560ZM520-40v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-260L643-40H520Zm300-263-37-37 37 37ZM580-100h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19ZM240-560h360v-160H240v160Zm240 320h4l116-115v-5q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/>
           </svg>
         </button>
       </div>
       <div class="header-operation screen-shot">
-        <button class="header-operation-button">
+        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z"/>
           </svg>
         </button>
       </div>
       <div class="header-operation undo">
-        <button class="header-operation-button">
+        <button class="header-operation-button" v-bind:disabled="(currentComponent !== ScheduleView) || currentSchedule.undo_disabled" @click="buttonUndo">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z"/>
           </svg>
         </button>
       </div>
       <div class="header-operation redo">
-        <button class="header-operation-button">
+        <button class="header-operation-button" v-bind:disabled="(currentComponent !== ScheduleView) || currentSchedule.redo_disabled" @click="buttonRedo">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M396-200q-97 0-166.5-63T160-420q0-94 69.5-157T396-640h252L544-744l56-56 200 200-200 200-56-56 104-104H396q-63 0-109.5 40T240-420q0 60 46.5 100T396-280h284v80H396Z"/>
           </svg>
@@ -209,14 +254,14 @@ onUpdated(() => {
     <div class="schedule-tab-area">
       <div class="schedule-tab-scroll-area">
         <div class="schedule-tab-scroll left">
-          <button class="schedule-tab-scroll-button" @click="scrollLeftScheduleTab()">
+          <button class="schedule-tab-scroll-button" @click="scrollLeftScheduleTab">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
               <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
             </svg>
           </button>
         </div>
         <div class="schedule-tab-scroll right">
-          <button class="schedule-tab-scroll-button" @click="scrollRightScheduleTab()">
+          <button class="schedule-tab-scroll-button" @click="scrollRightScheduleTab">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
               <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
             </svg>
@@ -255,8 +300,10 @@ onUpdated(() => {
     <keep-alive v-for="schedule in scheduleList" :key="schedule.id">
       <ScheduleView
           v-if="(currentComponent === ScheduleView) && (currentSchedule.id === schedule.id)"
+          ref="scheduleViewRef"
           :schedules="schedules"
           :schedule-data="currentSchedule"
+          @undo-redo-disabled="buttonUndoRedoDisabled"
       />
     </keep-alive>
   </div>

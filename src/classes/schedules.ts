@@ -11,6 +11,8 @@ export default class Schedules {
         let newSchedule = {
             id: this.autoIncrement,
             save_id: null,
+            undo_disabled: true,
+            redo_disabled: true,
             name: `新規スケジュール${this.crateCount}`,
             data: [],
         };
