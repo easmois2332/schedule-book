@@ -7,6 +7,7 @@ import SupportCards from "@/classes/supportCards";
 import Setting from "@/classes/setting";
 import HomeView from "@/views/HomeView.vue";
 import ScheduleView from "@/views/ScheduleView.vue";
+import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
@@ -23,6 +24,8 @@ let scheduleList = ref([]);
 let currentSchedule = ref([]);
 let newScheduleOpen = ref(false);
 
+let produceTypeSelectOpen = ref(false);
+
 let setting = new Setting();
 let settingOpen = ref(false);
 let settingColor = ref(setting.getColor());
@@ -33,12 +36,15 @@ const buttonHome = () => {
 }
 
 // 新規スケジュール作成
-const buttonNewSchedule = () => {
-  let newSchedule = schedules.crateNewSchedule();
-  scheduleList.value.push(newSchedule);
-  currentSchedule.value = newSchedule;
-  currentComponent.value = ScheduleView;
-  newScheduleOpen.value = true;
+const buttonNewSchedule = (produceType) => {
+  if (produceType) {
+    let newSchedule = schedules.crateNewSchedule(produceType);
+    scheduleList.value.push(newSchedule);
+    currentSchedule.value = newSchedule;
+    currentComponent.value = ScheduleView;
+    newScheduleOpen.value = true;
+  }
+  produceTypeSelectOpen.value = false;
 }
 
 // スケジュールを開く
@@ -163,7 +169,7 @@ onUpdated(() => {
           </button>
         </div>
         <div class="header-tab new-schedule">
-          <button class="header-tab-button new-schedule" @click="buttonNewSchedule">
+          <button class="header-tab-button new-schedule" @click="produceTypeSelectOpen = true">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
               <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h360v80H200v560h560v-360h80v360q0 33-23.5 56.5T760-120H200Zm120-160v-80h320v80H320Zm0-120v-80h320v80H320Zm0-120v-80h320v80H320Zm360-80v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
             </svg>
@@ -286,7 +292,7 @@ onUpdated(() => {
     <HomeView
         v-if="currentComponent === HomeView"
         @component-change="changeCurrentComponent"
-        @new-schedule-open="buttonNewSchedule"
+        @new-schedule-open="produceTypeSelectOpen = true"
         @setting-open="buttonSetting"
     />
     <IdolView
@@ -313,6 +319,10 @@ onUpdated(() => {
         v-model="settingColor"
         :setting="setting"
         @setting-close="closeSetting"
+    />
+    <ProduceTypeSelect
+        v-if="produceTypeSelectOpen"
+        @produce-type-select-close="buttonNewSchedule"
     />
   </Teleport>
 </template>

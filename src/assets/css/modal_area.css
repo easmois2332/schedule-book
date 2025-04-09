@@ -452,4 +452,46 @@
             width: 80px;
         }
     }
+
+    .produce-type-select-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 50%;
+        max-height: 70%;
+        margin: 25% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 600px) {
+            width: 90%;
+            max-height: 90%;
+        }
+
+        .produce-type-button-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .produce-type-button {
+            padding-bottom: 16px;
+        }
+        .common-button.hajime-master {
+            width: 200px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .common-button.nia {
+            width: 200px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
 }

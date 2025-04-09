@@ -7,14 +7,16 @@ export default class Schedules {
     constructor() {
     }
 
-    crateNewSchedule() {
+    crateNewSchedule(produceType: string) {
         let newSchedule = {
             id: this.autoIncrement,
             save_id: null,
             undo_disabled: true,
             redo_disabled: true,
             name: `新規スケジュール${this.crateCount}`,
-            data: [],
+            data: {
+                produce_type: produceType,
+            }
         };
         this.autoIncrement++;
         this.crateCount++;
