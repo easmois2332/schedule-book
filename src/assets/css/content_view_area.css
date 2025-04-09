@@ -451,7 +451,8 @@
             font-size: 24px;
 
             @media (max-width: 500px) {
-                font-size: 20px;
+                font-size: 16px;
+                font-weight: bold;
             }
         }
 
@@ -464,26 +465,15 @@
         }
 
         .produce-idol-hp-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
             padding-bottom: 4px;
 
             @media (max-width: 500px) {
                 display: none;
             }
-        }
-
-        .produce-idol-hp {
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .produce-idol-hp-text {
-            border-bottom: 2px solid #3CC743;
-        }
-
-        .produce-idol-hp-value {
-            text-align: end;
-            background: rgba(60, 199, 67, 0.1);
         }
 
         .produce-idol-parameter-area {
@@ -518,6 +508,10 @@
             border-bottom: 2px solid #FAA900;
         }
 
+        .table-header-type.hp {
+            border-bottom: 2px solid #3CC743;
+        }
+
         .table-header-text {
             @media (max-width: 500px) {
                 display: none;
@@ -545,5 +539,13 @@
         .table-data.visual {
             background: rgba(250, 169, 0, 0.1);
         }
+
+        .table-data.hp {
+            background: rgba(60, 199, 67, 0.1);
+        }
+    }
+
+    .schedule-view-area {
+        padding: 16px 16px;
     }
 }

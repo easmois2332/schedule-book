@@ -60,12 +60,18 @@ const closeEditor = () => {
                 <span class="produce-idol-plan-text">{{ produce.plan_display }}『{{ produce.effect_display }}』</span>
               </div>
               <div class="produce-idol-hp-area">
-                <div class="produce-idol-hp">
-                  <span class="produce-idol-hp-text font-bold">体力</span>
-                  <div class="produce-idol-hp-value">
-                    <span class="produce-idol-hp-value-text">{{ produce.init_hp }}</span>
-                  </div>
-                </div>
+                <table class="produce-idol-parameter-table">
+                  <thead>
+                  <tr>
+                    <th class="table-header-type hp"><span class="table-header-text">体力</span></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="table-data hp"><span>{{ produce.init_hp }}</span></td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
               <div class="produce-idol-parameter-area">
                 <table class="produce-idol-parameter-table">

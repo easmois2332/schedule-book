@@ -346,6 +346,7 @@
         .produce-idol-level {
             display: flex;
             flex-direction: column;
+            padding-bottom: 16px;
         }
 
         .produce-idol-level-text {
@@ -361,25 +362,6 @@
         .produce-idol-blossoming-level {
             display: flex;
             flex-direction: row;
-        }
-
-        .produce-idol-hp-area {
-            padding-bottom: 16px;
-        }
-
-        .produce-idol-hp {
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .produce-idol-hp-text {
-            border-bottom: 2px solid #3CC743;
-        }
-
-        .produce-idol-hp-value {
-            text-align: end;
-            background: rgba(60, 199, 67, 0.1);
         }
 
         .produce-idol-parameter-area {

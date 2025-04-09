@@ -44,7 +44,7 @@ const updateIdolDetail = () => {
           </div>
           <div class="produce-idol-info">
             <span class="produce-idol-info-text font-bold">{{ idolDetail.name }}</span>
-            <span class="produce-idol-info-text font-bold">{{ idolDetail.plan_display }}『{{ idolDetail.effect_display }}』</span>
+<!--            <span class="produce-idol-info-text font-bold">{{ idolDetail.plan_display }}『{{ idolDetail.effect_display }}』</span>-->
             <div class="produce-idol-level">
               <div class="produce-idol-training-level">
                 <span class="produce-idol-level-text font-bold">特訓段階</span>
@@ -55,13 +55,8 @@ const updateIdolDetail = () => {
                 <input class="produce-idol-level-number" type="number" min="0" max="4" v-model="blossomingLevel" @input="updateIdolDetail">
               </div>
             </div>
-          </div>
-        </div>
-        <div class="produce-idol-hp-area">
-          <div class="produce-idol-hp">
-            <span class="produce-idol-hp-text font-bold">体力</span>
-            <div class="produce-idol-hp-value">
-              <span class="produce-idol-hp-value-text">{{ idolDetail.init_hp }}</span>
+            <div class="produce-idol-hp">
+              <span class="produce-idol-hp-text font-bold">体力 </span><span class="produce-idol-hp-text">{{ idolDetail.init_hp }}</span>
             </div>
           </div>
         </div>
