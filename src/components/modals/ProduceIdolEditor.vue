@@ -72,19 +72,19 @@ const updateIdolDetail = () => {
             </thead>
             <tbody>
             <tr>
-              <th class="table-header"><span>初期値</span></th>
+              <th class="table-header"><span class="table-header-text">初期値</span><span class="table-header-text-abbr">初期値</span></th>
               <td class="table-data vocal"><span>{{ idolDetail.init_vocal }}</span></td>
               <td class="table-data dance"><span>{{ idolDetail.init_dance }}</span></td>
               <td class="table-data visual"><span>{{ idolDetail.init_visual }}</span></td>
             </tr>
             <tr>
-              <th class="table-header"><span>パラメータボーナス</span></th>
+              <th class="table-header"><span class="table-header-text">パラメータボーナス</span><span class="table-header-text-abbr">パラボ</span></th>
               <td class="table-data vocal"><span>{{ idolDetail.bonus_vocal }}%</span></td>
               <td class="table-data dance"><span>{{ idolDetail.bonus_dance }}%</span></td>
               <td class="table-data visual"><span>{{ idolDetail.bonus_visual }}%</span></td>
             </tr>
             <tr>
-              <th class="table-header"><span>SPレッスン発生率</span></th>
+              <th class="table-header"><span class="table-header-text">SPレッスン発生率</span><span class="table-header-text-abbr">SP率</span></th>
               <td class="table-data vocal"><span>+{{ idolDetail.sp_lesson_rate_vocal }}%</span></td>
               <td class="table-data dance"><span>+{{ idolDetail.sp_lesson_rate_dance }}%</span></td>
               <td class="table-data visual"><span>+{{ idolDetail.sp_lesson_rate_visual }}%</span></td>

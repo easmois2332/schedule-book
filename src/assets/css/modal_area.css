@@ -376,7 +376,7 @@
             text-align: start;
             width: 80px;
 
-            @media (max-width: 500px) {
+            @media (max-width: 1000px) {
                 width: 60px;
             }
         }
@@ -394,13 +394,13 @@
         }
 
         .table-header-text {
-            @media (max-width: 500px) {
+            @media (max-width: 1000px) {
                 display: none;
             }
         }
 
         .table-header-text-abbr {
-            @media (min-width: 501px) {
+            @media (min-width: 1001px) {
                 display: none;
             }
         }
