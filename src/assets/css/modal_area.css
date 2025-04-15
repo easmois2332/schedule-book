@@ -117,13 +117,7 @@
             .card-level {
                 display: flex;
                 flex-direction: row;
-            }
-
-            .card-level-text {
-                padding-right: 8px;
-            }
-
-            .card-level-number {
+                align-items: flex-end;
             }
         }
 
@@ -349,19 +343,17 @@
             padding-bottom: 16px;
         }
 
-        .produce-idol-level-text {
-            padding-right: 8px;
-        }
-
         .produce-idol-training-level {
             display: flex;
             flex-direction: row;
+            align-items: flex-end;
             padding-bottom: 16px;
         }
 
         .produce-idol-blossoming-level {
             display: flex;
             flex-direction: row;
+            align-items: flex-end;
         }
 
         .produce-idol-parameter-area {

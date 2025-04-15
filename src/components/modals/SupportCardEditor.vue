@@ -90,8 +90,8 @@ const buttonDelete = async () => {
             <span class="card-info-text font-bold" v-if="cardDetail === null">タイプ プラン制限</span>
             <span class="card-info-text font-bold" v-else>{{ cardDetail.type_display }} {{ cardDetail.plan_display }}</span>
             <div class="card-level">
-              <span class="card-level-text font-bold">Lv</span>
-              <input class="card-level-number" type="number" min="1" v-bind:max="cardMaxLevel" v-model="cardLevel" v-bind:disabled="cardId === null" @input="updateCardDetail">
+              <label class="basic-input-number-name font-bold">Lv</label>
+              <input class="basic-input-number" type="number" min="1" v-bind:max="cardMaxLevel" v-model="cardLevel" v-bind:disabled="cardId === null" @input="updateCardDetail">
             </div>
           </div>
         </div>

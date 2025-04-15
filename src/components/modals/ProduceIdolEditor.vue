@@ -47,12 +47,12 @@ const updateIdolDetail = () => {
 <!--            <span class="produce-idol-info-text font-bold">{{ idolDetail.plan_display }}『{{ idolDetail.effect_display }}』</span>-->
             <div class="produce-idol-level">
               <div class="produce-idol-training-level">
-                <span class="produce-idol-level-text font-bold">特訓段階</span>
-                <input class="produce-idol-level-number" type="number" min="0" max="6" v-model="trainingLevel" @input="updateIdolDetail">
+                <label class="basic-input-number-name font-bold">特訓段階</label>
+                <input class="basic-input-number" type="number" min="0" max="6" v-model="trainingLevel" @input="updateIdolDetail">
               </div>
               <div class="produce-idol-blossoming-level">
-                <span class="produce-idol-level-text font-bold">才能開花</span>
-                <input class="produce-idol-level-number" type="number" min="0" max="4" v-model="blossomingLevel" @input="updateIdolDetail">
+                <label class="basic-input-number-name font-bold">才能開花</label>
+                <input class="basic-input-number" type="number" min="0" max="4" v-model="blossomingLevel" @input="updateIdolDetail">
               </div>
             </div>
             <div class="produce-idol-hp">

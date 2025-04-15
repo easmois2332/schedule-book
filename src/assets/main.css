@@ -800,3 +800,20 @@ span.font-bold {
 .color-headline {
     border-bottom: 2px solid;
 }
+
+.basic-input-number-name {
+    padding-right: 8px;
+}
+
+.basic-input-number {
+    padding: 2px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 2px solid #958b7f;
+    box-sizing: border-box;
+}
+
+.basic-input-number:focus {
+    border: 2px solid #333333;
+    outline: 0;
+}
