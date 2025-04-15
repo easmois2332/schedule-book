@@ -16,6 +16,15 @@ span.font-bold {
     font-weight: bold;
 }
 
+label {
+    color: #333333;
+    font-size: 16px;
+}
+
+label.font-bold {
+    font-weight: bold;
+}
+
 .color-saki {
     .common-button {
         background: linear-gradient(to right, #fb4f60, #fbb7a1);
@@ -815,5 +824,4 @@ span.font-bold {
 
 .basic-input-number:focus {
     border: 2px solid #333333;
-    outline: 0;
 }

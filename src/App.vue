@@ -309,6 +309,8 @@ onUpdated(() => {
           ref="scheduleViewRef"
           :schedules="schedules"
           :schedule-data="currentSchedule"
+          :idols="idols"
+          :support-cards="supportCards"
           @undo-redo-disabled="buttonUndoRedoDisabled"
       />
     </keep-alive>

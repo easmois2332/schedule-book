@@ -1,11 +1,10 @@
 <script setup>
 import {ref} from "vue";
-import ScheduleOrganizationHajimeMaster from "@/components/ScheduleOrganizationHajimeMaster.vue";
+import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
-import ScheduleOrganizationNextIdolAudition from "@/components/ScheduleOrganizationNextIdolAudition.vue";
 import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
 
-const props = defineProps(['schedules', 'scheduleData']);
+const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
 const emit = defineEmits(['undo-redo-disabled']);
 const id = props.scheduleData.id;
 
@@ -15,11 +14,11 @@ const produceTypeDisplayList = {
 }
 const produceTypeComponentList = {
   hajime_master: {
-    organization: ScheduleOrganizationHajimeMaster,
+    organization: ScheduleOrganization,
     planning: SchedulePlanningHajimeMaster
   },
   nia: {
-    organization: ScheduleOrganizationNextIdolAudition,
+    organization: ScheduleOrganization,
     planning: SchedulePlanningNextIdolAudition
   }
 }

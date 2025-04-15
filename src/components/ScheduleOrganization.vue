@@ -20,26 +20,22 @@ const updateInputData = () => {
       <div class="produce-idol-area">
         <div class="produce-idol">
           <div class="produce-idol-image">
-            <button class="produce-idol-select-button">
-              <span class="produce-idol-select-text">Pアイドルを選択</span>
+            <button class="produce-idol-select-button" :style="{ backgroundImage: 'url(./image/produceIdols/6.png)' }">
+              <span class="produce-idol-select-text" v-show="false">Pアイドルを選択</span>
             </button>
           </div>
           <div class="produce-idol-level-area">
             <div class="produce-idol-level training-level">
-              <span class="produce-idol-info-text font-bold">特訓段階</span>
-              <input class="produce-idol-level-number" type="number" min="0" max="6">
+              <label class="basic-input-number-name font-bold">特訓段階</label>
+              <input class="basic-input-number" type="number" min="0" max="6">
             </div>
             <div class="produce-idol-level blossoming-level">
-              <span class="produce-idol-info-text font-bold">才能開花</span>
-              <input class="produce-idol-level-number" type="number" min="0" max="4">
+              <label class="basic-input-number-name font-bold">才能開花</label>
+              <input class="basic-input-number" type="number" min="0" max="4">
             </div>
             <div class="produce-idol-level dear-level">
-              <span class="produce-idol-info-text font-bold">親愛度</span>
-              <input class="produce-idol-level-number" type="number" min="0" max="20">
-            </div>
-            <div class="produce-idol-level add-lesson-max">
-              <span class="produce-idol-info-text font-bold">レッスン上限値+</span>
-              <input class="produce-idol-level-number" type="number" min="0" max="60">
+              <label class="basic-input-number-name font-bold">親愛度</label>
+              <input class="basic-input-number" type="number" min="0" max="20">
             </div>
           </div>
           <div class="produce-idol-parameter-area">
@@ -84,28 +80,26 @@ const updateInputData = () => {
           </div>
         </div>
       </div>
-      <!--      <div class="challenge-item-area">-->
-      <!--      </div>-->
-      <!--      <div class="support-card-area">-->
-      <!--        <div class="support-card" v-for="i in 6" :key="i">-->
-      <!--          <div class="support-card-image">-->
-      <!--            <button class="support-card-select-button">-->
-      <!--              <span class="support-card-select-text">サポートカードを選択</span>-->
-      <!--            </button>-->
-      <!--          </div>-->
-      <!--          <div class="support-card-info">-->
-      <!--            <div class="support-card-name">-->
-      <!--              <span class="support-card-info-text">サポートカード名</span>-->
-      <!--            </div>-->
-      <!--            <div class="support-card-level">-->
-      <!--              <span class="support-card-info-text">Lv</span>-->
-      <!--              <input class="support-card-level-number" type="number" min="1">-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div class="produce-memory-area">-->
-      <!--      </div>-->
+      <div class="support-card-area">
+        <div class="support-card" v-for="i in 6" :key="i">
+          <div class="support-card-image">
+            <button class="support-card-select-button" :style="{ backgroundImage: 'url(./image/supportCards/49.png)' }">
+              <span class="support-card-select-text" v-show="false">サポートカードを選択</span>
+            </button>
+          </div>
+          <div class="support-card-info">
+            <div class="support-card-name">
+              <span class="support-card-info-text font-bold">サポートカード名</span>
+            </div>
+            <div class="support-card-level">
+              <label class="basic-input-number-name font-bold">Lv</label>
+              <input class="basic-input-number" type="number" min="1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="produce-memory-area">
+      </div>
     </div>
   </div>
 </template>
