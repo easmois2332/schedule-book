@@ -825,3 +825,16 @@ label.font-bold {
 .basic-input-number:focus {
     border: 2px solid #333333;
 }
+
+.basic-select {
+    padding: 2px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 2px solid #958b7f;
+    box-sizing: border-box;
+}
+
+.basic-select:focus {
+    border: 2px solid #333333;
+}
+
