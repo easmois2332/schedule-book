@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['supportCards']);
+const props = defineProps(['supportCards', 'planFilter']);
 const cards = props.supportCards;
 const allCardList = cards.getAllCard();
 const allSaveCardList = cards.getAllSaveCard();
@@ -27,11 +27,20 @@ let filterAbility = ref([
 
 let cardList = ref(allCardList);
 
+if (props.planFilter !== null) {
+  filterPlan.value = props.planFilter;
+  if (saveCardDisplayToggle.value) {
+    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  } else {
+    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  }
+}
+
 const checkboxDisplayChange = () => {
   if (saveCardDisplayToggle.value) {
-    cardList.value = allSaveCardList;
+    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
   } else {
-    cardList.value = allCardList;
+    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
   }
 }
 const buttonFilterOpen = () => {
@@ -116,7 +125,7 @@ const filterAbilityCheckAll = () => {
 </script>
 
 <template>
-  <div class="modal-window-area" @click.self="$emit('selector-close', null)">
+  <div class="modal-window-area" @click.self="$emit('selector-close', null, null)">
     <div class="card-select-modal">
       <div class="headline-area">
         <div class="headline-title-area">
@@ -126,7 +135,7 @@ const filterAbilityCheckAll = () => {
           <span class="headline-text">サポートカード選択</span>
         </div>
         <div class="headline-close-button-area">
-          <button class="headline-close-button" @click="$emit('selector-close', null)">
+          <button class="headline-close-button" @click="$emit('selector-close', null, null)">
             <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#333333">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
             </svg>
@@ -342,7 +351,7 @@ const filterAbilityCheckAll = () => {
         </div>
         <div class="card-list-area">
           <div class="card" v-for="card in cardList" :key="card.id">
-            <div class="card-image-area" :style="{ backgroundImage: 'url(./image/supportCards/' + card.id + '.png)'}" @click="$emit('selector-close', card.id)">
+            <div class="card-image-area" :style="{ backgroundImage: 'url(./image/supportCards/' + card.id + '.png)'}" @click="$emit('selector-close', card.id, card.level)">
               <div class="card-name">
                 <span class="card-name-text">{{ card.name }}</span>
               </div>

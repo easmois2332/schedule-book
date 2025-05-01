@@ -17,7 +17,34 @@ export default class Schedules {
             data: {
                 produce_type: produceType,
                 organization: {
-                    produce_memory_ability: [
+                    produce_idol: [],
+                    support_card: [
+                        {
+                            id: null,
+                            level: null
+                        },
+                        {
+                            id: null,
+                            level: null
+                        },
+                        {
+                            id: null,
+                            level: null
+                        },
+                        {
+                            id: null,
+                            level: null
+                        },
+                        {
+                            id: null,
+                            level: null
+                        },
+                        {
+                            id: null,
+                            level: null
+                        },
+                    ],
+                    produce_memory: [
                         {
                             ability_type_1: 'vocal',
                             ability_value_1: 'init-parameter-up-10',
@@ -52,8 +79,7 @@ export default class Schedules {
                         },
                     ]
                 },
-                planning: {
-                }
+                planning: {}
             }
         };
         this.autoIncrement++;

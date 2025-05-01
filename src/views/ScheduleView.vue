@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
@@ -7,6 +7,7 @@ import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextI
 const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
 const emit = defineEmits(['undo-redo-disabled']);
 const id = props.scheduleData.id;
+const supportCards = props.supportCards;
 
 const produceTypeDisplayList = {
   hajime_master: '『初』マスター',
@@ -29,13 +30,31 @@ let data = props.scheduleData.data;
 let produceType = data.produce_type;
 
 let inputData = ref(data);
+let calcData = ref({
+  organization: {
+    produce_idol: [],
+    support_card: [],
+  },
+  planning: {},
+});
 
 let undoList = ref([JSON.stringify(data)]);
 let redoList = ref([]);
 
 const updateInputData = (data) => {
   inputData.value = data;
+  updateCalcData();
   updateHistory();
+}
+const updateCalcData = () => {
+  // サポートカード詳細更新
+  for (let i in inputData.value['organization']['support_card']) {
+    if (inputData.value['organization']['support_card'][i]['id'] !== null) {
+      calcData.value['organization']['support_card'][i] = supportCards.getCardDetail(inputData.value['organization']['support_card'][i]['id'], inputData.value['organization']['support_card'][i]['level'])
+    } else {
+      calcData.value['organization']['support_card'][i] = null;
+    }
+  }
 }
 const updateHistory = () => {
   undoList.value.unshift(JSON.stringify(inputData.value));
@@ -49,6 +68,7 @@ const buttonUndo = () => {
     let shifted = undoList.value.shift();
     redoList.value.unshift(shifted);
     inputData.value = JSON.parse(undoList.value[0]);
+    updateCalcData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
@@ -59,6 +79,7 @@ const buttonRedo = () => {
     let shifted = redoList.value.shift();
     undoList.value.unshift(shifted);
     inputData.value = JSON.parse(shifted);
+    updateCalcData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
@@ -76,6 +97,8 @@ defineExpose({buttonUndo, buttonRedo});
     <component
         :is="produceTypeComponentList[produceType]['organization']"
         :input-data="inputData"
+        :calc-data="calcData"
+        :support-cards="supportCards"
         @input-data-update="updateInputData"
     />
     <component
@@ -85,23 +108,23 @@ defineExpose({buttonUndo, buttonRedo});
     />
   </div>
 
-<!--  <div class="test-area">-->
-<!--    <h1>{{ name }}</h1>-->
-<!--    <div>-->
-<!--      <p>input-text-1: {{ inputData['input-text-1'] }}</p>-->
-<!--      <input id="input-text-1" type="text" v-model="inputData['input-text-1']" @change="updateHistory()">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <p>input-number-1: {{ inputData['input-number-1'] }}</p>-->
-<!--      <input id="input-number-1" type="number" v-model="inputData['input-number-1']" @change="updateHistory()">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <p>select-option-1: {{ inputData['select-option-1'] }}</p>-->
-<!--      <select id="select-option-1" v-model="inputData['select-option-1']" @change="updateHistory()">-->
-<!--        <option value="Vo">Vo</option>-->
-<!--        <option value="Da">Da</option>-->
-<!--        <option value="Vi">Vi</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--  <div class="test-area">-->
+  <!--    <h1>{{ name }}</h1>-->
+  <!--    <div>-->
+  <!--      <p>input-text-1: {{ inputData['input-text-1'] }}</p>-->
+  <!--      <input id="input-text-1" type="text" v-model="inputData['input-text-1']" @change="updateHistory()">-->
+  <!--    </div>-->
+  <!--    <div>-->
+  <!--      <p>input-number-1: {{ inputData['input-number-1'] }}</p>-->
+  <!--      <input id="input-number-1" type="number" v-model="inputData['input-number-1']" @change="updateHistory()">-->
+  <!--    </div>-->
+  <!--    <div>-->
+  <!--      <p>select-option-1: {{ inputData['select-option-1'] }}</p>-->
+  <!--      <select id="select-option-1" v-model="inputData['select-option-1']" @change="updateHistory()">-->
+  <!--        <option value="Vo">Vo</option>-->
+  <!--        <option value="Da">Da</option>-->
+  <!--        <option value="Vi">Vi</option>-->
+  <!--      </select>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </template>

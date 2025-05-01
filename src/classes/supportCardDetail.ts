@@ -1,4 +1,4 @@
-import {rarities, types, plans, events, abilities, abilityParameterThresholds} from "@/consts/supportCardConst";
+import {rarities, levels, types, plans, events, abilities, abilityParameterThresholds} from "@/consts/supportCardConst";
 
 export default class SupportCardDetail {
 
@@ -60,12 +60,15 @@ export default class SupportCardDetail {
             case rarities.RARITY_SSR:
             case rarities.RARITY_SSR_EVENT:
                 this.card.rarity_display = 'SSR';
+                this.card.max_level = levels.SSR_MAX_LEVEL;
                 break;
             case rarities.RARITY_SR:
                 this.card.rarity_display = 'SR';
+                this.card.max_level = levels.SR_MAX_LEVEL;
                 break;
             case rarities.RARITY_R:
                 this.card.rarity_display = 'R';
+                this.card.max_level = levels.R_MAX_LEVEL;
                 break;
             default:
                 break;

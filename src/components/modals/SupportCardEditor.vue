@@ -20,15 +20,16 @@ let selectorOpen = ref(false);
 
 if (cardId.value !== null) {
   cardDetail.value = cards.getCardDetail(cardId.value, cardLevel.value);
-  cardMaxLevel.value = cards.getCardFromId(cardId.value).level;
+  cardMaxLevel.value = cardDetail.value.max_level;
 }
 
 const buttonSelectCard = () => {
   selectorOpen.value = true;
 }
-const closeSelector = (id) => {
+const closeSelector = (id, level) => {
   if (id !== null) {
     cardId.value = id;
+    cardLevel.value = level;
     updateCardDetail();
   }
   selectorOpen.value = false;
@@ -36,7 +37,7 @@ const closeSelector = (id) => {
 const updateCardDetail = () => {
   if (cardId.value !== null) {
     cardDetail.value = cards.getCardDetail(cardId.value, cardLevel.value);
-    cardMaxLevel.value = cards.getCardFromId(cardId.value).level;
+    cardMaxLevel.value = cardDetail.value.max_level;
   }
 }
 const getPItemDetail = (id) => {
@@ -158,6 +159,7 @@ const buttonDelete = async () => {
     <SupportCardSelect
         v-if="selectorOpen"
         :support-cards="cards"
+        :plan-filter="null"
         @selector-close="closeSelector"
     />
   </Teleport>
