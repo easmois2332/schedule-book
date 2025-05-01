@@ -92,6 +92,10 @@ export const abilities = {
     MENTAL_CARD_STRENGTHEN_PARAMETER_UP: 'mental_card_strengthen_parameter_up',
     // スキルカード削除時パラメータ上昇
     CARD_DELETE_PARAMETER_UP: 'card_delete_parameter_up',
+    // メンタルカード削除時パラメータ上昇
+    MENTAL_CARD_DELETE_PARAMETER_UP: 'mental_card_delete_parameter_up',
+    // スキルカード変換時パラメータ上昇
+    CARD_CHANGE_PARAMETER_UP: 'card_change_parameter_up',
     // 授業・営業終了時パラメータ上昇
     CLASS_PARAMETER_UP: 'class_parameter_up',
     // 活動支給・差し入れ選択時パラメータ上昇

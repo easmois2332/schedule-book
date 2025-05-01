@@ -407,6 +407,28 @@
     "enable": 1
   },
   {
+    "id": 20021,
+    "name": "勝負はこれから！",
+    "category": "support_card",
+    "rarity": "ssr",
+    "plan": "free",
+    "card_type": "active",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
+  },
+  {
+    "id": 20022,
+    "name": "対戦お願いします！",
+    "category": "support_card",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "card_type": "mental",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "全力サポート",
     "category": "support_card",

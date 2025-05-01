@@ -28,6 +28,7 @@ export const abilities = {
     BASIC: 'basic',
     SEASON: 'season',
     FESU: 'fesu',
+    UNIT: 'unit',
 }
 
 export const types = {
