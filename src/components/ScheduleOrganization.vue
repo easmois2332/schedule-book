@@ -163,8 +163,8 @@ watch(() => props.calcData, () => {
               <tbody>
               <tr>
                 <th class="table-header"><span class="table-header-text">初期値</span><span class="table-header-text-abbr">初期値</span></th>
-                <td class="table-data hp"><span>9999</span></td>
-                <td class="table-data point"><span>9999</span></td>
+                <td class="table-data hp"><span>{{ calcData['organization']['parameter']['init_hp'] }}</span></td>
+                <td class="table-data point"><span>{{ calcData['organization']['parameter']['init_point'] }}</span></td>
               </tr>
               </tbody>
             </table>
