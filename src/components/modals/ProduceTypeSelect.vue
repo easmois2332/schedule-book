@@ -30,7 +30,6 @@ const emit = defineEmits(['produce-type-select-close']);
           </div>
           <div class="produce-type-button">
             <button class="common-button nia" @click="$emit('produce-type-select-close', 'nia')">
-              <span class="common-button-name">NIA</span>
               <span class="common-button-name">NEXT IDOL AUDITION</span>
             </button>
           </div>

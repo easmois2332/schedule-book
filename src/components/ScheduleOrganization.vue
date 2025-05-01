@@ -1,14 +1,47 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
-const props = defineProps(['input-data']);
+const props = defineProps(['inputData']);
 const emit = defineEmits(['input-data-update']);
 
-let inputData = ref(props["input-data"]);
+let inputData = ref(props.inputData);
 
 const updateInputData = () => {
-  emit('input-data-update', inputData);
+  emit('input-data-update', inputData.value);
 }
+const produceMemoryParameterAbilityValue = [
+  {value: 'init-parameter-up-10', text: '+10'},
+  {value: 'init-parameter-up-15', text: '+15'},
+  {value: 'init-parameter-up-20', text: '+20'},
+  {value: 'parameter-bonus-14', text: '+1.4%'},
+  {value: 'parameter-bonus-21', text: '+2.1%'},
+  {value: 'parameter-bonus-28', text: '+2.8%'},
+];
+const produceMemoryPointAbilityValue = [
+  {value: 'init-p-point-20', text: '+20'},
+  {value: 'init-p-point-30', text: '+30'},
+  {value: 'init-p-point-40', text: '+40'},
+];
+const produceMemoryHpRecoverAbilityValue = [
+  {value: 'hp-recover-percent-30', text: '30%'},
+  {value: 'hp-recover-percent-45', text: '45%'},
+  {value: 'hp-recover-percent-60', text: '60%'},
+];
+const produceMemoryAbilityValue = {
+  'vocal': produceMemoryParameterAbilityValue,
+  'dance': produceMemoryParameterAbilityValue,
+  'visual': produceMemoryParameterAbilityValue,
+  'point': produceMemoryPointAbilityValue,
+  'hp-recover': produceMemoryHpRecoverAbilityValue,
+}
+const changeProduceMemoryAbilityType = (produceMemoryIndex, abilityIndex) => {
+  let abilityType = inputData.value['organization']['produce_memory_ability'][produceMemoryIndex][`ability_type_${abilityIndex}`];
+  inputData.value['organization']['produce_memory_ability'][produceMemoryIndex][`ability_value_${abilityIndex}`] = produceMemoryAbilityValue[abilityType][0]['value'];
+  updateInputData();
+}
+watch(() => props.inputData, () => {
+  inputData.value = props.inputData;
+});
 </script>
 
 <template>
@@ -130,58 +163,43 @@ const updateInputData = () => {
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_type_1']" @change="changeProduceMemoryAbilityType(i - 1, 1)">
                   <option value="vocal">ボーカル</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select">
-                  <option value="init-parameter-up-10">+10</option>
-                  <option value="init-parameter-up-15">+15</option>
-                  <option value="init-parameter-up-20">+20</option>
-                  <option value="parameter-bonus-14">+1.4%</option>
-                  <option value="parameter-bonus-21">+2.1%</option>
-                  <option value="parameter-bonus-28">+2.8%</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_value_1']" @change="updateInputData()">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory_ability'][i - 1]['ability_type_1']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_type_2']" @change="changeProduceMemoryAbilityType(i - 1, 2)">
                   <option value="dance">ダンス</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select">
-                  <option value="init-parameter-up-10">+10</option>
-                  <option value="init-parameter-up-15">+15</option>
-                  <option value="init-parameter-up-20">+20</option>
-                  <option value="parameter-bonus-14">+1.4%</option>
-                  <option value="parameter-bonus-21">+2.1%</option>
-                  <option value="parameter-bonus-28">+2.8%</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_value_2']" @change="updateInputData()">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory_ability'][i - 1]['ability_type_2']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_type_3']" @change="changeProduceMemoryAbilityType(i - 1, 3)">
                   <option value="visual">ビジュアル</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select">
-                  <option value="init-parameter-up-10">+10</option>
-                  <option value="init-parameter-up-15">+15</option>
-                  <option value="init-parameter-up-20">+20</option>
-                  <option value="parameter-bonus-14">+1.4%</option>
-                  <option value="parameter-bonus-21">+2.1%</option>
-                  <option value="parameter-bonus-28">+2.8%</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory_ability'][i - 1]['ability_value_3']" @change="updateInputData()">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory_ability'][i - 1]['ability_type_3']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>

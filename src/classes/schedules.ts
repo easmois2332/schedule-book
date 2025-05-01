@@ -16,6 +16,44 @@ export default class Schedules {
             name: `新規スケジュール${this.crateCount}`,
             data: {
                 produce_type: produceType,
+                organization: {
+                    produce_memory_ability: [
+                        {
+                            ability_type_1: 'vocal',
+                            ability_value_1: 'init-parameter-up-10',
+                            ability_type_2: 'dance',
+                            ability_value_2: 'init-parameter-up-10',
+                            ability_type_3: 'visual',
+                            ability_value_3: 'init-parameter-up-10',
+                        },
+                        {
+                            ability_type_1: 'vocal',
+                            ability_value_1: 'init-parameter-up-10',
+                            ability_type_2: 'dance',
+                            ability_value_2: 'init-parameter-up-10',
+                            ability_type_3: 'visual',
+                            ability_value_3: 'init-parameter-up-10',
+                        },
+                        {
+                            ability_type_1: 'vocal',
+                            ability_value_1: 'init-parameter-up-10',
+                            ability_type_2: 'dance',
+                            ability_value_2: 'init-parameter-up-10',
+                            ability_type_3: 'visual',
+                            ability_value_3: 'init-parameter-up-10',
+                        },
+                        {
+                            ability_type_1: 'vocal',
+                            ability_value_1: 'init-parameter-up-10',
+                            ability_type_2: 'dance',
+                            ability_value_2: 'init-parameter-up-10',
+                            ability_type_3: 'visual',
+                            ability_value_3: 'init-parameter-up-10',
+                        },
+                    ]
+                },
+                planning: {
+                }
             }
         };
         this.autoIncrement++;
