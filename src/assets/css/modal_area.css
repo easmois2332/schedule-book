@@ -414,6 +414,109 @@
         }
     }
 
+    .produce-idol-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 80%;
+        height: 80%;
+        margin: 10% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 1000px) {
+            margin: 5% auto;
+            width: 90%;
+            height: 90%;
+        }
+
+        .idol-list-area {
+            padding: 8px 0;
+        }
+
+        .idol {
+            padding-bottom: 8px;
+        }
+
+        .idol-info-area {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .idol-name-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .idol-dear-level {
+            padding-left: 24px;
+        }
+
+        .produce-idol-area {
+            padding: 8px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .produce-idol {
+            padding: 8px 8px;
+        }
+
+        .produce-idol-image-area {
+            width: 154px;
+            height: 205px;
+            min-width: 154px;
+            min-height: 205px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 2px solid #333333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .produce-idol-image-area:hover {
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .produce-idol-plan-area {
+            display: flex;
+            flex-direction: column;
+            padding-left: 4px;
+        }
+
+        .produce-idol-plan-text {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: "Noto Sans JP", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+
+        .produce-idol-level-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .produce-idol-level-text {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #333333, -1px 1px 2px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333;
+            font-size: 32px;
+            font-weight: bold;
+            font-family: "Noto Sans JP", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+    }
+
     .setting-modal {
         display: flex;
         flex-direction: column;

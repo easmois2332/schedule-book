@@ -17,7 +17,12 @@ export default class Schedules {
             data: {
                 produce_type: produceType,
                 organization: {
-                    produce_idol: [],
+                    produce_idol: {
+                        id: null,
+                        training_level: null,
+                        blossoming_level: null,
+                        dear_level: null,
+                    },
                     support_card: [
                         {
                             id: null,
@@ -45,38 +50,62 @@ export default class Schedules {
                         },
                     ],
                     produce_memory: [
-                        {
-                            ability_type_1: 'vocal',
-                            ability_value_1: 'init-parameter-up-10',
-                            ability_type_2: 'dance',
-                            ability_value_2: 'init-parameter-up-10',
-                            ability_type_3: 'visual',
-                            ability_value_3: 'init-parameter-up-10',
-                        },
-                        {
-                            ability_type_1: 'vocal',
-                            ability_value_1: 'init-parameter-up-10',
-                            ability_type_2: 'dance',
-                            ability_value_2: 'init-parameter-up-10',
-                            ability_type_3: 'visual',
-                            ability_value_3: 'init-parameter-up-10',
-                        },
-                        {
-                            ability_type_1: 'vocal',
-                            ability_value_1: 'init-parameter-up-10',
-                            ability_type_2: 'dance',
-                            ability_value_2: 'init-parameter-up-10',
-                            ability_type_3: 'visual',
-                            ability_value_3: 'init-parameter-up-10',
-                        },
-                        {
-                            ability_type_1: 'vocal',
-                            ability_value_1: 'init-parameter-up-10',
-                            ability_type_2: 'dance',
-                            ability_value_2: 'init-parameter-up-10',
-                            ability_type_3: 'visual',
-                            ability_value_3: 'init-parameter-up-10',
-                        },
+                        [
+                            {
+                                ability_type: 'vocal',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'dance',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'visual',
+                                ability_value: 10,
+                            },
+                        ],
+                        [
+                            {
+                                ability_type: 'vocal',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'dance',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'visual',
+                                ability_value: 10,
+                            },
+                        ],
+                        [
+                            {
+                                ability_type: 'vocal',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'dance',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'visual',
+                                ability_value: 10,
+                            },
+                        ],
+                        [
+                            {
+                                ability_type: 'vocal',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'dance',
+                                ability_value: 10,
+                            },
+                            {
+                                ability_type: 'visual',
+                                ability_value: 10,
+                            },
+                        ],
                     ]
                 },
                 planning: {}

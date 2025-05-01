@@ -28,7 +28,7 @@ let filterAbility = ref([
 let cardList = ref(allCardList);
 
 if (props.planFilter !== null) {
-  filterPlan.value = props.planFilter;
+  filterPlan.value = ['free', props.planFilter];
   if (saveCardDisplayToggle.value) {
     cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
   } else {

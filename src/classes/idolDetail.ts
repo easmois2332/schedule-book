@@ -74,6 +74,11 @@ export default class IdolDetail {
     }
 
     private calcParameter() {
+        // 共通処理
+        this.calcScoreBonus();
+        this.calcBusinessFanBonus();
+        this.calcAuditionFanBonus();
+
         switch (this.pIdol.idol_id) {
             // 花海咲季
             case 1:
@@ -138,6 +143,117 @@ export default class IdolDetail {
             default:
                 break;
         }
+    }
+
+    private calcScoreBonus() {
+        let scoreBonus: number;
+        switch (this.pIdol.dear_level) {
+            case 1:
+                scoreBonus = 0;
+                break;
+            case 2:
+                scoreBonus = 5;
+                break;
+            case 3:
+                scoreBonus = 10;
+                break;
+            case 4:
+            case 5:
+                scoreBonus = 15;
+                break;
+            case 6:
+                scoreBonus = 20;
+                break;
+            case 7:
+                scoreBonus = 30;
+                break;
+            case 8:
+                scoreBonus = 40;
+                break;
+            default:
+                scoreBonus = 50;
+                break;
+        }
+
+        this.pIdol.score_bonus = scoreBonus;
+    }
+
+    private calcBusinessFanBonus() {
+        let fanBonus: number;
+        switch (this.pIdol.dear_level) {
+            case 11:
+                fanBonus = 5;
+                break;
+            case 12:
+                fanBonus = 10;
+                break;
+            case 13:
+                fanBonus = 15;
+                break;
+            case 14:
+                fanBonus = 20;
+                break;
+            case 15:
+                fanBonus = 25;
+                break;
+            case 16:
+                fanBonus = 30;
+                break;
+            case 17:
+                fanBonus = 35;
+                break;
+            case 18:
+                fanBonus = 40;
+                break;
+            case 19:
+            case 20:
+                fanBonus = 50;
+                break;
+            default:
+                fanBonus = 0;
+                break;
+        }
+
+        this.pIdol.business_fan_bonus = fanBonus;
+    }
+
+    private calcAuditionFanBonus() {
+        let fanBonus: number;
+        switch (this.pIdol.dear_level) {
+            case 11:
+                fanBonus = 5;
+                break;
+            case 12:
+                fanBonus = 10;
+                break;
+            case 13:
+                fanBonus = 15;
+                break;
+            case 14:
+                fanBonus = 20;
+                break;
+            case 15:
+                fanBonus = 25;
+                break;
+            case 16:
+                fanBonus = 30;
+                break;
+            case 17:
+                fanBonus = 35;
+                break;
+            case 18:
+                fanBonus = 40;
+                break;
+            case 19:
+            case 20:
+                fanBonus = 50;
+                break;
+            default:
+                fanBonus = 0;
+                break;
+        }
+
+        this.pIdol.audition_fan_bonus = fanBonus;
     }
 
     private calcSpLessonRate(type: string) {

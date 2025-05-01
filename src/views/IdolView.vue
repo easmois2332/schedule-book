@@ -47,6 +47,10 @@ const closeEditor = () => {
         <div class="produce-idol-area">
           <div class="produce-idol" v-for="produce in idols.getPIdolFromIdolId(idol.id)" :key="produce.id">
             <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="buttonEditor(produce.id, produce.training_level, produce.blossoming_level)">
+              <div class="produce-idol-plan-area">
+                <span class="produce-idol-plan-text">{{ produce.plan_display }}</span>
+                <span class="produce-idol-plan-text">{{ produce.effect_display }}</span>
+              </div>
               <div class="produce-idol-level-area">
                 <span class="produce-idol-level-text">✦ {{ produce.training_level }}</span>
                 <span class="produce-idol-level-text">✤ {{ produce.blossoming_level }}</span>
@@ -55,9 +59,6 @@ const closeEditor = () => {
             <div class="produce-idol-info-area">
               <div class="produce-idol-name-area">
                 <span class="produce-idol-name-text">{{ produce.name }}</span>
-              </div>
-              <div class="produce-idol-plan-area">
-                <span class="produce-idol-plan-text">{{ produce.plan_display }}『{{ produce.effect_display }}』</span>
               </div>
               <div class="produce-idol-hp-area">
                 <table class="produce-idol-parameter-table">
