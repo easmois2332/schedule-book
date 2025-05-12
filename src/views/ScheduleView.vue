@@ -206,6 +206,7 @@ defineExpose({buttonUndo, buttonRedo});
     <component
         :is="produceTypeComponentList[produceType]['planning']"
         :input-data="inputData"
+        :calc-data="calcData"
         @input-data-update="updateInputData"
     />
   </div>

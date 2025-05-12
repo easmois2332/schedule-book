@@ -1,10 +1,11 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['input-data']);
+const props = defineProps(['inputData', 'calcData']);
 const emit = defineEmits(['input-data-update']);
 
-let inputData = ref(props["input-data"]);
+let inputData = ref(props.inputData);
+let calcData = ref(props.calcData);
 
 const updateInputData = () => {
   emit('input-data-update', inputData);
@@ -13,8 +14,7 @@ const updateInputData = () => {
 
 <template>
   <div class="planning-area">
-    <div class="common-headline">
-      <span class="common-headline-text font-bold">スケジュール</span>
+    <div class="content-area">
     </div>
   </div>
 </template>
