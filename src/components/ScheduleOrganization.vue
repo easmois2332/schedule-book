@@ -257,11 +257,13 @@ watch(() => props.calcData, () => {
         :idols="idols"
         @selector-close="closeProduceIdolSelector"
     />
-    <SupportCardSelect
-        v-if="supportCardSelectorOpen !== false"
-        :support-cards="supportCards"
-        :plan-filter="inputData['organization']['produce_idol']['id'] ? calcData['organization']['produce_idol']['plan'] : null"
-        @selector-close="closeSupportCardSelector"
-    />
+    <keep-alive>
+      <SupportCardSelect
+          v-if="supportCardSelectorOpen !== false"
+          :support-cards="supportCards"
+          :plan-filter="inputData['organization']['produce_idol']['id'] ? calcData['organization']['produce_idol']['plan'] : null"
+          @selector-close="closeSupportCardSelector"
+      />
+    </keep-alive>
   </Teleport>
 </template>
