@@ -118,11 +118,11 @@ watch(() => props.calcData, () => {
               <thead>
               <tr>
                 <th class="table-header"></th>
-                <th class="table-header-type vocal"><span class="table-header-text">ボーカル</span><span class="table-header-text-abbr">Vo</span></th>
-                <th class="table-header-type dance"><span class="table-header-text">ダンス</span><span class="table-header-text-abbr">Da</span></th>
-                <th class="table-header-type visual"><span class="table-header-text">ビジュアル</span><span class="table-header-text-abbr">Vi</span></th>
-                <th class="table-header-type hp pc-design"><span class="table-header-text">体力</span><span class="table-header-text-abbr">HP</span></th>
-                <th class="table-header-type point pc-design"><span class="table-header-text">Pポイント</span><span class="table-header-text-abbr">Ⓟ</span></th>
+                <th class="table-header-type vocal"><span class="table-header-type-text">ボーカル</span></th>
+                <th class="table-header-type dance"><span class="table-header-type-text">ダンス</span></th>
+                <th class="table-header-type visual"><span class="table-header-type-text">ビジュアル</span></th>
+                <th class="table-header-type hp pc-design"><span class="table-header-type-text">体力</span></th>
+                <th class="table-header-type point pc-design"><span class="table-header-type-text">Pポイント</span></th>
               </tr>
               </thead>
               <tbody>
@@ -156,8 +156,8 @@ watch(() => props.calcData, () => {
               <thead>
               <tr>
                 <th class="table-header"></th>
-                <th class="table-header-type hp"><span class="table-header-text">体力</span><span class="table-header-text-abbr">HP</span></th>
-                <th class="table-header-type point"><span class="table-header-text">Pポイント</span><span class="table-header-text-abbr">Ⓟ</span></th>
+                <th class="table-header-type hp"><span class="table-header-type-text">体力</span></th>
+                <th class="table-header-type point"><span class="table-header-type-text">Pポイント</span></th>
               </tr>
               </thead>
               <tbody>
