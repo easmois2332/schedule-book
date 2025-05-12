@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -8,8 +8,14 @@ let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
 const updateInputData = () => {
-  emit('input-data-update', inputData);
+  emit('input-data-update', inputData.value);
 }
+watch(() => props.inputData, () => {
+  inputData.value = props.inputData;
+});
+watch(() => props.basicData, () => {
+  basicData.value = props.basicData;
+});
 </script>
 
 <template>

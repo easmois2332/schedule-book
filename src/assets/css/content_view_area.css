@@ -986,7 +986,7 @@
                     border-bottom: 2px solid #FAA900;
                 }
 
-                .table-header.hp {
+                .table-header.hp, .table-header.assist {
                     width: 80px;
                     border-bottom: 2px solid #3CC743;
                 }
@@ -996,17 +996,15 @@
                     border-bottom: 2px solid #958b7f;
                 }
 
-                .table-header.total, .table-header.count {
-                    width: 80px;
-                    border-bottom: 2px solid #958b7f;
+                .table-data {
+                    text-align: start;
                 }
 
-                .table-data {
+                .table-data.number {
                     text-align: end;
                 }
 
                 .table-data.detail, .table-data.type {
-                    text-align: start;
                     background: rgba(149, 139, 127, 0.1);
                 }
 
@@ -1022,15 +1020,11 @@
                     background: rgba(250, 169, 0, 0.1);
                 }
 
-                .table-data.hp {
+                .table-data.hp, .table-data.assist {
                     background: rgba(60, 199, 67, 0.1);
                 }
 
                 .table-data.point {
-                    background: rgba(149, 139, 127, 0.1);
-                }
-
-                .table-data.total, .table-data.count {
                     background: rgba(149, 139, 127, 0.1);
                 }
 
