@@ -3,7 +3,7 @@ import {ref, watch} from "vue";
 import SupportCardSelect from "@/components/modals/SupportCardSelect.vue";
 import ProduceIdolSelect from "@/components/modals/ProduceIdolSelect.vue";
 
-const props = defineProps(['inputData', 'calcData', 'idols', 'supportCards']);
+const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards']);
 const emit = defineEmits(['input-data-update']);
 const idols = props.idols;
 const supportCards = props.supportCards;
@@ -35,7 +35,7 @@ const produceMemoryAbilityValue = {
 }
 
 let inputData = ref(props.inputData);
-let calcData = ref(props.calcData);
+let basicData = ref(props.basicData);
 
 let produceIdolSelectorOpen = ref(false);
 let supportCardSelectorOpen = ref(false);
@@ -75,8 +75,8 @@ const changeProduceMemoryAbilityType = (produceMemoryIndex, abilityIndex) => {
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
 });
-watch(() => props.calcData, () => {
-  calcData.value = props.calcData;
+watch(() => props.basicData, () => {
+  basicData.value = props.basicData;
 });
 </script>
 
@@ -95,7 +95,7 @@ watch(() => props.calcData, () => {
           </div>
           <div class="produce-idol-info-area">
             <div class="produce-idol-name-area">
-              <span class="produce-idol-name-text font-bold" v-if="inputData['organization']['produce_idol']['id']">{{ calcData['organization']['produce_idol']['name'] }}</span>
+              <span class="produce-idol-name-text font-bold" v-if="inputData['organization']['produce_idol']['id']">{{ basicData['produce_idol']['name'] }}</span>
               <span class="produce-idol-name-text font-bold" v-else>プロデュースアイドル名</span>
             </div>
             <div class="produce-idol-level-area">
@@ -128,25 +128,25 @@ watch(() => props.calcData, () => {
               <tbody>
               <tr>
                 <th class="table-header"><span class="table-header-text">初期値</span><span class="table-header-text-abbr">初期値</span></th>
-                <td class="table-data vocal"><span>{{ calcData['organization']['parameter']['init_vocal'] }}</span></td>
-                <td class="table-data dance"><span>{{ calcData['organization']['parameter']['init_dance'] }}</span></td>
-                <td class="table-data visual"><span>{{ calcData['organization']['parameter']['init_visual'] }}</span></td>
-                <td class="table-data hp pc-design"><span>{{ calcData['organization']['parameter']['init_hp'] }}</span></td>
-                <td class="table-data point pc-design"><span>{{ calcData['organization']['parameter']['init_point'] }}</span></td>
+                <td class="table-data vocal"><span>{{ basicData['parameter']['init_vocal'] }}</span></td>
+                <td class="table-data dance"><span>{{ basicData['parameter']['init_dance'] }}</span></td>
+                <td class="table-data visual"><span>{{ basicData['parameter']['init_visual'] }}</span></td>
+                <td class="table-data hp pc-design"><span>{{ basicData['parameter']['init_hp'] }}</span></td>
+                <td class="table-data point pc-design"><span>{{ basicData['parameter']['init_point'] }}</span></td>
               </tr>
               <tr>
                 <th class="table-header"><span class="table-header-text">パラメータボーナス</span><span class="table-header-text-abbr">パラボ</span></th>
-                <td class="table-data vocal"><span>{{ (calcData['organization']['parameter']['bonus_vocal'] / 10).toFixed(1) }}%</span></td>
-                <td class="table-data dance"><span>{{ (calcData['organization']['parameter']['bonus_dance'] / 10).toFixed(1) }}%</span></td>
-                <td class="table-data visual"><span>{{ (calcData['organization']['parameter']['bonus_visual'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data vocal"><span>{{ (basicData['parameter']['bonus_vocal'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data dance"><span>{{ (basicData['parameter']['bonus_dance'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data visual"><span>{{ (basicData['parameter']['bonus_visual'] / 10).toFixed(1) }}%</span></td>
                 <td class="table-data hp pc-design"><span>-</span></td>
                 <td class="table-data point pc-design"><span>-</span></td>
               </tr>
               <tr>
                 <th class="table-header"><span class="table-header-text">SPレッスン発生率</span><span class="table-header-text-abbr">SP率</span></th>
-                <td class="table-data vocal"><span>{{ (calcData['organization']['parameter']['sp_lesson_rate_vocal'] / 10).toFixed(1) }}%</span></td>
-                <td class="table-data dance"><span>{{ (calcData['organization']['parameter']['sp_lesson_rate_dance'] / 10).toFixed(1) }}%</span></td>
-                <td class="table-data visual"><span>{{ (calcData['organization']['parameter']['sp_lesson_rate_visual'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data vocal"><span>{{ (basicData['parameter']['sp_lesson_rate_vocal'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data dance"><span>{{ (basicData['parameter']['sp_lesson_rate_dance'] / 10).toFixed(1) }}%</span></td>
+                <td class="table-data visual"><span>{{ (basicData['parameter']['sp_lesson_rate_visual'] / 10).toFixed(1) }}%</span></td>
                 <td class="table-data hp pc-design"><span>-</span></td>
                 <td class="table-data point pc-design"><span>-</span></td>
               </tr>
@@ -163,8 +163,8 @@ watch(() => props.calcData, () => {
               <tbody>
               <tr>
                 <th class="table-header"><span class="table-header-text">初期値</span><span class="table-header-text-abbr">初期値</span></th>
-                <td class="table-data hp"><span>{{ calcData['organization']['parameter']['init_hp'] }}</span></td>
-                <td class="table-data point"><span>{{ calcData['organization']['parameter']['init_point'] }}</span></td>
+                <td class="table-data hp"><span>{{ basicData['parameter']['init_hp'] }}</span></td>
+                <td class="table-data point"><span>{{ basicData['parameter']['init_point'] }}</span></td>
               </tr>
               </tbody>
             </table>
@@ -184,12 +184,12 @@ watch(() => props.calcData, () => {
             </div>
             <div class="support-card-info">
               <div class="support-card-name">
-                <span class="support-card-info-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ calcData['organization']['support_card'][i - 1]['name'] }}</span>
+                <span class="support-card-info-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
                 <span class="support-card-info-text font-bold" v-else>サポートカード名</span>
               </div>
               <div class="support-card-level">
                 <label class="basic-input-number-name font-bold">Lv</label>
-                <input class="basic-input-number" type="number" min="1" v-bind:max="[inputData['organization']['support_card'][i - 1]['id'] !== null ? calcData['organization']['support_card'][i - 1]['max_level'] : 1]" v-model="inputData['organization']['support_card'][i - 1]['level']" v-bind:disabled="inputData['organization']['support_card'][i - 1]['id'] === null" @change="updateInputData">
+                <input class="basic-input-number" type="number" min="1" v-bind:max="[inputData['organization']['support_card'][i - 1]['id'] !== null ? basicData['support_card'][i - 1]['max_level'] : 1]" v-model="inputData['organization']['support_card'][i - 1]['level']" v-bind:disabled="inputData['organization']['support_card'][i - 1]['id'] === null" @change="updateInputData">
               </div>
             </div>
           </div>
@@ -257,13 +257,11 @@ watch(() => props.calcData, () => {
         :idols="idols"
         @selector-close="closeProduceIdolSelector"
     />
-    <keep-alive>
-      <SupportCardSelect
-          v-if="supportCardSelectorOpen !== false"
-          :support-cards="supportCards"
-          :plan-filter="inputData['organization']['produce_idol']['id'] ? calcData['organization']['produce_idol']['plan'] : null"
-          @selector-close="closeSupportCardSelector"
-      />
-    </keep-alive>
+    <SupportCardSelect
+        v-if="supportCardSelectorOpen !== false"
+        :support-cards="supportCards"
+        :plan-filter="inputData['organization']['produce_idol']['id'] ? basicData['produce_idol']['plan'] : null"
+        @selector-close="closeSupportCardSelector"
+    />
   </Teleport>
 </template>

@@ -62,7 +62,10 @@ export default class SupportCards {
      * @param id
      * @param level
      */
-    getCardDetail(id: number, level: number) {
+    getCardDetail(id: number, level: number = 1) {
+        if (id === null) {
+            return null;
+        }
         let card = this.deepCopy(this.getCardFromId(id));
         card.level = level;
         let cardDetail = new SupportCardDetail(card);

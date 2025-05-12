@@ -32,25 +32,22 @@ let data = props.scheduleData.data;
 let produceType = data.produce_type;
 
 let inputData = ref(data);
-let calcData = ref({
-  organization: {
-    produce_idol: [],
-    support_card: [],
-    parameter: {
-      init_vocal: 0,
-      init_dance: 0,
-      init_visual: 0,
-      init_hp: 0,
-      init_point: 0,
-      bonus_vocal: 0,
-      bonus_dance: 0,
-      bonus_visual: 0,
-      sp_lesson_rate_vocal: 0,
-      sp_lesson_rate_dance: 0,
-      sp_lesson_rate_visual: 0,
-    },
+let basicData = ref({
+  produce_idol: [],
+  support_card: [],
+  parameter: {
+    init_vocal: 0,
+    init_dance: 0,
+    init_visual: 0,
+    init_hp: 0,
+    init_point: 0,
+    bonus_vocal: 0,
+    bonus_dance: 0,
+    bonus_visual: 0,
+    sp_lesson_rate_vocal: 0,
+    sp_lesson_rate_dance: 0,
+    sp_lesson_rate_visual: 0,
   },
-  planning: {},
 });
 
 let undoList = ref([JSON.stringify(data)]);
@@ -58,75 +55,63 @@ let redoList = ref([]);
 
 const updateInputData = (data) => {
   inputData.value = data;
-  updateCalcData();
+  updateBasicData();
   updateHistory();
 }
-const updateCalcData = () => {
+const updateBasicData = () => {
   // プロデュースアイドル詳細更新
-  if (inputData.value['organization']['produce_idol']['id'] !== null &&
-      inputData.value['organization']['produce_idol']['training_level'] !== null &&
-      inputData.value['organization']['produce_idol']['blossoming_level'] !== null &&
-      inputData.value['organization']['produce_idol']['dear_level'] !== null
-  ) {
-    calcData.value['organization']['produce_idol'] = idols.getPIdolDetail(
-        inputData.value['organization']['produce_idol']['id'],
-        inputData.value['organization']['produce_idol']['training_level'],
-        inputData.value['organization']['produce_idol']['blossoming_level'],
-        inputData.value['organization']['produce_idol']['dear_level']
-    );
-  } else {
-    calcData.value['organization']['produce_idol'] = null;
-  }
+  basicData.value['produce_idol'] = idols.getPIdolDetail(
+      inputData.value['organization']['produce_idol']['id'],
+      inputData.value['organization']['produce_idol']['training_level'],
+      inputData.value['organization']['produce_idol']['blossoming_level'],
+      inputData.value['organization']['produce_idol']['dear_level']
+  );
 
   // サポートカード詳細更新
   for (let i in inputData.value['organization']['support_card']) {
-    if (inputData.value['organization']['support_card'][i]['id'] !== null) {
-      calcData.value['organization']['support_card'][i] = supportCards.getCardDetail(inputData.value['organization']['support_card'][i]['id'], inputData.value['organization']['support_card'][i]['level'])
-    } else {
-      calcData.value['organization']['support_card'][i] = null;
-    }
+    basicData.value['support_card'][i] = supportCards.getCardDetail(inputData.value['organization']['support_card'][i]['id'], inputData.value['organization']['support_card'][i]['level'])
   }
 
   // パラメータ更新
-  if (calcData.value['organization']['produce_idol'] !== null) {
-    calcData.value['organization']['parameter'] = {
-      init_vocal: calcData.value['organization']['produce_idol']['init_vocal'],
-      init_dance: calcData.value['organization']['produce_idol']['init_dance'],
-      init_visual: calcData.value['organization']['produce_idol']['init_visual'],
-      init_hp: calcData.value['organization']['produce_idol']['init_hp'],
+  if (basicData.value['produce_idol'] !== null) {
+    basicData.value['parameter'] = {
+      init_vocal: basicData.value['produce_idol']['init_vocal'],
+      init_dance: basicData.value['produce_idol']['init_dance'],
+      init_visual: basicData.value['produce_idol']['init_visual'],
+      init_hp: basicData.value['produce_idol']['init_hp'],
       init_point: 0,
-      bonus_vocal: calcData.value['organization']['produce_idol']['bonus_vocal'] * 10,
-      bonus_dance: calcData.value['organization']['produce_idol']['bonus_dance'] * 10,
-      bonus_visual: calcData.value['organization']['produce_idol']['bonus_visual'] * 10,
-      sp_lesson_rate_vocal: calcData.value['organization']['produce_idol']['sp_lesson_rate_vocal'] * 10 + 100,
-      sp_lesson_rate_dance: calcData.value['organization']['produce_idol']['sp_lesson_rate_dance'] * 10 + 100,
-      sp_lesson_rate_visual: calcData.value['organization']['produce_idol']['sp_lesson_rate_visual'] * 10 + 100,
+      bonus_vocal: basicData.value['produce_idol']['bonus_vocal'] * 10,
+      bonus_dance: basicData.value['produce_idol']['bonus_dance'] * 10,
+      bonus_visual: basicData.value['produce_idol']['bonus_visual'] * 10,
+      sp_lesson_rate_vocal: basicData.value['produce_idol']['sp_lesson_rate_vocal'] * 10 + 100,
+      sp_lesson_rate_dance: basicData.value['produce_idol']['sp_lesson_rate_dance'] * 10 + 100,
+      sp_lesson_rate_visual: basicData.value['produce_idol']['sp_lesson_rate_visual'] * 10 + 100,
     };
 
-    for (let i in calcData.value['organization']['support_card']) {
-      if (calcData.value['organization']['support_card'][i] !== null) {
-        let type = calcData.value['organization']['support_card'][i]['type'];
+    for (let i in basicData.value['support_card']) {
+      if (basicData.value['support_card'][i] !== null) {
+        let type = basicData.value['support_card'][i]['type'];
         let abilityList = ['ability_1', 'ability_2', 'ability_3', 'ability_4', 'ability_5', 'ability_6'];
         for (let abilityIndex in abilityList) {
-          if (calcData.value['organization']['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_PARAMETER_UP) {
-            calcData.value['organization']['parameter'][`init_${type}`] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_PARAMETER_UP) {
+            basicData.value['parameter'][`init_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (calcData.value['organization']['support_card'][i][abilityList[abilityIndex]] === abilities.PARAMETER_BONUS) {
-            calcData.value['organization']['parameter'][`bonus_${type}`] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.PARAMETER_BONUS) {
+            basicData.value['parameter'][`bonus_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
           }
-          if (calcData.value['organization']['support_card'][i][abilityList[abilityIndex]] === abilities.MAX_HP_UP) {
-            calcData.value['organization']['parameter']['init_hp'] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.MAX_HP_UP) {
+            basicData.value['parameter']['init_hp'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (calcData.value['organization']['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_P_POINT) {
-            calcData.value['organization']['parameter']['init_point'] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_P_POINT) {
+            basicData.value['parameter']['init_point'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (calcData.value['organization']['support_card'][i][abilityList[abilityIndex]] === abilities.SP_LESSON_RATE) {
+          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.SP_LESSON_RATE) {
             if (type === types.ASSIST) {
-              calcData.value['organization']['parameter']['sp_lesson_rate_vocal'] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
-              calcData.value['organization']['parameter']['sp_lesson_rate_dance'] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
-              calcData.value['organization']['parameter']['sp_lesson_rate_visual'] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_vocal'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_dance'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_visual'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
             } else {
-              calcData.value['organization']['parameter'][`sp_lesson_rate_${type}`] += calcData.value['organization']['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter'][`sp_lesson_rate_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
             }
           }
         }
@@ -141,13 +126,13 @@ const updateCalcData = () => {
           case 'dance':
           case 'visual':
             if (inputData.value['organization']['produce_memory'][i][j]['ability_value'] >= 10) {
-              calcData.value['organization']['parameter'][`init_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
+              basicData.value['parameter'][`init_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
             } else {
-              calcData.value['organization']['parameter'][`bonus_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'] * 10;
+              basicData.value['parameter'][`bonus_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'] * 10;
             }
             break;
           case 'point':
-            calcData.value['organization']['parameter']['init_point'] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
+            basicData.value['parameter']['init_point'] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
             break;
           case 'hp-recover':
           default:
@@ -169,7 +154,7 @@ const buttonUndo = () => {
     let shifted = undoList.value.shift();
     redoList.value.unshift(shifted);
     inputData.value = JSON.parse(undoList.value[0]);
-    updateCalcData();
+    updateBasicData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
@@ -180,7 +165,7 @@ const buttonRedo = () => {
     let shifted = redoList.value.shift();
     undoList.value.unshift(shifted);
     inputData.value = JSON.parse(shifted);
-    updateCalcData();
+    updateBasicData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
@@ -198,7 +183,7 @@ defineExpose({buttonUndo, buttonRedo});
     <component
         :is="produceTypeComponentList[produceType]['organization']"
         :input-data="inputData"
-        :calc-data="calcData"
+        :basic-data="basicData"
         :idols="idols"
         :support-cards="supportCards"
         @input-data-update="updateInputData"
@@ -206,7 +191,7 @@ defineExpose({buttonUndo, buttonRedo});
     <component
         :is="produceTypeComponentList[produceType]['planning']"
         :input-data="inputData"
-        :calc-data="calcData"
+        :basic-data="basicData"
         @input-data-update="updateInputData"
     />
   </div>

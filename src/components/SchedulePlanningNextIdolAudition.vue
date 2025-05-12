@@ -1,11 +1,11 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['inputData', 'calcData']);
+const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
 
 let inputData = ref(props.inputData);
-let calcData = ref(props.calcData);
+let basicData = ref(props.basicData);
 
 const updateInputData = () => {
   emit('input-data-update', inputData);

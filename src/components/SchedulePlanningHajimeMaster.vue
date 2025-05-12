@@ -2,11 +2,11 @@
 import {ref} from "vue";
 import SupportCardMaster from "@/components/SupportCardMaster.vue";
 
-const props = defineProps(['inputData', 'calcData']);
+const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
 
 let inputData = ref(props.inputData);
-let calcData = ref(props.calcData);
+let basicData = ref(props.basicData);
 
 const scheduleData = {
   1: [

@@ -45,6 +45,9 @@ export default class Idols {
      * @param dearLevel
      */
     getPIdolDetail(id: number, trainingLevel: number = TRAINING_MAX_LEVEL, blossomingLevel: number = BLOSSOMING_MAX_LEVEL, dearLevel: number = DEAR_MAX_LEVEL) {
+        if (id === null) {
+            return null;
+        }
         let pIdol = this.deepCopy(this.getPIdolFromId(id))
         let idol = this.deepCopy(this.getIdolFromId(pIdol.idol_id));
         pIdol.training_level = trainingLevel;
