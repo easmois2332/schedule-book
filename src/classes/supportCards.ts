@@ -24,33 +24,23 @@ export default class SupportCards {
     }
 
     getCardFromFilter(type: any, plan: any, event: any, ability: any) {
-        let cards = this.getAllCard();
-        let result = [];
-        for (let i in cards) {
-            if (type.find((type: any) => (type === cards[i].type)) &&
-                plan.find((plan: any) => (plan === cards[i].plan)) &&
-                event.find((event: any) => (event === cards[i].event_1) || (event === cards[i].event_2) || (event === cards[i].event_3)) &&
-                ability.find((ability: any) => (ability === cards[i].ability_1) || (ability === cards[i].ability_2) || (ability === cards[i].ability_3) || (ability === cards[i].ability_4) || (ability === cards[i].ability_5) || (ability === cards[i].ability_6))
-            ) {
-                result.push(cards[i])
-            }
-        }
-        return result;
+        return this.cardList.filter((card: any) =>
+            type.includes(card.type) &&
+            plan.includes(card.plan) &&
+            (event.includes(card.event_1) || event.includes(card.event_2) || event.includes(card.event_3)) &&
+            (ability.includes(card.ability_1) || ability.includes(card.ability_2) || ability.includes(card.ability_3) || ability.includes(card.ability_4) || ability.includes(card.ability_5) || ability.includes(card.ability_6)) &&
+            (card.enable === 1)
+        );
     }
 
     getSaveCardFromFilter(type: any, plan: any, event: any, ability: any) {
-        let cards = this.getAllSaveCard();
-        let result = [];
-        for (let i in cards) {
-            if (type.find((type: any) => (type === cards[i].type)) &&
-                plan.find((plan: any) => (plan === cards[i].plan)) &&
-                event.find((event: any) => (event === cards[i].event_1) || (event === cards[i].event_2) || (event === cards[i].event_3)) &&
-                ability.find((ability: any) => (ability === cards[i].ability_1) || (ability === cards[i].ability_2) || (ability === cards[i].ability_3) || (ability === cards[i].ability_4) || (ability === cards[i].ability_5) || (ability === cards[i].ability_6))
-            ) {
-                result.push(cards[i])
-            }
-        }
-        return result;
+        return this.saveList.filter((card: any) =>
+            type.includes(card.type) &&
+            plan.includes(card.plan) &&
+            (event.includes(card.event_1) || event.includes(card.event_2) || event.includes(card.event_3)) &&
+            (ability.includes(card.ability_1) || ability.includes(card.ability_2) || ability.includes(card.ability_3) || ability.includes(card.ability_4) || ability.includes(card.ability_5) || ability.includes(card.ability_6)) &&
+            (card.enable === 1)
+        );
     }
 
     getCardFromId(id: number) {
