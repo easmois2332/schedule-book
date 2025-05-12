@@ -53,57 +53,57 @@ export default class Schedules {
                         [
                             {
                                 ability_type: 'vocal',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'dance',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'visual',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                         ],
                         [
                             {
                                 ability_type: 'vocal',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'dance',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'visual',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                         ],
                         [
                             {
                                 ability_type: 'vocal',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'dance',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'visual',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                         ],
                         [
                             {
                                 ability_type: 'vocal',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'dance',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                             {
                                 ability_type: 'visual',
-                                ability_value: 10,
+                                ability_value: 20,
                             },
                         ],
                     ]

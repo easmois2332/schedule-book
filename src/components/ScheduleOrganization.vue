@@ -9,22 +9,22 @@ const idols = props.idols;
 const supportCards = props.supportCards;
 
 const produceMemoryParameterAbilityValue = [
-  {value: 10, text: '+10'},
-  {value: 15, text: '+15'},
   {value: 20, text: '+20'},
-  {value: 1.4, text: '+1.4%'},
-  {value: 2.1, text: '+2.1%'},
+  {value: 15, text: '+15'},
+  {value: 10, text: '+10'},
   {value: 2.8, text: '+2.8%'},
+  {value: 2.1, text: '+2.1%'},
+  {value: 1.4, text: '+1.4%'},
 ];
 const produceMemoryPointAbilityValue = [
-  {value: 20, text: '+20'},
-  {value: 30, text: '+30'},
   {value: 40, text: '+40'},
+  {value: 30, text: '+30'},
+  {value: 20, text: '+20'},
 ];
 const produceMemoryHpRecoverAbilityValue = [
-  {value: 30, text: '30%'},
-  {value: 45, text: '45%'},
   {value: 60, text: '60%'},
+  {value: 45, text: '45%'},
+  {value: 30, text: '30%'},
 ];
 const produceMemoryAbilityValue = {
   'vocal': produceMemoryParameterAbilityValue,
