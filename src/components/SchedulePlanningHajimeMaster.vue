@@ -1,12 +1,10 @@
 <script setup>
 import {ref, watch} from "vue";
 import Items from "@/classes/items";
+import {abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
-
-let inputData = ref(props.inputData);
-let basicData = ref(props.basicData);
 
 const items = new Items();
 
@@ -102,18 +100,21 @@ const scheduleData = {
   ],
 };
 
-const basicParameterUpList = {
-  lesson_parameter_up: 'レッスン終了時',
-  normal_lesson_parameter_up: '通常レッスン終了時',
-  sp_lesson_parameter_up: 'SPレッスン終了時',
-  class_parameter_up: '授業終了時',
-  gift_parameter_up: '活動支給選択時',
-  outing_parameter_up: 'お出かけ終了時',
-  consultation_parameter_up: '相談選択時',
-  rest_parameter_up: '休む選択時',
-  exam_parameter_up: '試験終了時',
-};
+const basicParameterUpList = abilityBasicParameterUpList;
+const extraParameterUpList = abilityExtraParameterUpList;
 
+let inputData = ref(props.inputData);
+let basicData = ref(props.basicData);
+
+const getBasicPItemDetail = (plan) => {
+  return items.getHajimeMasterBasicItem(plan)
+}
+const getChallengePItemDetail = (categoryType, plan) => {
+  return items.getChallengeItem(categoryType, plan)
+}
+const getPItemDetail = (id) => {
+  return items.getItemFromId(id);
+}
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
 }
@@ -143,6 +144,8 @@ watch(() => props.basicData, () => {
               <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
               <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
               <th class="table-header point"><span class="table-header-text">合計値</span></th>
+              <th class="table-header hp"><span class="table-header-text">体力</span></th>
+              <th class="table-header point"><span class="table-header-text">Pポイント</span></th>
             </tr>
             </thead>
             <tbody>
@@ -165,6 +168,8 @@ watch(() => props.basicData, () => {
               <td class="table-data number dance"><span class="table-data-text">0</span></td>
               <td class="table-data number visual"><span class="table-data-text">0</span></td>
               <td class="table-data number point"><span class="table-data-text">0</span></td>
+              <td class="table-data number hp"><span class="table-data-text">0</span></td>
+              <td class="table-data number point"><span class="table-data-text">0</span></td>
             </tr>
             <tr>
               <th class="table-header last"></th>
@@ -174,33 +179,14 @@ watch(() => props.basicData, () => {
               <td class="table-data number dance last"><span class="table-data-text font-bold dance">0</span></td>
               <td class="table-data number visual last"><span class="table-data-text font-bold visual">0</span></td>
               <td class="table-data number point last"><span class="table-data-text font-bold last">0</span></td>
+              <td class="table-data number hp last"><span class="table-data-text font-bold last">0</span></td>
+              <td class="table-data number point last"><span class="table-data-text font-bold last">0</span></td>
             </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="event-area">
-        <div class="challenge-p-item-area">
-          <div class="common-headline">
-            <span class="common-headline-text font-bold">チャレンジPアイテム</span>
-          </div>
-          <div class="challenge-p-item">
-            <table class="table challenge-p-item">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header point"><span class="table-header-text">上限上昇値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="i in 3" :key="i">
-                <td class="table-data detail"><span class="table-data-text">チャレンジPアイテム{{ i }}</span></td>
-                <td class="table-data number point"><span class="table-data-text">0</span></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
         <div class="produce-p-item-area">
           <div class="common-headline">
             <span class="common-headline-text font-bold">Pアイテム</span>
@@ -210,17 +196,45 @@ watch(() => props.basicData, () => {
               <thead>
               <tr>
                 <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header point"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header point"><span class="table-header-text">回数</span></th>
-                <th class="table-header point"><span class="table-header-text">合計値</span></th>
+                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                <th class="table-header count"><span class="table-header-text">回数</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="i in 6" :key="i">
-                <td class="table-data detail"><span class="table-data-text">Pアイテム{{ i }}</span></td>
-                <td class="table-data number point"><span class="table-data-text">0</span></td>
-                <td class="table-data number point"><input class="table-input-number" type="number" min="0" max="99" value="0"></td>
-                <td class="table-data number point"><span class="table-data-text">0</span></td>
+                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'detail'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).name }}</span>
+                  <span class="table-data-text" v-else>獲得Pアイテムなし</span>
+                </td>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).event_parameter }}</span>
+                  <span class="table-data-text" v-else></span>
+                </td>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">0</span>
+                  <span class="table-data-text" v-else></span>
+                </td>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text">0</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-data detail">
+                  <select class="table-select">
+                    <option class="table-option">はつぼしブレスレット</option>
+                    <option class="table-option" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                  </select>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text"></span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text"></span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text"></span>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -235,9 +249,9 @@ watch(() => props.basicData, () => {
               <thead>
               <tr>
                 <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header point"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header point"><span class="table-header-text">回数</span></th>
-                <th class="table-header point"><span class="table-header-text">合計値</span></th>
+                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                <th class="table-header count"><span class="table-header-text">回数</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
               </tr>
               </thead>
               <tbody>
@@ -246,14 +260,46 @@ watch(() => props.basicData, () => {
                   <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
                   <span class="table-data-text" v-else>サポートカード名</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'point'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_2'] === 'parameter_up'">{{ basicData['support_card'][i - 1]['event_2_parameter'] }}</span>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['event_2_parameter'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'point'">
-                  <input class="table-input-number" type="number" min="0" max="1" value="0">
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text font-bold">0</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'point'">
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <span class="table-data-text">0</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="challenge-p-item-area">
+          <div class="common-headline">
+            <span class="common-headline-text font-bold">チャレンジPアイテム</span>
+          </div>
+          <div class="challenge-p-item">
+            <table class="table challenge-p-item">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="i in 3" :key="i">
+                <td class="table-data detail">
+                  <select class="table-select">
+                    <option class="table-option" value="">チャレンジPアイテムなし</option>
+                    <option class="table-option" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                  </select>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text">0</span>
+                </td>
+                <td class="table-data number count" rowspan="3" v-if="i === 1">
                   <span class="table-data-text">0</span>
                 </td>
               </tr>
@@ -275,42 +321,26 @@ watch(() => props.basicData, () => {
                 <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
                 <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
                 <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
-                <th class="table-header point"><span class="table-header-text">回数</span></th>
-                <th class="table-header point"><span class="table-header-text">合計値</span></th>
+                <th class="table-header count"><span class="table-header-text">回数</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="basicParameterUp in basicParameterUpList" :key="basicParameterUp">
-                <td class="table-data detail"><span class="table-data-text">{{ basicParameterUp }}</span></td>
+                <td class="table-data detail"><span class="table-data-text">{{ basicParameterUp.text }}</span></td>
                 <td class="table-data number vocal"><span class="table-data-text">0</span></td>
                 <td class="table-data number dance"><span class="table-data-text">0</span></td>
                 <td class="table-data number visual"><span class="table-data-text">0</span></td>
-                <td class="table-data number point"><span class="table-data-text" v-if="!basicParameterUp.includes('レッスン')">0</span></td>
-                <td class="table-data number point"><span class="table-data-text" v-if="!basicParameterUp.includes('レッスン')">0</span></td>
+                <td class="table-data number count"><span class="table-data-text" v-if="!basicParameterUp.text.includes('レッスン')">0</span></td>
+                <td class="table-data number count"><span class="table-data-text" v-if="!basicParameterUp.text.includes('レッスン')">0</span></td>
               </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="extra-parameter-up">
-            <table class="table extra-parameter-up">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
-                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
-                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
-                <th class="table-header point"><span class="table-header-text">回数</span></th>
-                <th class="table-header point"><span class="table-header-text">合計値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="extraParameterUp in 9" :key="extraParameterUp">
-                <td class="table-data detail"><span class="table-data-text">{{ extraParameterUp }}</span></td>
+              <tr v-for="extraParameterUp in extraParameterUpList" :key="extraParameterUp">
+                <td class="table-data detail"><span class="table-data-text">{{ extraParameterUp.text }}</span></td>
                 <td class="table-data number vocal"><span class="table-data-text">0</span></td>
                 <td class="table-data number dance"><span class="table-data-text">0</span></td>
                 <td class="table-data number visual"><span class="table-data-text">0</span></td>
-                <td class="table-data number point"><input class="table-input-number" type="number" min="0" max="99" value="0"></td>
-                <td class="table-data number point"><span class="table-data-text">0</span></td>
+                <td class="table-data number count"><span class="table-data-text font-bold">0</span></td>
+                <td class="table-data number count"><span class="table-data-text">0</span></td>
               </tr>
               </tbody>
             </table>

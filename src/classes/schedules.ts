@@ -218,6 +218,10 @@ export default class Schedules {
                     type: null,
                 },
             },
+            produce_p_item: [
+            ],
+            support_card_event: [
+            ],
         }
     }
 }

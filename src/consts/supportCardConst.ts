@@ -72,29 +72,29 @@ export const abilities = {
     NORMAL_LESSON_PARAMETER_UP: 'normal_lesson_parameter_up',
     // SPレッスン終了時パラメータ上昇
     SP_LESSON_PARAMETER_UP: 'sp_lesson_parameter_up',
-    // カード獲得時パラメータ上昇
+    // スキルカード獲得時パラメータ上昇
     CARD_PARAMETER_UP: 'card_parameter_up',
-    // アクティブカード獲得時パラメータ上昇
+    // アクティブスキルカード獲得時パラメータ上昇
     ACTIVE_CARD_PARAMETER_UP: 'active_card_parameter_up',
-    // メンタルカード獲得時パラメータ上昇
+    // メンタルスキルカード獲得時パラメータ上昇
     MENTAL_CARD_PARAMETER_UP: 'mental_card_parameter_up',
-    // 好調効果カード獲得時パラメータ上昇
+    // 好調効果のスキルカード獲得時パラメータ上昇
     KOTYO_CARD_PARAMETER_UP: 'kotyo_card_parameter_up',
-    // 好印象効果カード獲得時パラメータ上昇
+    // 好印象効果のスキルカード獲得時パラメータ上昇
     KOINSYO_CARD_PARAMETER_UP: 'koinsyo_card_parameter_up',
-    // 温存効果カード獲得時パラメータ上昇
+    // 温存効果のスキルカード獲得時パラメータ上昇
     ONZON_CARD_PARAMETER_UP: 'onzon_card_parameter_up',
     // スキルカード強化時パラメータ上昇
     CARD_STRENGTHEN_PARAMETER_UP: 'card_strengthen_parameter_up',
-    // アクティブカード強化時パラメータ上昇
+    // アクティブスキルカード強化時パラメータ上昇
     ACTIVE_CARD_STRENGTHEN_PARAMETER_UP: 'active_card_strengthen_parameter_up',
-    // メンタルカード強化時パラメータ上昇
+    // メンタルスキルカード強化時パラメータ上昇
     MENTAL_CARD_STRENGTHEN_PARAMETER_UP: 'mental_card_strengthen_parameter_up',
     // スキルカード削除時パラメータ上昇
     CARD_DELETE_PARAMETER_UP: 'card_delete_parameter_up',
     // メンタルカード削除時パラメータ上昇
     MENTAL_CARD_DELETE_PARAMETER_UP: 'mental_card_delete_parameter_up',
-    // スキルカード変換時パラメータ上昇
+    // スキルカードチェンジ時パラメータ上昇
     CARD_CHANGE_PARAMETER_UP: 'card_change_parameter_up',
     // 授業・営業終了時パラメータ上昇
     CLASS_PARAMETER_UP: 'class_parameter_up',
@@ -150,3 +150,97 @@ export const abilityParameterThresholds = {
         ability_6: [25, 41, 60],
     },
 }
+
+export const abilityBasicParameterUpList = [
+    {
+        ability: abilities.LESSON_PARAMETER_UP,
+        text: 'レッスン終了時',
+    },
+    {
+        ability: abilities.NORMAL_LESSON_PARAMETER_UP,
+        text: '通常レッスン終了時',
+    },
+    {
+        ability: abilities.SP_LESSON_PARAMETER_UP,
+        text: 'SPレッスン終了時',
+    },
+    {
+        ability: abilities.CLASS_PARAMETER_UP,
+        text: '授業・営業終了時',
+    },
+    {
+        ability: abilities.GIFT_PARAMETER_UP,
+        text: '活動支給・差し入れ選択時',
+    },
+    {
+        ability: abilities.OUTING_PARAMETER_UP,
+        text: 'お出かけ終了時',
+    },
+    {
+        ability: abilities.CONSULTATION_PARAMETER_UP,
+        text: '相談選択時',
+    },
+    {
+        ability: abilities.REST_PARAMETER_UP,
+        text: '休む選択時',
+    },
+    {
+        ability: abilities.EXAM_PARAMETER_UP,
+        text: '試験・オーディション終了時',
+    },
+]
+
+export const abilityExtraParameterUpList = [
+    {
+        ability: abilities.CARD_PARAMETER_UP,
+        text: 'スキルカード獲得時',
+    },
+    {
+        ability: abilities.ACTIVE_CARD_PARAMETER_UP,
+        text: 'アクティブスキルカード獲得時',
+    },
+    {
+        ability: abilities.MENTAL_CARD_PARAMETER_UP,
+        text: 'メンタルスキルカード獲得時',
+    },
+    {
+        ability: abilities.KOTYO_CARD_PARAMETER_UP,
+        text: '好調効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.KOINSYO_CARD_PARAMETER_UP,
+        text: '好印象効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.ONZON_CARD_PARAMETER_UP,
+        text: '温存効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.CARD_STRENGTHEN_PARAMETER_UP,
+        text: 'スキルカード強化時',
+    },
+    {
+        ability: abilities.ACTIVE_CARD_STRENGTHEN_PARAMETER_UP,
+        text: 'アクティブスキルカード強化時',
+    },
+    {
+        ability: abilities.MENTAL_CARD_STRENGTHEN_PARAMETER_UP,
+        text: 'メンタルスキルカード強化時',
+    },
+    {
+        ability: abilities.CARD_DELETE_PARAMETER_UP,
+        text: 'スキルカード削除時',
+    },
+    {
+        ability: abilities.MENTAL_CARD_DELETE_PARAMETER_UP,
+        text: 'メンタルカード削除時',
+    },
+    {
+        ability: abilities.CARD_CHANGE_PARAMETER_UP,
+        text: 'スキルカードチェンジ時',
+    },
+    {
+        ability: abilities.CONSULTATION_DRINK_PARAMETER_UP,
+        text: '相談でPドリンク交換後',
+    },
+]

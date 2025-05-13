@@ -8,7 +8,7 @@
     "type": "none",
     "plan": "free",
     "event_text": "レッスン終了時、レッスン報酬のスキルカードの選択肢を追加",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": null,
     "lesson_effect": null,
     "enable": 1
@@ -22,7 +22,7 @@
     "type": "none",
     "plan": "free",
     "event_text": "SPレッスン終了時、体力減少3\nスキルカードを選択して強化",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": null,
     "lesson_effect": null,
     "enable": 1
@@ -330,7 +330,7 @@
     "type": "none",
     "plan": "free",
     "event_text": "お出かけ終了時、体力回復9",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -414,7 +414,7 @@
     "type": "dance",
     "plan": "sense",
     "event_text": "好調効果のスキルカード獲得時、ダンスが200以上の場合、ランダムなPドリンク（SR以上）を獲得\n（プロデュース中4回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 4,
     "lesson_effect": null,
     "enable": 1
@@ -427,7 +427,7 @@
     "rarity": "ssr",
     "type": "visual",
     "plan": "free",
-    "event_text": "授業。営業終了時、ビジュアル上昇+15\n体力回復2",
+    "event_text": "授業・営業終了時、ビジュアル上昇+15\n体力回復2",
     "event_parameter": 15,
     "event_count": 99,
     "lesson_effect": null,
@@ -484,7 +484,7 @@
     "type": "vocal",
     "plan": "sense",
     "event_text": "活動支給・差し入れ選択時、ボーカルが700以上の場合、スキルカードを2枚まで選択して強化\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -498,7 +498,7 @@
     "type": "visual",
     "plan": "logic",
     "event_text": "元気効果のスキルカード獲得時、ビジュアルが200以上の場合、ランダムなPドリンク（SR以上）を獲得\n（プロデュース中4回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 4,
     "lesson_effect": null,
     "enable": 1
@@ -512,7 +512,7 @@
     "type": "none",
     "plan": "free",
     "event_text": "相談選択時、相談の全項目を20%割引",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -568,7 +568,7 @@
     "type": "dance",
     "plan": "free",
     "event_text": "授業・営業終了時、Pポイント+20\n体力回復2",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -582,7 +582,7 @@
     "type": "vocal",
     "plan": "anomaly",
     "event_text": "温存効果のスキルカード獲得時、ボーカルが400以上の場合、スキルカードを選択して強化\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -610,7 +610,7 @@
     "type": "dance",
     "plan": "logic",
     "event_text": "好印象効果のスキルカード獲得時、ダンスが700以上の場合、スキルカードを選択して強化\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -625,7 +625,7 @@
     "plan": "anomaly",
     "event_text": "お出かけ終了時、ビジュアルが400以上の場合、ビジュアル上昇+15\nスキルカードを選択して異なるスキルカードにチェンジ",
     "event_parameter": 15,
-    "event_count": null,
+    "event_count": 99,
     "lesson_effect": null,
     "enable": 1
   },
@@ -666,7 +666,7 @@
     "type": "vocal",
     "plan": "logic",
     "event_text": "特別指導開始時、ボーカルが200以上の場合、Pポイント+100\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -694,7 +694,7 @@
     "type": "vocal",
     "plan": "free",
     "event_text": "ボーカルSPレッスン終了時、ボーカルが400以上の場合、ランダムなスキルカードを強化",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -736,7 +736,7 @@
     "type": "dance",
     "plan": "free",
     "event_text": "ダンスSPレッスン終了時、ランダムなPドリンクを2つ獲得",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -806,7 +806,7 @@
     "type": "vocal",
     "plan": "free",
     "event_text": "スキルカード強化時、ボーカルが400以上の場合、Pポイント+15",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -820,7 +820,7 @@
     "type": "visual",
     "plan": "free",
     "event_text": "ビジュアルSPレッスン終了時、ビジュアルが400以上の場合、ランダムなスキルカードを強化",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -890,7 +890,7 @@
     "type": "dance",
     "plan": "free",
     "event_text": "ダンスSPレッスン終了時、ダンスが400以上の場合、Pポイント+60\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -904,7 +904,7 @@
     "type": "dance",
     "plan": "sense",
     "event_text": "好調効果のスキルカード獲得時、ダンスが700以上の場合、スキルカードを選択して削除\nPポイント+40\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -918,7 +918,7 @@
     "type": "visual",
     "plan": "logic",
     "event_text": "やる気効果のスキルカード獲得時、ビジュアルが400以上の場合、スキルカードを選択して強化\n体力回復2\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -932,7 +932,7 @@
     "type": "vocal",
     "plan": "logic",
     "event_text": "好印象効果のスキルカード獲得時、ボーカルが700以上の場合、スキルカードを選択してコピー\nPポイント+40\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -960,7 +960,7 @@
     "type": "visual",
     "plan": "logic",
     "event_text": "好印象効果のスキルカード獲得時、ビジュアルが700以上の場合、スキルカードを選択して削除\nPポイント+40\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 1,
     "lesson_effect": null,
     "enable": 1
@@ -1016,7 +1016,7 @@
     "type": "dance",
     "plan": "free",
     "event_text": "相談選択時、ダンスが700以上の場合、ランダムなスキルカードを強化\nPポイント+50\n（プロデュース中1回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 99,
     "lesson_effect": null,
     "enable": 1
@@ -1030,7 +1030,7 @@
     "type": "vocal",
     "plan": "free",
     "event_text": "ボーカルSPレッスン終了時、ランダムなPドリンク（SR以上）を獲得\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -1044,7 +1044,7 @@
     "type": "visual",
     "plan": "free",
     "event_text": "ビジュアルSPレッスン終了時、ランダムなPドリンク（SR以上）を獲得\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -1058,7 +1058,7 @@
     "type": "dance",
     "plan": "free",
     "event_text": "ダンスSPレッスン終了時、ランダムなPドリンク（SR以上）を獲得\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -1072,7 +1072,7 @@
     "type": "dance",
     "plan": "sense",
     "event_text": "好調効果のスキルカード強化時、ダンスが700以上の場合、ランダムなスキルカードを強化\n（プロデュース中2回）",
-    "event_parameter": null,
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1
@@ -1100,7 +1100,7 @@
     "type": "vocal",
     "plan": "logic",
     "event_text": "好印象効果のスキルカード強化時、ボーカルが700以上の場合、ランダムなスキルカードを強化\n（プロデュース中２回）",
-    "event_parameter": "byll",
+    "event_parameter": 0,
     "event_count": 2,
     "lesson_effect": null,
     "enable": 1

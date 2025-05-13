@@ -126,7 +126,7 @@
         }
 
         .header-tab-right-area > .header-tab:not(.setting) {
-            @media (max-width: 500px) {
+            @media (max-width: 600px) {
                 display: none;
             }
         }
