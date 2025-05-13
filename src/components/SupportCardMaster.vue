@@ -192,7 +192,7 @@ const getSkillCardDetail = (id) => {
           </div>
           <div class="card-filter-checkbox">
             <input class="common-checkbox" type="checkbox" id="card-filter-basic_card_change" value="basic_card_change" v-model="filterEvent">
-            <label for="card-filter-basic_card_change">ランダムな基本スキルカードを変換</label>
+            <label for="card-filter-basic_card_change">ランダムな基本スキルカードをチェンジ</label>
           </div>
           <div class="card-filter-checkbox">
             <input class="common-checkbox" type="checkbox" id="card-filter-card_random_strengthen" value="card_random_strengthen" v-model="filterEvent">
@@ -212,15 +212,15 @@ const getSkillCardDetail = (id) => {
           <div class="card-filter-checkbox-area">
             <div class="card-filter-checkbox">
               <input class="common-checkbox" type="checkbox" id="card-filter-max-hp-up" value="max_hp_up" v-model="filterAbility">
-              <label for="card-filter-max-hp-up">最大体力増加</label>
+              <label for="card-filter-max-hp-up">最大体力上昇</label>
             </div>
             <div class="card-filter-checkbox">
               <input class="common-checkbox" type="checkbox" id="card-filter-init_p_point" value="init_p_point" v-model="filterAbility">
-              <label for="card-filter-init_p_point">初期Pポイント獲得</label>
+              <label for="card-filter-init_p_point">初期Pポイント+</label>
             </div>
             <div class="card-filter-checkbox">
               <input class="common-checkbox" type="checkbox" id="card-filter-sp_lesson_rate" value="sp_lesson_rate" v-model="filterAbility">
-              <label for="card-filter-sp_lesson_rate">SPレッスン発生率増加</label>
+              <label for="card-filter-sp_lesson_rate">SPレッスン発生率+</label>
             </div>
             <div class="card-filter-checkbox">
               <input class="common-checkbox" type="checkbox" id="card-filter-init_parameter_up" value="init_parameter_up" v-model="filterAbility">
@@ -228,7 +228,7 @@ const getSkillCardDetail = (id) => {
             </div>
             <div class="card-filter-checkbox">
               <input class="common-checkbox" type="checkbox" id="card-filter-parameter_bonus" value="parameter_bonus" v-model="filterAbility">
-              <label for="card-filter-parameter_bonus">パラメータボーナス増加</label>
+              <label for="card-filter-parameter_bonus">パラメータボーナス+</label>
             </div>
           </div>
           <span class="ability-filter-text">パラメータ上昇関係</span>

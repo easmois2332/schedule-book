@@ -54,17 +54,17 @@ export const abilities = {
     NONE: 'none',
     // 初期パラメータ上昇
     INIT_PARAMETER_UP: 'init_parameter_up',
-    // パラメータボーナス
+    // パラメータボーナス+
     PARAMETER_BONUS: 'parameter_bonus',
     // 最大体力上昇
     MAX_HP_UP: 'max_hp_up',
-    // 初期Pポイント上昇
+    // 初期Pポイント+
     INIT_P_POINT: 'init_p_point',
     // スキルカードサポート発生率増加
     CARD_SUPPORT_RATE: 'card_support_rate',
     // サポートカードイベント2強化
     EVENT_STRENGTHEN: 'event_strengthen',
-    // SPレッスン発生率増加
+    // SPレッスン発生率+
     SP_LESSON_RATE: 'sp_lesson_rate',
     // レッスン終了時パラメータ上昇
     LESSON_PARAMETER_UP: 'lesson_parameter_up',

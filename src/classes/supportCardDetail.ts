@@ -110,7 +110,7 @@ export default class SupportCardDetail {
                 this.card.event_3_display = 'Pポイント+10';
                 break;
             case events.BASIC_CARD_CHANGE:
-                this.card.event_3_display = 'ランダムな基本スキルカードを変換';
+                this.card.event_3_display = 'ランダムな基本スキルカードをチェンジ';
                 this.card.event_3_display_formal = 'ランダムな名前に「基本」を含むスキルカードを異なるスキルカードにチェンジ';
                 break;
             case events.CARD_RANDOM_STRENGTHEN:
@@ -183,7 +183,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * パラメータボーナス
+     * パラメータボーナス+
      */
     private calcParameterBonus() {
         if (this.card.ability_1 === abilities.PARAMETER_BONUS) {
@@ -276,7 +276,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * 初期Pポイント上昇
+     * 初期Pポイント+
      */
     private calcInitPPoint() {
         if (this.card.ability_1 === abilities.INIT_P_POINT) {
@@ -350,7 +350,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * SPレッスン発生率増加
+     * SPレッスン発生率+
      */
     private calcSpLessonRate() {
         let parameter = {r: [0, 0, 0], sr: [10.5, 21, 21], ssr: [14, 21, 28], ssr_event: [14, 21, 21]};
