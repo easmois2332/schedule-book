@@ -222,6 +222,17 @@ export default class Schedules {
             ],
             support_card_event: [
             ],
+            challenge_p_item: [
+                {
+                    id: null
+                },
+                {
+                    id: null
+                },
+                {
+                    id: null
+                },
+            ],
         }
     }
 }

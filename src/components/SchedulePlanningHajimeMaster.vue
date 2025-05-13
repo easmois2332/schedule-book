@@ -106,6 +106,11 @@ const extraParameterUpList = abilityExtraParameterUpList;
 let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
+let challengePItemMaxPushSum = ref(0);
+
+const updateInputData = () => {
+  emit('input-data-update', inputData.value);
+}
 const getBasicPItemDetail = (plan) => {
   return items.getHajimeMasterBasicItem(plan)
 }
@@ -115,11 +120,22 @@ const getChallengePItemDetail = (categoryType, plan) => {
 const getPItemDetail = (id) => {
   return items.getItemFromId(id);
 }
-const updateInputData = () => {
-  emit('input-data-update', inputData.value);
+const updateChallengePItemMaxPushSum = () => {
+  challengePItemMaxPushSum.value = 0;
+  for (let i in inputData.value['planning']['challenge_p_item']) {
+    if (inputData.value['planning']['challenge_p_item'][i]['id'] > 0) {
+      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]['id']).event_parameter;
+    }
+  }
 }
+const changeChallengePItem = () => {
+  updateChallengePItemMaxPushSum();
+  updateInputData();
+}
+
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
+  updateChallengePItemMaxPushSum();
 });
 watch(() => props.basicData, () => {
   basicData.value = props.basicData;
@@ -291,16 +307,17 @@ watch(() => props.basicData, () => {
               <tbody>
               <tr v-for="i in 3" :key="i">
                 <td class="table-data detail">
-                  <select class="table-select">
-                    <option class="table-option" value="">チャレンジPアイテムなし</option>
-                    <option class="table-option" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                  <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i - 1]['id']" @change="changeChallengePItem">
+                    <option class="table-option" value=null>チャレンジPアイテムなし</option>
+                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
                   </select>
                 </td>
                 <td class="table-data number count">
-                  <span class="table-data-text">0</span>
+                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i - 1]['id'] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i - 1]['id']).event_parameter }}</span>
+                  <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data number count" rowspan="3" v-if="i === 1">
-                  <span class="table-data-text">0</span>
+                  <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
                 </td>
               </tr>
               </tbody>
