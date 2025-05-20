@@ -185,7 +185,7 @@ watch(() => props.basicData, () => {
             <div class="support-card-info">
               <div class="support-card-name">
                 <span class="support-card-info-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
-                <span class="support-card-info-text font-bold" v-else>サポートカード名</span>
+                <span class="support-card-info-text font-bold" v-else>サポートカード未選択</span>
               </div>
               <div class="support-card-level">
                 <label class="basic-input-number-name font-bold">Lv</label>
