@@ -225,6 +225,9 @@ export default class Schedules {
             },
             produce_p_item: {
                 1: 0,
+            },
+            support_card_p_item: {
+                1: 0,
                 2: 0,
                 3: 0,
                 4: 0,

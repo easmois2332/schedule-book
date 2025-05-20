@@ -274,7 +274,7 @@ watch(() => props.basicData, () => {
                   <span class="table-data-text" v-else></span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['produce_p_item'][i] }}</span>
+                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
                   <span class="table-data-text" v-else></span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
@@ -283,9 +283,9 @@ watch(() => props.basicData, () => {
               </tr>
               <tr>
                 <td class="table-data detail">
-                  <select class="table-select">
-                    <option class="table-option">はつぼしブレスレット</option>
-                    <option class="table-option" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                  <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
+                    <option class="table-option" value="0">はつぼしブレスレット</option>
+                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
                   </select>
                 </td>
                 <td class="table-data number count">
@@ -326,7 +326,7 @@ watch(() => props.basicData, () => {
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]">
+                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" @change="updateInputData">
                 </td>
               </tr>
               </tbody>
