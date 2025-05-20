@@ -178,18 +178,18 @@ watch(() => props.basicData, () => {
         <div class="support-card">
           <div class="support-card-detail" v-bind:class="'row-' + i" v-for="i in 6" :key="i">
             <div class="support-card-image">
-              <button class="support-card-select-button" :style="{ backgroundImage: [inputData['organization']['support_card'][i - 1]['id'] !== null ? 'url(./image/supportCards/' + inputData['organization']['support_card'][i - 1]['id'] + '.png)' : 'none'] }" @click="buttonSupportCardSelector(i - 1)">
-                <span class="support-card-select-text" v-show="inputData['organization']['support_card'][i - 1]['id'] === null">サポートカードを選択</span>
+              <button class="support-card-select-button" :style="{ backgroundImage: [inputData['organization']['support_card'][i]['id'] !== null ? 'url(./image/supportCards/' + inputData['organization']['support_card'][i]['id'] + '.png)' : 'none'] }" @click="buttonSupportCardSelector(i)">
+                <span class="support-card-select-text" v-show="inputData['organization']['support_card'][i]['id'] === null">サポートカードを選択</span>
               </button>
             </div>
             <div class="support-card-info">
               <div class="support-card-name">
-                <span class="support-card-info-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
+                <span class="support-card-info-text font-bold" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['name'] }}</span>
                 <span class="support-card-info-text font-bold" v-else>サポートカード未選択</span>
               </div>
               <div class="support-card-level">
                 <label class="basic-input-number-name font-bold">Lv</label>
-                <input class="basic-input-number" type="number" min="1" v-bind:max="[inputData['organization']['support_card'][i - 1]['id'] !== null ? basicData['support_card'][i - 1]['max_level'] : 1]" v-model="inputData['organization']['support_card'][i - 1]['level']" v-bind:disabled="inputData['organization']['support_card'][i - 1]['id'] === null" @change="updateInputData">
+                <input class="basic-input-number" type="number" min="1" v-bind:max="[inputData['organization']['support_card'][i]['id'] !== null ? basicData['support_card'][i]['max_level'] : 1]" v-model="inputData['organization']['support_card'][i]['level']" v-bind:disabled="inputData['organization']['support_card'][i]['id'] === null" @change="updateInputData">
               </div>
             </div>
           </div>
@@ -206,43 +206,43 @@ watch(() => props.basicData, () => {
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][0]['ability_type']" @change="changeProduceMemoryAbilityType(i - 1, 0)">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][1]['ability_type']" @change="changeProduceMemoryAbilityType(i, 1)">
                   <option value="vocal">ボーカル</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][0]['ability_value']" @change="updateInputData">
-                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i - 1][0]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][1]['ability_value']" @change="updateInputData">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i][1]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][1]['ability_type']" @change="changeProduceMemoryAbilityType(i - 1, 1)">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][2]['ability_type']" @change="changeProduceMemoryAbilityType(i, 2)">
                   <option value="dance">ダンス</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][1]['ability_value']" @change="updateInputData">
-                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i - 1][1]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][2]['ability_value']" @change="updateInputData">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i][2]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>
             <div class="produce-memory-ability-area">
               <div class="produce-memory-ability-type-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][2]['ability_type']" @change="changeProduceMemoryAbilityType(i - 1, 2)">
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][3]['ability_type']" @change="changeProduceMemoryAbilityType(i, 3)">
                   <option value="visual">ビジュアル</option>
                   <option value="point">Pポイント</option>
                   <option value="hp-recover">体力回復</option>
                 </select>
               </div>
               <div class="produce-memory-ability-value-area">
-                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i - 1][2]['ability_value']" @change="updateInputData">
-                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i - 1][2]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
+                <select class="basic-select" v-model="inputData['organization']['produce_memory'][i][3]['ability_value']" @change="updateInputData">
+                  <option v-for="option in produceMemoryAbilityValue[inputData['organization']['produce_memory'][i][3]['ability_type']]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
               </div>
             </div>

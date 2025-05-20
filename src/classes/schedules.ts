@@ -1,8 +1,9 @@
 export default class Schedules {
 
-    scheduleList: any = [];
+    dataVersion: string = '1.0';
     autoIncrement: number = 1;
     crateCount: number = 1;
+    scheduleList: any = [];
 
     constructor() {
     }
@@ -14,7 +15,8 @@ export default class Schedules {
             undo_disabled: true,
             redo_disabled: true,
             name: `新規スケジュール${this.crateCount}`,
-            data: this.setData(produceType)
+            data: this.setData(produceType),
+            data_version: this.dataVersion,
         };
         this.autoIncrement++;
         this.crateCount++;
@@ -45,90 +47,90 @@ export default class Schedules {
                     blossoming_level: null,
                     dear_level: null,
                 },
-                support_card: [
-                    {
+                support_card: {
+                    1: {
                         id: null,
                         level: null
                     },
-                    {
+                    2: {
                         id: null,
                         level: null
                     },
-                    {
+                    3: {
                         id: null,
                         level: null
                     },
-                    {
+                    4: {
                         id: null,
                         level: null
                     },
-                    {
+                    5: {
                         id: null,
                         level: null
                     },
-                    {
+                    6: {
                         id: null,
                         level: null
                     },
-                ],
-                produce_memory: [
-                    [
-                        {
+                },
+                produce_memory: {
+                    1: {
+                        1: {
                             ability_type: 'vocal',
                             ability_value: 20,
                         },
-                        {
+                        2: {
                             ability_type: 'dance',
                             ability_value: 20,
                         },
-                        {
+                        3: {
                             ability_type: 'visual',
                             ability_value: 20,
                         },
-                    ],
-                    [
-                        {
+                    },
+                    2: {
+                        1: {
                             ability_type: 'vocal',
                             ability_value: 20,
                         },
-                        {
+                        2: {
                             ability_type: 'dance',
                             ability_value: 20,
                         },
-                        {
+                        3: {
                             ability_type: 'visual',
                             ability_value: 20,
                         },
-                    ],
-                    [
-                        {
+                    },
+                    3: {
+                        1: {
                             ability_type: 'vocal',
                             ability_value: 20,
                         },
-                        {
+                        2: {
                             ability_type: 'dance',
                             ability_value: 20,
                         },
-                        {
+                        3: {
                             ability_type: 'visual',
                             ability_value: 20,
                         },
-                    ],
-                    [
-                        {
+                    },
+                    4: {
+                        1: {
                             ability_type: 'vocal',
                             ability_value: 20,
                         },
-                        {
+                        2: {
                             ability_type: 'dance',
                             ability_value: 20,
                         },
-                        {
+                        3: {
                             ability_type: 'visual',
                             ability_value: 20,
                         },
-                    ],
-                ]
+                    },
+                }
             },
             planning: planning
         }
@@ -138,11 +140,11 @@ export default class Schedules {
         return {
             schedule: {
                 1: {
-                    schedule_detail: 'class:50',
+                    schedule_detail: 'class_50',
                     type: 'vocal',
                 },
                 2: {
-                    schedule_detail: 'class:50',
+                    schedule_detail: 'class_50',
                     type: 'vocal',
                 },
                 3: {
@@ -178,7 +180,7 @@ export default class Schedules {
                     type: null,
                 },
                 10: {
-                    schedule_detail: 'class:80',
+                    schedule_detail: 'class_80',
                     type: 'vocal',
                 },
                 11: {
@@ -186,7 +188,7 @@ export default class Schedules {
                     type: 'vocal',
                 },
                 12: {
-                    schedule_detail: 'class:110',
+                    schedule_detail: 'class_110',
                     type: 'vocal',
                 },
                 13: {
@@ -242,8 +244,7 @@ export default class Schedules {
                 5: false,
                 6: false,
             },
-            support_card_ability: {
-            }
+            support_card_ability: {}
         }
     }
 }

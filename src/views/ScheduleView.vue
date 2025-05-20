@@ -1,9 +1,9 @@
 <script setup>
-import {onBeforeMount, ref, watch} from "vue";
+import {onBeforeMount, ref} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
-import {abilities, abilityBasicParameterUpList, types} from "@/consts/supportCardConst";
+import {abilities, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
 const emit = defineEmits(['undo-redo-disabled']);

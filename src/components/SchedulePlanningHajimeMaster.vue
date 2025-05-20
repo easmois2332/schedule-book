@@ -11,20 +11,20 @@ const items = new Items();
 const maxParameter = 1800;
 const scheduleData = {
   1: {
-    'class:50': {value: 'class:50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    'class:25': {value: 'class:25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    'class_50': {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    'class_25': {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
   },
   2: {
-    'class:50': {value: 'class:50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    'class:25': {value: 'class:25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    'class_50': {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    'class_25': {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
   },
   3: {
     'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   4: {
     'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   5: {
     'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
@@ -33,7 +33,7 @@ const scheduleData = {
   6: {
     'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
     'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   7: {
@@ -47,14 +47,14 @@ const scheduleData = {
   },
   9: {
     'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'gift:rng': {value: 'gift:rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
-    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'gift_rng': {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
+    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   10: {
-    'class:80': {value: 'class:80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
-    'class:55': {value: 'class:55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
-    'class:30': {value: 'class:30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
+    'class_80': {value: 'class_80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
+    'class_55': {value: 'class_55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
+    'class_30': {value: 'class_30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   11: {
@@ -63,8 +63,8 @@ const scheduleData = {
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   12: {
-    'class:110': {value: 'class:110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
-    'class:45': {value: 'class:45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
+    'class_110': {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
+    'class_45': {value: 'class_45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   13: {
@@ -80,8 +80,8 @@ const scheduleData = {
   15: {
     'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
     'lesson': {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
-    'class:110': {value: 'class:110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
-    'class:45': {value: 'class:45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
+    'class_110': {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
+    'class_45': {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
     'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   16: {
@@ -271,19 +271,19 @@ watch(() => props.basicData, () => {
               </thead>
               <tbody>
               <tr v-for="i in 6" :key="i">
-                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'detail'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).name }}</span>
+                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).name }}</span>
                   <span class="table-data-text" v-else>獲得Pアイテムなし</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).event_parameter }}</span>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).event_parameter }}</span>
                   <span class="table-data-text" v-else></span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
                   <span class="table-data-text" v-else></span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
                   <span class="table-data-text">0</span>
                 </td>
               </tr>
@@ -323,15 +323,15 @@ watch(() => props.basicData, () => {
               </thead>
               <tbody>
               <tr v-for="i in 6" :key="i">
-                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'detail'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
+                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['name'] }}</span>
                   <span class="table-data-text" v-else>サポートカード未選択</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['event_2_parameter'] }}</span>
+                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['event_2_parameter'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
                   <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" @change="updateInputData">
                 </td>
               </tr>
