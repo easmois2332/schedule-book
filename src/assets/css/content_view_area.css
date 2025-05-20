@@ -1003,6 +1003,12 @@
                 }
             }
 
+            .support-card-ability {
+                @media (max-width: 1000px) {
+                    overflow-x: scroll;
+                }
+            }
+
             .table.schedule {
                 min-width: 800px;
             }
@@ -1025,6 +1031,10 @@
                 @media (max-width: 600px) {
                     width: 100%;
                 }
+            }
+
+            .table.support-card-ability {
+                min-width: 650px;
             }
 
             .table {
@@ -1068,6 +1078,7 @@
 
                 .table-data {
                     text-align: start;
+                    white-space: nowrap;
                 }
 
                 .table-data.number {
@@ -1143,25 +1154,6 @@
                 .table-input-checkbox {
                     width: 16px;
                     height: 16px;
-                }
-
-                .table-input-number {
-                    width: 100%;
-                    color: #333333;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-align: end;
-                    border: none;
-                    box-sizing: border-box;
-                    background: transparent;
-                }
-
-                .table-input-number:focus {
-                    border: none;
-                }
-
-                .table-input-number:focus-visible {
-                    outline: none;
                 }
             }
         }

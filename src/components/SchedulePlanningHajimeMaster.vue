@@ -107,8 +107,6 @@ let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
 let challengePItemMaxPushSum = ref(0);
-let basicParameterUpList = ref([]);
-let extraParameterUpList = ref([]);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -134,13 +132,7 @@ const changeChallengePItem = () => {
   updateChallengePItemMaxPushSum();
   updateInputData();
 }
-const updateBasicParameterUpList = () => {
-
-}
-const updateExtraParameterUpList = () => {
-
-}
-onBeforeMount( () => {
+onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
 })
 watch(() => props.inputData, () => {
@@ -342,43 +334,71 @@ watch(() => props.basicData, () => {
           </div>
         </div>
       </div>
-      <div class="parameter-up-area">
+      <div class="support-card-ability-area">
         <div class="common-headline">
           <span class="common-headline-text font-bold">サポートカードアビリティ</span>
         </div>
-        <div class="parameter-up">
-          <div class="basic-parameter-up">
-            <table class="table basic-parameter-up">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
-                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
-                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
-                <th class="table-header count"><span class="table-header-text">回数</span></th>
-                <th class="table-header count"><span class="table-header-text">合計値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
-                <td class="table-data detail"><span class="table-data-text">{{ list.text }}</span></td>
-                <td class="table-data number vocal"><span class="table-data-text">0</span></td>
-                <td class="table-data number dance"><span class="table-data-text">0</span></td>
-                <td class="table-data number visual"><span class="table-data-text">0</span></td>
-                <td class="table-data number count"><span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span></td>
-                <td class="table-data number count"><span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span></td>
-              </tr>
-              <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
-                <td class="table-data detail"><span class="table-data-text">{{ list.text }}</span></td>
-                <td class="table-data number vocal"><span class="table-data-text">0</span></td>
-                <td class="table-data number dance"><span class="table-data-text">0</span></td>
-                <td class="table-data number visual"><span class="table-data-text">0</span></td>
-                <td class="table-data number count"><span class="table-data-text font-bold">0</span></td>
-                <td class="table-data number count"><span class="table-data-text">0</span></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="support-card-ability">
+          <table class="table support-card-ability">
+            <thead>
+            <tr>
+              <th class="table-header detail"><span class="table-header-text">内容</span></th>
+              <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+              <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+              <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+              <th class="table-header count"><span class="table-header-text">回数</span></th>
+              <th class="table-header count"><span class="table-header-text">合計値</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
+              <td class="table-data detail">
+                <span class="table-data-text">{{ list.text }}</span>
+              </td>
+              <td class="table-data number vocal">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number dance">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number visual">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number count">
+                <span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span>
+              </td>
+              <td class="table-data number count">
+                <span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span>
+              </td>
+            </tr>
+            <tr v-for="list in abilityExtraParameterUpListAll" :key="list" v-show="Object.keys(basicData['ability_list']).includes(list.ability)">
+              <td class="table-data detail">
+                <span class="table-data-text">{{ list.text }}</span>
+              </td>
+              <td class="table-data number vocal">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number dance">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number visual">
+                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number count">
+                <span class="table-data-text font-bold">0</span>
+              </td>
+              <td class="table-data number count">
+                <span class="table-data-text">0</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

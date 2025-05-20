@@ -3,7 +3,7 @@ import {onBeforeMount, ref, watch} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
-import {abilities, types} from "@/consts/supportCardConst";
+import {abilities, abilityBasicParameterUpList, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
 const emit = defineEmits(['undo-redo-disabled']);
@@ -48,6 +48,7 @@ let basicData = ref({
     sp_lesson_rate_dance: 0,
     sp_lesson_rate_visual: 0,
   },
+  ability_list: {},
 });
 
 let undoList = ref([JSON.stringify(data)]);
@@ -87,32 +88,61 @@ const updateBasicData = () => {
       sp_lesson_rate_dance: basicData.value['produce_idol']['sp_lesson_rate_dance'] * 10 + 100,
       sp_lesson_rate_visual: basicData.value['produce_idol']['sp_lesson_rate_visual'] * 10 + 100,
     };
+    basicData.value['ability_list'] = {};
 
     for (let cardIndex in basicData.value['support_card']) {
       if (basicData.value['support_card'][cardIndex] !== null) {
         let type = basicData.value['support_card'][cardIndex]['type'];
         let abilityList = ['ability_1', 'ability_2', 'ability_3', 'ability_4', 'ability_5', 'ability_6'];
         for (let abilityIndex in abilityList) {
-          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.INIT_PARAMETER_UP) {
-            basicData.value['parameter'][`init_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
-          }
-          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.PARAMETER_BONUS) {
-            basicData.value['parameter'][`bonus_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
-          }
-          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.MAX_HP_UP) {
-            basicData.value['parameter']['init_hp'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
-          }
-          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.INIT_P_POINT) {
-            basicData.value['parameter']['init_point'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
-          }
-          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.SP_LESSON_RATE) {
-            if (type === types.ASSIST) {
-              basicData.value['parameter']['sp_lesson_rate_vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
-              basicData.value['parameter']['sp_lesson_rate_dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
-              basicData.value['parameter']['sp_lesson_rate_visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
-            } else {
-              basicData.value['parameter'][`sp_lesson_rate_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
-            }
+          let abilityName = basicData.value['support_card'][cardIndex][abilityList[abilityIndex]];
+          switch (abilityName) {
+            case abilities.INIT_PARAMETER_UP:
+              basicData.value['parameter'][`init_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+              break;
+            case abilities.PARAMETER_BONUS:
+              basicData.value['parameter'][`bonus_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              break;
+            case abilities.MAX_HP_UP:
+              basicData.value['parameter']['init_hp'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+              break;
+            case abilities.INIT_P_POINT:
+              basicData.value['parameter']['init_point'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+              break;
+            case abilities.SP_LESSON_RATE:
+              if (type === types.ASSIST) {
+                basicData.value['parameter']['sp_lesson_rate_vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+                basicData.value['parameter']['sp_lesson_rate_dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+                basicData.value['parameter']['sp_lesson_rate_visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              } else {
+                basicData.value['parameter'][`sp_lesson_rate_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              }
+              break;
+            case abilities.LESSON_P_POINT_UP:
+            case abilities.CONSULTATION_DRINK_SALE:
+              if (!basicData.value['ability_list'][abilityName]) {
+                basicData.value['ability_list'][abilityName] = {vocal: 0, dance: 0, visual: 0};
+              }
+              if (type === types.ASSIST) {
+                basicData.value['ability_list'][abilityName]['vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+                basicData.value['ability_list'][abilityName]['dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+                basicData.value['ability_list'][abilityName]['visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              } else {
+                basicData.value['ability_list'][abilityName][type] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              }
+              break;
+            default:
+              if (!basicData.value['ability_list'][abilityName]) {
+                basicData.value['ability_list'][abilityName] = {vocal: 0, dance: 0, visual: 0};
+              }
+              if (type === types.ASSIST) {
+                basicData.value['ability_list'][abilityName]['vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+                basicData.value['ability_list'][abilityName]['dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+                basicData.value['ability_list'][abilityName]['visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+              } else {
+                basicData.value['ability_list'][abilityName][type] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
+              }
+              break;
           }
         }
       }
