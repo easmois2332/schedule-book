@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch} from "vue";
+import {onBeforeMount, ref, watch} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
@@ -169,6 +169,10 @@ const buttonRedo = () => {
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
+
+onBeforeMount(() => {
+  updateBasicData();
+})
 defineExpose({buttonUndo, buttonRedo});
 </script>
 

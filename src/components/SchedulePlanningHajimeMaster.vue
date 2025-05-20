@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch} from "vue";
+import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 
@@ -100,13 +100,15 @@ const scheduleData = {
   ],
 };
 
-const basicParameterUpList = abilityBasicParameterUpList;
-const extraParameterUpList = abilityExtraParameterUpList;
+const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
+const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
 
 let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
 let challengePItemMaxPushSum = ref(0);
+let basicParameterUpList = ref([]);
+let extraParameterUpList = ref([]);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -123,8 +125,8 @@ const getPItemDetail = (id) => {
 const updateChallengePItemMaxPushSum = () => {
   challengePItemMaxPushSum.value = 0;
   for (let i in inputData.value['planning']['challenge_p_item']) {
-    if (inputData.value['planning']['challenge_p_item'][i]['id'] > 0) {
-      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]['id']).event_parameter;
+    if (inputData.value['planning']['challenge_p_item'][i] > 0) {
+      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]).event_parameter;
     }
   }
 }
@@ -132,7 +134,15 @@ const changeChallengePItem = () => {
   updateChallengePItemMaxPushSum();
   updateInputData();
 }
+const updateBasicParameterUpList = () => {
 
+}
+const updateExtraParameterUpList = () => {
+
+}
+onBeforeMount( () => {
+  updateChallengePItemMaxPushSum();
+})
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
   updateChallengePItemMaxPushSum();
@@ -188,6 +198,17 @@ watch(() => props.basicData, () => {
               <td class="table-data number point"><span class="table-data-text">0</span></td>
             </tr>
             <tr>
+              <th class="table-header"></th>
+              <td class="table-data detail"><span class="table-data-text">その他上昇値</span></td>
+              <td class="table-data type"></td>
+              <td class="table-data number vocal"><span class="table-data-text">0</span></td>
+              <td class="table-data number dance"><span class="table-data-text">0</span></td>
+              <td class="table-data number visual"><span class="table-data-text">0</span></td>
+              <td class="table-data number point"><span class="table-data-text">0</span></td>
+              <td class="table-data number hp"><span class="table-data-text">0</span></td>
+              <td class="table-data number point"><span class="table-data-text">0</span></td>
+            </tr>
+            <tr>
               <th class="table-header last"></th>
               <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
               <td class="table-data type last"></td>
@@ -203,6 +224,39 @@ watch(() => props.basicData, () => {
         </div>
       </div>
       <div class="event-area">
+        <div class="challenge-p-item-area">
+          <div class="common-headline">
+            <span class="common-headline-text font-bold">チャレンジPアイテム</span>
+          </div>
+          <div class="challenge-p-item">
+            <table class="table challenge-p-item">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="i in 3" :key="i">
+                <td class="table-data detail">
+                  <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i]" @change="changeChallengePItem">
+                    <option class="table-option" value="0">チャレンジPアイテムなし</option>
+                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                  </select>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i]).event_parameter }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number count" rowspan="3" v-if="i === 1">
+                  <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div class="produce-p-item-area">
           <div class="common-headline">
             <span class="common-headline-text font-bold">Pアイテム</span>
@@ -228,7 +282,7 @@ watch(() => props.basicData, () => {
                   <span class="table-data-text" v-else></span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">0</span>
+                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i - 1]['id'] && basicData['support_card'][i - 1]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i - 1]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['produce_p_item'][i] }}</span>
                   <span class="table-data-text" v-else></span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
@@ -266,58 +320,21 @@ watch(() => props.basicData, () => {
               <tr>
                 <th class="table-header detail"><span class="table-header-text">内容</span></th>
                 <th class="table-header count"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header count"><span class="table-header-text">回数</span></th>
-                <th class="table-header count"><span class="table-header-text">合計値</span></th>
+                <th class="table-header count"><span class="table-header-text">発生</span></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="i in 6" :key="i">
                 <td class="table-data" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'detail'">
                   <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['name'] }}</span>
-                  <span class="table-data-text" v-else>サポートカード名</span>
+                  <span class="table-data-text" v-else>サポートカード未選択</span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
                   <span class="table-data-text" v-if="inputData['organization']['support_card'][i - 1]['id']">{{ basicData['support_card'][i - 1]['event_2_parameter'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text font-bold">0</span>
-                </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
-                  <span class="table-data-text">0</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="challenge-p-item-area">
-          <div class="common-headline">
-            <span class="common-headline-text font-bold">チャレンジPアイテム</span>
-          </div>
-          <div class="challenge-p-item">
-            <table class="table challenge-p-item">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header count"><span class="table-header-text">合計値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="i in 3" :key="i">
-                <td class="table-data detail">
-                  <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i - 1]['id']" @change="changeChallengePItem">
-                    <option class="table-option" value=null>チャレンジPアイテムなし</option>
-                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
-                  </select>
-                </td>
-                <td class="table-data number count">
-                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i - 1]['id'] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i - 1]['id']).event_parameter }}</span>
-                  <span class="table-data-text" v-else>0</span>
-                </td>
-                <td class="table-data number count" rowspan="3" v-if="i === 1">
-                  <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
+                <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i - 1]['id'] ? basicData['support_card'][i - 1]['type'] : 'count'">
+                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]">
                 </td>
               </tr>
               </tbody>
@@ -327,7 +344,7 @@ watch(() => props.basicData, () => {
       </div>
       <div class="parameter-up-area">
         <div class="common-headline">
-          <span class="common-headline-text font-bold">パラメータ上昇値</span>
+          <span class="common-headline-text font-bold">サポートカードアビリティ</span>
         </div>
         <div class="parameter-up">
           <div class="basic-parameter-up">
@@ -343,16 +360,16 @@ watch(() => props.basicData, () => {
               </tr>
               </thead>
               <tbody>
-              <tr v-for="basicParameterUp in basicParameterUpList" :key="basicParameterUp">
-                <td class="table-data detail"><span class="table-data-text">{{ basicParameterUp.text }}</span></td>
+              <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
+                <td class="table-data detail"><span class="table-data-text">{{ list.text }}</span></td>
                 <td class="table-data number vocal"><span class="table-data-text">0</span></td>
                 <td class="table-data number dance"><span class="table-data-text">0</span></td>
                 <td class="table-data number visual"><span class="table-data-text">0</span></td>
-                <td class="table-data number count"><span class="table-data-text" v-if="!basicParameterUp.text.includes('レッスン')">0</span></td>
-                <td class="table-data number count"><span class="table-data-text" v-if="!basicParameterUp.text.includes('レッスン')">0</span></td>
+                <td class="table-data number count"><span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span></td>
+                <td class="table-data number count"><span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span></td>
               </tr>
-              <tr v-for="extraParameterUp in extraParameterUpList" :key="extraParameterUp">
-                <td class="table-data detail"><span class="table-data-text">{{ extraParameterUp.text }}</span></td>
+              <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
+                <td class="table-data detail"><span class="table-data-text">{{ list.text }}</span></td>
                 <td class="table-data number vocal"><span class="table-data-text">0</span></td>
                 <td class="table-data number dance"><span class="table-data-text">0</span></td>
                 <td class="table-data number visual"><span class="table-data-text">0</span></td>

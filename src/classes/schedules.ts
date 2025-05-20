@@ -218,21 +218,27 @@ export default class Schedules {
                     type: null,
                 },
             },
-            produce_p_item: [
-            ],
-            support_card_event: [
-            ],
-            challenge_p_item: [
-                {
-                    id: null
-                },
-                {
-                    id: null
-                },
-                {
-                    id: null
-                },
-            ],
+            produce_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                6: 0,
+            },
+            support_card_event: {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+                6: false,
+            },
+            challenge_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+            }
         }
     }
 }
