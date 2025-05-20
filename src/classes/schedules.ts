@@ -154,7 +154,7 @@ export default class Schedules {
                     type: null,
                 },
                 5: {
-                    schedule_detail: 'sp_lesson:90',
+                    schedule_detail: 'sp_lesson',
                     type: 'vocal',
                 },
                 6: {
@@ -162,15 +162,15 @@ export default class Schedules {
                     type: null,
                 },
                 7: {
-                    schedule_detail: 'push_lesson:90',
+                    schedule_detail: 'push_lesson',
                     type: 'vocal',
                 },
                 7.5: {
-                    schedule_detail: 'push_bonus:90',
+                    schedule_detail: 'push_bonus',
                     type: null,
                 },
                 8: {
-                    schedule_detail: 'exam_1:20',
+                    schedule_detail: 'exam_1',
                     type: null,
                 },
                 9: {
@@ -182,7 +182,7 @@ export default class Schedules {
                     type: 'vocal',
                 },
                 11: {
-                    schedule_detail: 'sp_lesson:170',
+                    schedule_detail: 'sp_lesson',
                     type: 'vocal',
                 },
                 12: {
@@ -194,11 +194,11 @@ export default class Schedules {
                     type: null,
                 },
                 14: {
-                    schedule_detail: 'sp_lesson:200',
+                    schedule_detail: 'sp_lesson',
                     type: 'vocal',
                 },
                 15: {
-                    schedule_detail: 'sp_lesson:220',
+                    schedule_detail: 'sp_lesson',
                     type: 'vocal',
                 },
                 16: {
@@ -206,15 +206,15 @@ export default class Schedules {
                     type: null,
                 },
                 17: {
-                    schedule_detail: 'push_lesson:165',
+                    schedule_detail: 'push_lesson',
                     type: 'vocal',
                 },
                 17.5: {
-                    schedule_detail: 'push_bonus:145',
+                    schedule_detail: 'push_bonus',
                     type: null,
                 },
                 18: {
-                    schedule_detail: 'exam_2:30',
+                    schedule_detail: 'exam_2',
                     type: null,
                 },
             },

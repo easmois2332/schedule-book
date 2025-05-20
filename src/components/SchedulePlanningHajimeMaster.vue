@@ -8,96 +8,97 @@ const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
 
+const maxParameter = 1800;
 const scheduleData = {
-  1: [
-    {value: 'class:50', text: '授業 +50'},
-    {value: 'class:25', text: '授業 +25'},
-  ],
-  2: [
-    {value: 'class:50', text: '授業 +50'},
-    {value: 'class:25', text: '授業 +25'},
-  ],
-  3: [
-    {value: 'gift', text: '活動支給'},
-    {value: 'outing:rng', text: 'お出かけ(ランダム)'},
-  ],
-  4: [
-    {value: 'consultation', text: '相談'},
-    {value: 'outing:rng', text: 'お出かけ(ランダム)'},
-  ],
-  5: [
-    {value: 'sp_lesson:90', text: 'SPレッスン'},
-    {value: 'lesson:60', text: 'レッスン'},
-  ],
-  6: [
-    {value: 'gift', text: '活動支給'},
-    {value: 'consultation', text: '相談'},
-    {value: 'outing:rng', text: 'お出かけ(ランダム)'},
-    {value: 'rest', text: '休む'},
-  ],
-  7: [
-    {value: 'push_lesson:90', text: '追い込みレッスン'},
-  ],
-  7.5: [
-    {value: 'push_bonus:90', text: '追い込みボーナス'},
-  ],
-  8: [
-    {value: 'exam_1:20', text: '中間試験'},
-  ],
-  9: [
-    {value: 'consultation', text: '相談'},
-    {value: 'gift:rng', text: '活動支給(ランダム)'},
-    {value: 'outing:rng', text: 'お出かけ(ランダム)'},
-    {value: 'rest', text: '休む'},
-  ],
-  10: [
-    {value: 'class:80', text: '授業 +80'},
-    {value: 'class:55', text: '授業 +55'},
-    {value: 'class:30', text: '授業 +30'},
-    {value: 'rest', text: '休む'},
-  ],
-  11: [
-    {value: 'sp_lesson:170', text: 'SPレッスン'},
-    {value: 'lesson:110', text: 'レッスン'},
-    {value: 'rest', text: '休む'},
-  ],
-  12: [
-    {value: 'class:110', text: '授業 +110'},
-    {value: 'class:45', text: '授業 +45'},
-    {value: 'rest', text: '休む'},
-  ],
-  13: [
-    {value: 'gift', text: '活動支給'},
-    {value: 'outing', text: 'お出かけ'},
-    {value: 'rest', text: '休む'},
-  ],
-  14: [
-    {value: 'sp_lesson:200', text: 'SPレッスン'},
-    {value: 'lesson:120', text: 'レッスン'},
-    {value: 'rest', text: '休む'},
-  ],
-  15: [
-    {value: 'sp_lesson:220', text: 'SPレッスン'},
-    {value: 'lesson:150', text: 'レッスン'},
-    {value: 'class:110', text: '授業 +110'},
-    {value: 'class:45', text: '授業 +45'},
-    {value: 'rest', text: '休む'},
-  ],
-  16: [
-    {value: 'gift', text: '活動支給'},
-    {value: 'outing', text: 'お出かけ'},
-    {value: 'consultation', text: '相談'},
-    {value: 'rest', text: '休む'},
-  ],
-  17: [
-    {value: 'push_lesson:165', text: '追い込みレッスン'},
-  ],
-  17.5: [
-    {value: 'push_bonus:145', text: '追い込みボーナス'},
-  ],
-  18: [
-    {value: 'exam_2:30', text: '最終試験'},
-  ],
+  1: {
+    'class:50': {value: 'class:50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    'class:25': {value: 'class:25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+  },
+  2: {
+    'class:50': {value: 'class:50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    'class:25': {value: 'class:25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+  },
+  3: {
+    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
+    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+  },
+  4: {
+    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+  },
+  5: {
+    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
+    'lesson': {value: 'lesson', text: 'レッスン', parameter: 60, point: 14, hp: 0},
+  },
+  6: {
+    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
+    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  7: {
+    'push_lesson': {value: 'push_lesson', text: '追い込みレッスン', parameter: 90, point: 28, hp: 0},
+  },
+  7.5: {
+    'push_bonus': {value: 'push_bonus', text: '追い込みボーナス', parameter: 90, point: 0, hp: 0},
+  },
+  8: {
+    'exam_1': {value: 'exam_1', text: '中間試験', parameter: 20, point: 125, hp: 0},
+  },
+  9: {
+    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    'gift:rng': {value: 'gift:rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
+    'outing:rng': {value: 'outing:rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  10: {
+    'class:80': {value: 'class:80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
+    'class:55': {value: 'class:55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
+    'class:30': {value: 'class:30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  11: {
+    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 170, point: 28, hp: 0},
+    'lesson': {value: 'lesson', text: 'レッスン', parameter: 110, point: 14, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  12: {
+    'class:110': {value: 'class:110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
+    'class:45': {value: 'class:45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  13: {
+    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
+    'outing': {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  14: {
+    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 200, point: 28, hp: 0},
+    'lesson': {value: 'lesson', text: 'レッスン', parameter: 120, point: 14, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  15: {
+    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
+    'lesson': {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
+    'class:110': {value: 'class:110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
+    'class:45': {value: 'class:45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  16: {
+    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
+    'outing': {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+  },
+  17: {
+    'push_lesson': {value: 'push_lesson', text: '追い込みレッスン', parameter: 165, point: 0, hp: 0},
+  },
+  17.5: {
+    'push_bonus': {value: 'push_bonus', text: '追い込みボーナス', parameter: 145, point: 0, hp: 0},
+  },
+  18: {
+    'exam_2': {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
+  },
 };
 
 const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
@@ -106,8 +107,11 @@ const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
 let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
+let scheduleDetailData = ref({});
 let challengePItemMaxPushSum = ref(0);
 
+const updateScheduleDetailData = () => {
+}
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
 }
@@ -168,12 +172,14 @@ watch(() => props.basicData, () => {
             </thead>
             <tbody>
             <tr v-for="i in [1,2,3,4,5,6,7,7.5,8,9,10,11,12,13,14,15,16,17,17.5,18]" :key="i">
-              <th class="table-header"><span class="table-header-text" v-if="Number.isInteger(i)">{{ i }}</span></th>
+              <th class="table-header">
+                <span class="table-header-text" v-if="Number.isInteger(i)">{{ i }}</span>
+              </th>
               <td class="table-data detail">
-                <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="scheduleData[i].length > 1" @change="updateInputData">
-                  <option class="table-option" v-for="option in scheduleData[i]" v-bind:class="{'rng': option.value.includes(':rng')}" v-bind:value="option.value">{{ option.text }}</option>
+                <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateInputData">
+                  <option class="table-option" v-for="option in scheduleData[i]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
-                <span class="table-data-text" v-else>{{ scheduleData[i][0]['text'] }}</span>
+                <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
               </td>
               <td class="table-data type">
                 <select class="table-select" v-model="inputData['planning']['schedule'][i]['type']" v-if="inputData['planning']['schedule'][i]['schedule_detail'].includes('lesson') || inputData['planning']['schedule'][i]['schedule_detail'].includes('class')" @change="updateInputData">
