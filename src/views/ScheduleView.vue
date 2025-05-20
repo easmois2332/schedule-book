@@ -88,51 +88,51 @@ const updateBasicData = () => {
       sp_lesson_rate_visual: basicData.value['produce_idol']['sp_lesson_rate_visual'] * 10 + 100,
     };
 
-    for (let i in basicData.value['support_card']) {
-      if (basicData.value['support_card'][i] !== null) {
-        let type = basicData.value['support_card'][i]['type'];
+    for (let cardIndex in basicData.value['support_card']) {
+      if (basicData.value['support_card'][cardIndex] !== null) {
+        let type = basicData.value['support_card'][cardIndex]['type'];
         let abilityList = ['ability_1', 'ability_2', 'ability_3', 'ability_4', 'ability_5', 'ability_6'];
         for (let abilityIndex in abilityList) {
-          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_PARAMETER_UP) {
-            basicData.value['parameter'][`init_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.INIT_PARAMETER_UP) {
+            basicData.value['parameter'][`init_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.PARAMETER_BONUS) {
-            basicData.value['parameter'][`bonus_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.PARAMETER_BONUS) {
+            basicData.value['parameter'][`bonus_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
           }
-          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.MAX_HP_UP) {
-            basicData.value['parameter']['init_hp'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.MAX_HP_UP) {
+            basicData.value['parameter']['init_hp'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.INIT_P_POINT) {
-            basicData.value['parameter']['init_point'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`];
+          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.INIT_P_POINT) {
+            basicData.value['parameter']['init_point'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
           }
-          if (basicData.value['support_card'][i][abilityList[abilityIndex]] === abilities.SP_LESSON_RATE) {
+          if (basicData.value['support_card'][cardIndex][abilityList[abilityIndex]] === abilities.SP_LESSON_RATE) {
             if (type === types.ASSIST) {
-              basicData.value['parameter']['sp_lesson_rate_vocal'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
-              basicData.value['parameter']['sp_lesson_rate_dance'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
-              basicData.value['parameter']['sp_lesson_rate_visual'] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter']['sp_lesson_rate_visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
             } else {
-              basicData.value['parameter'][`sp_lesson_rate_${type}`] += basicData.value['support_card'][i][`${abilityList[abilityIndex]}_parameter`] * 10;
+              basicData.value['parameter'][`sp_lesson_rate_${type}`] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`] * 10;
             }
           }
         }
       }
     }
 
-    for (let i in inputData.value['organization']['produce_memory']) {
-      for (let j in inputData.value['organization']['produce_memory'][i]) {
-        let type = inputData.value['organization']['produce_memory'][i][j]['ability_type'];
+    for (let memoryIndex in inputData.value['organization']['produce_memory']) {
+      for (let abilityIndex in inputData.value['organization']['produce_memory'][memoryIndex]) {
+        let type = inputData.value['organization']['produce_memory'][memoryIndex][abilityIndex]['ability_type'];
         switch (type) {
           case 'vocal':
           case 'dance':
           case 'visual':
-            if (inputData.value['organization']['produce_memory'][i][j]['ability_value'] >= 10) {
-              basicData.value['parameter'][`init_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
+            if (inputData.value['organization']['produce_memory'][memoryIndex][abilityIndex]['ability_value'] >= 10) {
+              basicData.value['parameter'][`init_${type}`] += inputData.value['organization']['produce_memory'][memoryIndex][abilityIndex]['ability_value'];
             } else {
-              basicData.value['parameter'][`bonus_${type}`] += inputData.value['organization']['produce_memory'][i][j]['ability_value'] * 10;
+              basicData.value['parameter'][`bonus_${type}`] += inputData.value['organization']['produce_memory'][memoryIndex][abilityIndex]['ability_value'] * 10;
             }
             break;
           case 'point':
-            basicData.value['parameter']['init_point'] += inputData.value['organization']['produce_memory'][i][j]['ability_value'];
+            basicData.value['parameter']['init_point'] += inputData.value['organization']['produce_memory'][memoryIndex][abilityIndex]['ability_value'];
             break;
           case 'hp-recover':
           default:
