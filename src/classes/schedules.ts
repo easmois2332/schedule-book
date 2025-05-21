@@ -50,27 +50,27 @@ export default class Schedules {
                 support_card: {
                     1: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                     2: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                     3: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                     4: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                     5: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                     6: {
                         id: null,
-                        level: null
+                        level: null,
                     },
                 },
                 produce_memory: {
@@ -130,7 +130,7 @@ export default class Schedules {
                             ability_value: 20,
                         },
                     },
-                }
+                },
             },
             planning: planning
         }
@@ -166,10 +166,6 @@ export default class Schedules {
                 7: {
                     schedule_detail: 'push_lesson',
                     type: 'vocal',
-                },
-                7.5: {
-                    schedule_detail: 'push_bonus',
-                    type: null,
                 },
                 8: {
                     schedule_detail: 'exam_1',
@@ -211,10 +207,6 @@ export default class Schedules {
                     schedule_detail: 'push_lesson',
                     type: 'vocal',
                 },
-                17.5: {
-                    schedule_detail: 'push_bonus',
-                    type: null,
-                },
                 18: {
                     schedule_detail: 'exam_2',
                     type: null,
@@ -226,7 +218,7 @@ export default class Schedules {
                 3: 0,
             },
             produce_p_item: {
-                1: 0,
+                1: 2,
             },
             support_card_p_item: {
                 1: 0,
@@ -244,7 +236,8 @@ export default class Schedules {
                 5: false,
                 6: false,
             },
-            support_card_ability: {}
+            support_card_ability: {
+            },
         }
     }
 }

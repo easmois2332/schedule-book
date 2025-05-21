@@ -10,6 +10,7 @@ const emit = defineEmits(['undo-redo-disabled']);
 const id = props.scheduleData.id;
 const idols = props.idols;
 const supportCards = props.supportCards;
+const planningViewRef = ref();
 
 const produceTypeDisplayList = {
   hajime_master: '『初』マスター',
@@ -57,6 +58,7 @@ let redoList = ref([]);
 const updateInputData = (data) => {
   inputData.value = data;
   updateBasicData();
+  planningViewRef.value.updateScheduleDetailData();
   updateHistory();
 }
 const updateBasicData = () => {
@@ -119,6 +121,7 @@ const updateBasicData = () => {
               }
               break;
             case abilities.LESSON_P_POINT_UP:
+            case abilities.SP_LESSON_P_POINT_UP:
             case abilities.CONSULTATION_DRINK_SALE:
               if (!basicData.value['ability_list'][abilityName]) {
                 basicData.value['ability_list'][abilityName] = {vocal: 0, dance: 0, visual: 0};
@@ -135,7 +138,7 @@ const updateBasicData = () => {
               if (!basicData.value['ability_list'][abilityName]) {
                 basicData.value['ability_list'][abilityName] = {vocal: 0, dance: 0, visual: 0};
               }
-              if (type === types.ASSIST) {
+              if (type === types.ASSIST || abilityName === abilities.GIFT_HP_RECOVER || abilityName === abilities.EXAM_HP_RECOVER) {
                 basicData.value['ability_list'][abilityName]['vocal'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
                 basicData.value['ability_list'][abilityName]['dance'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
                 basicData.value['ability_list'][abilityName]['visual'] += basicData.value['support_card'][cardIndex][`${abilityList[abilityIndex]}_parameter`];
@@ -169,6 +172,25 @@ const updateBasicData = () => {
             break;
         }
       }
+    }
+  } else {
+    basicData.value = {
+      produce_idol: [],
+      support_card: [],
+      parameter: {
+        init_vocal: 0,
+        init_dance: 0,
+        init_visual: 0,
+        init_hp: 0,
+        init_point: 0,
+        bonus_vocal: 0,
+        bonus_dance: 0,
+        bonus_visual: 0,
+        sp_lesson_rate_vocal: 0,
+        sp_lesson_rate_dance: 0,
+        sp_lesson_rate_visual: 0,
+      },
+      ability_list: {},
     }
   }
 }
@@ -226,6 +248,7 @@ defineExpose({buttonUndo, buttonRedo});
         :is="produceTypeComponentList[produceType]['planning']"
         :input-data="inputData"
         :basic-data="basicData"
+        ref="planningViewRef"
         @input-data-update="updateInputData"
     />
   </div>

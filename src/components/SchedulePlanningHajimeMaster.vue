@@ -1,7 +1,7 @@
 <script setup>
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
-import {abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
+import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -11,93 +11,87 @@ const items = new Items();
 const maxParameter = 1800;
 const scheduleData = {
   1: {
-    'class_50': {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    'class_25': {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
   },
   2: {
-    'class_50': {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    'class_25': {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
+    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
   },
   3: {
-    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   4: {
-    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   5: {
-    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
-    'lesson': {value: 'lesson', text: 'レッスン', parameter: 60, point: 14, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
+    lesson: {value: 'lesson', text: 'レッスン', parameter: 60, point: 14, hp: 0},
   },
   6: {
-    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   7: {
-    'push_lesson': {value: 'push_lesson', text: '追い込みレッスン', parameter: 90, point: 28, hp: 0},
-  },
-  7.5: {
-    'push_bonus': {value: 'push_bonus', text: '追い込みボーナス', parameter: 90, point: 0, hp: 0},
+    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 90, bonus_parameter: 90, point: 28, hp: 0},
   },
   8: {
-    'exam_1': {value: 'exam_1', text: '中間試験', parameter: 20, point: 125, hp: 0},
+    exam_1: {value: 'exam_1', text: '中間試験', parameter: 20, point: 125, hp: 0},
   },
   9: {
-    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'gift_rng': {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
-    'outing_rng': {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    gift_rng: {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   10: {
-    'class_80': {value: 'class_80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
-    'class_55': {value: 'class_55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
-    'class_30': {value: 'class_30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    class_80: {value: 'class_80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
+    class_55: {value: 'class_55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
+    class_30: {value: 'class_30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   11: {
-    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 170, point: 28, hp: 0},
-    'lesson': {value: 'lesson', text: 'レッスン', parameter: 110, point: 14, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 170, point: 28, hp: 0},
+    lesson: {value: 'lesson', text: 'レッスン', parameter: 110, point: 14, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   12: {
-    'class_110': {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
-    'class_45': {value: 'class_45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
+    class_45: {value: 'class_45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   13: {
-    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
-    'outing': {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   14: {
-    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 200, point: 28, hp: 0},
-    'lesson': {value: 'lesson', text: 'レッスン', parameter: 120, point: 14, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 200, point: 28, hp: 0},
+    lesson: {value: 'lesson', text: 'レッスン', parameter: 120, point: 14, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   15: {
-    'sp_lesson': {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
-    'lesson': {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
-    'class_110': {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
-    'class_45': {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
+    lesson: {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
+    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
+    class_45: {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   16: {
-    'gift': {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
-    'outing': {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
-    'consultation': {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    'rest': {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   17: {
-    'push_lesson': {value: 'push_lesson', text: '追い込みレッスン', parameter: 165, point: 0, hp: 0},
-  },
-  17.5: {
-    'push_bonus': {value: 'push_bonus', text: '追い込みボーナス', parameter: 145, point: 0, hp: 0},
+    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 165, bonus_parameter: 145, point: 0, hp: 0},
   },
   18: {
-    'exam_2': {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
+    exam_2: {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
   },
 };
 
@@ -110,10 +104,224 @@ let basicData = ref(props.basicData);
 let scheduleDetailData = ref({});
 let challengePItemMaxPushSum = ref(0);
 
+const getBonusIncludedParameter = (parameter, parameterBonus) => {
+  return Math.floor(
+      parameter +
+      parameter * (parameterBonus / 10).toFixed(1) / 100
+  );
+};
 const updateScheduleDetailData = () => {
+  if (basicData.value['produce_idol']['id']) {
+    let maxHp = basicData.value['parameter']['init_hp'];
+    let parameter = {
+      vocal: basicData.value['parameter']['init_vocal'],
+      dance: basicData.value['parameter']['init_dance'],
+      visual: basicData.value['parameter']['init_visual'],
+      point: basicData.value['parameter']['init_point'],
+      hp: basicData.value['parameter']['init_hp'],
+    }
+
+    for (let week = 1; week <= 18; week++) {
+      let inputScheduleData = inputData.value['planning']['schedule'][week];
+      let basicParameter = scheduleData[week][inputScheduleData['schedule_detail']]['parameter'];
+      let basicPoint = scheduleData[week][inputScheduleData['schedule_detail']]['point'];
+      let pointUpRate = 0;
+
+      // スケジュール内容での獲得パラメータ
+      if (inputScheduleData['schedule_detail'] === 'lesson' || inputScheduleData['schedule_detail'] === 'sp_lesson') {
+        basicParameter += challengePItemMaxPushSum.value;
+        if (inputScheduleData['type'] !== null) {
+          parameter[inputScheduleData['type']] += getBonusIncludedParameter(basicParameter, basicData.value['parameter'][`bonus_${inputScheduleData['type']}`]);
+        }
+      } else if (inputScheduleData['schedule_detail'] === 'push_lesson') {
+        if (inputScheduleData['type'] === 'vocal') {
+          parameter['vocal'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
+        } else if (inputScheduleData['type'] === 'dance') {
+          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
+        } else if (inputScheduleData['type'] === 'visual') {
+          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_visual']);
+        }
+      } else {
+        if (inputScheduleData['type'] !== null) {
+          parameter[inputScheduleData['type']] += basicParameter;
+        } else {
+          parameter['vocal'] += basicParameter;
+          parameter['dance'] += basicParameter;
+          parameter['visual'] += basicParameter;
+        }
+        parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
+        parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
+      }
+
+      // サポートカードアビリティでの獲得パラメータ
+      switch (inputScheduleData['schedule_detail']) {
+        case 'lesson':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
+            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
+          }
+          if (basicData.value['ability_list'][abilities.NORMAL_LESSON_PARAMETER_UP]) {
+            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.NORMAL_LESSON_PARAMETER_UP][inputScheduleData['type']];
+          }
+
+          // Pポイント
+          if (basicData.value['ability_list'][abilities.LESSON_P_POINT_UP]) {
+            pointUpRate += basicData.value['ability_list'][abilities.LESSON_P_POINT_UP][inputScheduleData['type']];
+          }
+          if (pointUpRate !== 0) {
+            parameter['point'] += getBonusIncludedParameter(basicPoint, pointUpRate);
+          } else {
+            parameter['point'] += basicPoint;
+          }
+
+          // 体力
+          // TODO: 体力調整処理
+          break;
+        case 'sp_lesson':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
+            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
+          }
+          if (basicData.value['ability_list'][abilities.SP_LESSON_PARAMETER_UP]) {
+            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.SP_LESSON_PARAMETER_UP][inputScheduleData['type']];
+          }
+
+          // Pポイント
+          if (basicData.value['ability_list'][abilities.LESSON_P_POINT_UP]) {
+            pointUpRate += basicData.value['ability_list'][abilities.LESSON_P_POINT_UP][inputScheduleData['type']];
+          }
+          if (basicData.value['ability_list'][abilities.SP_LESSON_P_POINT_UP]) {
+            pointUpRate += basicData.value['ability_list'][abilities.SP_LESSON_P_POINT_UP][inputScheduleData['type']];
+          }
+          if (pointUpRate !== 0) {
+            parameter['point'] += getBonusIncludedParameter(basicPoint, pointUpRate);
+          } else {
+            parameter['point'] += basicPoint;
+          }
+
+          // 体力
+          // TODO: 体力調整処理
+          if (basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER]) {
+            parameter['hp'] += basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER][inputScheduleData['type']];
+          }
+          break;
+        case 'push_lesson':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
+            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
+          }
+
+          // Pポイント
+          if (basicData.value['ability_list'][abilities.LESSON_P_POINT_UP]) {
+            pointUpRate += basicData.value['ability_list'][abilities.LESSON_P_POINT_UP][inputScheduleData['type']];
+          }
+          if (pointUpRate !== 0) {
+            parameter['point'] += getBonusIncludedParameter(basicPoint, pointUpRate);
+          } else {
+            parameter['point'] += basicPoint;
+          }
+
+          // 体力
+          // TODO: 体力調整処理
+          parameter['hp'] += Math.round(maxHp + maxHp * 0.7);
+          break;
+        case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['visual'];
+          }
+          break;
+        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]['visual'];
+          }
+
+          // 体力
+          if (basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]) {
+            parameter['hp'] -= basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]['vocal'];
+          }
+          break;
+        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['visual'];
+          }
+          break;
+        case 'consultation':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['visual'];
+          }
+          break;
+        case 'rest':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.REST_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.REST_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.REST_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.REST_PARAMETER_UP]['visual'];
+          }
+
+          // 体力
+          parameter['hp'] += Math.round(maxHp + maxHp * 0.7);
+          break;
+        case 'exam_1':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['visual'];
+          }
+
+          // 体力
+          if (basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]) {
+            parameter['hp'] -= basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]['vocal'];
+          }
+          break;
+        case 'exam_2':
+          break;
+        default:
+          break;
+      }
+
+      // TODO: Pポイント調整処理
+      // TODO: 体力調整処理
+
+      // はつぼしブレスレットでの体力消費
+      if (inputData.value['planning']['produce_p_item'][1] === 2 && week >= 8 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
+        parameter['hp'] -= 3;
+      }
+
+      parameter['hp'] = Math.min(maxHp, parameter['hp']);
+      scheduleDetailData.value[week] = {...parameter};
+      scheduleDetailData.value[week]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+    }
+  }
 }
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
+}
+const updateScheduleDetail = (week) => {
+  if (!inputData.value['planning']['schedule'][week]['schedule_detail'].includes('class') && !inputData.value['planning']['schedule'][week]['schedule_detail'].includes('lesson')) {
+    inputData.value['planning']['schedule'][week]['type'] = null;
+  } else if (inputData.value['planning']['schedule'][week]['type'] === null) {
+    inputData.value['planning']['schedule'][week]['type'] = 'vocal';
+  }
+  updateInputData();
 }
 const getBasicPItemDetail = (plan) => {
   return items.getHajimeMasterBasicItem(plan)
@@ -138,14 +346,19 @@ const changeChallengePItem = () => {
 }
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
+  updateScheduleDetailData();
 })
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
   updateChallengePItemMaxPushSum();
+  updateScheduleDetailData();
 });
 watch(() => props.basicData, () => {
   basicData.value = props.basicData;
+  updateChallengePItemMaxPushSum();
+  updateScheduleDetailData();
 });
+defineExpose({updateScheduleDetailData});
 </script>
 
 <template>
@@ -171,12 +384,12 @@ watch(() => props.basicData, () => {
             </tr>
             </thead>
             <tbody>
-            <tr v-for="i in [1,2,3,4,5,6,7,7.5,8,9,10,11,12,13,14,15,16,17,17.5,18]" :key="i">
+            <tr v-for="i in 18" :key="i">
               <th class="table-header">
-                <span class="table-header-text" v-if="Number.isInteger(i)">{{ i }}</span>
+                <span class="table-header-text">{{ i }}</span>
               </th>
               <td class="table-data detail">
-                <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateInputData">
+                <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateScheduleDetail(i)">
                   <option class="table-option" v-for="option in scheduleData[i]" v-bind:value="option.value">{{ option.text }}</option>
                 </select>
                 <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
@@ -188,12 +401,30 @@ watch(() => props.basicData, () => {
                   <option class="table-option visual" value="visual">ビジュアル</option>
                 </select>
               </td>
-              <td class="table-data number vocal"><span class="table-data-text">0</span></td>
-              <td class="table-data number dance"><span class="table-data-text">0</span></td>
-              <td class="table-data number visual"><span class="table-data-text">0</span></td>
-              <td class="table-data number point"><span class="table-data-text">0</span></td>
-              <td class="table-data number hp"><span class="table-data-text">0</span></td>
-              <td class="table-data number point"><span class="table-data-text">0</span></td>
+              <td class="table-data number vocal">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['vocal'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number dance">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['dance'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number visual">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['visual'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number point">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number hp">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['hp'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number point">
+                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['point'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
             </tr>
             <tr>
               <th class="table-header"></th>
@@ -239,7 +470,7 @@ watch(() => props.basicData, () => {
               <tr v-for="i in 3" :key="i">
                 <td class="table-data detail">
                   <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i]" @change="changeChallengePItem">
-                    <option class="table-option" value="0">チャレンジPアイテムなし</option>
+                    <option class="table-option" v-bind:value="0">チャレンジPアイテムなし</option>
                     <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
                   </select>
                 </td>
@@ -290,7 +521,7 @@ watch(() => props.basicData, () => {
               <tr>
                 <td class="table-data detail">
                   <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
-                    <option class="table-option" value="0">はつぼしブレスレット</option>
+                    <option class="table-option" v-bind:value="2">はつぼしブレスレット</option>
                     <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
                   </select>
                 </td>
@@ -332,7 +563,7 @@ watch(() => props.basicData, () => {
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" @change="updateInputData">
+                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" v-show="inputData['organization']['support_card'][i]['id']" @change="updateInputData">
                 </td>
               </tr>
               </tbody>
