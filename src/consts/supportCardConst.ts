@@ -80,8 +80,16 @@ export const abilities = {
     MENTAL_CARD_PARAMETER_UP: 'mental_card_parameter_up',
     // 好調効果のスキルカード獲得時パラメータ上昇
     KOTYO_CARD_PARAMETER_UP: 'kotyo_card_parameter_up',
+    // 集中効果のスキルカード獲得時パラメータ上昇
+    SYUTYU_CARD_PARAMETER_UP: 'syutyu_card_parameter_up',
+    // やる気効果のスキルカード獲得時パラメータ上昇
+    YARUKI_CARD_PARAMETER_UP: 'yaruki_card_parameter_up',
     // 好印象効果のスキルカード獲得時パラメータ上昇
     KOINSYO_CARD_PARAMETER_UP: 'koinsyo_card_parameter_up',
+    // 強気効果のスキルカード獲得時パラメータ上昇
+    TUYOKI_CARD_PARAMETER_UP: 'tuyoki_card_parameter_up',
+    // 全力効果のスキルカード獲得時パラメータ上昇
+    ZENRYOKU_CARD_PARAMETER_UP: 'zenryoku_card_parameter_up',
     // 温存効果のスキルカード獲得時パラメータ上昇
     ONZON_CARD_PARAMETER_UP: 'onzon_card_parameter_up',
     // スキルカード強化時パラメータ上昇
@@ -92,10 +100,16 @@ export const abilities = {
     MENTAL_CARD_STRENGTHEN_PARAMETER_UP: 'mental_card_strengthen_parameter_up',
     // スキルカード削除時パラメータ上昇
     CARD_DELETE_PARAMETER_UP: 'card_delete_parameter_up',
-    // メンタルカード削除時パラメータ上昇
+    // アクティブスキルカード削除時パラメータ上昇
+    ACTIVE_CARD_DELETE_PARAMETER_UP: 'active_card_delete_parameter_up',
+    // メンタルスキルカード削除時パラメータ上昇
     MENTAL_CARD_DELETE_PARAMETER_UP: 'mental_card_delete_parameter_up',
     // スキルカードチェンジ時パラメータ上昇
     CARD_CHANGE_PARAMETER_UP: 'card_change_parameter_up',
+    // アクティブスキルカードチェンジ時パラメータ上昇
+    ACTIVE_CARD_ARD_CHANGE_PARAMETER_UP: 'active_card_card_change_parameter_up',
+    // メンタルスキルカードチェンジ時パラメータ上昇
+    MENTAL_CARD_CARD_CHANGE_PARAMETER_UP: 'mental_card_card_change_parameter_up',
     // 授業・営業終了時パラメータ上昇
     CLASS_PARAMETER_UP: 'class_parameter_up',
     // 活動支給・差し入れ選択時パラメータ上昇
@@ -208,8 +222,24 @@ export const abilityExtraParameterUpList = [
         text: '好調効果のスキルカード獲得時',
     },
     {
+        ability: abilities.SYUTYU_CARD_PARAMETER_UP,
+        text: '集中効果のスキルカード獲得時',
+    },
+    {
         ability: abilities.KOINSYO_CARD_PARAMETER_UP,
         text: '好印象効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.YARUKI_CARD_PARAMETER_UP,
+        text: 'やる気効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.TUYOKI_CARD_PARAMETER_UP,
+        text: '強気効果のスキルカード獲得時',
+    },
+    {
+        ability: abilities.ZENRYOKU_CARD_PARAMETER_UP,
+        text: '全力効果のスキルカード獲得時',
     },
     {
         ability: abilities.ONZON_CARD_PARAMETER_UP,
@@ -232,8 +262,12 @@ export const abilityExtraParameterUpList = [
         text: 'スキルカード削除時',
     },
     {
+        ability: abilities.ACTIVE_CARD_DELETE_PARAMETER_UP,
+        text: 'アクティブスキルカード削除時',
+    },
+    {
         ability: abilities.MENTAL_CARD_DELETE_PARAMETER_UP,
-        text: 'メンタルカード削除時',
+        text: 'メンタルスキルカード削除時',
     },
     {
         ability: abilities.CARD_CHANGE_PARAMETER_UP,

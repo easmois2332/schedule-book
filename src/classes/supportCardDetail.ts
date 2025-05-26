@@ -25,12 +25,17 @@ export default class SupportCardDetail {
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
         this.calcKotyoCardParameterUp();
+        this.calcSyutyuCardParameterUp();
         this.calcKoinsyoCardParameterUp();
+        this.calcYarukiCardParameterUp();
+        this.calcTuyokiCardParameterUp();
+        this.calcZenryokuCardParameterUp();
         this.calcOnzonCardParameterUp();
         this.calcCardStrengthenParameterUp();
         this.calcActiveCardStrengthenParameterUp();
         this.calcMentalCardStrengthenParameterUp();
         this.calcCardDeleteParameterUp();
+        this.calcActiveCardDeleteParameterUp();
         this.calcMentalCardDeleteParameterUp();
         this.calcCardChangeParameterUp();
         this.calcClassParameterUp();
@@ -450,7 +455,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * アクティブカード獲得時パラメータ上昇
+     * アクティブスキルカード獲得時パラメータ上昇
      */
     private calcActiveCardParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [1, 2, 3], ssr_event: [0, 0, 0]};
@@ -469,7 +474,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * メンタルカード獲得時パラメータ上昇
+     * メンタルスキルカード獲得時パラメータ上昇
      */
     private calcMentalCardParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [1, 2, 3], ssr_event: [1, 2, 2]};
@@ -507,6 +512,25 @@ export default class SupportCardDetail {
     }
 
     /**
+     * 集中効果カード獲得時パラメータ上昇
+     */
+    private calcSyutyuCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.SYUTYU_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `集中効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.SYUTYU_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `集中効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.SYUTYU_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `集中効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
      * 好印象効果カード獲得時パラメータ上昇
      */
     private calcKoinsyoCardParameterUp() {
@@ -522,6 +546,63 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.KOINSYO_CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `好印象効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * やる気効果カード獲得時パラメータ上昇
+     */
+    private calcYarukiCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.YARUKI_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `やる気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.YARUKI_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `やる気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.YARUKI_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `やる気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 強気効果カード獲得時パラメータ上昇
+     */
+    private calcTuyokiCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.TUYOKI_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `強気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.TUYOKI_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `強気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.TUYOKI_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `強気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 全力効果カード獲得時パラメータ上昇
+     */
+    private calcZenryokuCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.ZENRYOKU_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `全力効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.ZENRYOKU_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `全力効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.ZENRYOKU_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `全力効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 
@@ -564,7 +645,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * アクティブカード強化時パラメータ上昇
+     * アクティブスキルカード強化時パラメータ上昇
      */
     private calcActiveCardStrengthenParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [4, 6, 6], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
@@ -583,7 +664,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * メンタルカード強化時パラメータ上昇
+     * メンタルスキルカード強化時パラメータ上昇
      */
     private calcMentalCardStrengthenParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [4, 6, 6], ssr: [5, 7, 9], ssr_event: [5, 7, 7]};
@@ -621,7 +702,26 @@ export default class SupportCardDetail {
     }
 
     /**
-     * メンタルカード削除時パラメータ上昇
+     * アクティブスキルカード削除時パラメータ上昇
+     */
+    private calcActiveCardDeleteParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 17, 22], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.ACTIVE_CARD_DELETE_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `アクティブスキルカード削除時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.ACTIVE_CARD_DELETE_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `アクティブスキルカード削除時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.ACTIVE_CARD_DELETE_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `アクティブスキルカード削除時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * メンタルスキルカード削除時パラメータ上昇
      */
     private calcMentalCardDeleteParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 17, 22], ssr_event: [0, 0, 0]};
