@@ -1516,7 +1516,127 @@ export default class IdolDetail {
     }
 
     private calcParameterMisuzu() {
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
 
+        // Pアイドル固有値
+        switch (this.pIdol.rarity) {
+            case rarities.RARITY_SSR:
+            case rarities.RARITY_SSR_EVENT:
+                initHp = 27;
+                initVo = 65;
+                initDa = 70;
+                initVi = 80;
+                bonusVo = 220;
+                bonusDa = 100;
+                bonusVi = 160;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initHp += 3;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 20;
+                    initDa += 20;
+                    initVi += 20;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 40;
+                    bonusVi += 20;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            case rarities.RARITY_SR:
+                initHp = 27;
+                initVo = 60;
+                initDa = 65;
+                initVi = 75;
+                bonusVo = 210;
+                bonusDa = 90;
+                bonusVi = 150;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initHp += 3;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 20;
+                    initDa += 20;
+                    initVi += 20;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 40;
+                    bonusVi += 20;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            case rarities.RARITY_R:
+                initHp = 27;
+                initVo = 55;
+                initDa = 60;
+                initVi = 70;
+                bonusVo = 200;
+                bonusDa = 80;
+                bonusVi = 140;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initHp += 3;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 20;
+                    initDa += 20;
+                    initVi += 20;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 40;
+                    bonusVi += 20;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            default:
+                break;
+        }
+
+        // アイドル共通値
+        if (this.idol.dear_level >= 10) {
+            initDa += 25;
+            initVi += 25;
+            bonusVo += 40;
+        }
+        if (this.idol.dear_level >= 20) {
+        }
+
+        this.pIdol.init_hp = initHp;
+        this.pIdol.init_vocal = initVo;
+        this.pIdol.init_dance = initDa;
+        this.pIdol.init_visual = initVi;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
+
+        // SPレッスン発生率
+        this.calcSpLessonRate(types.VOCAL);
     }
 
     private calcParameterUme() {

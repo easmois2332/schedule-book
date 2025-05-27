@@ -708,6 +708,18 @@
     "enable": 1
   },
   {
+    "id": 60,
+    "idol_id": 12,
+    "name": "ツキノカメ",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "zenryoku",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",
@@ -834,6 +846,18 @@
     "rarity": "sr",
     "plan": "anomaly",
     "effect": "zenryoku",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 1012,
+    "idol_id": 12,
+    "name": "ゆっくり、一歩ずつ",
+    "rarity": "sr",
+    "plan": "anomaly",
+    "effect": "tuyoki",
     "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,
@@ -1074,6 +1098,18 @@
     "rarity": "r",
     "plan": "anomaly",
     "effect": "tuyoki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 2021,
+    "idol_id": 12,
+    "name": "学園生活",
+    "rarity": "r",
+    "plan": "anomaly",
+    "effect": "zenryoku",
     "ability": "basic",
     "p_item_id": null,
     "skill_card_id": null,

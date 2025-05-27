@@ -89,8 +89,6 @@ export default class Idols {
                 let idol = idols[i];
                 if (i in dearLevelList) {
                     idol.dear_level = dearLevelList[i].dear_level;
-                } else {
-                    idol.dear_level = DEAR_MAX_LEVEL;
                 }
                 idolList.push(idol);
             }

@@ -4,6 +4,11 @@
     "sort_id": 1,
     "name": "花海 咲季",
     "first_name": "Saki",
+    "parameter_type": "balance",
+    "type_1": "visual",
+    "type_2": "dance",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -11,6 +16,11 @@
     "sort_id": 2,
     "name": "月村 手毬",
     "first_name": "Temari",
+    "parameter_type": "protrusion",
+    "type_1": "vocal",
+    "type_2": "dance",
+    "type_3": "visual",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -18,6 +28,11 @@
     "sort_id": 3,
     "name": "藤田 ことね",
     "first_name": "Kotone",
+    "parameter_type": "protrusion",
+    "type_1": "dance",
+    "type_2": "visual",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -25,6 +40,11 @@
     "sort_id": 4,
     "name": "有村 麻央",
     "first_name": "Mao",
+    "parameter_type": "protrusion",
+    "type_1": "vocal",
+    "type_2": "visual",
+    "type_3": "dance",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -32,6 +52,11 @@
     "sort_id": 5,
     "name": "葛城 リーリヤ",
     "first_name": "Lilja",
+    "parameter_type": "balance",
+    "type_1": "visual",
+    "type_2": "dance",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -39,6 +64,11 @@
     "sort_id": 6,
     "name": "倉本 千奈",
     "first_name": "China",
+    "parameter_type": "protrusion",
+    "type_1": "dance",
+    "type_2": "visual",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -46,6 +76,11 @@
     "sort_id": 7,
     "name": "紫雲 清夏",
     "first_name": "Sumika",
+    "parameter_type": "protrusion",
+    "type_1": "dance",
+    "type_2": "visual",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -53,6 +88,11 @@
     "sort_id": 8,
     "name": "篠澤 広",
     "first_name": "Hiro",
+    "parameter_type": "balance",
+    "type_1": "vocal",
+    "type_2": "dance",
+    "type_3": "visual",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -60,6 +100,11 @@
     "sort_id": 9,
     "name": "十王 星南",
     "first_name": "Sena",
+    "parameter_type": "balance",
+    "type_1": "visual",
+    "type_2": "voca",
+    "type_3": "dance",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -67,13 +112,23 @@
     "sort_id": 10,
     "name": "秦谷 美鈴",
     "first_name": "Misuzu",
-    "enable": 0
+    "parameter_type": "protrusion",
+    "type_1": "vocal",
+    "type_2": "visual",
+    "type_3": "dance",
+    "dear_level": 10,
+    "enable": 1
   },
   {
     "id": 10,
     "sort_id": 11,
     "name": "花海 佑芽",
     "first_name": "Ume",
+    "parameter_type": "balance",
+    "type_1": "dance",
+    "type_2": "vocal",
+    "type_3": "visual",
+    "dear_level": 20,
     "enable": 1
   },
   {
@@ -81,6 +136,11 @@
     "sort_id": 12,
     "name": "姫崎 莉波",
     "first_name": "Rinami",
+    "parameter_type": "balance",
+    "type_1": "visual",
+    "type_2": "dance",
+    "type_3": "vocal",
+    "dear_level": 20,
     "enable": 1
   }
 ]

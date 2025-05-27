@@ -336,7 +336,7 @@ const updateChallengePItemMaxPushSum = () => {
   challengePItemMaxPushSum.value = 0;
   for (let i in inputData.value['planning']['challenge_p_item']) {
     if (inputData.value['planning']['challenge_p_item'][i] > 0) {
-      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]).event_parameter;
+      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]).event_other;
     }
   }
 }
@@ -475,7 +475,7 @@ defineExpose({updateScheduleDetailData});
                   </select>
                 </td>
                 <td class="table-data number count">
-                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i]).event_parameter }}</span>
+                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i]).event_other }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data number count" rowspan="3" v-if="i === 1">

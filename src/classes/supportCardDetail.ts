@@ -458,7 +458,7 @@ export default class SupportCardDetail {
      * アクティブスキルカード獲得時パラメータ上昇
      */
     private calcActiveCardParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [1, 2, 3], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [1, 2, 3], ssr_event: [1, 2, 2]};
         if (this.card.ability_2 === abilities.ACTIVE_CARD_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `アクティブスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
