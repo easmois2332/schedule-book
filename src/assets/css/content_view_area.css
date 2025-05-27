@@ -962,6 +962,14 @@
                 padding-bottom: 16px;
             }
 
+            .schedule-content-area {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                grid-column-gap: 16px;
+                grid-row-gap: 16px;
+            }
+
             .schedule {
                 @media (max-width: 1000px) {
                     overflow-x: scroll;

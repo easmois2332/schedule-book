@@ -13,8 +13,8 @@ const supportCards = props.supportCards;
 const planningViewRef = ref();
 
 const produceTypeDisplayList = {
-  hajime_master: '『初』マスター',
-  nia: 'NIA',
+  hajime_master: '定期公演『初』 マスター',
+  nia: 'NEXT IDOL AUDITION プロ',
 }
 const produceTypeComponentList = {
   hajime_master: {
@@ -58,7 +58,7 @@ let redoList = ref([]);
 const updateInputData = (data) => {
   inputData.value = data;
   updateBasicData();
-  planningViewRef.value.updateScheduleDetailData();
+  planningViewRef.value.updatePlanningData();
   updateHistory();
 }
 const updateBasicData = () => {

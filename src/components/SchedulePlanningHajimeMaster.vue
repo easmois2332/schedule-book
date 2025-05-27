@@ -95,6 +95,20 @@ const scheduleData = {
     exam_2: {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
   },
 };
+const resultData = {
+  'SSS+': {rank: 'SSS+', point: 23000},
+  'SSS': {rank: 'SSS', point: 20000},
+  'SS+': {rank: 'SS+', point: 18000},
+  'SS': {rank: 'SS', point: 16000},
+  'S+': {rank: 'S+', point: 14500},
+  'S': {rank: 'S', point: 13000},
+  'A+': {rank: 'A+', point: 11500},
+  'A': {rank: 'A', point: 10000},
+  'B+': {rank: 'B+', point: 8000},
+  'B': {rank: 'B', point: 6000},
+  'C+': {rank: 'C+', point: 4500},
+  'C': {rank: 'C', point: 3000},
+};
 
 const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
 const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
@@ -103,8 +117,12 @@ let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
 let scheduleDetailData = ref({});
+let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
 
+const updateInputData = () => {
+  emit('input-data-update', inputData.value);
+}
 const getBonusIncludedParameter = (parameter, parameterBonus) => {
   return Math.floor(
       parameter +
@@ -350,16 +368,13 @@ const updateScheduleDetailData = () => {
     parameter['hp'] = Math.min(maxHp, parameter['hp']);
 
     // 合計値計算
-    scheduleDetailData.value[19] = {...parameter};
-    scheduleDetailData.value[19]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+    scheduleDetailData.value['other'] = {...parameter};
+    scheduleDetailData.value['other']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
 
     // 最終評価
-    scheduleDetailData.value[20] = {...parameter};
-    scheduleDetailData.value[20]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+    scheduleDetailData.value['result'] = {...parameter};
+    scheduleDetailData.value['result']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
   }
-}
-const updateInputData = () => {
-  emit('input-data-update', inputData.value);
 }
 const updateScheduleDetail = (week) => {
   if (!inputData.value['planning']['schedule'][week]['schedule_detail'].includes('class') && !inputData.value['planning']['schedule'][week]['schedule_detail'].includes('lesson')) {
@@ -369,14 +384,34 @@ const updateScheduleDetail = (week) => {
   }
   updateInputData();
 }
-const getBasicPItemDetail = (plan) => {
-  return items.getHajimeMasterBasicItem(plan)
+const getResultScore = (resultPoint, parameter) => {
+  const calcList = [
+    {score: 40001, magnification: 0.01, addition: 3250},
+    {score: 30001, magnification: 0.02, addition: 2850},
+    {score: 20001, magnification: 0.04, addition: 2250},
+    {score: 10001, magnification: 0.08, addition: 1450},
+    {score: 5001, magnification: 0.15, addition: 750},
+    {score: 0, magnification: 0.30, addition: 0},
+  ];
+  let requiredPoint = resultPoint - (parameter * 2.3).toFixed(0) - 1700;
+
+  for (let i in calcList) {
+    let requiredScore = ((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']).toFixed(0);
+    if (requiredScore >= calcList[i]['score']) {
+      return requiredScore;
+    }
+  }
+  return 0;
+}
+const updateResultScoreList = () => {
+  if (scheduleDetailData.value['result']) {
+    for (let rank in resultData) {
+      resultScoreList.value[rank] = getResultScore(resultData[rank]['point'], scheduleDetailData.value['result']['sum']);
+    }
+  }
 }
 const getChallengePItemDetail = (categoryType, plan) => {
   return items.getChallengeItem(categoryType, plan)
-}
-const getPItemDetail = (id) => {
-  return items.getItemFromId(id);
 }
 const updateChallengePItemMaxPushSum = () => {
   challengePItemMaxPushSum.value = 0;
@@ -390,11 +425,17 @@ const changeChallengePItem = () => {
   updateChallengePItemMaxPushSum();
   updateInputData();
 }
+const getPItemDetail = (id) => {
+  return items.getItemFromId(id);
+}
 const getPItemParameterSum = (index) => {
   if (!basicData.value['support_card'][index] || basicData.value['support_card'][index]['event_1'] !== 'get_unique_p_item') {
     return 0;
   }
   return getPItemDetail(basicData.value['support_card'][index]['p_item_id']).event_parameter * inputData.value['planning']['support_card_p_item'][index];
+}
+const getBasicPItemDetail = (plan) => {
+  return items.getHajimeMasterBasicItem(plan)
 }
 const getSupportCardAbilityParameterSum = (ability) => {
   if (!basicData.value['ability_list'][ability]) {
@@ -407,21 +448,25 @@ const getSupportCardAbilityParameterSum = (ability) => {
       + (basicData.value['ability_list'][ability]['dance'] * inputData.value['planning']['support_card_ability'][ability])
       + (basicData.value['ability_list'][ability]['visual'] * inputData.value['planning']['support_card_ability'][ability]);
 }
+const updatePlanningData = () => {
+  updateScheduleDetailData();
+  updateResultScoreList();
+}
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
-  updateScheduleDetailData();
+  updatePlanningData();
 })
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
   updateChallengePItemMaxPushSum();
-  updateScheduleDetailData();
+  updatePlanningData();
 });
 watch(() => props.basicData, () => {
   basicData.value = props.basicData;
   updateChallengePItemMaxPushSum();
-  updateScheduleDetailData();
+  updatePlanningData();
 });
-defineExpose({updateScheduleDetailData});
+defineExpose({updatePlanningData});
 </script>
 
 <template>
@@ -431,118 +476,145 @@ defineExpose({updateScheduleDetailData});
         <div class="common-headline">
           <span class="common-headline-text font-bold">スケジュール</span>
         </div>
-        <div class="schedule">
-          <table class="table schedule">
-            <thead>
-            <tr>
-              <th class="table-header"></th>
-              <th class="table-header detail"><span class="table-header-text">内容</span></th>
-              <th class="table-header type"><span class="table-header-text">属性</span></th>
-              <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
-              <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
-              <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
-              <th class="table-header point"><span class="table-header-text">合計値</span></th>
-              <th class="table-header hp"><span class="table-header-text">体力</span></th>
-              <th class="table-header point"><span class="table-header-text">Pポイント</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="i in 18" :key="i">
-              <th class="table-header">
-                <span class="table-header-text">{{ i }}</span>
-              </th>
-              <td class="table-data detail">
-                <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateScheduleDetail(i)">
-                  <option class="table-option" v-for="option in scheduleData[i]" v-bind:value="option.value">{{ option.text }}</option>
-                </select>
-                <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
-              </td>
-              <td class="table-data type">
-                <select class="table-select" v-bind:class="inputData['planning']['schedule'][i]['type']" v-model="inputData['planning']['schedule'][i]['type']" v-if="inputData['planning']['schedule'][i]['schedule_detail'].includes('lesson') || inputData['planning']['schedule'][i]['schedule_detail'].includes('class')" @change="updateInputData">
-                  <option class="table-option vocal" value="vocal">ボーカル</option>
-                  <option class="table-option dance" value="dance">ダンス</option>
-                  <option class="table-option visual" value="visual">ビジュアル</option>
-                </select>
-              </td>
-              <td class="table-data number vocal">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['vocal'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number dance">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['dance'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number visual">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['visual'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number point">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number hp">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['hp'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number point">
-                <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['point'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-            </tr>
-            <tr>
-              <th class="table-header"></th>
-              <td class="table-data detail"><span class="table-data-text">その他獲得パラメータ</span></td>
-              <td class="table-data type"></td>
-              <td class="table-data number vocal">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['vocal'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number dance">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['dance'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number visual">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['visual'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number point">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['sum'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number hp">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['hp'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number point">
-                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['point'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-            </tr>
-            <tr>
-              <th class="table-header last"></th>
-              <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
-              <td class="table-data type last"></td>
-              <td class="table-data number vocal last">
-                <span class="table-data-text font-bold vocal" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['vocal'] }}</span>
-                <span class="table-data-text font-bold vocal" v-else>0</span>
-              </td>
-              <td class="table-data number dance last">
-                <span class="table-data-text font-bold dance" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['dance'] }}</span>
-                <span class="table-data-text font-bold dance" v-else>0</span>
-              </td>
-              <td class="table-data number visual last">
-                <span class="table-data-text font-bold visual" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['visual'] }}</span>
-                <span class="table-data-text font-bold visual" v-else>0</span>
-              </td>
-              <td class="table-data number point last">
-                <span class="table-data-text font-bold last" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['sum'] }}</span>
-                <span class="table-data-text font-bold last" v-else>0</span>
-              </td>
-              <td class="table-data number hp last"></td>
-              <td class="table-data number point last"></td>
-            </tr>
-            </tbody>
-          </table>
+        <div class="schedule-content-area">
+          <div class="schedule">
+            <table class="table schedule">
+              <thead>
+              <tr>
+                <th class="table-header"></th>
+                <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                <th class="table-header type"><span class="table-header-text">属性</span></th>
+                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+                <th class="table-header point"><span class="table-header-text">合計値</span></th>
+                <th class="table-header hp"><span class="table-header-text">体力</span></th>
+                <th class="table-header point"><span class="table-header-text">Pポイント</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="i in 18" :key="i">
+                <th class="table-header">
+                  <span class="table-header-text">{{ i }}</span>
+                </th>
+                <td class="table-data detail">
+                  <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateScheduleDetail(i)">
+                    <option class="table-option" v-for="option in scheduleData[i]" v-bind:value="option.value">{{ option.text }}</option>
+                  </select>
+                  <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
+                </td>
+                <td class="table-data type">
+                  <select class="table-select" v-bind:class="inputData['planning']['schedule'][i]['type']" v-model="inputData['planning']['schedule'][i]['type']" v-if="inputData['planning']['schedule'][i]['schedule_detail'].includes('lesson') || inputData['planning']['schedule'][i]['schedule_detail'].includes('class')" @change="updateInputData">
+                    <option class="table-option vocal" value="vocal">ボーカル</option>
+                    <option class="table-option dance" value="dance">ダンス</option>
+                    <option class="table-option visual" value="visual">ビジュアル</option>
+                  </select>
+                </td>
+                <td class="table-data number vocal">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['vocal'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number dance">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['dance'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number visual">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['visual'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number hp">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['hp'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['point'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+              </tr>
+              <tr>
+                <th class="table-header"></th>
+                <td class="table-data detail"><span class="table-data-text">その他獲得パラメータ</span></td>
+                <td class="table-data type"></td>
+                <td class="table-data number vocal">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['vocal'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number dance">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['dance'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number visual">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['visual'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['sum'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number hp">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['hp'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['point'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+              </tr>
+              <tr>
+                <th class="table-header last"></th>
+                <td class="table-data detail last"><span class="table-data-text font-bold last">最終パラメータ</span></td>
+                <td class="table-data type last"></td>
+                <td class="table-data number vocal last">
+                  <span class="table-data-text font-bold vocal" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['vocal'] }}</span>
+                  <span class="table-data-text font-bold vocal" v-else>0</span>
+                </td>
+                <td class="table-data number dance last">
+                  <span class="table-data-text font-bold dance" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['dance'] }}</span>
+                  <span class="table-data-text font-bold dance" v-else>0</span>
+                </td>
+                <td class="table-data number visual last">
+                  <span class="table-data-text font-bold visual" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['visual'] }}</span>
+                  <span class="table-data-text font-bold visual" v-else>0</span>
+                </td>
+                <td class="table-data number point last">
+                  <span class="table-data-text font-bold last" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['sum'] }}</span>
+                  <span class="table-data-text font-bold last" v-else>0</span>
+                </td>
+                <td class="table-data number hp last"></td>
+                <td class="table-data number point last"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="result">
+            <table class="table result">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">最終試験獲得スコア</span></th>
+                <th class="table-header point"><span class="table-header-text">評価ランク</span></th>
+                <th class="table-header point"><span class="table-header-text">評価値</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="result in resultData">
+                <td class="table-data number detail">
+                  <span class="table-data-text" v-if="resultScoreList[result.rank]">{{ resultScoreList[result.rank] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data point">
+                  <span class="table-data-text">{{ result.rank }}</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text">{{ result.point }}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div class="event-area">
@@ -550,117 +622,123 @@ defineExpose({updateScheduleDetailData});
           <div class="common-headline">
             <span class="common-headline-text font-bold">チャレンジPアイテム</span>
           </div>
-          <div class="challenge-p-item">
-            <table class="table challenge-p-item">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header count"><span class="table-header-text">合計値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="i in 3" :key="i">
-                <td class="table-data detail">
-                  <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i]" @change="changeChallengePItem">
-                    <option class="table-option" v-bind:value="0">チャレンジPアイテムなし</option>
-                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
-                  </select>
-                </td>
-                <td class="table-data number count">
-                  <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i]).event_other }}</span>
-                  <span class="table-data-text" v-else>0</span>
-                </td>
-                <td class="table-data number count" rowspan="3" v-if="i === 1">
-                  <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="challenge-p-item-content-area">
+            <div class="challenge-p-item">
+              <table class="table challenge-p-item">
+                <thead>
+                <tr>
+                  <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                  <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                  <th class="table-header count"><span class="table-header-text">合計値</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="i in 3" :key="i">
+                  <td class="table-data detail">
+                    <select class="table-select" v-model="inputData['planning']['challenge_p_item'][i]" @change="changeChallengePItem">
+                      <option class="table-option" v-bind:value="0">チャレンジPアイテムなし</option>
+                      <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getChallengePItemDetail(`challenge_${i}`, ['free', basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                    </select>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text" v-if="inputData['planning']['challenge_p_item'][i] > 0">{{ getPItemDetail(inputData['planning']['challenge_p_item'][i]).event_other }}</span>
+                    <span class="table-data-text" v-else>0</span>
+                  </td>
+                  <td class="table-data number count" rowspan="3" v-if="i === 1">
+                    <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="produce-p-item-area">
           <div class="common-headline">
             <span class="common-headline-text font-bold">Pアイテム</span>
           </div>
-          <div class="produce-p-item">
-            <table class="table produce-p-item">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header count"><span class="table-header-text">回数</span></th>
-                <th class="table-header count"><span class="table-header-text">合計値</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="i in 6" :key="i">
-                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).name }}</span>
-                  <span class="table-data-text" v-else>獲得Pアイテムなし</span>
-                </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).event_parameter }}</span>
-                  <span class="table-data-text" v-else></span>
-                </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
-                  <span class="table-data-text" v-else></span>
-                </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text">{{ getPItemParameterSum(i) }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-data detail">
-                  <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
-                    <option class="table-option" v-bind:value="2">はつぼしブレスレット</option>
-                    <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
-                  </select>
-                </td>
-                <td class="table-data number count">
-                  <span class="table-data-text"></span>
-                </td>
-                <td class="table-data number count">
-                  <span class="table-data-text"></span>
-                </td>
-                <td class="table-data number count">
-                  <span class="table-data-text"></span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="produce-p-item-content-area">
+            <div class="produce-p-item">
+              <table class="table produce-p-item">
+                <thead>
+                <tr>
+                  <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                  <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                  <th class="table-header count"><span class="table-header-text">回数</span></th>
+                  <th class="table-header count"><span class="table-header-text">合計値</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="i in 6" :key="i">
+                  <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
+                    <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).name }}</span>
+                    <span class="table-data-text" v-else>獲得Pアイテムなし</span>
+                  </td>
+                  <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                    <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).event_parameter }}</span>
+                    <span class="table-data-text" v-else></span>
+                  </td>
+                  <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                    <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
+                    <span class="table-data-text" v-else></span>
+                  </td>
+                  <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                    <span class="table-data-text">{{ getPItemParameterSum(i) }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-data detail">
+                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
+                      <option class="table-option" v-bind:value="2">はつぼしブレスレット</option>
+                      <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
+                    </select>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="support-card-event-area">
           <div class="common-headline">
             <span class="common-headline-text font-bold">サポートカードイベント</span>
           </div>
-          <div class="support-card-event">
-            <table class="table support-card-event">
-              <thead>
-              <tr>
-                <th class="table-header detail"><span class="table-header-text">内容</span></th>
-                <th class="table-header count"><span class="table-header-text">上昇値</span></th>
-                <th class="table-header count"><span class="table-header-text">発生</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="i in 6" :key="i">
-                <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['name'] }}</span>
-                  <span class="table-data-text" v-else>サポートカード未選択</span>
-                </td>
-                <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && (basicData['support_card'][i]['type'] !== 'assist')">{{ basicData['support_card'][i]['event_2_parameter'] }}</span>
-                  <span class="table-data-text" v-else>0</span>
-                </td>
-                <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" v-show="inputData['organization']['support_card'][i]['id']" @change="updateInputData">
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="support-card-event-content-area">
+            <div class="support-card-event">
+              <table class="table support-card-event">
+                <thead>
+                <tr>
+                  <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                  <th class="table-header count"><span class="table-header-text">上昇値</span></th>
+                  <th class="table-header count"><span class="table-header-text">発生</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="i in 6" :key="i">
+                  <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
+                    <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['name'] }}</span>
+                    <span class="table-data-text" v-else>サポートカード未選択</span>
+                  </td>
+                  <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                    <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && (basicData['support_card'][i]['type'] !== 'assist')">{{ basicData['support_card'][i]['event_2_parameter'] }}</span>
+                    <span class="table-data-text" v-else>0</span>
+                  </td>
+                  <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                    <input class="table-input-checkbox" type="checkbox" v-bind:value="true" v-model="inputData['planning']['support_card_event'][i]" v-show="inputData['organization']['support_card'][i]['id']" @change="updateInputData">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -668,68 +746,70 @@ defineExpose({updateScheduleDetailData});
         <div class="common-headline">
           <span class="common-headline-text font-bold">サポートカードアビリティ</span>
         </div>
-        <div class="support-card-ability">
-          <table class="table support-card-ability">
-            <thead>
-            <tr>
-              <th class="table-header detail"><span class="table-header-text">内容</span></th>
-              <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
-              <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
-              <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
-              <th class="table-header count"><span class="table-header-text">回数</span></th>
-              <th class="table-header count"><span class="table-header-text">合計値</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
-              <td class="table-data detail">
-                <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
-              </td>
-              <td class="table-data number vocal">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number dance">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number visual">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number count">
-                <span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span>
-              </td>
-              <td class="table-data number count">
-                <span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span>
-              </td>
-            </tr>
-            <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
-              <td class="table-data detail">
-                <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
-              </td>
-              <td class="table-data number vocal">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number dance">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number visual">
-                <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
-                <span class="table-data-text" v-else>0</span>
-              </td>
-              <td class="table-data number count">
-                <span class="table-data-text font-bold" v-if="inputData['planning']['support_card_ability'][list.ability]">{{ inputData['planning']['support_card_ability'][list.ability] }}</span>
-                <span class="table-data-text font-bold" v-else>0</span>
-              </td>
-              <td class="table-data number count">
-                <span class="table-data-text">{{ getSupportCardAbilityParameterSum(list.ability) }}</span>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+        <div class="support-card-ability-content-area">
+          <div class="support-card-ability">
+            <table class="table support-card-ability">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+                <th class="table-header count"><span class="table-header-text">回数</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
+                <td class="table-data detail">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
+                </td>
+                <td class="table-data number vocal">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number dance">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number visual">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">0</span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">0</span>
+                </td>
+              </tr>
+              <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
+                <td class="table-data detail">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
+                </td>
+                <td class="table-data number vocal">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number dance">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['dance'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number visual">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="inputData['planning']['support_card_ability'][list.ability]">{{ inputData['planning']['support_card_ability'][list.ability] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number count">
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ getSupportCardAbilityParameterSum(list.ability) }}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
