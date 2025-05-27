@@ -2,6 +2,7 @@
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
+import SupportCardMaster from "@/components/SupportCardMaster.vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -111,7 +112,7 @@ const getBonusIncludedParameter = (parameter, parameterBonus) => {
   );
 };
 const updateScheduleDetailData = () => {
-  if (basicData.value['produce_idol']['id']) {
+  if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']['id']) {
     let maxHp = basicData.value['parameter']['init_hp'];
     let parameter = {
       vocal: basicData.value['parameter']['init_vocal'],
@@ -121,6 +122,7 @@ const updateScheduleDetailData = () => {
       hp: basicData.value['parameter']['init_hp'],
     }
 
+    // 1~18週目
     for (let week = 1; week <= 18; week++) {
       let inputScheduleData = inputData.value['planning']['schedule'][week];
       let basicParameter = scheduleData[week][inputScheduleData['schedule_detail']]['parameter'];
@@ -306,10 +308,54 @@ const updateScheduleDetailData = () => {
         parameter['hp'] -= 3;
       }
 
+      // 最大上限丸め
+      parameter['vocal'] = Math.min(maxParameter, parameter['vocal']);
+      parameter['dance'] = Math.min(maxParameter, parameter['dance']);
+      parameter['visual'] = Math.min(maxParameter, parameter['visual']);
       parameter['hp'] = Math.min(maxHp, parameter['hp']);
+
+      // 合計値計算
       scheduleDetailData.value[week] = {...parameter};
       scheduleDetailData.value[week]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
     }
+
+    // その他獲得パラメータ
+    // Pアイテム
+    for (let i in inputData.value['planning']['support_card_p_item']) {
+      if (basicData.value['support_card'][i]) {
+        parameter[basicData.value['support_card'][i]['type']] += getPItemParameterSum(i);
+      }
+    }
+
+    // サポートカードイベント
+    for (let i in inputData.value['planning']['support_card_event']) {
+      if (inputData.value['planning']['support_card_event'][i]) {
+        parameter[basicData.value['support_card'][i]['type']] += basicData.value['support_card'][i]['event_2_parameter'];
+      }
+    }
+
+    // サポートカードアビリティ
+    for (let i in abilityExtraParameterUpListAll) {
+      if (basicData.value['ability_list'][abilityExtraParameterUpListAll[i]['ability']] && inputData.value['planning']['support_card_ability'][abilityExtraParameterUpListAll[i]['ability']]) {
+        parameter['vocal'] += basicData.value['ability_list'][abilityExtraParameterUpListAll[i]['ability']]['vocal'] * inputData.value['planning']['support_card_ability'][abilityExtraParameterUpListAll[i]['ability']];
+        parameter['dance'] += basicData.value['ability_list'][abilityExtraParameterUpListAll[i]['ability']]['dance'] * inputData.value['planning']['support_card_ability'][abilityExtraParameterUpListAll[i]['ability']];
+        parameter['visual'] += basicData.value['ability_list'][abilityExtraParameterUpListAll[i]['ability']]['visual'] * inputData.value['planning']['support_card_ability'][abilityExtraParameterUpListAll[i]['ability']];
+      }
+    }
+
+    // 最大上限丸め
+    parameter['vocal'] = Math.min(maxParameter, parameter['vocal']);
+    parameter['dance'] = Math.min(maxParameter, parameter['dance']);
+    parameter['visual'] = Math.min(maxParameter, parameter['visual']);
+    parameter['hp'] = Math.min(maxHp, parameter['hp']);
+
+    // 合計値計算
+    scheduleDetailData.value[19] = {...parameter};
+    scheduleDetailData.value[19]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+
+    // 最終評価
+    scheduleDetailData.value[20] = {...parameter};
+    scheduleDetailData.value[20]['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
   }
 }
 const updateInputData = () => {
@@ -343,6 +389,23 @@ const updateChallengePItemMaxPushSum = () => {
 const changeChallengePItem = () => {
   updateChallengePItemMaxPushSum();
   updateInputData();
+}
+const getPItemParameterSum = (index) => {
+  if (!basicData.value['support_card'][index] || basicData.value['support_card'][index]['event_1'] !== 'get_unique_p_item') {
+    return 0;
+  }
+  return getPItemDetail(basicData.value['support_card'][index]['p_item_id']).event_parameter * inputData.value['planning']['support_card_p_item'][index];
+}
+const getSupportCardAbilityParameterSum = (ability) => {
+  if (!basicData.value['ability_list'][ability]) {
+    return 0;
+  }
+  if (!inputData.value['planning']['support_card_ability'][ability]) {
+    inputData.value['planning']['support_card_ability'][ability] = 0;
+  }
+  return (basicData.value['ability_list'][ability]['vocal'] * inputData.value['planning']['support_card_ability'][ability])
+      + (basicData.value['ability_list'][ability]['dance'] * inputData.value['planning']['support_card_ability'][ability])
+      + (basicData.value['ability_list'][ability]['visual'] * inputData.value['planning']['support_card_ability'][ability]);
 }
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
@@ -428,25 +491,55 @@ defineExpose({updateScheduleDetailData});
             </tr>
             <tr>
               <th class="table-header"></th>
-              <td class="table-data detail"><span class="table-data-text">その他上昇値</span></td>
+              <td class="table-data detail"><span class="table-data-text">その他獲得パラメータ</span></td>
               <td class="table-data type"></td>
-              <td class="table-data number vocal"><span class="table-data-text">0</span></td>
-              <td class="table-data number dance"><span class="table-data-text">0</span></td>
-              <td class="table-data number visual"><span class="table-data-text">0</span></td>
-              <td class="table-data number point"><span class="table-data-text">0</span></td>
-              <td class="table-data number hp"><span class="table-data-text">0</span></td>
-              <td class="table-data number point"><span class="table-data-text">0</span></td>
+              <td class="table-data number vocal">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['vocal'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number dance">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['dance'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number visual">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['visual'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number point">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['sum'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number hp">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['hp'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
+              <td class="table-data number point">
+                <span class="table-data-text" v-if="scheduleDetailData[19]">{{ scheduleDetailData[19]['point'] }}</span>
+                <span class="table-data-text" v-else>0</span>
+              </td>
             </tr>
             <tr>
               <th class="table-header last"></th>
               <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
               <td class="table-data type last"></td>
-              <td class="table-data number vocal last"><span class="table-data-text font-bold vocal">0</span></td>
-              <td class="table-data number dance last"><span class="table-data-text font-bold dance">0</span></td>
-              <td class="table-data number visual last"><span class="table-data-text font-bold visual">0</span></td>
-              <td class="table-data number point last"><span class="table-data-text font-bold last">0</span></td>
-              <td class="table-data number hp last"><span class="table-data-text font-bold last">0</span></td>
-              <td class="table-data number point last"><span class="table-data-text font-bold last">0</span></td>
+              <td class="table-data number vocal last">
+                <span class="table-data-text font-bold vocal" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['vocal'] }}</span>
+                <span class="table-data-text font-bold vocal" v-else>0</span>
+              </td>
+              <td class="table-data number dance last">
+                <span class="table-data-text font-bold dance" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['dance'] }}</span>
+                <span class="table-data-text font-bold dance" v-else>0</span>
+              </td>
+              <td class="table-data number visual last">
+                <span class="table-data-text font-bold visual" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['visual'] }}</span>
+                <span class="table-data-text font-bold visual" v-else>0</span>
+              </td>
+              <td class="table-data number point last">
+                <span class="table-data-text font-bold last" v-if="scheduleDetailData[20]">{{ scheduleDetailData[20]['sum'] }}</span>
+                <span class="table-data-text font-bold last" v-else>0</span>
+              </td>
+              <td class="table-data number hp last"></td>
+              <td class="table-data number point last"></td>
             </tr>
             </tbody>
           </table>
@@ -515,7 +608,7 @@ defineExpose({updateScheduleDetailData});
                   <span class="table-data-text" v-else></span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text">0</span>
+                  <span class="table-data-text">{{ getPItemParameterSum(i) }}</span>
                 </td>
               </tr>
               <tr>
@@ -559,7 +652,7 @@ defineExpose({updateScheduleDetailData});
                   <span class="table-data-text" v-else>サポートカード未選択</span>
                 </td>
                 <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
-                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id']">{{ basicData['support_card'][i]['event_2_parameter'] }}</span>
+                  <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && (basicData['support_card'][i]['type'] !== 'assist')">{{ basicData['support_card'][i]['event_2_parameter'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data checkbox" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
@@ -590,7 +683,7 @@ defineExpose({updateScheduleDetailData});
             <tbody>
             <tr v-for="list in abilityBasicParameterUpListAll" :key="list">
               <td class="table-data detail">
-                <span class="table-data-text">{{ list.text }}</span>
+                <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
               </td>
               <td class="table-data number vocal">
                 <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
@@ -611,9 +704,9 @@ defineExpose({updateScheduleDetailData});
                 <span class="table-data-text" v-if="!list.text.includes('レッスン')">0</span>
               </td>
             </tr>
-            <tr v-for="list in abilityExtraParameterUpListAll" :key="list" v-show="Object.keys(basicData['ability_list']).includes(list.ability)">
+            <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
               <td class="table-data detail">
-                <span class="table-data-text">{{ list.text }}</span>
+                <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
               </td>
               <td class="table-data number vocal">
                 <span class="table-data-text" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['vocal'] }}</span>
@@ -628,10 +721,11 @@ defineExpose({updateScheduleDetailData});
                 <span class="table-data-text" v-else>0</span>
               </td>
               <td class="table-data number count">
-                <span class="table-data-text font-bold">0</span>
+                <span class="table-data-text font-bold" v-if="inputData['planning']['support_card_ability'][list.ability]">{{ inputData['planning']['support_card_ability'][list.ability] }}</span>
+                <span class="table-data-text font-bold" v-else>0</span>
               </td>
               <td class="table-data number count">
-                <span class="table-data-text">0</span>
+                <span class="table-data-text">{{ getSupportCardAbilityParameterSum(list.ability) }}</span>
               </td>
             </tr>
             </tbody>
