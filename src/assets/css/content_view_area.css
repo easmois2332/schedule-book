@@ -89,10 +89,6 @@
     .card-master-area, .card-manager-area {
         padding: 16px 16px;
 
-        .description-area {
-            padding: 8px 0;
-        }
-
         .card-edit-area {
             padding: 8px 0;
         }
@@ -342,10 +338,6 @@
 
     .idol-view-area {
         padding: 16px 16px;
-
-        .description-area {
-            padding: 8px 0;
-        }
 
         .idol-list-area {
             padding: 8px 0;
