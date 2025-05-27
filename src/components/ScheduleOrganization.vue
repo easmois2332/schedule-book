@@ -9,14 +9,17 @@ const idols = props.idols;
 const supportCards = props.supportCards;
 
 const produceMemoryParameterAbilityValue = [
+  {value: 25, text: '+25'},
   {value: 20, text: '+20'},
   {value: 15, text: '+15'},
   {value: 10, text: '+10'},
+  {value: 3.5, text: '+3.5%'},
   {value: 2.8, text: '+2.8%'},
   {value: 2.1, text: '+2.1%'},
   {value: 1.4, text: '+1.4%'},
 ];
 const produceMemoryPointAbilityValue = [
+  {value: 50, text: '+50'},
   {value: 40, text: '+40'},
   {value: 30, text: '+30'},
   {value: 20, text: '+20'},
