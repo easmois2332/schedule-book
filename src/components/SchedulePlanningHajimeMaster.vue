@@ -458,7 +458,7 @@ defineExpose({updateScheduleDetailData});
                 <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
               </td>
               <td class="table-data type">
-                <select class="table-select" v-model="inputData['planning']['schedule'][i]['type']" v-if="inputData['planning']['schedule'][i]['schedule_detail'].includes('lesson') || inputData['planning']['schedule'][i]['schedule_detail'].includes('class')" @change="updateInputData">
+                <select class="table-select" v-bind:class="inputData['planning']['schedule'][i]['type']" v-model="inputData['planning']['schedule'][i]['type']" v-if="inputData['planning']['schedule'][i]['schedule_detail'].includes('lesson') || inputData['planning']['schedule'][i]['schedule_detail'].includes('class')" @change="updateInputData">
                   <option class="table-option vocal" value="vocal">ボーカル</option>
                   <option class="table-option dance" value="dance">ダンス</option>
                   <option class="table-option visual" value="visual">ビジュアル</option>

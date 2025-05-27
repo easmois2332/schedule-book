@@ -742,20 +742,40 @@
                     background: rgba(251, 0, 130, 0.1);
                 }
 
+                .table-data.vocal:hover {
+                    background: rgba(251, 0, 130, 0.3);
+                }
+
                 .table-data.dance {
                     background: rgba(0, 134, 240, 0.1);
+                }
+
+                .table-data.dance:hover {
+                    background: rgba(0, 134, 240, 0.3);
                 }
 
                 .table-data.visual {
                     background: rgba(250, 169, 0, 0.1);
                 }
 
+                .table-data.visual:hover {
+                    background: rgba(250, 169, 0, 0.3);
+                }
+
                 .table-data.hp {
                     background: rgba(60, 199, 67, 0.1);
                 }
 
+                .table-data.hp:hover {
+                    background: rgba(60, 199, 67, 0.3);
+                }
+
                 .table-data.point {
                     background: rgba(149, 139, 127, 0.1);
+                }
+
+                .table-data.point:hover {
+                    background: rgba(149, 139, 127, 0.3);
                 }
 
                 .table-data.pc-design {
@@ -1093,27 +1113,55 @@
                     background: rgba(149, 139, 127, 0.1);
                 }
 
+                .table-data.detail:hover, .table-data.type:hover, .table-data.count:hover {
+                    background: rgba(149, 139, 127, 0.3);
+                }
+
                 .table-data.vocal {
                     background: rgba(251, 0, 130, 0.1);
+                }
+
+                .table-data.vocal:hover {
+                    background: rgba(251, 0, 130, 0.3);
                 }
 
                 .table-data.dance {
                     background: rgba(0, 134, 240, 0.1);
                 }
 
+                .table-data.dance:hover {
+                    background: rgba(0, 134, 240, 0.3);
+                }
+
                 .table-data.visual {
                     background: rgba(250, 169, 0, 0.1);
+                }
+
+                .table-data.visual:hover {
+                    background: rgba(250, 169, 0, 0.3);
                 }
 
                 .table-data.hp, .table-data.assist {
                     background: rgba(60, 199, 67, 0.1);
                 }
 
+                .table-data.hp:hover, .table-data.assist:hover {
+                    background: rgba(60, 199, 67, 0.3);
+                }
+
                 .table-data.point {
                     background: rgba(149, 139, 127, 0.1);
                 }
 
+                .table-data.point:hover {
+                    background: rgba(149, 139, 127, 0.3);
+                }
+
                 .table-data.last {
+                    background: #333333;
+                }
+
+                .table-data.last:hover {
                     background: #333333;
                 }
 
@@ -1143,12 +1191,28 @@
                     background: transparent;
                 }
 
+                .table-select.vocal {
+                    color: #FB0082;
+                }
+
+                .table-select.dance {
+                    color: #0086F0;
+                }
+
+                .table-select.visual {
+                    color: #FAA900;
+                }
+
                 .table-select:focus {
                     border: none;
                 }
 
                 .table-select:focus-visible {
                     outline: none;
+                }
+
+                .table-option {
+                    color: #333333;
                 }
 
                 .table-input-checkbox {
