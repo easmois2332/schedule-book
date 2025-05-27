@@ -38,7 +38,7 @@ let allIdolList = ref(idols.getAllIdol());
             </div>
             <div class="produce-idol-area">
               <div class="produce-idol" v-for="produce in idols.getPIdolFromIdolId(idol.id)" :key="produce.id">
-                <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="$emit('selector-close', produce.id, produce.training_level, produce.blossoming_level, 20)">
+                <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="$emit('selector-close', produce.id, produce.training_level, produce.blossoming_level, idol.dear_level)">
                   <div class="produce-idol-plan-area">
                     <span class="produce-idol-plan-text">{{ produce.plan_display }}</span>
                     <span class="produce-idol-plan-text">{{ produce.effect_display }}</span>
