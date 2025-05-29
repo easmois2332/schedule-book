@@ -2,7 +2,6 @@
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
-import SupportCardMaster from "@/components/SupportCardMaster.vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -130,7 +129,7 @@ const getBonusIncludedParameter = (parameter, parameterBonus) => {
   );
 };
 const updateScheduleDetailData = () => {
-  if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']['id']) {
+  if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']) {
     let maxHp = basicData.value['parameter']['init_hp'];
     let parameter = {
       vocal: basicData.value['parameter']['init_vocal'],
@@ -374,6 +373,8 @@ const updateScheduleDetailData = () => {
     // 最終評価
     scheduleDetailData.value['result'] = {...parameter};
     scheduleDetailData.value['result']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+  } else {
+    scheduleDetailData.value = {};
   }
 }
 const updateScheduleDetail = (week) => {
@@ -408,6 +409,8 @@ const updateResultScoreList = () => {
     for (let rank in resultData) {
       resultScoreList.value[rank] = getResultScore(resultData[rank]['point'], scheduleDetailData.value['result']['sum']);
     }
+  } else {
+    resultScoreList.value = {};
   }
 }
 const getChallengePItemDetail = (categoryType, plan) => {

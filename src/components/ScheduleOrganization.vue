@@ -266,13 +266,11 @@ watch(() => props.basicData, () => {
         :idols="idols"
         @selector-close="closeProduceIdolSelector"
     />
-    <keep-alive>
-      <SupportCardSelect
-          v-if="supportCardSelectorOpen !== false"
-          :support-cards="supportCards"
-          :plan-filter="inputData['organization']['produce_idol']['id'] ? basicData['produce_idol']['plan'] : null"
-          @selector-close="closeSupportCardSelector"
-      />
-    </keep-alive>
+    <SupportCardSelect
+        v-if="supportCardSelectorOpen !== false"
+        :support-cards="supportCards"
+        :plan-filter="inputData['organization']['produce_idol']['id'] ? basicData['produce_idol']['plan'] : null"
+        @selector-close="closeSupportCardSelector"
+    />
   </Teleport>
 </template>

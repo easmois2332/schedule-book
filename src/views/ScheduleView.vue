@@ -72,7 +72,7 @@ const updateBasicData = () => {
 
   // サポートカード詳細更新
   for (let i in inputData.value['organization']['support_card']) {
-    basicData.value['support_card'][i] = supportCards.getCardDetail(inputData.value['organization']['support_card'][i]['id'], inputData.value['organization']['support_card'][i]['level'])
+    basicData.value['support_card'][i] = supportCards.getCardDetail(inputData.value['organization']['support_card'][i]['id'], inputData.value['organization']['support_card'][i]['level']);
   }
 
   // パラメータ更新
@@ -174,24 +174,20 @@ const updateBasicData = () => {
       }
     }
   } else {
-    basicData.value = {
-      produce_idol: [],
-      support_card: [],
-      parameter: {
-        init_vocal: 0,
-        init_dance: 0,
-        init_visual: 0,
-        init_hp: 0,
-        init_point: 0,
-        bonus_vocal: 0,
-        bonus_dance: 0,
-        bonus_visual: 0,
-        sp_lesson_rate_vocal: 0,
-        sp_lesson_rate_dance: 0,
-        sp_lesson_rate_visual: 0,
-      },
-      ability_list: {},
-    }
+    basicData.value['parameter'] = {
+      init_vocal: 0,
+      init_dance: 0,
+      init_visual: 0,
+      init_hp: 0,
+      init_point: 0,
+      bonus_vocal: 0,
+      bonus_dance: 0,
+      bonus_visual: 0,
+      sp_lesson_rate_vocal: 0,
+      sp_lesson_rate_dance: 0,
+      sp_lesson_rate_visual: 0,
+    };
+    basicData.value['ability_list'] = {}
   }
 }
 const updateHistory = () => {
@@ -207,6 +203,7 @@ const buttonUndo = () => {
     redoList.value.unshift(shifted);
     inputData.value = JSON.parse(undoList.value[0]);
     updateBasicData();
+    planningViewRef.value.updatePlanningData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
@@ -218,6 +215,7 @@ const buttonRedo = () => {
     undoList.value.unshift(shifted);
     inputData.value = JSON.parse(shifted);
     updateBasicData();
+    planningViewRef.value.updatePlanningData();
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
