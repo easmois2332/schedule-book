@@ -528,6 +528,31 @@ const updatePlanningData = () => {
   updateScheduleDetailData();
   updateResultScoreList();
 }
+const getPItemCountMaxValue = (id) => {
+  let pItem = getPItemDetail(id);
+  if (pItem.event === null) {
+    return pItem.event_count;
+  } else if (pItem.event.includes('lesson')) {
+    return Math.min(pItem.event_count, scheduleDetailCount.value[pItem.event][pItem.type]);
+  } else {
+    return Math.min(pItem.event_count, scheduleDetailCount.value[pItem.event]);
+  }
+}
+const inputPItemCount = (index) => {
+  if (inputData.value['organization']['support_card'][index]['id'] &&
+      basicData.value['support_card'][index]['event_1'] === 'get_unique_p_item' &&
+      getPItemDetail(basicData.value['support_card'][index]['p_item_id'])['category_type'] === 'produce'
+  ) {
+    commonInputModalOpen.value = index;
+  }
+}
+const closePItemCount = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['support_card_p_item'][commonInputModalOpen.value] = inputValue;
+    updateInputData();
+  }
+  commonInputModalOpen.value = false;
+}
 const inputSupportCardAbilityCount = (index) => {
   commonInputModalOpen.value = index;
 }
@@ -757,16 +782,27 @@ defineExpose({updatePlanningData});
                 <tbody>
                 <tr v-for="i in 6" :key="i">
                   <td class="table-data" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'detail'">
-                    <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).name }}</span>
+                    <span class="table-data-text" v-bind:title="getPItemDetail(basicData['support_card'][i]['p_item_id']).event_text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).name }}</span>
                     <span class="table-data-text" v-else>獲得Pアイテムなし</span>
                   </td>
                   <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
                     <span class="table-data-text" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ getPItemDetail(basicData['support_card'][i]['p_item_id']).event_parameter }}</span>
                     <span class="table-data-text" v-else></span>
                   </td>
-                  <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
+                  <td class="table-data number input" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'" @click="inputPItemCount(i)">
                     <span class="table-data-text font-bold" v-if="inputData['organization']['support_card'][i]['id'] && basicData['support_card'][i]['event_1'] === 'get_unique_p_item' && getPItemDetail(basicData['support_card'][i]['p_item_id']).category_type === 'produce'">{{ inputData['planning']['support_card_p_item'][i] }}</span>
                     <span class="table-data-text" v-else></span>
+                    <Teleport to="#modal-area">
+                      <CommonInputModal
+                          v-if="commonInputModalOpen === i"
+                          :input-value="inputData['planning']['support_card_p_item'][i] ? inputData['planning']['support_card_p_item'][i] : 0"
+                          :min-value="0"
+                          :max-value="getPItemCountMaxValue(basicData['support_card'][i]['p_item_id'])"
+                          :headline="'発動回数を編集'"
+                          :description="getPItemDetail(basicData['support_card'][i]['p_item_id']).name + 'の発動回数'"
+                          @input-close="closePItemCount"
+                      />
+                    </Teleport>
                   </td>
                   <td class="table-data number" v-bind:class="inputData['organization']['support_card'][i]['id'] ? basicData['support_card'][i]['type'] : 'count'">
                     <span class="table-data-text">{{ getPItemParameterSum(i) }}</span>

@@ -351,7 +351,7 @@ const getSkillCardDetail = (id) => {
         <div class="card-event-and-ability-area">
           <div class="card-event-area" v-bind:class="card.type">
             <div class="card-event" v-if="card.event_1 === 'get_unique_p_item'">
-              <span class="card-event1">Pアイテム</span><span class="font-bold">『{{ getPItemDetail(card.p_item_id).name }}』</span>
+              <span class="card-event1">Pアイテム</span><span class="font-bold" v-bind:title="getPItemDetail(card.p_item_id).event_text">『{{ getPItemDetail(card.p_item_id).name }}』</span>
             </div>
             <div class="card-event" v-if="card.event_1 === 'get_unique_card'">
               <span class="card-event1">スキルカード</span><span class="font-bold">『{{ getSkillCardDetail(card.skill_card_id).name }}』</span>
