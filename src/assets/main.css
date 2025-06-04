@@ -36,7 +36,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #fb4f60, #ffffff 30%),
@@ -65,7 +65,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.saki:hover, .color-button.saki:focus {
+.color-button.saki:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #fb4f60, #ffffff 30%),
@@ -94,7 +94,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #23b3e6, #ffffff 30%),
@@ -123,7 +123,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.temari:hover, .color-button.temari:focus {
+.color-button.temari:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #23b3e6, #ffffff 30%),
@@ -152,7 +152,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #f3d51d, #ffffff 30%),
@@ -181,7 +181,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.kotone:hover, .color-button.kotone:focus {
+.color-button.kotone:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #f3d51d, #ffffff 30%),
@@ -210,7 +210,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #bf5cc4, #ffffff 30%),
@@ -239,7 +239,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.mao:hover, .color-button.mao:focus {
+.color-button.mao:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #bf5cc4, #ffffff 30%),
@@ -268,7 +268,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #cee0e0, #ffffff 30%),
@@ -297,7 +297,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.lilja:hover, .color-button.lilja:focus {
+.color-button.lilja:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #cee0e0, #ffffff 30%),
@@ -326,7 +326,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #fa891e, #ffffff 30%),
@@ -355,7 +355,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.china:hover, .color-button.china:focus {
+.color-button.china:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #fa891e, #ffffff 30%),
@@ -384,7 +384,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #8fdc57, #ffffff 30%),
@@ -413,7 +413,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.sumika:hover, .color-button.sumika:focus {
+.color-button.sumika:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #8fdc57, #ffffff 30%),
@@ -442,7 +442,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #00bcd3, #ffffff 30%),
@@ -471,7 +471,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.hiro:hover, .color-button.hiro:focus {
+.color-button.hiro:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #00bcd3, #ffffff 30%),
@@ -500,7 +500,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #fbac26, #ffffff 30%),
@@ -529,7 +529,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.sena:hover, .color-button.sena:focus {
+.color-button.sena:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #fbac26, #ffffff 30%),
@@ -558,7 +558,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #6ba2f7, #ffffff 30%),
@@ -587,7 +587,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.misuzu:hover, .color-button.misuzu:focus {
+.color-button.misuzu:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #6ba2f7, #ffffff 30%),
@@ -616,7 +616,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #f34a29, #ffffff 30%),
@@ -645,7 +645,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.ume:hover, .color-button.ume:focus {
+.color-button.ume:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #f34a29, #ffffff 30%),
@@ -674,7 +674,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: linear-gradient(
                 to right,
                 color-mix(in srgb, #f97dbd, #ffffff 30%),
@@ -703,7 +703,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button.rinami:hover, .color-button.rinami:focus {
+.color-button.rinami:hover {
     background: linear-gradient(
             to right,
             color-mix(in srgb, #f97dbd, #ffffff 30%),
@@ -732,7 +732,7 @@ label.font-bold {
         appearance: none;
     }
 
-    .common-button:hover, .common-button:focus {
+    .common-button:hover {
         background: color-mix(in srgb, #958b7f, #ffffff 30%);
     }
 
@@ -757,7 +757,7 @@ label.font-bold {
     appearance: none;
 }
 
-.color-button:hover, .color-button:focus {
+.color-button:hover {
     background: color-mix(in srgb, #958b7f, #ffffff 30%);
 }
 
@@ -781,7 +781,7 @@ label.font-bold {
     appearance: none;
 }
 
-.basic-button:hover, .basic-button:focus {
+.basic-button:hover {
     background: #efefef;
 }
 
