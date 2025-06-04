@@ -1165,6 +1165,10 @@
                     background: #333333;
                 }
 
+                .table-data.input {
+                    cursor: pointer;
+                }
+
                 .table-data-text.vocal {
                     color: #FB0082;
                 }

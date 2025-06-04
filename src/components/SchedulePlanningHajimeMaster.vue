@@ -2,6 +2,7 @@
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
+import CommonInputModal from "@/components/inputModals/CommonInputModal.vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -118,6 +119,8 @@ let basicData = ref(props.basicData);
 let scheduleDetailData = ref({});
 let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
+
+let commonInputModalOpen = ref(false);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -454,6 +457,16 @@ const getSupportCardAbilityParameterSum = (ability) => {
 const updatePlanningData = () => {
   updateScheduleDetailData();
   updateResultScoreList();
+}
+const inputSupportCardAbilityCount = (index, headline) => {
+  commonInputModalOpen.value = index;
+}
+const closeSupportCardAbilityCount = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['support_card_ability'][commonInputModalOpen.value] = inputValue;
+    updateInputData();
+  }
+  commonInputModalOpen.value = false;
 }
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
@@ -802,9 +815,20 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="basicData['ability_list'][list.ability]">{{ basicData['ability_list'][list.ability]['visual'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number count">
+                <td class="table-data number count input" @click="inputSupportCardAbilityCount(list.ability)">
                   <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="inputData['planning']['support_card_ability'][list.ability]">{{ inputData['planning']['support_card_ability'][list.ability] }}</span>
-                  <span class="table-data-text" v-else>0</span>
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-else>0</span>
+                  <Teleport to="#modal-area">
+                    <CommonInputModal
+                        v-if="commonInputModalOpen === list.ability"
+                        :input-value="inputData['planning']['support_card_ability'][list.ability] ? inputData['planning']['support_card_ability'][list.ability] : 0"
+                        :min-value="0"
+                        :max-value="99"
+                        :headline="'発動回数を編集'"
+                        :description="list.text + 'の発動回数'"
+                        @input-close="closeSupportCardAbilityCount"
+                    />
+                  </Teleport>
                 </td>
                 <td class="table-data number count">
                   <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ getSupportCardAbilityParameterSum(list.ability) }}</span>
