@@ -458,7 +458,7 @@ const updatePlanningData = () => {
   updateScheduleDetailData();
   updateResultScoreList();
 }
-const inputSupportCardAbilityCount = (index, headline) => {
+const inputSupportCardAbilityCount = (index) => {
   commonInputModalOpen.value = index;
 }
 const closeSupportCardAbilityCount = (inputValue) => {
