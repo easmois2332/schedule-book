@@ -121,7 +121,10 @@ let scheduleDetailData = ref({});
 let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
 
-let commonInputModalOpen = ref(false);
+let commonInputModalScheduleHpOpen = ref(false);
+let commonInputModalSchedulePointOpen = ref(false);
+let commonInputModalSupportCardPItemOpen = ref(false);
+let commonInputModalSupportCardAbilityOpen = ref(false);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -250,6 +253,15 @@ const updateScheduleDetailData = () => {
         parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
       }
 
+      // Pポイント調整処理
+      parameter['point'] += inputScheduleData['point'];
+
+      // 体力調整処理
+      parameter['hp'] += inputScheduleData['hp'];
+      if (parameter['hp'] < 0) {
+        parameter['hp'] = 0;
+      }
+
       // サポートカードアビリティでの獲得パラメータ
       switch (inputScheduleData['schedule_detail']) {
         case 'lesson':
@@ -270,9 +282,6 @@ const updateScheduleDetailData = () => {
           } else {
             parameter['point'] += basicPoint;
           }
-
-          // 体力
-          // TODO: 体力調整処理
           break;
         case 'sp_lesson':
           // パラメータ
@@ -297,7 +306,6 @@ const updateScheduleDetailData = () => {
           }
 
           // 体力
-          // TODO: 体力調整処理
           if (basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER]) {
             parameter['hp'] += basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER][inputScheduleData['type']];
           }
@@ -319,7 +327,6 @@ const updateScheduleDetailData = () => {
           }
 
           // 体力
-          // TODO: 体力調整処理
           parameter['hp'] += Math.round(maxHp + maxHp * 0.7);
           break;
         case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
@@ -389,19 +396,21 @@ const updateScheduleDetailData = () => {
           break;
       }
 
-      // TODO: Pポイント調整処理
-      // TODO: 体力調整処理
-
       // はつぼしブレスレットでの体力消費
       if (inputData.value['planning']['produce_p_item'][1] === 2 && week >= 8 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
         parameter['hp'] -= 3;
       }
 
-      // 最大上限丸め
+      // 最大上限判定
       parameter['vocal'] = Math.min(maxParameter, parameter['vocal']);
       parameter['dance'] = Math.min(maxParameter, parameter['dance']);
       parameter['visual'] = Math.min(maxParameter, parameter['visual']);
       parameter['hp'] = Math.min(maxHp, parameter['hp']);
+
+      // 最小下限判定
+      if (parameter['hp'] < 0) {
+        parameter['hp'] = 0;
+      }
 
       // 合計値計算
       scheduleDetailData.value[week] = {...parameter};
@@ -432,11 +441,16 @@ const updateScheduleDetailData = () => {
       }
     }
 
-    // 最大上限丸め
+    // 最大上限判定
     parameter['vocal'] = Math.min(maxParameter, parameter['vocal']);
     parameter['dance'] = Math.min(maxParameter, parameter['dance']);
     parameter['visual'] = Math.min(maxParameter, parameter['visual']);
     parameter['hp'] = Math.min(maxHp, parameter['hp']);
+
+    // 最小下限判定
+    if (parameter['hp'] < 0) {
+      parameter['hp'] = 0;
+    }
 
     // 合計値計算
     scheduleDetailData.value['other'] = {...parameter};
@@ -538,30 +552,50 @@ const getPItemCountMaxValue = (id) => {
     return Math.min(pItem.event_count, scheduleDetailCount.value[pItem.event]);
   }
 }
+const inputScheduleHpAdjustment = (index) => {
+  commonInputModalScheduleHpOpen.value = index;
+}
+const closeScheduleHpAdjustment = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['schedule'][commonInputModalScheduleHpOpen.value]['hp'] = inputValue;
+    updateInputData();
+  }
+  commonInputModalScheduleHpOpen.value = false;
+}
+const inputSchedulePointAdjustment = (index) => {
+  commonInputModalSchedulePointOpen.value = index;
+}
+const closeSchedulePointAdjustment = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['schedule'][commonInputModalSchedulePointOpen.value]['point'] = inputValue;
+    updateInputData();
+  }
+  commonInputModalSchedulePointOpen.value = false;
+}
 const inputPItemCount = (index) => {
   if (inputData.value['organization']['support_card'][index]['id'] &&
       basicData.value['support_card'][index]['event_1'] === 'get_unique_p_item' &&
       getPItemDetail(basicData.value['support_card'][index]['p_item_id'])['category_type'] === 'produce'
   ) {
-    commonInputModalOpen.value = index;
+    commonInputModalSupportCardPItemOpen.value = index;
   }
 }
 const closePItemCount = (inputValue) => {
   if (inputValue !== null) {
-    inputData.value['planning']['support_card_p_item'][commonInputModalOpen.value] = inputValue;
+    inputData.value['planning']['support_card_p_item'][commonInputModalSupportCardPItemOpen.value] = inputValue;
     updateInputData();
   }
-  commonInputModalOpen.value = false;
+  commonInputModalSupportCardPItemOpen.value = false;
 }
 const inputSupportCardAbilityCount = (index) => {
-  commonInputModalOpen.value = index;
+  commonInputModalSupportCardAbilityOpen.value = index;
 }
 const closeSupportCardAbilityCount = (inputValue) => {
   if (inputValue !== null) {
-    inputData.value['planning']['support_card_ability'][commonInputModalOpen.value] = inputValue;
+    inputData.value['planning']['support_card_ability'][commonInputModalSupportCardAbilityOpen.value] = inputValue;
     updateInputData();
   }
-  commonInputModalOpen.value = false;
+  commonInputModalSupportCardAbilityOpen.value = false;
 }
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
@@ -637,13 +671,35 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number hp">
+                <td class="table-data number hp input" @click="inputScheduleHpAdjustment(i)">
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['hp'] }}</span>
                   <span class="table-data-text" v-else>0</span>
+                  <Teleport to="#modal-area">
+                    <CommonInputModal
+                        v-if="commonInputModalScheduleHpOpen === i"
+                        :input-value="inputData['planning']['schedule'][i]['hp']"
+                        :min-value="-99"
+                        :max-value="99"
+                        :headline="'体力を調整'"
+                        :description="i + '週目でサポートカードアビリティ、はつぼしブレスレット発動前に消費・回復した体力'"
+                        @input-close="closeScheduleHpAdjustment"
+                    />
+                  </Teleport>
                 </td>
-                <td class="table-data number point">
+                <td class="table-data number point input" @click="inputSchedulePointAdjustment(i)">
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['point'] }}</span>
                   <span class="table-data-text" v-else>0</span>
+                  <Teleport to="#modal-area">
+                    <CommonInputModal
+                        v-if="commonInputModalSchedulePointOpen === i"
+                        :input-value="inputData['planning']['schedule'][i]['point']"
+                        :min-value="-999"
+                        :max-value="999"
+                        :headline="'Pポイントを調整'"
+                        :description="i + '週目で獲得・消費したPポイント'"
+                        @input-close="closeSchedulePointAdjustment"
+                    />
+                  </Teleport>
                 </td>
               </tr>
               <tr>
@@ -666,14 +722,8 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['sum'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number hp">
-                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['hp'] }}</span>
-                  <span class="table-data-text" v-else>0</span>
-                </td>
-                <td class="table-data number point">
-                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['point'] }}</span>
-                  <span class="table-data-text" v-else>0</span>
-                </td>
+                <td class="table-data number hp"></td>
+                <td class="table-data number point"></td>
               </tr>
               <tr>
                 <th class="table-header last"></th>
@@ -794,7 +844,7 @@ defineExpose({updatePlanningData});
                     <span class="table-data-text" v-else></span>
                     <Teleport to="#modal-area">
                       <CommonInputModal
-                          v-if="commonInputModalOpen === i"
+                          v-if="commonInputModalSupportCardPItemOpen === i"
                           :input-value="inputData['planning']['support_card_p_item'][i] ? inputData['planning']['support_card_p_item'][i] : 0"
                           :min-value="0"
                           :max-value="getPItemCountMaxValue(basicData['support_card'][i]['p_item_id'])"
@@ -942,7 +992,7 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-else>0</span>
                   <Teleport to="#modal-area">
                     <CommonInputModal
-                        v-if="commonInputModalOpen === list.ability"
+                        v-if="commonInputModalSupportCardAbilityOpen === list.ability"
                         :input-value="inputData['planning']['support_card_ability'][list.ability] ? inputData['planning']['support_card_ability'][list.ability] : 0"
                         :min-value="0"
                         :max-value="99"
