@@ -168,38 +168,47 @@ export const abilityParameterThresholds = {
 export const abilityBasicParameterUpList = [
     {
         ability: abilities.LESSON_PARAMETER_UP,
+        schedule: 'lesson',
         text: 'レッスン終了時',
     },
     {
         ability: abilities.NORMAL_LESSON_PARAMETER_UP,
+        schedule: 'normal_lesson',
         text: '通常レッスン終了時',
     },
     {
         ability: abilities.SP_LESSON_PARAMETER_UP,
+        schedule: 'sp_lesson',
         text: 'SPレッスン終了時',
     },
     {
         ability: abilities.CLASS_PARAMETER_UP,
+        schedule: 'class',
         text: '授業・営業終了時',
     },
     {
         ability: abilities.GIFT_PARAMETER_UP,
+        schedule: 'gift',
         text: '活動支給・差し入れ選択時',
     },
     {
         ability: abilities.OUTING_PARAMETER_UP,
+        schedule: 'outing',
         text: 'お出かけ終了時',
     },
     {
         ability: abilities.CONSULTATION_PARAMETER_UP,
+        schedule: 'consultation',
         text: '相談選択時',
     },
     {
         ability: abilities.REST_PARAMETER_UP,
+        schedule: 'rest',
         text: '休む選択時',
     },
     {
         ability: abilities.EXAM_PARAMETER_UP,
+        schedule: 'exam_1',
         text: '試験・オーディション終了時',
     },
 ]

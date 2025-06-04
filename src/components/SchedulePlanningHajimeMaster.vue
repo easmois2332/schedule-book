@@ -116,6 +116,7 @@ const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
 let inputData = ref(props.inputData);
 let basicData = ref(props.basicData);
 
+let scheduleDetailCount = ref({});
 let scheduleDetailData = ref({});
 let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
@@ -131,6 +132,74 @@ const getBonusIncludedParameter = (parameter, parameterBonus) => {
       parameter * (parameterBonus / 10).toFixed(1) / 100
   );
 };
+const updateScheduleDetailCount = () => {
+  scheduleDetailCount.value = {
+    lesson: {
+      vocal: 0,
+      dance: 0,
+      visual: 0,
+    },
+    normal_lesson: {
+      vocal: 0,
+      dance: 0,
+      visual: 0,
+    },
+    sp_lesson: {
+      vocal: 0,
+      dance: 0,
+      visual: 0,
+    },
+    class: 0,
+    gift: 0,
+    outing: 0,
+    consultation: 0,
+    rest: 0,
+    exam_1: 0,
+    exam: 0,
+  };
+  if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']) {
+    for (let week = 1; week <= 18; week++) {
+      let inputScheduleData = inputData.value['planning']['schedule'][week];
+      switch (inputScheduleData['schedule_detail']) {
+        case 'lesson':
+          scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
+          scheduleDetailCount.value['normal_lesson'][inputScheduleData['type']]++;
+          break;
+        case 'sp_lesson':
+          scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
+          scheduleDetailCount.value['sp_lesson'][inputScheduleData['type']]++;
+          break;
+        case 'push_lesson':
+          scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
+          break;
+        case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
+          scheduleDetailCount.value['class']++;
+          break;
+        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+          scheduleDetailCount.value['gift']++;
+          break;
+        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+          scheduleDetailCount.value['outing']++;
+          break;
+        case 'consultation':
+          scheduleDetailCount.value['consultation']++;
+          break;
+        case 'rest':
+          scheduleDetailCount.value['rest']++;
+          break;
+        case 'exam_1':
+          scheduleDetailCount.value['exam_1']++;
+          scheduleDetailCount.value['exam']++;
+          break;
+        case 'exam_2':
+          scheduleDetailCount.value['exam']++;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+}
 const updateScheduleDetailData = () => {
   if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']) {
     let maxHp = basicData.value['parameter']['init_hp'];
@@ -443,18 +512,19 @@ const getPItemParameterSum = (index) => {
 const getBasicPItemDetail = (plan) => {
   return items.getHajimeMasterBasicItem(plan)
 }
-const getSupportCardAbilityParameterSum = (ability) => {
+const getSupportCardAbilityParameterSum = (ability, count) => {
   if (!basicData.value['ability_list'][ability]) {
     return 0;
   }
-  if (!inputData.value['planning']['support_card_ability'][ability]) {
-    inputData.value['planning']['support_card_ability'][ability] = 0;
+  if (!count) {
+    count = 0;
   }
-  return (basicData.value['ability_list'][ability]['vocal'] * inputData.value['planning']['support_card_ability'][ability])
-      + (basicData.value['ability_list'][ability]['dance'] * inputData.value['planning']['support_card_ability'][ability])
-      + (basicData.value['ability_list'][ability]['visual'] * inputData.value['planning']['support_card_ability'][ability]);
+  return (basicData.value['ability_list'][ability]['vocal'] * count)
+      + (basicData.value['ability_list'][ability]['dance'] * count)
+      + (basicData.value['ability_list'][ability]['visual'] * count);
 }
 const updatePlanningData = () => {
+  updateScheduleDetailCount();
   updateScheduleDetailData();
   updateResultScoreList();
 }
@@ -793,12 +863,28 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data number count">
-                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">0</span>
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">{{ scheduleDetailCount[list.schedule] }}</span>
                 </td>
                 <td class="table-data number count">
-                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">0</span>
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}" v-if="!list.text.includes('レッスン')">{{ getSupportCardAbilityParameterSum(list.ability, scheduleDetailCount[list.schedule]) }}</span>
                 </td>
               </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="support-card-ability">
+            <table class="table support-card-ability">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">内容</span></th>
+                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+                <th class="table-header count"><span class="table-header-text">回数</span></th>
+                <th class="table-header count"><span class="table-header-text">合計値</span></th>
+              </tr>
+              </thead>
+              <tbody>
               <tr v-for="list in abilityExtraParameterUpListAll" :key="list">
                 <td class="table-data detail">
                   <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ list.text }}</span>
@@ -831,7 +917,7 @@ defineExpose({updatePlanningData});
                   </Teleport>
                 </td>
                 <td class="table-data number count">
-                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ getSupportCardAbilityParameterSum(list.ability) }}</span>
+                  <span class="table-data-text" v-bind:class="{'font-bold': Object.keys(basicData['ability_list']).includes(list.ability)}">{{ getSupportCardAbilityParameterSum(list.ability, inputData['planning']['support_card_ability'][list.ability]) }}</span>
                 </td>
               </tr>
               </tbody>
