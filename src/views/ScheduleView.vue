@@ -2,7 +2,7 @@
 import {onBeforeMount, ref} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
-import SchedulePlanningNextIdolAudition from "@/components/SchedulePlanningNextIdolAudition.vue";
+import SchedulePlanningNextIdolAuditionMaster from "@/components/SchedulePlanningNextIdolAuditionMaster.vue";
 import {abilities, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
@@ -14,16 +14,18 @@ const planningViewRef = ref();
 
 const produceTypeDisplayList = {
   hajime_master: '定期公演『初』 マスター',
-  nia: 'NEXT IDOL AUDITION プロ',
+  nia_master: 'NEXT IDOL AUDITION マスター',
 }
 const produceTypeComponentList = {
   hajime_master: {
     organization: ScheduleOrganization,
-    planning: SchedulePlanningHajimeMaster
+    planning: SchedulePlanningHajimeMaster,
+    minDearLevel: 10,
   },
-  nia: {
+  nia_master: {
     organization: ScheduleOrganization,
-    planning: SchedulePlanningNextIdolAudition
+    planning: SchedulePlanningNextIdolAuditionMaster,
+    minDearLevel: 20,
   }
 }
 
@@ -240,6 +242,7 @@ defineExpose({buttonUndo, buttonRedo});
         :basic-data="basicData"
         :idols="idols"
         :support-cards="supportCards"
+        :min-dear-level="produceTypeComponentList[produceType]['minDearLevel']"
         @input-data-update="updateInputData"
     />
     <component

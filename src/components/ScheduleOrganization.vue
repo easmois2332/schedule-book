@@ -3,10 +3,11 @@ import {ref, watch} from "vue";
 import SupportCardSelect from "@/components/modals/SupportCardSelect.vue";
 import ProduceIdolSelect from "@/components/modals/ProduceIdolSelect.vue";
 
-const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards']);
+const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards', 'minDearLevel']);
 const emit = defineEmits(['input-data-update']);
 const idols = props.idols;
 const supportCards = props.supportCards;
+const minDearLevel = props.minDearLevel;
 
 const produceMemoryParameterAbilityValue = [
   {value: 25, text: '+25'},
@@ -113,7 +114,7 @@ watch(() => props.basicData, () => {
                 </div>
                 <div class="produce-idol-level dear-level">
                   <label class="basic-input-number-name font-bold">親愛度</label>
-                  <input class="basic-input-number" type="number" min="10" max="20" v-model="inputData['organization']['produce_idol']['dear_level']" v-bind:disabled="inputData['organization']['produce_idol']['id'] === null" @change="updateInputData">
+                  <input class="basic-input-number" type="number" v-bind:min="minDearLevel" max="20" v-model="inputData['organization']['produce_idol']['dear_level']" v-bind:disabled="inputData['organization']['produce_idol']['id'] === null" @change="updateInputData">
                 </div>
               </div>
             </div>

@@ -9,90 +9,143 @@ const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
 
-const maxParameter = 1800;
+const maxParameter = 2300;
 const scheduleData = {
   1: {
-    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 100, point: 20, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 80, point: 20, hp: -6, fan: 0},
   },
   2: {
-    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 80, point: 0, hp: 10, fan: 4215},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 80, point: 0, hp: 0, fan: 4680},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 80, point: 50, hp: -5, fan: 4680},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 80, point: 0, hp: -5, fan: 4680},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   3: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   4: {
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 100, point: 20, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 80, point: 20, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   5: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 60, point: 14, hp: 0},
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 80, point: 0, hp: 10, fan: 4215},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 80, point: 0, hp: 0, fan: 4680},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 80, point: 50, hp: -5, fan: 4680},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 80, point: 0, hp: -5, fan: 4680},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   6: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   7: {
-    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 90, bonus_parameter: 90, point: 28, hp: 0},
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 80, point: 0, hp: 10, fan: 4215},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 80, point: 0, hp: 0, fan: 4680},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 80, point: 50, hp: -5, fan: 4680},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 80, point: 0, hp: -5, fan: 4680},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   8: {
-    exam_1: {value: 'exam_1', text: '中間試験', parameter: 20, point: 125, hp: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   9: {
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    gift_rng: {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    exam_1: {value: 'exam_1', text: '1次オーディション', parameter: 0, point: 100, hp: 0, fan: 0},
   },
   10: {
-    class_80: {value: 'class_80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
-    class_55: {value: 'class_55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
-    class_30: {value: 'class_30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   11: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 170, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 110, point: 14, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 120, point: 25, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 100, point: 25, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   12: {
-    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
-    class_45: {value: 'class_45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 110, point: 0, hp: 10, fan: 5625},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 110, point: 0, hp: 0, fan: 6240},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 110, point: 50, hp: -5, fan: 6240},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 110, point: 0, hp: -5, fan: 6240},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   13: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
+    gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   14: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 200, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 120, point: 14, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 120, point: 25, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 100, point: 25, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   15: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
-    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
-    class_45: {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 110, point: 0, hp: 10, fan: 5625},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 110, point: 0, hp: 0, fan: 6240},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 110, point: 50, hp: -5, fan: 6240},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 110, point: 0, hp: -5, fan: 6240},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   16: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   17: {
-    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 165, bonus_parameter: 145, point: 0, hp: 0},
+    exam_2: {value: 'exam_2', text: '2次オーディション', parameter: 0, point: 150, hp: 0, fan: 0},
   },
   18: {
-    exam_2: {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 90, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  19: {
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 150, point: 30, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 120, point: 30, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  20: {
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 130, point: 0, hp: 10, fan: 7185},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 130, point: 0, hp: 0, fan: 7800},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 130, point: 50, hp: -5, fan: 7800},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 130, point: 0, hp: -5, fan: 7800},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  21: {
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
+    gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 90, hp: 0, fan: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  22: {
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 150, point: 30, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 120, point: 30, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  23: {
+    class_hp: {value: 'class_hp', text: '営業(リゾート施設)', parameter: 130, point: 0, hp: 10, fan: 7185},
+    class_drink: {value: 'class_drink', text: '授業(企業イベント)', parameter: 130, point: 0, hp: 0, fan: 7800},
+    class_point: {value: 'class_point', text: '授業(自治体イベント)', parameter: 130, point: 50, hp: -5, fan: 7800},
+    class_card: {value: 'class_card', text: '営業(商業施設)', parameter: 130, point: 0, hp: -5, fan: 7800},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  24: {
+    sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 150, point: 30, hp: -8, fan: 0},
+    lesson: {value: 'lesson', text: '自主レッスン', parameter: 120, point: 30, hp: -6, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  25: {
+    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
+  },
+  26: {
+    exam_3: {value: 'exam_3', text: '最終オーディション', parameter: 0, point: 0, hp: 0, fan: 0},
   },
 };
 const resultData = {
@@ -119,11 +172,12 @@ let basicData = ref(props.basicData);
 let scheduleDetailCount = ref({});
 let scheduleDetailData = ref({});
 let resultScoreList = ref({});
-let challengePItemMaxPushSum = ref(0);
+let challengePItemAuditionBonus = ref(0);
 
 let commonInputModalScheduleHpOpen = ref(false);
 let commonInputModalSchedulePointOpen = ref(false);
 let commonInputModalSupportCardPItemOpen = ref(false);
+let commonInputModalPItemNiaKeyHolderOpen = ref(false);
 let commonInputModalSupportCardAbilityOpen = ref(false);
 
 const updateInputData = () => {
@@ -156,12 +210,13 @@ const updateScheduleDetailCount = () => {
     gift: 0,
     outing: 0,
     consultation: 0,
+    coaching: 0,
     rest: 0,
     exam_1: 0,
     exam: 0,
   };
   if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']) {
-    for (let week = 1; week <= 18; week++) {
+    for (let week = 1; week <= 26; week++) {
       let inputScheduleData = inputData.value['planning']['schedule'][week];
       switch (inputScheduleData['schedule_detail']) {
         case 'lesson':
@@ -172,20 +227,20 @@ const updateScheduleDetailCount = () => {
           scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
           scheduleDetailCount.value['sp_lesson'][inputScheduleData['type']]++;
           break;
-        case 'push_lesson':
-          scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
-          break;
         case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
           scheduleDetailCount.value['class']++;
           break;
-        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+        case 'gift':
           scheduleDetailCount.value['gift']++;
           break;
-        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+        case 'outing':
           scheduleDetailCount.value['outing']++;
           break;
         case 'consultation':
           scheduleDetailCount.value['consultation']++;
+          break;
+        case 'coaching':
+          scheduleDetailCount.value['coaching']++;
           break;
         case 'rest':
           scheduleDetailCount.value['rest']++;
@@ -193,6 +248,7 @@ const updateScheduleDetailCount = () => {
         case 'exam_1':
           scheduleDetailCount.value['exam_1']++;
         case 'exam_2':
+        case 'exam_3':
           scheduleDetailCount.value['exam']++;
           break;
         default:
@@ -210,10 +266,12 @@ const updateScheduleDetailData = () => {
       visual: basicData.value['parameter']['init_visual'],
       point: basicData.value['parameter']['init_point'],
       hp: basicData.value['parameter']['init_hp'],
+      fan: 0,
     }
+    let niaPassCaseCount = 0;
 
-    // 1~18週目
-    for (let week = 1; week <= 18; week++) {
+    // 1~26週目
+    for (let week = 1; week <= 26; week++) {
       let inputScheduleData = inputData.value['planning']['schedule'][week];
       let basicParameter = scheduleData[week][inputScheduleData['schedule_detail']]['parameter'];
       let basicPoint = scheduleData[week][inputScheduleData['schedule_detail']]['point'];
@@ -221,24 +279,16 @@ const updateScheduleDetailData = () => {
 
       // スケジュール内容での獲得パラメータ
       if (inputScheduleData['schedule_detail'] === 'lesson' || inputScheduleData['schedule_detail'] === 'sp_lesson') {
-        basicParameter += challengePItemMaxPushSum.value;
         if (inputScheduleData['type'] !== null) {
           parameter[inputScheduleData['type']] += getBonusIncludedParameter(basicParameter, basicData.value['parameter'][`bonus_${inputScheduleData['type']}`]);
         }
-      } else if (inputScheduleData['schedule_detail'] === 'push_lesson') {
-        if (inputScheduleData['type'] === 'vocal') {
-          parameter['vocal'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
-        } else if (inputScheduleData['type'] === 'dance') {
-          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
-        } else if (inputScheduleData['type'] === 'visual') {
-          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_visual']);
-        }
+        parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
+        parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
+        parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
+      } else if (inputScheduleData['schedule_detail'] === 'exam_1' || inputScheduleData['schedule_detail'] === 'exam_2' || inputScheduleData['schedule_detail'] === 'exam_3') {
+        parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
+        parameter['hp'] += Math.round(maxHp * 0.5);
+        parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
       } else {
         if (inputScheduleData['type'] !== null) {
           parameter[inputScheduleData['type']] += basicParameter;
@@ -249,6 +299,7 @@ const updateScheduleDetailData = () => {
         }
         parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
         parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
+        parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
       }
 
       // Pポイント調整処理
@@ -308,25 +359,6 @@ const updateScheduleDetailData = () => {
             parameter['hp'] += basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER][inputScheduleData['type']];
           }
           break;
-        case 'push_lesson':
-          // パラメータ
-          if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
-            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
-          }
-
-          // Pポイント
-          if (basicData.value['ability_list'][abilities.LESSON_P_POINT_UP]) {
-            pointUpRate += basicData.value['ability_list'][abilities.LESSON_P_POINT_UP][inputScheduleData['type']];
-          }
-          if (pointUpRate !== 0) {
-            parameter['point'] += getBonusIncludedParameter(basicPoint, pointUpRate);
-          } else {
-            parameter['point'] += basicPoint;
-          }
-
-          // 体力
-          parameter['hp'] += Math.round(maxHp * 0.7);
-          break;
         case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
           // パラメータ
           if (basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]) {
@@ -335,7 +367,7 @@ const updateScheduleDetailData = () => {
             parameter['visual'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['visual'];
           }
           break;
-        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+        case 'gift':
           // パラメータ
           if (basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]) {
             parameter['vocal'] += basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]['vocal'];
@@ -348,7 +380,7 @@ const updateScheduleDetailData = () => {
             parameter['hp'] -= basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]['vocal'];
           }
           break;
-        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+        case 'outing':
           // パラメータ
           if (basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]) {
             parameter['vocal'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['vocal'];
@@ -390,12 +422,20 @@ const updateScheduleDetailData = () => {
           break;
         case 'exam_2':
           break;
+        case 'exam_3':
+          break;
         default:
           break;
       }
 
+      // N.I.AパスケースでのPポイント獲得
+      if (inputData.value['planning']['produce_p_item'][2] === 19 && week >= 10 && inputScheduleData['schedule_detail'] === 'class_point' && niaPassCaseCount < 2) {
+        parameter['point'] += 40;
+        niaPassCaseCount++;
+      }
+
       // はつぼしブレスレットでの体力消費
-      if (inputData.value['planning']['produce_p_item'][1] === 2 && week >= 9 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
+      if (inputData.value['planning']['produce_p_item'][3] === 2 && week >= 18 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
         parameter['hp'] -= 3;
       }
 
@@ -422,6 +462,7 @@ const updateScheduleDetailData = () => {
         parameter[basicData.value['support_card'][i]['type']] += getPItemParameterSum(i);
       }
     }
+    parameter['fan'] += inputData.value['planning']['produce_p_item'][1] * 3000;
 
     // サポートカードイベント
     for (let i in inputData.value['planning']['support_card_event']) {
@@ -498,13 +539,13 @@ const updateResultScoreList = () => {
   }
 }
 const getChallengePItemDetail = (categoryType, plan) => {
-  return items.getHajimeMasterChallengeItem(categoryType, plan)
+  return items.getNiaMasterChallengeItem(categoryType, plan)
 }
 const updateChallengePItemMaxPushSum = () => {
-  challengePItemMaxPushSum.value = 0;
+  challengePItemAuditionBonus.value = 0;
   for (let i in inputData.value['planning']['challenge_p_item']) {
     if (inputData.value['planning']['challenge_p_item'][i] > 0) {
-      challengePItemMaxPushSum.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]).event_other;
+      challengePItemAuditionBonus.value += getPItemDetail(inputData.value['planning']['challenge_p_item'][i]).event_other;
     }
   }
 }
@@ -522,7 +563,7 @@ const getPItemParameterSum = (index) => {
   return getPItemDetail(basicData.value['support_card'][index]['p_item_id']).event_parameter * inputData.value['planning']['support_card_p_item'][index];
 }
 const getBasicPItemDetail = (plan) => {
-  return items.getHajimeMasterBasicLessonItem(plan);
+  return items.getNiaMasterBasicLessonItem(plan);
 }
 const getSupportCardAbilityParameterSum = (ability, count) => {
   if (!basicData.value['ability_list'][ability]) {
@@ -585,6 +626,16 @@ const closePItemCount = (inputValue) => {
   }
   commonInputModalSupportCardPItemOpen.value = false;
 }
+const inputPItemNiaKeyHolderCount = () => {
+  commonInputModalPItemNiaKeyHolderOpen.value = true;
+}
+const closePItemNiaKeyHolderCount = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['produce_p_item'][1] = inputValue;
+    updateInputData();
+  }
+  commonInputModalPItemNiaKeyHolderOpen.value = false;
+}
 const inputSupportCardAbilityCount = (index) => {
   commonInputModalSupportCardAbilityOpen.value = index;
 }
@@ -631,12 +682,13 @@ defineExpose({updatePlanningData});
                 <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
                 <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
                 <th class="table-header point"><span class="table-header-text">合計値</span></th>
+                <th class="table-header point"><span class="table-header-text">ファン数</span></th>
                 <th class="table-header hp"><span class="table-header-text">体力</span></th>
                 <th class="table-header point"><span class="table-header-text">Pポイント</span></th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="i in 18" :key="i">
+              <tr v-for="i in 26" :key="i">
                 <th class="table-header">
                   <span class="table-header-text">{{ i }}</span>
                 </th>
@@ -667,6 +719,10 @@ defineExpose({updatePlanningData});
                 </td>
                 <td class="table-data number point">
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['fan'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
                 <td class="table-data number hp input" @click="inputScheduleHpAdjustment(i)">
@@ -720,6 +776,10 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['sum'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
+                <td class="table-data number point">
+                  <span class="table-data-text" v-if="scheduleDetailData['other']">{{ scheduleDetailData['other']['fan'] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
                 <td class="table-data number hp"></td>
                 <td class="table-data number point"></td>
               </tr>
@@ -741,6 +801,10 @@ defineExpose({updatePlanningData});
                 </td>
                 <td class="table-data number point last">
                   <span class="table-data-text font-bold last" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['sum'] }}</span>
+                  <span class="table-data-text font-bold last" v-else>0</span>
+                </td>
+                <td class="table-data number point last">
+                  <span class="table-data-text font-bold last" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['fan'] }}</span>
                   <span class="table-data-text font-bold last" v-else>0</span>
                 </td>
                 <td class="table-data number hp last"></td>
@@ -804,7 +868,7 @@ defineExpose({updatePlanningData});
                     <span class="table-data-text" v-else>0</span>
                   </td>
                   <td class="table-data number count" rowspan="3" v-if="i === 1">
-                    <span class="table-data-text">{{ challengePItemMaxPushSum }}</span>
+                    <span class="table-data-text">{{ challengePItemAuditionBonus }}</span>
                   </td>
                 </tr>
                 </tbody>
@@ -858,7 +922,50 @@ defineExpose({updatePlanningData});
                 </tr>
                 <tr>
                   <td class="table-data detail">
-                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
+                    <span class="table-data-text">N.I.Aキーホルダー</span>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text">3000</span>
+                  </td>
+                  <td class="table-data number count input" @click="inputPItemNiaKeyHolderCount">
+                    <span class="table-data-text">{{ inputData['planning']['produce_p_item'][1] }}</span>
+                    <Teleport to="#modal-area">
+                      <CommonInputModal
+                          v-if="commonInputModalPItemNiaKeyHolderOpen"
+                          :input-value="inputData['planning']['produce_p_item'][1]"
+                          :min-value="0"
+                          :max-value="99"
+                          :headline="'発動回数を編集'"
+                          :description="'N.I.Aキーホルダーの発動回数'"
+                          @input-close="closePItemNiaKeyHolderCount"
+                      />
+                    </Teleport>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text">{{ 3000 * inputData['planning']['produce_p_item'][1] }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-data detail">
+                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][2]" @change="updateInputData">
+                      <option class="table-option" v-bind:value="17">N.I.Aスマホリング</option>
+                      <option class="table-option" v-bind:value="18">N.I.Aトートバッグ</option>
+                      <option class="table-option" v-bind:value="19">N.I.Aパスケース</option>
+                    </select>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                  <td class="table-data number count">
+                    <span class="table-data-text"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-data detail">
+                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][3]" @change="updateInputData">
                       <option class="table-option" v-bind:value="2">はつぼしブレスレット</option>
                       <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
                     </select>

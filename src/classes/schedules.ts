@@ -28,10 +28,10 @@ export default class Schedules {
         let planning: any;
         switch (produceType) {
             case 'hajime_master':
-                planning = this.setPlanningHajime();
+                planning = this.setPlanningHajimeMaster();
                 break;
-            case 'nia':
-                planning = {};
+            case 'nia_master':
+                planning = this.setPlanningNiaMaster();
                 break;
             default:
                 planning = {};
@@ -136,7 +136,7 @@ export default class Schedules {
         }
     }
 
-    private setPlanningHajime() {
+    private setPlanningHajimeMaster() {
         return {
             schedule: {
                 1: {
@@ -255,6 +255,197 @@ export default class Schedules {
             },
             produce_p_item: {
                 1: 2,
+            },
+            support_card_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                6: 0,
+            },
+            support_card_event: {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+                6: false,
+            },
+            support_card_ability: {
+            },
+        }
+    }
+
+    private setPlanningNiaMaster() {
+        return {
+            schedule: {
+                1: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                2: {
+                    schedule_detail: 'class_point',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                3: {
+                    schedule_detail: 'outing',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                4: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                5: {
+                    schedule_detail: 'class_point',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                6: {
+                    schedule_detail: 'outing',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                7: {
+                    schedule_detail: 'class_point',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                8: {
+                    schedule_detail: 'coaching',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                9: {
+                    schedule_detail: 'exam_1',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                10: {
+                    schedule_detail: 'outing',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                11: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                12: {
+                    schedule_detail: 'class_drink',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                13: {
+                    schedule_detail: 'outing',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                14: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                15: {
+                    schedule_detail: 'class_drink',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                16: {
+                    schedule_detail: 'coaching',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                17: {
+                    schedule_detail: 'exam_2',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                18: {
+                    schedule_detail: 'outing',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                19: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                20: {
+                    schedule_detail: 'class_drink',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                21: {
+                    schedule_detail: 'gift',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                22: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                23: {
+                    schedule_detail: 'class_drink',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                24: {
+                    schedule_detail: 'sp_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                25: {
+                    schedule_detail: 'consultation',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                26: {
+                    schedule_detail: 'exam_3',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+            },
+            challenge_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+            },
+            produce_p_item: {
+                1: 0,
+                2: 18,
+                3: 2,
             },
             support_card_p_item: {
                 1: 0,
