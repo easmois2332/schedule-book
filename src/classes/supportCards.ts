@@ -6,6 +6,7 @@ export default class SupportCards {
 
     cardList: any = [];
     saveList: any = [];
+    typeSort = {vocal: 1, dance: 2, visual: 3, assist: 4};
 
     constructor() {
         // サポートカードリストを作成
@@ -15,32 +16,95 @@ export default class SupportCards {
         this.getSaveCardList();
     }
 
-    getAllCard() {
-        return this.cardList.filter((card: any) => card.enable === 1);
+    getAllCard(sortType: string = 'sort_id') {
+        let list = this.cardList.filter((card: any) => card.enable === 1);
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
     }
 
-    getAllSaveCard() {
-        return this.saveList.filter((card: any) => card.enable === 1);
+    getAllSaveCard(sortType: string = 'sort_id') {
+        let list = this.saveList.filter((card: any) => card.enable === 1);
+
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
     }
 
-    getCardFromFilter(type: any, plan: any, event: any, ability: any) {
-        return this.cardList.filter((card: any) =>
+    getCardFromFilter(type: any, plan: any, event: any, ability: any, sortType: string = 'sort_id') {
+        let list = this.cardList.filter((card: any) =>
             type.includes(card.type) &&
             plan.includes(card.plan) &&
             (event.includes(card.event_1) || event.includes(card.event_2) || event.includes(card.event_3)) &&
             (ability.includes(card.ability_1) || ability.includes(card.ability_2) || ability.includes(card.ability_3) || ability.includes(card.ability_4) || ability.includes(card.ability_5) || ability.includes(card.ability_6)) &&
             (card.enable === 1)
         );
+
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
     }
 
-    getSaveCardFromFilter(type: any, plan: any, event: any, ability: any) {
-        return this.saveList.filter((card: any) =>
+    getSaveCardFromFilter(type: any, plan: any, event: any, ability: any, sortType: string = 'sort_id') {
+        let list = this.saveList.filter((card: any) =>
             type.includes(card.type) &&
             plan.includes(card.plan) &&
             (event.includes(card.event_1) || event.includes(card.event_2) || event.includes(card.event_3)) &&
             (ability.includes(card.ability_1) || ability.includes(card.ability_2) || ability.includes(card.ability_3) || ability.includes(card.ability_4) || ability.includes(card.ability_5) || ability.includes(card.ability_6)) &&
             (card.enable === 1)
         );
+
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
     }
 
     getCardFromId(id: number) {

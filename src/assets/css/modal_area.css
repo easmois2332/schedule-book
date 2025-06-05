@@ -184,10 +184,11 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: flex-end;
             padding-top: 16px;
         }
 
-        .card-filter-checkbox-area {
+        .card-filter-checkbox-area, .card-filter-radio-area {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -200,7 +201,7 @@
             }
         }
 
-        .card-filter-checkbox {
+        .card-filter-checkbox, .card-filter-radio {
             padding-right: 16px;
         }
 

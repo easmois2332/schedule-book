@@ -3,8 +3,6 @@ import {ref} from "vue";
 
 const props = defineProps(['supportCards', 'planFilter']);
 const cards = props.supportCards;
-const allCardList = cards.getAllCard();
-const allSaveCardList = cards.getAllSaveCard();
 
 let saveCardDisplayToggle = ref(false);
 let filterOpen = ref(false);
@@ -25,22 +23,23 @@ let filterAbility = ref([
   'sp_lesson_hp_recover',
 ]);
 
-let cardList = ref(allCardList);
+let sortType = ref('type');
+let cardList = ref(cards.getAllCard(sortType.value));
 
 if (props.planFilter !== null) {
   filterPlan.value = ['free', props.planFilter];
   if (saveCardDisplayToggle.value) {
-    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   } else {
-    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   }
 }
 
 const checkboxDisplayChange = () => {
   if (saveCardDisplayToggle.value) {
-    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   } else {
-    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   }
 }
 const buttonFilterOpen = () => {
@@ -48,9 +47,9 @@ const buttonFilterOpen = () => {
 }
 const buttonFiltering = () => {
   if (saveCardDisplayToggle.value) {
-    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   } else {
-    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+    cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   }
   buttonFilterOpen();
 }
@@ -72,9 +71,9 @@ const buttonFilterReset = () => {
     'sp_lesson_hp_recover',
   ];
   if (saveCardDisplayToggle.value) {
-    cardList.value = allSaveCardList;
+    cardList.value = cards.getAllSaveCard(sortType.value);
   } else {
-    cardList.value = allCardList;
+    cardList.value = cards.getAllCard(sortType.value);
   }
   buttonFilterOpen();
 }
@@ -151,11 +150,24 @@ const filterAbilityCheckAll = () => {
           <div class="filter-button">
             <button class="common-button" @click="buttonFilterOpen">
           <span class="common-button-name">
-            フィルター
+            ソート・フィルター
           </span>
             </button>
           </div>
           <div class="card-filter-list-area" v-show="filterOpen">
+            <div class="card-filter-list-header common-headline">
+              <span class="card-filter-text">ソート</span>
+            </div>
+            <div class="card-filter-radio-area">
+              <div class="card-filter-radio">
+                <input class="common-radio" type="radio" id="card-filter-sort_id" value="sort_id" v-model="sortType">
+                <label for="card-filter-sort_id">レアリティ</label>
+              </div>
+              <div class="card-filter-radio">
+                <input class="common-radio" type="radio" id="card-filter-type" value="type" v-model="sortType">
+                <label for="card-filter-type">タイプ</label>
+              </div>
+            </div>
             <div class="card-filter-list-header common-headline">
               <span class="card-filter-text">タイプ</span>
               <button class="basic-button" @click="filterTypeCheckAll">

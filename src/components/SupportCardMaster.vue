@@ -7,7 +7,6 @@ const props = defineProps(['supportCards']);
 const cards = props.supportCards;
 const items = new Items();
 const skillCards = new SkillCards();
-const allCardList = cards.getAllCard();
 
 let filterOpen = ref(false);
 let filterType = ref([
@@ -26,13 +25,14 @@ let filterAbility = ref([
   'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
   'sp_lesson_hp_recover',
 ]);
-let cardList = ref(allCardList);
+let sortType = ref('type');
+let cardList = ref(cards.getAllCard(sortType.value));
 
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
 }
 const buttonFiltering = () => {
-  cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  cardList.value = cards.getCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   buttonFilterOpen();
 }
 const buttonFilterReset = () => {
@@ -52,7 +52,7 @@ const buttonFilterReset = () => {
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
-  cardList.value = allCardList;
+  cardList.value = cards.getAllCard(sortType.value);
   buttonFilterOpen();
 }
 const filterTypeCheckAll = () => {
@@ -116,11 +116,24 @@ const getSkillCardDetail = (id) => {
       <div class="filter-button">
         <button class="common-button" @click="buttonFilterOpen">
           <span class="common-button-name">
-            フィルター
+            ソート・フィルター
           </span>
         </button>
       </div>
       <div class="card-filter-list-area" v-show="filterOpen">
+        <div class="card-filter-list-header common-headline">
+          <span class="card-filter-text">ソート</span>
+        </div>
+        <div class="card-filter-radio-area">
+          <div class="card-filter-radio">
+            <input class="common-radio" type="radio" id="card-filter-sort_id" value="sort_id" v-model="sortType">
+            <label for="card-filter-sort_id">レアリティ</label>
+          </div>
+          <div class="card-filter-radio">
+            <input class="common-radio" type="radio" id="card-filter-type" value="type" v-model="sortType">
+            <label for="card-filter-type">タイプ</label>
+          </div>
+        </div>
         <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">タイプ</span>
           <button class="basic-button" @click="filterTypeCheckAll">

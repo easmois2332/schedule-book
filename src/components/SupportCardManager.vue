@@ -30,7 +30,8 @@ let filterAbility = ref([
   'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
   'sp_lesson_hp_recover',
 ]);
-let cardList = ref(cards.getAllSaveCard());
+let sortType = ref('type');
+let cardList = ref(cards.getAllSaveCard(sortType.value));
 
 const buttonEditor = (saveId, cardId, cardLevel) => {
   editorSaveId.value = saveId;
@@ -39,14 +40,14 @@ const buttonEditor = (saveId, cardId, cardLevel) => {
   editorOpen.value = true;
 }
 const closeEditor = () => {
-  cardList.value = cards.getAllSaveCard();
+  cardList.value = cards.getAllSaveCard(sortType.value);
   editorOpen.value = false;
 }
 const buttonFilterOpen = () => {
   filterOpen.value = !filterOpen.value;
 }
 const buttonFiltering = () => {
-  cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value);
+  cardList.value = cards.getSaveCardFromFilter(filterType.value, filterPlan.value, filterEvent.value, filterAbility.value, sortType.value);
   buttonFilterOpen();
 }
 const buttonFilterReset = () => {
@@ -66,7 +67,7 @@ const buttonFilterReset = () => {
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
-  cardList.value = cards.getAllSaveCard();
+  cardList.value = cards.getAllSaveCard(sortType.value);
   buttonFilterOpen();
 }
 const filterTypeCheckAll = () => {
@@ -139,11 +140,24 @@ const getSkillCardDetail = (id) => {
       <div class="filter-button">
         <button class="common-button" @click="buttonFilterOpen">
           <span class="common-button-name">
-            フィルター
+            ソート・フィルター
           </span>
         </button>
       </div>
       <div class="card-filter-list-area" v-show="filterOpen">
+        <div class="card-filter-list-header common-headline">
+          <span class="card-filter-text">ソート</span>
+        </div>
+        <div class="card-filter-radio-area">
+          <div class="card-filter-radio">
+            <input class="common-radio" type="radio" id="card-filter-sort_id" value="sort_id" v-model="sortType">
+            <label for="card-filter-sort_id">レアリティ</label>
+          </div>
+          <div class="card-filter-radio">
+            <input class="common-radio" type="radio" id="card-filter-type" value="type" v-model="sortType">
+            <label for="card-filter-type">タイプ</label>
+          </div>
+        </div>
         <div class="card-filter-list-header common-headline">
           <span class="card-filter-text">タイプ</span>
           <button class="basic-button" @click="filterTypeCheckAll">
