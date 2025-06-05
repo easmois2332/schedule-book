@@ -1,5 +1,5 @@
 .contents-view-area {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
 
     .headline-area {
@@ -376,7 +376,7 @@
         }
 
         .produce-idol {
-            width: 500px;
+            width: 450px;
             padding-bottom: 16px;
             display: flex;
             flex-direction: row;
@@ -461,11 +461,11 @@
         }
 
         .produce-idol-name-text {
-            font-size: 24px;
+            font-size: 20px;
+            font-weight: bold;
 
             @media (max-width: 600px) {
                 font-size: 16px;
-                font-weight: bold;
             }
         }
 
