@@ -478,10 +478,10 @@ const getResultScore = (resultPoint, parameter) => {
     {score: 5001, magnification: 0.15, addition: 750},
     {score: 0, magnification: 0.30, addition: 0},
   ];
-  let requiredPoint = resultPoint - (parameter * 2.3).toFixed(0) - 1700;
+  let requiredPoint = resultPoint - Math.trunc(parameter * 2.3) - 1700;
 
   for (let i in calcList) {
-    let requiredScore = ((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']).toFixed(0);
+    let requiredScore = Math.trunc((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']);
     if (requiredScore >= calcList[i]['score']) {
       return requiredScore;
     }

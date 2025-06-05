@@ -512,18 +512,20 @@ const updateScheduleDetail = (week) => {
 }
 const getResultScore = (resultPoint, parameter) => {
   const calcList = [
-    {score: 40001, magnification: 0.01, addition: 3250},
-    {score: 30001, magnification: 0.02, addition: 2850},
-    {score: 20001, magnification: 0.04, addition: 2250},
-    {score: 10001, magnification: 0.08, addition: 1450},
-    {score: 5001, magnification: 0.15, addition: 750},
-    {score: 0, magnification: 0.30, addition: 0},
+    {fan: 140001, magnification: 0.030, addition: 5200},
+    {fan: 120001, magnification: 0.040, addition: 3800},
+    {fan: 100001, magnification: 0.050, addition: 2600},
+    {fan: 80001, magnification: 0.060, addition: 1600},
+    {fan: 60001, magnification: 0.065, addition: 1200},
+    {fan: 40001, magnification: 0.070, addition: 900},
+    {fan: 20001, magnification: 0.085, addition: 300},
+    {fan: 0, magnification: 0.100, addition: 0},
   ];
-  let requiredPoint = resultPoint - (parameter * 2.3).toFixed(0) - 1700;
+  let requiredPoint = resultPoint - Math.trunc(parameter * 2.3);
 
   for (let i in calcList) {
-    let requiredScore = ((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']).toFixed(0);
-    if (requiredScore >= calcList[i]['score']) {
+    let requiredScore = Math.trunc((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']);
+    if (requiredScore >= calcList[i]['fan']) {
       return requiredScore;
     }
   }
@@ -817,7 +819,7 @@ defineExpose({updatePlanningData});
             <table class="table result">
               <thead>
               <tr>
-                <th class="table-header detail"><span class="table-header-text">最終試験獲得スコア</span></th>
+                <th class="table-header detail"><span class="table-header-text">必要ファン数</span></th>
                 <th class="table-header point"><span class="table-header-text">評価ランク</span></th>
                 <th class="table-header point"><span class="table-header-text">評価値</span></th>
               </tr>
