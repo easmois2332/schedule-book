@@ -437,6 +437,26 @@ export default class Schedules {
                     point: 0,
                 },
             },
+            audition: {
+                1: {
+                    type_1: 0,
+                    type_2: 0,
+                    type_3: 0,
+                    fan: 0,
+                },
+                2: {
+                    type_1: 0,
+                    type_2: 0,
+                    type_3: 0,
+                    fan: 0,
+                },
+                3: {
+                    type_1: 0,
+                    type_2: 0,
+                    type_3: 0,
+                    fan: 0,
+                },
+            },
             challenge_p_item: {
                 1: 0,
                 2: 0,

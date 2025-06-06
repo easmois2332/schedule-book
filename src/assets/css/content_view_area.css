@@ -972,6 +972,11 @@
             }
 
             .schedule {
+                display: flex;
+                flex-direction: column;
+                grid-column-gap: 16px;
+                grid-row-gap: 16px;
+
                 @media (max-width: 1000px) {
                     overflow-x: scroll;
                 }
@@ -1038,8 +1043,17 @@
                 }
             }
 
-            .table.schedule {
+            .table.schedule-hajime {
                 min-width: 800px;
+            }
+
+            .table.schedule-nia {
+                min-width: 900px;
+            }
+
+            .table.audition {
+                width: 500px;
+                min-width: 500px;
             }
 
             .table.challenge-p-item {
@@ -1069,6 +1083,7 @@
             .table {
                 .table-header {
                     text-align: start;
+                    white-space: nowrap;
                 }
 
                 .table-header.detail, .table-header.type {
@@ -1214,6 +1229,22 @@
 
                 .table-select.visual {
                     color: #FAA900;
+                }
+
+                .table-select.class_hp {
+                    color: #3CC743;
+                }
+
+                .table-select.class_drink {
+                    color: #FB0082;
+                }
+
+                .table-select.class_point {
+                    color: #FAA900;
+                }
+
+                .table-select.class_card {
+                    color: #0086F0;
                 }
 
                 .table-select:focus {

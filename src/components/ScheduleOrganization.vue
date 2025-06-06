@@ -1,5 +1,6 @@
 <script setup>
 import {ref, watch} from "vue";
+import {parameterList, fanList} from "@/consts/auditionConst";
 import SupportCardSelect from "@/components/modals/SupportCardSelect.vue";
 import ProduceIdolSelect from "@/components/modals/ProduceIdolSelect.vue";
 
@@ -59,6 +60,16 @@ const closeProduceIdolSelector = (id, trainingLevel, blossomingLevel, dearLevel)
     inputData.value['organization']['produce_idol']['training_level'] = trainingLevel;
     inputData.value['organization']['produce_idol']['blossoming_level'] = blossomingLevel;
     inputData.value['organization']['produce_idol']['dear_level'] = dearLevel;
+
+    if (inputData.value['produce_type'] === 'nia_master') {
+      let idol = idols.getPIdolDetail(id);
+      for (let i = 1; i <= 3; i++) {
+        inputData.value['planning']['audition'][i]['fan'] = fanList['nia_master'][i]['max'];
+        inputData.value['planning']['audition'][i]['type_1'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_1'];
+        inputData.value['planning']['audition'][i]['type_2'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_2'];
+        inputData.value['planning']['audition'][i]['type_3'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_3'];
+      }
+    }
     updateInputData();
   }
   produceIdolSelectorOpen.value = false;

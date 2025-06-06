@@ -1,4 +1,4 @@
-import {rarities, plans, effects, abilities, types, DEAR_MAX_LEVEL, TRAINING_MAX_LEVEL, BLOSSOMING_MAX_LEVEL} from "@/consts/idolConst";
+import {rarities, plans, effects, abilities, types} from "@/consts/idolConst";
 
 export default class IdolDetail {
 
@@ -22,6 +22,11 @@ export default class IdolDetail {
 
     private getDisplayText() {
         this.pIdol.idol_name = this.idol.name;
+        this.pIdol.parameter_type = this.idol.parameter_type;
+        this.pIdol.vocal_priority = this.idol.vocal_priority;
+        this.pIdol.dance_priority = this.idol.dance_priority;
+        this.pIdol.visual_priority = this.idol.visual_priority;
+
         switch (this.pIdol.rarity) {
             case rarities.RARITY_SSR:
             case rarities.RARITY_SSR_EVENT:
@@ -147,7 +152,7 @@ export default class IdolDetail {
 
     private calcScoreBonus() {
         let scoreBonus: number;
-        switch (this.pIdol.dear_level) {
+        switch (this.idol.dear_level) {
             case 1:
                 scoreBonus = 0;
                 break;
@@ -180,7 +185,7 @@ export default class IdolDetail {
 
     private calcBusinessFanBonus() {
         let fanBonus: number;
-        switch (this.pIdol.dear_level) {
+        switch (this.idol.dear_level) {
             case 11:
                 fanBonus = 5;
                 break;
@@ -219,7 +224,7 @@ export default class IdolDetail {
 
     private calcAuditionFanBonus() {
         let fanBonus: number;
-        switch (this.pIdol.dear_level) {
+        switch (this.idol.dear_level) {
             case 11:
                 fanBonus = 5;
                 break;

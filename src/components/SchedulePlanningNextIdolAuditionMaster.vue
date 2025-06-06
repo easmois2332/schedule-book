@@ -2,6 +2,7 @@
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
+import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/inputModals/CommonInputModal.vue";
 
 const props = defineProps(['inputData', 'basicData']);
@@ -148,20 +149,13 @@ const scheduleData = {
     exam_3: {value: 'exam_3', text: '最終オーディション', parameter: 0, point: 0, hp: 0, fan: 0},
   },
 };
-const resultData = {
-  'SSS+': {rank: 'SSS+', point: 23000},
-  'SSS': {rank: 'SSS', point: 20000},
-  'SS+': {rank: 'SS+', point: 18000},
-  'SS': {rank: 'SS', point: 16000},
-  'S+': {rank: 'S+', point: 14500},
-  'S': {rank: 'S', point: 13000},
-  'A+': {rank: 'A+', point: 11500},
-  'A': {rank: 'A', point: 10000},
-  'B+': {rank: 'B+', point: 8000},
-  'B': {rank: 'B', point: 6000},
-  'C+': {rank: 'C+', point: 4500},
-  'C': {rank: 'C', point: 3000},
+const auditionData = {
+  1: {name: '1次オーディション'},
+  2: {name: '2次オーディション'},
+  3: {name: '最終オーディション'},
 };
+const resultData = resultDataList;
+const resultCalcList = resultScoreCalcList['nia_master'];
 
 const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
 const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
@@ -286,9 +280,16 @@ const updateScheduleDetailData = () => {
         parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
         parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
       } else if (inputScheduleData['schedule_detail'] === 'exam_1' || inputScheduleData['schedule_detail'] === 'exam_2' || inputScheduleData['schedule_detail'] === 'exam_3') {
+        let examIndex = inputScheduleData['schedule_detail'].substr(inputScheduleData['schedule_detail'].indexOf('_') + 1);
+        let auditionVocal = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['vocal_priority']}`];
+        let auditionDance = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['dance_priority']}`];
+        let auditionVisual = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['visual_priority']}`];
+        parameter['vocal'] += getBonusIncludedParameter(auditionVocal, basicData.value['parameter']['bonus_vocal']) + Math.floor(auditionVocal * challengePItemAuditionBonus.value / 100);
+        parameter['dance'] += getBonusIncludedParameter(auditionDance, basicData.value['parameter']['bonus_dance']) + Math.floor(auditionDance * challengePItemAuditionBonus.value / 100);
+        parameter['visual'] += getBonusIncludedParameter(auditionVisual, basicData.value['parameter']['bonus_visual']) + Math.floor(auditionVisual * challengePItemAuditionBonus.value / 100);
         parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
         parameter['hp'] += Math.round(maxHp * 0.5);
-        parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
+        parameter['fan'] += inputData.value['planning']['audition'][examIndex]['fan'];
       } else {
         if (inputScheduleData['type'] !== null) {
           parameter[inputScheduleData['type']] += basicParameter;
@@ -498,6 +499,16 @@ const updateScheduleDetailData = () => {
     // 最終評価
     scheduleDetailData.value['result'] = {...parameter};
     scheduleDetailData.value['result']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+
+    let resultScoreParameter = Math.trunc(scheduleDetailData.value['result']['sum'] * 2.3);
+    let resultScoreFan = 0;
+    for (let i in resultCalcList) {
+      if (scheduleDetailData.value['result']['fan'] >= resultCalcList[i]['fan']) {
+        resultScoreFan = Math.trunc(scheduleDetailData.value['result']['fan'] * resultCalcList[i]['magnification']) + resultCalcList[i]['addition'];
+        break;
+      }
+    }
+    scheduleDetailData.value['result']['resultScore'] = resultScoreParameter + resultScoreFan;
   } else {
     scheduleDetailData.value = {};
   }
@@ -511,21 +522,11 @@ const updateScheduleDetail = (week) => {
   updateInputData();
 }
 const getResultScore = (resultPoint, parameter) => {
-  const calcList = [
-    {fan: 140001, magnification: 0.030, addition: 5200},
-    {fan: 120001, magnification: 0.040, addition: 3800},
-    {fan: 100001, magnification: 0.050, addition: 2600},
-    {fan: 80001, magnification: 0.060, addition: 1600},
-    {fan: 60001, magnification: 0.065, addition: 1200},
-    {fan: 40001, magnification: 0.070, addition: 900},
-    {fan: 20001, magnification: 0.085, addition: 300},
-    {fan: 0, magnification: 0.100, addition: 0},
-  ];
   let requiredPoint = resultPoint - Math.trunc(parameter * 2.3);
 
-  for (let i in calcList) {
-    let requiredScore = Math.trunc((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']);
-    if (requiredScore >= calcList[i]['fan']) {
+  for (let i in resultCalcList) {
+    let requiredScore = Math.trunc((requiredPoint - resultCalcList[i]['addition']) / resultCalcList[i]['magnification']);
+    if (requiredScore >= resultCalcList[i]['fan']) {
       return requiredScore;
     }
   }
@@ -543,7 +544,7 @@ const updateResultScoreList = () => {
 const getChallengePItemDetail = (categoryType, plan) => {
   return items.getNiaMasterChallengeItem(categoryType, plan)
 }
-const updateChallengePItemMaxPushSum = () => {
+const updateChallengePItemAuditionBonus = () => {
   challengePItemAuditionBonus.value = 0;
   for (let i in inputData.value['planning']['challenge_p_item']) {
     if (inputData.value['planning']['challenge_p_item'][i] > 0) {
@@ -552,7 +553,7 @@ const updateChallengePItemMaxPushSum = () => {
   }
 }
 const changeChallengePItem = () => {
-  updateChallengePItemMaxPushSum();
+  updateChallengePItemAuditionBonus();
   updateInputData();
 }
 const getPItemDetail = (id) => {
@@ -649,17 +650,17 @@ const closeSupportCardAbilityCount = (inputValue) => {
   commonInputModalSupportCardAbilityOpen.value = false;
 }
 onBeforeMount(() => {
-  updateChallengePItemMaxPushSum();
+  updateChallengePItemAuditionBonus();
   updatePlanningData();
 })
 watch(() => props.inputData, () => {
   inputData.value = props.inputData;
-  updateChallengePItemMaxPushSum();
+  updateChallengePItemAuditionBonus();
   updatePlanningData();
 });
 watch(() => props.basicData, () => {
   basicData.value = props.basicData;
-  updateChallengePItemMaxPushSum();
+  updateChallengePItemAuditionBonus();
   updatePlanningData();
 });
 defineExpose({updatePlanningData});
@@ -674,7 +675,7 @@ defineExpose({updatePlanningData});
         </div>
         <div class="schedule-content-area">
           <div class="schedule">
-            <table class="table schedule">
+            <table class="table schedule-nia">
               <thead>
               <tr>
                 <th class="table-header"></th>
@@ -695,7 +696,7 @@ defineExpose({updatePlanningData});
                   <span class="table-header-text">{{ i }}</span>
                 </th>
                 <td class="table-data detail">
-                  <select class="table-select" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateScheduleDetail(i)">
+                  <select class="table-select" v-bind:class="inputData['planning']['schedule'][i]['schedule_detail']" v-model="inputData['planning']['schedule'][i]['schedule_detail']" v-if="Object.keys(scheduleData[i]).length > 1" @change="updateScheduleDetail(i)">
                     <option class="table-option" v-for="option in scheduleData[i]" v-bind:value="option.value">{{ option.text }}</option>
                   </select>
                   <span class="table-data-text" v-else>{{ scheduleData[i][Object.entries(scheduleData[i])[0][0]]['text'] }}</span>
@@ -787,8 +788,11 @@ defineExpose({updatePlanningData});
               </tr>
               <tr>
                 <th class="table-header last"></th>
-                <td class="table-data detail last"><span class="table-data-text font-bold last">最終パラメータ</span></td>
-                <td class="table-data type last"></td>
+                <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
+                <td class="table-data type last">
+                  <span class="table-data-text font-bold last" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['resultScore'] }}</span>
+                  <span class="table-data-text font-bold last" v-else>0</span>
+                </td>
                 <td class="table-data number vocal last">
                   <span class="table-data-text font-bold vocal" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['vocal'] }}</span>
                   <span class="table-data-text font-bold vocal" v-else>0</span>
@@ -811,6 +815,39 @@ defineExpose({updatePlanningData});
                 </td>
                 <td class="table-data number hp last"></td>
                 <td class="table-data number point last"></td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table audition">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text">獲得パラメータ</span></th>
+                <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+                <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+                <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+                <th class="table-header point"><span class="table-header-text">ファン数</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="i in 3">
+                <td class="table-data detail">
+                  <span class="table-data-text">{{ auditionData[i]['name'] }}</span>
+                </td>
+                <td class="table-data number vocal">
+                  <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['vocal_priority']}`] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number dance">
+                  <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['dance_priority']}`] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number visual">
+                  <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['visual_priority']}`] }}</span>
+                  <span class="table-data-text" v-else>0</span>
+                </td>
+                <td class="table-data number point">
+                  <span class="table-data-text">{{ inputData['planning']['audition'][i]['fan'] }}</span>
+                </td>
               </tr>
               </tbody>
             </table>

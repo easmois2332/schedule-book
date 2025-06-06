@@ -2,6 +2,7 @@
 import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
+import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/inputModals/CommonInputModal.vue";
 
 const props = defineProps(['inputData', 'basicData']);
@@ -95,20 +96,8 @@ const scheduleData = {
     exam_2: {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
   },
 };
-const resultData = {
-  'SSS+': {rank: 'SSS+', point: 23000},
-  'SSS': {rank: 'SSS', point: 20000},
-  'SS+': {rank: 'SS+', point: 18000},
-  'SS': {rank: 'SS', point: 16000},
-  'S+': {rank: 'S+', point: 14500},
-  'S': {rank: 'S', point: 13000},
-  'A+': {rank: 'A+', point: 11500},
-  'A': {rank: 'A', point: 10000},
-  'B+': {rank: 'B+', point: 8000},
-  'B': {rank: 'B', point: 6000},
-  'C+': {rank: 'C+', point: 4500},
-  'C': {rank: 'C', point: 3000},
-};
+const resultData = resultDataList;
+const resultCalcList = resultScoreCalcList['hajime_master'];
 
 const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
 const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
@@ -470,19 +459,11 @@ const updateScheduleDetail = (week) => {
   updateInputData();
 }
 const getResultScore = (resultPoint, parameter) => {
-  const calcList = [
-    {score: 40001, magnification: 0.01, addition: 3250},
-    {score: 30001, magnification: 0.02, addition: 2850},
-    {score: 20001, magnification: 0.04, addition: 2250},
-    {score: 10001, magnification: 0.08, addition: 1450},
-    {score: 5001, magnification: 0.15, addition: 750},
-    {score: 0, magnification: 0.30, addition: 0},
-  ];
   let requiredPoint = resultPoint - Math.trunc(parameter * 2.3) - 1700;
 
-  for (let i in calcList) {
-    let requiredScore = Math.trunc((requiredPoint - calcList[i]['addition']) / calcList[i]['magnification']);
-    if (requiredScore >= calcList[i]['score']) {
+  for (let i in resultCalcList) {
+    let requiredScore = Math.trunc((requiredPoint - resultCalcList[i]['addition']) / resultCalcList[i]['magnification']);
+    if (requiredScore >= resultCalcList[i]['score']) {
       return requiredScore;
     }
   }
@@ -621,7 +602,7 @@ defineExpose({updatePlanningData});
         </div>
         <div class="schedule-content-area">
           <div class="schedule">
-            <table class="table schedule">
+            <table class="table schedule-hajime">
               <thead>
               <tr>
                 <th class="table-header"></th>
@@ -725,7 +706,7 @@ defineExpose({updatePlanningData});
               </tr>
               <tr>
                 <th class="table-header last"></th>
-                <td class="table-data detail last"><span class="table-data-text font-bold last">最終パラメータ</span></td>
+                <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
                 <td class="table-data type last"></td>
                 <td class="table-data number vocal last">
                   <span class="table-data-text font-bold vocal" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['vocal'] }}</span>
