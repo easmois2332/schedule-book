@@ -4,6 +4,7 @@ import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/inputModals/CommonInputModal.vue";
+import AuditionParameterInputModal from "@/components/inputModals/AuditionParameterInputModal.vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);
@@ -173,6 +174,7 @@ let commonInputModalSchedulePointOpen = ref(false);
 let commonInputModalSupportCardPItemOpen = ref(false);
 let commonInputModalPItemNiaKeyHolderOpen = ref(false);
 let commonInputModalSupportCardAbilityOpen = ref(false);
+let auditionParameterInputModalOpen = ref(false);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -649,6 +651,21 @@ const closeSupportCardAbilityCount = (inputValue) => {
   }
   commonInputModalSupportCardAbilityOpen.value = false;
 }
+const inputAuditionParameter = (index) => {
+  if (inputData.value['organization']['produce_idol']['id']) {
+    auditionParameterInputModalOpen.value = index;
+  }
+}
+const closeAuditionParameter = (vocal, dance, visual, fan) => {
+  if (vocal !== null && dance !== null && visual !== null && fan !== null) {
+    inputData.value['planning']['audition'][auditionParameterInputModalOpen.value][`type_${basicData.value['produce_idol']['vocal_priority']}`] = vocal;
+    inputData.value['planning']['audition'][auditionParameterInputModalOpen.value][`type_${basicData.value['produce_idol']['dance_priority']}`] = dance;
+    inputData.value['planning']['audition'][auditionParameterInputModalOpen.value][`type_${basicData.value['produce_idol']['visual_priority']}`] = visual;
+    inputData.value['planning']['audition'][auditionParameterInputModalOpen.value]['fan'] = fan;
+    updateInputData();
+  }
+  auditionParameterInputModalOpen.value = false;
+}
 onBeforeMount(() => {
   updateChallengePItemAuditionBonus();
   updatePlanningData();
@@ -833,21 +850,33 @@ defineExpose({updatePlanningData});
                 <td class="table-data detail">
                   <span class="table-data-text">{{ auditionData[i]['name'] }}</span>
                 </td>
-                <td class="table-data number vocal">
+                <td class="table-data number vocal input" @click="inputAuditionParameter(i)">
                   <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['vocal_priority']}`] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number dance">
+                <td class="table-data number dance input" @click="inputAuditionParameter(i)">
                   <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['dance_priority']}`] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number visual">
+                <td class="table-data number visual input" @click="inputAuditionParameter(i)">
                   <span class="table-data-text" v-if="inputData['organization']['produce_idol']['id']">{{ inputData['planning']['audition'][i][`type_${basicData['produce_idol']['visual_priority']}`] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number point">
+                <td class="table-data number point input" @click="inputAuditionParameter(i)">
                   <span class="table-data-text">{{ inputData['planning']['audition'][i]['fan'] }}</span>
                 </td>
+                <Teleport to="#modal-area">
+                  <AuditionParameterInputModal
+                      v-if="auditionParameterInputModalOpen === i"
+                      :vocal="inputData['planning']['audition'][i][`type_${basicData['produce_idol']['vocal_priority']}`]"
+                      :dance="inputData['planning']['audition'][i][`type_${basicData['produce_idol']['dance_priority']}`]"
+                      :visual="inputData['planning']['audition'][i][`type_${basicData['produce_idol']['visual_priority']}`]"
+                      :fan="inputData['planning']['audition'][i]['fan']"
+                      :index="i"
+                      :produce-idol="basicData['produce_idol']"
+                      @input-close="closeAuditionParameter"
+                  />
+                </Teleport>
               </tr>
               </tbody>
             </table>

@@ -767,8 +767,104 @@ label.font-bold {
     font-size: 16px;
 }
 
+.color-button.vocal {
+    background: #fb0082;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.vocal:hover {
+    background: color-mix(in srgb, #fb0082, #ffffff 30%);
+}
+
+.color-button-name.vocal {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-button.dance {
+    background: #0086f0;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.dance:hover {
+    background: color-mix(in srgb, #0086f0, #ffffff 30%);
+}
+
+.color-button-name.dance {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-button.visual {
+    background: #faa900;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.visual:hover {
+    background: color-mix(in srgb, #faa900, #ffffff 30%);
+}
+
+.color-button-name.visual {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.color-button.assist {
+    background: #3cc743;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    appearance: none;
+}
+
+.color-button.assist:hover {
+    background: color-mix(in srgb, #3cc743, #ffffff 30%);
+}
+
+.color-button-name.assist {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 .color-headline {
     border-image: linear-gradient(to right, #958b7f, #958b7f) 1;
+}
+
+.color-headline.vocal {
+    border-image: linear-gradient(to right, #fb0082, #fb0082) 1;
+}
+
+.color-headline.dance {
+    border-image: linear-gradient(to right, #0086f0, #0086f0) 1;
+}
+
+.color-headline.visual {
+    border-image: linear-gradient(to right, #faa900, #faa900) 1;
+}
+
+.color-headline.assist {
+    border-image: linear-gradient(to right, #3cc743, #3cc743) 1;
 }
 
 .basic-button {

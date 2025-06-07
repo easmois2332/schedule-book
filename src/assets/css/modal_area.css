@@ -385,15 +385,15 @@
         }
 
         .table-header-type.vocal {
-            border-bottom: 2px solid #FB0082;
+            border-bottom: 2px solid #fb0082;
         }
 
         .table-header-type.dance {
-            border-bottom: 2px solid #0086F0;
+            border-bottom: 2px solid #0086f0;
         }
 
         .table-header-type.visual {
-            border-bottom: 2px solid #FAA900;
+            border-bottom: 2px solid #faa900;
         }
 
         .table-header-text {
@@ -632,7 +632,66 @@
         .common-button.minus, .common-button.plus {
             width: 40px;
             height: 40px;
-            margin: 0 16px;
+            margin: 0 8px;
+        }
+
+        .basic-input-number {
+            margin: 0 8px;
+        }
+    }
+
+    .audition-parameter-input-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 50%;
+        max-height: 70%;
+        margin: 25% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 600px) {
+            width: 90%;
+            max-height: 70%;
+        }
+
+        .description-area {
+            padding-bottom: 16px;
+        }
+
+        .parameter-input, .fan-input, .score-input {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-top: 8px;
+        }
+
+        .input-area {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 16px;
+        }
+
+        .color-button.minus, .color-button.plus {
+            width: 40px;
+            height: 40px;
+            margin: 0 8px;
+        }
+
+        .color-button.threshold, .color-button.max, .color-button.score {
+            width: 100px;
+            height: 40px;
+            margin: 0 8px;
+        }
+
+        .basic-input-number {
+            width: 80px;
+            margin: 0 8px;
+        }
+
+        .basic-input-number.score {
+            width: 100px;
         }
     }
 }

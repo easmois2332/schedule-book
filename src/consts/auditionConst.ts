@@ -85,16 +85,25 @@ export const fanList = {
             threshold_1: 10495,
             threshold_2: 11624,
             max: 12000,
+            score_1: 5587,
+            score_2: 8379,
+            score_max: 11187,
         },
         2: {
             threshold_1: 14898,
             threshold_2: 17228,
             max: 17998,
+            score_1: 81249,
+            score_2: 200711,
+            score_max: 342279,
         },
         3: {
             threshold_1: 35134,
             threshold_2: 45538,
             max: 49002,
+            score_1: 260115,
+            score_2: 641213,
+            score_max: 1200808,
         },
     }
 }

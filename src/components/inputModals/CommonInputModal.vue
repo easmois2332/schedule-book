@@ -12,11 +12,15 @@ let maxValue = ref(props.maxValue);
 const buttonMinus = () => {
   if (inputValue.value > minValue.value) {
     inputValue.value--;
+  } else {
+    inputValue.value = minValue.value;
   }
 }
 const buttonPlus = () => {
   if (inputValue.value < maxValue.value) {
     inputValue.value++;
+  } else {
+    inputValue.value = maxValue.value;
   }
 }
 </script>

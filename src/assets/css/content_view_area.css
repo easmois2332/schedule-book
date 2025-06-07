@@ -175,22 +175,22 @@
 
         .card.vocal {
             background: rgba(251, 0, 130, 0.1);
-            border-bottom: 2px solid #FB0082;
+            border-bottom: 2px solid #fb0082;
         }
 
         .card.dance {
             background: rgba(0, 134, 240, 0.1);
-            border-bottom: 2px solid #0086F0;
+            border-bottom: 2px solid #0086f0;
         }
 
         .card.visual {
             background: rgba(250, 169, 0, 0.1);
-            border-bottom: 2px solid #FAA900;
+            border-bottom: 2px solid #faa900;
         }
 
         .card.assist {
             background: rgba(60, 199, 67, 0.1);
-            border-bottom: 2px solid #3CC743;
+            border-bottom: 2px solid #3cc743;
         }
 
         .card-image-area {
@@ -278,38 +278,38 @@
         }
 
         .card-event-area.vocal {
-            border-right: 2px dashed #FB0082;
+            border-right: 2px dashed #fb0082;
 
             @media (max-width: 1000px) {
                 border-right: none;
-                border-bottom: 2px dashed #FB0082;
+                border-bottom: 2px dashed #fb0082;
             }
         }
 
         .card-event-area.dance {
-            border-right: 2px dashed #0086F0;
+            border-right: 2px dashed #0086f0;
 
             @media (max-width: 1000px) {
                 border-right: none;
-                border-bottom: 2px dashed #0086F0;
+                border-bottom: 2px dashed #0086f0;
             }
         }
 
         .card-event-area.visual {
-            border-right: 2px dashed #FAA900;
+            border-right: 2px dashed #faa900;
 
             @media (max-width: 1000px) {
                 border-right: none;
-                border-bottom: 2px dashed #FAA900;
+                border-bottom: 2px dashed #faa900;
             }
         }
 
         .card-event-area.assist {
-            border-right: 2px dashed #3CC743;
+            border-right: 2px dashed #3cc743;
 
             @media (max-width: 1000px) {
                 border-right: none;
-                border-bottom: 2px dashed #3CC743;
+                border-bottom: 2px dashed #3cc743;
             }
         }
 
@@ -503,19 +503,19 @@
             }
 
             .table-header-type.vocal {
-                border-bottom: 2px solid #FB0082;
+                border-bottom: 2px solid #fb0082;
             }
 
             .table-header-type.dance {
-                border-bottom: 2px solid #0086F0;
+                border-bottom: 2px solid #0086f0;
             }
 
             .table-header-type.visual {
-                border-bottom: 2px solid #FAA900;
+                border-bottom: 2px solid #faa900;
             }
 
             .table-header-type.hp {
-                border-bottom: 2px solid #3CC743;
+                border-bottom: 2px solid #3cc743;
             }
 
             .table-header-text {
@@ -690,19 +690,19 @@
                 }
 
                 .table-header-type.vocal {
-                    border-bottom: 2px solid #FB0082;
+                    border-bottom: 2px solid #fb0082;
                 }
 
                 .table-header-type.dance {
-                    border-bottom: 2px solid #0086F0;
+                    border-bottom: 2px solid #0086f0;
                 }
 
                 .table-header-type.visual {
-                    border-bottom: 2px solid #FAA900;
+                    border-bottom: 2px solid #faa900;
                 }
 
                 .table-header-type.hp {
-                    border-bottom: 2px solid #3CC743;
+                    border-bottom: 2px solid #3cc743;
                 }
 
                 .table-header-type.point {
@@ -1092,22 +1092,22 @@
 
                 .table-header.vocal {
                     width: 80px;
-                    border-bottom: 2px solid #FB0082;
+                    border-bottom: 2px solid #fb0082;
                 }
 
                 .table-header.dance {
                     width: 80px;
-                    border-bottom: 2px solid #0086F0;
+                    border-bottom: 2px solid #0086f0;
                 }
 
                 .table-header.visual {
                     width: 80px;
-                    border-bottom: 2px solid #FAA900;
+                    border-bottom: 2px solid #faa900;
                 }
 
                 .table-header.hp, .table-header.assist {
                     width: 80px;
-                    border-bottom: 2px solid #3CC743;
+                    border-bottom: 2px solid #3cc743;
                 }
 
                 .table-header.point {
@@ -1194,15 +1194,15 @@
                 }
 
                 .table-data-text.vocal {
-                    color: #FB0082;
+                    color: #fb0082;
                 }
 
                 .table-data-text.dance {
-                    color: #0086F0;
+                    color: #0086f0;
                 }
 
                 .table-data-text.visual {
-                    color: #FAA900;
+                    color: #faa900;
                 }
 
                 .table-data-text.last {
@@ -1220,31 +1220,31 @@
                 }
 
                 .table-select.vocal {
-                    color: #FB0082;
+                    color: #fb0082;
                 }
 
                 .table-select.dance {
-                    color: #0086F0;
+                    color: #0086f0;
                 }
 
                 .table-select.visual {
-                    color: #FAA900;
+                    color: #faa900;
                 }
 
                 .table-select.class_hp {
-                    color: #3CC743;
+                    color: #3cc743;
                 }
 
                 .table-select.class_drink {
-                    color: #FB0082;
+                    color: #fb0082;
                 }
 
                 .table-select.class_point {
-                    color: #FAA900;
+                    color: #faa900;
                 }
 
                 .table-select.class_card {
-                    color: #0086F0;
+                    color: #0086f0;
                 }
 
                 .table-select:focus {
