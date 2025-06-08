@@ -122,6 +122,8 @@ export const abilities = {
     CONSULTATION_DRINK_PARAMETER_UP: 'consultation_drink_parameter_up',
     // 休む選択時パラメータ上昇
     REST_PARAMETER_UP: 'rest_parameter_up',
+    // Pドリンク獲得時パラメータ上昇
+    DRINK_PARAMETER_UP: 'drink_parameter_up',
     // 試験・オーディション終了時パラメータ上昇
     EXAM_PARAMETER_UP: 'exam_parameter_up',
     // レッスン終了時Pポイント獲得量増加
@@ -285,5 +287,9 @@ export const abilityExtraParameterUpList = [
     {
         ability: abilities.CONSULTATION_DRINK_PARAMETER_UP,
         text: '相談でPドリンク交換後',
+    },
+    {
+        ability: abilities.DRINK_PARAMETER_UP,
+        text: 'Pドリンク獲得時',
     },
 ]

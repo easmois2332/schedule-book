@@ -720,6 +720,42 @@
     "enable": 1
   },
   {
+    "id": 61,
+    "idol_id": 9,
+    "name": "Howling over the World",
+    "rarity": "ssr_event",
+    "plan": "sense",
+    "effect": "syutyu",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 62,
+    "idol_id": 6,
+    "name": "Howling over the World",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "tuyoki",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 63,
+    "idol_id": 5,
+    "name": "Howling over the World",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "koinsyo",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",
