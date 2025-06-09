@@ -38,6 +38,7 @@ export default class SupportCardDetail {
         this.calcActiveCardDeleteParameterUp();
         this.calcMentalCardDeleteParameterUp();
         this.calcCardChangeParameterUp();
+        this.calcCardCustomizeParameterUp();
         this.calcClassParameterUp();
         this.calcGiftParameterUp();
         this.calcOutingParameterUp();
@@ -706,7 +707,7 @@ export default class SupportCardDetail {
      * アクティブスキルカード削除時パラメータ上昇
      */
     private calcActiveCardDeleteParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
+        let parameter = {r: [0, 0, 0], sr: [8, 16, 16], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
         if (this.card.ability_2 === abilities.ACTIVE_CARD_DELETE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `アクティブスキルカード削除時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -725,7 +726,7 @@ export default class SupportCardDetail {
      * メンタルスキルカード削除時パラメータ上昇
      */
     private calcMentalCardDeleteParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
+        let parameter = {r: [0, 0, 0], sr: [8, 16, 16], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
         if (this.card.ability_2 === abilities.MENTAL_CARD_DELETE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `メンタルスキルカード削除時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -744,7 +745,7 @@ export default class SupportCardDetail {
      * スキルカード変換時パラメータ上昇
      */
     private calcCardChangeParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
+        let parameter = {r: [0, 0, 0], sr: [8, 16, 16], ssr: [11, 17, 22], ssr_event: [11, 17, 17]};
         if (this.card.ability_2 === abilities.CARD_CHANGE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `スキルカードチェンジ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -756,6 +757,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.CARD_CHANGE_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `スキルカードチェンジ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * スキルカードカスタマイズ時パラメータ上昇
+     */
+    private calcCardCustomizeParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [4, 8, 8], ssr: [6, 8, 11], ssr_event: [6, 8, 8]};
+        if (this.card.ability_2 === abilities.CARD_CUSTOMIZE_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `スキルカードカスタマイズ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.CARD_CUSTOMIZE_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `スキルカードカスタマイズ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.CARD_CUSTOMIZE_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `スキルカードカスタマイズ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

@@ -110,6 +110,8 @@ export const abilities = {
     ACTIVE_CARD_ARD_CHANGE_PARAMETER_UP: 'active_card_card_change_parameter_up',
     // メンタルスキルカードチェンジ時パラメータ上昇
     MENTAL_CARD_CARD_CHANGE_PARAMETER_UP: 'mental_card_card_change_parameter_up',
+    // スキルカードカスタマイズ時パラメータ上昇
+    CARD_CUSTOMIZE_PARAMETER_UP: 'card_customize_parameter_up',
     // 授業・営業終了時パラメータ上昇
     CLASS_PARAMETER_UP: 'class_parameter_up',
     // 活動支給・差し入れ選択時パラメータ上昇
@@ -283,6 +285,10 @@ export const abilityExtraParameterUpList = [
     {
         ability: abilities.CARD_CHANGE_PARAMETER_UP,
         text: 'スキルカードチェンジ時',
+    },
+    {
+        ability: abilities.CARD_CUSTOMIZE_PARAMETER_UP,
+        text: 'スキルカードカスタマイズ時',
     },
     {
         ability: abilities.CONSULTATION_DRINK_PARAMETER_UP,
