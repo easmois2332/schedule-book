@@ -3,10 +3,11 @@ import {onBeforeMount, ref} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAuditionMaster from "@/components/SchedulePlanningNextIdolAuditionMaster.vue";
+import ScheduleSave from "@/components/modals/ScheduleSave.vue";
 import {abilities, types} from "@/consts/supportCardConst";
 
-const props = defineProps(['schedules', 'scheduleData', 'idols', 'supportCards']);
-const emit = defineEmits(['undo-redo-disabled']);
+const props = defineProps(['scheduleData', 'idols', 'supportCards']);
+const emit = defineEmits(['undo-redo-disabled', 'save-schedule', 'save-as-schedule']);
 const id = props.scheduleData.id;
 const idols = props.idols;
 const supportCards = props.supportCards;
@@ -29,12 +30,12 @@ const produceTypeComponentList = {
   }
 }
 
-let saveId = props.scheduleData.save_id;
-let name = props.scheduleData.name;
-let data = props.scheduleData.data;
-let produceType = data.produce_type;
+let scheduleDataSaveId = props.scheduleData.save_id;
+let scheduleDataName = props.scheduleData.name;
+let scheduleData = props.scheduleData.data;
+let produceType = scheduleData.produce_type;
 
-let inputData = ref(data);
+let inputData = ref(scheduleData);
 let basicData = ref({
   produce_idol: [],
   support_card: [],
@@ -54,9 +55,13 @@ let basicData = ref({
   ability_list: {},
 });
 
-let undoList = ref([JSON.stringify(data)]);
+let undoList = ref([JSON.stringify(scheduleData)]);
 let redoList = ref([]);
+let scheduleSaveOpen = ref(false);
 
+const updateSaveId = (saveId) => {
+  scheduleDataSaveId = saveId;
+}
 const updateInputData = (data) => {
   inputData.value = data;
   updateBasicData();
@@ -221,11 +226,27 @@ const buttonRedo = () => {
   }
   emit('undo-redo-disabled', id, (undoList.value.length <= 1), (redoList.value.length <= 0));
 }
-
+const buttonSave = () => {
+  if (scheduleDataSaveId !== null) {
+    emit('save-schedule');
+  } else {
+    buttonSaveAs();
+  }
+}
+const buttonSaveAs = () => {
+  scheduleSaveOpen.value = true;
+}
+const closeSaveAs = (name) => {
+  if (name !== null) {
+    scheduleDataName = name;
+    emit('save-as-schedule', scheduleDataName);
+  }
+  scheduleSaveOpen.value = false;
+}
 onBeforeMount(() => {
   updateBasicData();
 })
-defineExpose({buttonUndo, buttonRedo});
+defineExpose({buttonUndo, buttonRedo, buttonSave, buttonSaveAs, updateSaveId});
 </script>
 
 <template>
@@ -253,4 +274,11 @@ defineExpose({buttonUndo, buttonRedo});
         @input-data-update="updateInputData"
     />
   </div>
+  <Teleport to="#modal-area">
+    <ScheduleSave
+        v-if="scheduleSaveOpen"
+        :name="scheduleDataName"
+        @save-close="closeSaveAs"
+    />
+  </Teleport>
 </template>

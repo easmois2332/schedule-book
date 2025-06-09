@@ -39,6 +39,9 @@ const buttonHome = () => {
 const buttonNewSchedule = (produceType) => {
   if (produceType) {
     let newSchedule = schedules.crateNewSchedule(produceType);
+    newSchedule.id = schedules.createId();
+    newSchedule.undo_disabled = true;
+    newSchedule.redo_disabled = true;
     scheduleList.value.push(newSchedule);
     currentSchedule.value = newSchedule;
     currentComponent.value = ScheduleView;
@@ -73,6 +76,49 @@ const buttonSetting = () => {
 // サイト設定を閉じる
 const closeSetting = () => {
   settingOpen.value = false;
+}
+
+// スケジュールを保存
+const buttonSave = () => {
+  scheduleViewRef.value[0].buttonSave();
+}
+
+// スケジュールを別名保存
+const buttonSaveAs = () => {
+  scheduleViewRef.value[0].buttonSaveAs();
+}
+
+// スケジュールをDBに保存
+const saveSchedule = async () => {
+  let date = new Date();
+  currentSchedule.value['data_version'] = schedules.getDataVersion();
+  currentSchedule.value['update_date'] = date.toLocaleString();
+
+  await schedules.updateScheduleData(
+      currentSchedule.value['save_id'],
+      currentSchedule.value['name'],
+      currentSchedule.value['data'],
+      currentSchedule.value['data_version'],
+      currentSchedule.value['update_date'],
+  );
+}
+
+// スケジュールをDBに別保存
+const saveAsSchedule = async (name) => {
+  let date = new Date();
+  currentSchedule.value['save_id'] = date.getTime();
+  currentSchedule.value['name'] = name;
+  currentSchedule.value['data_version'] = schedules.getDataVersion();
+  currentSchedule.value['update_date'] = date.toLocaleString();
+  scheduleViewRef.value[0].updateSaveId();
+
+  await schedules.insetScheduleData(
+      currentSchedule.value['save_id'],
+      currentSchedule.value['name'],
+      currentSchedule.value['data'],
+      currentSchedule.value['data_version'],
+      currentSchedule.value['update_date'],
+  );
 }
 
 // スケジュール編集を元に戻す
@@ -222,14 +268,14 @@ onUpdated(() => {
     </div>
     <div class="header-operation-area">
       <div class="header-operation save">
-        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView">
+        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView" @click="buttonSave">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/>
           </svg>
         </button>
       </div>
       <div class="header-operation save-as">
-        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView">
+        <button class="header-operation-button" v-bind:disabled="currentComponent !== ScheduleView" @click="buttonSaveAs">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160v212q-19-8-39.5-10.5t-40.5.5v-169L647-760H200v560h240v80H200Zm0-640v560-560ZM520-40v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-260L643-40H520Zm300-263-37-37 37 37ZM580-100h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19ZM240-560h360v-160H240v160Zm240 320h4l116-115v-5q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/>
           </svg>
@@ -307,11 +353,12 @@ onUpdated(() => {
       <ScheduleView
           v-if="(currentComponent === ScheduleView) && (currentSchedule.id === schedule.id)"
           ref="scheduleViewRef"
-          :schedules="schedules"
           :schedule-data="currentSchedule"
           :idols="idols"
           :support-cards="supportCards"
           @undo-redo-disabled="buttonUndoRedoDisabled"
+          @save-schedule="saveSchedule"
+          @save-as-schedule="saveAsSchedule"
       />
     </keep-alive>
   </div>

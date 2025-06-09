@@ -1,27 +1,80 @@
+import ScheduleModel from "@/models/schedules";
+
 export default class Schedules {
 
     dataVersion: string = '1.0';
-    autoIncrement: number = 1;
+    autoIncrement: number = 0;
     crateCount: number = 1;
-    scheduleList: any = [];
+    saveList: any = [];
 
     constructor() {
+        this.getSaveScheduleData();
+    }
+
+    getSaveList() {
+        return this.saveList;
     }
 
     crateNewSchedule(produceType: string) {
         let newSchedule = {
-            id: this.autoIncrement,
             save_id: null,
-            undo_disabled: true,
-            redo_disabled: true,
             name: `新規スケジュール${this.crateCount}`,
             data: this.setData(produceType),
             data_version: this.dataVersion,
+            update_date: null,
         };
-        this.autoIncrement++;
         this.crateCount++;
 
         return newSchedule;
+    }
+
+    createId() {
+        this.autoIncrement++;
+        return this.autoIncrement;
+    }
+
+    getDataVersion() {
+        return this.dataVersion;
+    }
+
+    async getSaveScheduleData() {
+        let model = new ScheduleModel();
+        if (await model.connect()) {
+            this.saveList = await model.findAll();
+            console.log(this.saveList);
+        }
+    }
+
+    async insetScheduleData(saveId: number, name: string, data: any, dataVersion: string, updateData: string) {
+        let model = new ScheduleModel();
+        if (await model.connect()) {
+            if (await model.insert(saveId, name, JSON.parse(JSON.stringify(data)), dataVersion, updateData)) {
+                this.saveList[saveId] = {
+                    save_id: saveId,
+                    name: name,
+                    data: JSON.parse(JSON.stringify(data)),
+                    data_version: dataVersion,
+                    update_data: updateData,
+                };
+                console.log(this.saveList);
+            }
+        }
+    }
+
+    async updateScheduleData(saveId: number, name: string, data: any, dataVersion: string, updateData: string) {
+        let model = new ScheduleModel();
+        if (await model.connect()) {
+            if (await model.update(saveId, name, JSON.parse(JSON.stringify(data)), dataVersion, updateData)) {
+                this.saveList[saveId] = {
+                    save_id: saveId,
+                    name: name,
+                    data: JSON.parse(JSON.stringify(data)),
+                    data_version: dataVersion,
+                    update_data: updateData,
+                };
+                console.log(this.saveList);
+            }
+        }
     }
 
     private setData(produceType: string) {
@@ -272,8 +325,7 @@ export default class Schedules {
                 5: false,
                 6: false,
             },
-            support_card_ability: {
-            },
+            support_card_ability: {},
         }
     }
 
@@ -483,8 +535,7 @@ export default class Schedules {
                 5: false,
                 6: false,
             },
-            support_card_ability: {
-            },
+            support_card_ability: {},
         }
     }
 }

@@ -21,6 +21,9 @@ export default abstract class IndexedDB {
                 if (!this.db.objectStoreNames.contains('support-cards')) {
                     this.db.createObjectStore('support-cards', {autoIncrement: true});
                 }
+                if (!this.db.objectStoreNames.contains('schedules')) {
+                    this.db.createObjectStore('schedules', {keyPath: 'save_id'});
+                }
             }
             // 既にDBが存在している場合
             request.onsuccess = (event: any) => {
