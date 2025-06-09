@@ -278,6 +278,7 @@ defineExpose({buttonUndo, buttonRedo, buttonSave, buttonSaveAs, updateSaveId});
     <ScheduleSave
         v-if="scheduleSaveOpen"
         :name="scheduleDataName"
+        :produce-idol-name="basicData['produce_idol'] ? basicData['produce_idol']['name'] : null"
         @save-close="closeSaveAs"
     />
   </Teleport>

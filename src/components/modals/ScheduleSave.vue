@@ -1,16 +1,18 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['name']);
+const props = defineProps(['name', 'produceIdolName']);
 const emit = defineEmits(['save-close']);
+const produceIdolName = props.produceIdolName;
 
 let scheduleName = ref(props.name);
 
 const savesScheduleName = () => {
   if (scheduleName.value === '') {
     emit('save-close', props.name);
+  } else {
+    emit('save-close', scheduleName.value);
   }
-  emit('save-close', scheduleName.value);
 }
 </script>
 
@@ -37,6 +39,13 @@ const savesScheduleName = () => {
           <div class="schedule-name-input">
             <label class="basic-input-text-name font-bold">スケジュール名</label>
             <input class="basic-input-text" type="text" v-model="scheduleName">
+          </div>
+        </div>
+        <div class="schedule-name-insert-area" v-if="produceIdolName !== null">
+          <div class="produce-idol-name-insert-button">
+            <button class="common-button" @click="scheduleName = produceIdolName">
+              <span class="common-button-name">『{{ produceIdolName }}』を挿入</span>
+            </button>
           </div>
         </div>
         <div class="edit-button-area">
