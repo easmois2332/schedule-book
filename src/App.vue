@@ -121,7 +121,25 @@ const saveSchedule = async () => {
   );
 }
 
-// スケジュールをDBに別保存
+// スケジュールをDBに新規保存
+const saveNewSchedule = async (name) => {
+  let date = new Date();
+  currentSchedule.value['save_id'] = date.getTime();
+  currentSchedule.value['name'] = name;
+  currentSchedule.value['data_version'] = schedules.getDataVersion();
+  currentSchedule.value['update_data'] = date.toLocaleString();
+  scheduleViewRef.value[0].updateSaveId();
+
+  await schedules.insetScheduleData(
+      currentSchedule.value['save_id'],
+      currentSchedule.value['name'],
+      currentSchedule.value['data'],
+      currentSchedule.value['data_version'],
+      currentSchedule.value['update_data'],
+  );
+}
+
+// スケジュールをDBに別名保存
 const saveAsSchedule = async (name) => {
   let date = new Date();
   let scheduleData = {...currentSchedule.value};
@@ -385,6 +403,7 @@ onUpdated(() => {
           :support-cards="supportCards"
           @undo-redo-disabled="buttonUndoRedoDisabled"
           @save-schedule="saveSchedule"
+          @save-new-schedule="saveNewSchedule"
           @save-as-schedule="saveAsSchedule"
       />
     </keep-alive>

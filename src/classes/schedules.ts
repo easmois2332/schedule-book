@@ -16,10 +16,18 @@ export default class Schedules {
     }
 
     getSaveListFromFilter(idolId: number, produceType: string) {
-        let data = this.saveList.filter((save: any, index: number) =>
+        let data = this.saveList.filter((save: any) =>
             save.data.produce_type === produceType &&
             save.data.organization.produce_idol.idol_id === idolId
         );
+
+        data.sort((a: any, b: any) => {
+            if (a.data.organization.produce_idol.id === b.data.organization.produce_idol.id) {
+                return a.name.localeCompare(b.name);
+            }
+            return a.data.organization.produce_idol.id - b.data.organization.produce_idol.id;
+        });
+
         return data;
     }
 
