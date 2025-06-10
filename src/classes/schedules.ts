@@ -29,7 +29,7 @@ export default class Schedules {
             name: `新規スケジュール${this.crateCount}`,
             data: this.setData(produceType),
             data_version: this.dataVersion,
-            update_date: null,
+            update_data: null,
         };
         this.crateCount++;
 

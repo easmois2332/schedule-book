@@ -110,33 +110,41 @@ const buttonSaveAs = () => {
 const saveSchedule = async () => {
   let date = new Date();
   currentSchedule.value['data_version'] = schedules.getDataVersion();
-  currentSchedule.value['update_date'] = date.toLocaleString();
+  currentSchedule.value['update_data'] = date.toLocaleString();
 
   await schedules.updateScheduleData(
       currentSchedule.value['save_id'],
       currentSchedule.value['name'],
       currentSchedule.value['data'],
       currentSchedule.value['data_version'],
-      currentSchedule.value['update_date'],
+      currentSchedule.value['update_data'],
   );
 }
 
 // スケジュールをDBに別保存
 const saveAsSchedule = async (name) => {
   let date = new Date();
-  currentSchedule.value['save_id'] = date.getTime();
-  currentSchedule.value['name'] = name;
-  currentSchedule.value['data_version'] = schedules.getDataVersion();
-  currentSchedule.value['update_date'] = date.toLocaleString();
-  scheduleViewRef.value[0].updateSaveId();
+  let scheduleData = {...currentSchedule.value};
+  scheduleData['save_id'] = date.getTime();
+  scheduleData['name'] = name;
+  scheduleData['data_version'] = schedules.getDataVersion();
+  scheduleData['update_data'] = date.toLocaleString();
 
   await schedules.insetScheduleData(
-      currentSchedule.value['save_id'],
-      currentSchedule.value['name'],
-      currentSchedule.value['data'],
-      currentSchedule.value['data_version'],
-      currentSchedule.value['update_date'],
+      scheduleData['save_id'],
+      scheduleData['name'],
+      scheduleData['data'],
+      scheduleData['data_version'],
+      scheduleData['update_data'],
   );
+
+  // 別タブで開き直す
+  scheduleData.id = schedules.createId();
+  scheduleData.undo_disabled = true;
+  scheduleData.redo_disabled = true;
+  scheduleList.value.push(scheduleData);
+  currentSchedule.value = scheduleData;
+  currentComponent.value = ScheduleView;
 }
 
 // スケジュール編集を元に戻す
