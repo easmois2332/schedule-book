@@ -107,54 +107,71 @@ const buttonSaveAs = () => {
 }
 
 // スケジュールをDBに保存
-const saveSchedule = async () => {
+const saveSchedule = async (saveId, name, data) => {
   let date = new Date();
-  currentSchedule.value['data_version'] = schedules.getDataVersion();
-  currentSchedule.value['update_data'] = date.toLocaleString();
+  let dataVersion = schedules.getDataVersion();
+  let updateData = date.toLocaleString()
+
+  currentSchedule.value['data_version'] = dataVersion;
+  currentSchedule.value['update_data'] = updateData;
 
   await schedules.updateScheduleData(
-      currentSchedule.value['save_id'],
-      currentSchedule.value['name'],
-      currentSchedule.value['data'],
-      currentSchedule.value['data_version'],
-      currentSchedule.value['update_data'],
+      saveId,
+      name,
+      data,
+      dataVersion,
+      updateData,
   );
+  console.log('save schedule');
 }
 
 // スケジュールをDBに新規保存
-const saveNewSchedule = async (name) => {
+const saveNewSchedule = async (name, data) => {
   let date = new Date();
-  currentSchedule.value['save_id'] = date.getTime();
+  let saveId = date.getTime();
+  let dataVersion = schedules.getDataVersion();
+  let updateData = date.toLocaleString()
+
+  currentSchedule.value['save_id'] = saveId;
   currentSchedule.value['name'] = name;
-  currentSchedule.value['data_version'] = schedules.getDataVersion();
-  currentSchedule.value['update_data'] = date.toLocaleString();
-  scheduleViewRef.value[0].updateSaveId();
+  currentSchedule.value['data'] = data;
+  currentSchedule.value['data_version'] = dataVersion;
+  currentSchedule.value['update_data'] = updateData;
+  scheduleViewRef.value[0].updateSaveId(saveId);
 
   await schedules.insetScheduleData(
-      currentSchedule.value['save_id'],
-      currentSchedule.value['name'],
-      currentSchedule.value['data'],
-      currentSchedule.value['data_version'],
-      currentSchedule.value['update_data'],
+      saveId,
+      name,
+      data,
+      dataVersion,
+      updateData,
   );
+  console.log('save new schedule');
 }
 
 // スケジュールをDBに別名保存
-const saveAsSchedule = async (name) => {
+const saveAsSchedule = async (name, data) => {
   let date = new Date();
-  let scheduleData = {...currentSchedule.value};
-  scheduleData['save_id'] = date.getTime();
-  scheduleData['name'] = name;
-  scheduleData['data_version'] = schedules.getDataVersion();
-  scheduleData['update_data'] = date.toLocaleString();
+  let saveId = date.getTime();
+  let dataVersion = schedules.getDataVersion();
+  let updateData = date.toLocaleString()
+
+  let scheduleData = {
+    save_id: saveId,
+    name: name,
+    data: data,
+    data_version: dataVersion,
+    update_data: updateData,
+  };
 
   await schedules.insetScheduleData(
-      scheduleData['save_id'],
-      scheduleData['name'],
-      scheduleData['data'],
-      scheduleData['data_version'],
-      scheduleData['update_data'],
+      saveId,
+      name,
+      data,
+      dataVersion,
+      updateData,
   );
+  console.log('save as schedule');
 
   // 別タブで開き直す
   scheduleData.id = schedules.createId();
@@ -163,6 +180,7 @@ const saveAsSchedule = async (name) => {
   scheduleList.value.push(scheduleData);
   currentSchedule.value = scheduleData;
   currentComponent.value = ScheduleView;
+  scheduleOpenScroll.value = true;
 }
 
 // スケジュール編集を元に戻す

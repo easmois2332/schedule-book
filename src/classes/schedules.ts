@@ -12,7 +12,7 @@ export default class Schedules {
     }
 
     getAllSaveList() {
-        return this.saveList;
+        return this.deepCopy(this.saveList);
     }
 
     getSaveListFromFilter(idolId: number, produceType: string) {
@@ -28,7 +28,7 @@ export default class Schedules {
             return a.data.organization.produce_idol.id - b.data.organization.produce_idol.id;
         });
 
-        return data;
+        return this.deepCopy(data);
     }
 
     crateNewSchedule(produceType: string) {
@@ -106,6 +106,10 @@ export default class Schedules {
                 }
             }
         }
+    }
+
+    private deepCopy(array: any) {
+        return JSON.parse(JSON.stringify(array));
     }
 
     private setData(produceType: string) {

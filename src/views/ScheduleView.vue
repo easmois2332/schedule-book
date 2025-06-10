@@ -7,7 +7,7 @@ import ScheduleSave from "@/components/modals/ScheduleSave.vue";
 import {abilities, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['scheduleData', 'idols', 'supportCards']);
-const emit = defineEmits(['undo-redo-disabled', 'save-schedule', 'save-as-schedule']);
+const emit = defineEmits(['undo-redo-disabled', 'save-schedule', 'save-new-schedule', 'save-as-schedule']);
 const id = props.scheduleData.id;
 const idols = props.idols;
 const supportCards = props.supportCards;
@@ -229,7 +229,7 @@ const buttonRedo = () => {
 }
 const buttonSave = () => {
   if (scheduleDataSaveId !== null) {
-    emit('save-schedule');
+    emit('save-schedule', scheduleDataSaveId, scheduleDataName, JSON.parse(JSON.stringify(inputData.value)));
   } else {
     buttonSaveAs();
   }
@@ -240,9 +240,9 @@ const buttonSaveAs = () => {
 const closeSaveAs = (name) => {
   if (name !== null) {
     if (scheduleDataSaveId !== null) {
-      emit('save-as-schedule', name);
+      emit('save-as-schedule', name, JSON.parse(JSON.stringify(inputData.value)));
     } else {
-      emit('save-new-schedule', name);
+      emit('save-new-schedule', name, JSON.parse(JSON.stringify(inputData.value)));
     }
   }
   scheduleSaveOpen.value = false;
