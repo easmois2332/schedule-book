@@ -22,7 +22,7 @@ const savesScheduleName = () => {
       <div class="headline-area">
         <div class="headline-title-area">
           <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#333333">
-            <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/>
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160v212q-19-8-39.5-10.5t-40.5.5v-169L647-760H200v560h240v80H200Zm0-640v560-560ZM520-40v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-260L643-40H520Zm300-263-37-37 37 37ZM580-100h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19ZM240-560h360v-160H240v160Zm240 320h4l116-115v-5q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/>
           </svg>
           <span class="headline-text">名前を付けて保存</span>
         </div>
@@ -38,7 +38,7 @@ const savesScheduleName = () => {
         <div class="schedule-name-input-area">
           <div class="schedule-name-input">
             <label class="basic-input-text-name font-bold">スケジュール名</label>
-            <input class="basic-input-text" type="text" v-model="scheduleName">
+            <input class="basic-input-text" type="text" maxlength="30" v-model="scheduleName">
           </div>
         </div>
         <div class="schedule-name-insert-area" v-if="produceIdolName !== null">

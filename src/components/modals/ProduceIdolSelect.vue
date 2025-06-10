@@ -4,11 +4,11 @@ import {ref} from "vue";
 const props = defineProps(['idols']);
 const idols = props.idols;
 
-let allIdolList = ref(idols.getAllIdol());
+const allIdolList = idols.getAllIdol();
 </script>
 
 <template>
-  <div class="modal-window-area" @click.self="$emit('selector-close', null, null, null, null)">
+  <div class="modal-window-area" @click.self="$emit('selector-close', null)">
     <div class="produce-idol-modal">
       <div class="headline-area">
         <div class="headline-title-area">
@@ -18,7 +18,7 @@ let allIdolList = ref(idols.getAllIdol());
           <span class="headline-text">プロデュースアイドル選択</span>
         </div>
         <div class="headline-close-button-area">
-          <button class="headline-close-button" @click="$emit('selector-close', null, null, null, null)">
+          <button class="headline-close-button" @click="$emit('selector-close', null)">
             <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#333333">
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
             </svg>
@@ -38,7 +38,7 @@ let allIdolList = ref(idols.getAllIdol());
             </div>
             <div class="produce-idol-area">
               <div class="produce-idol" v-for="produce in idols.getPIdolFromIdolId(idol.id)" :key="produce.id">
-                <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="$emit('selector-close', produce.id, produce.training_level, produce.blossoming_level, idol.dear_level)">
+                <div class="produce-idol-image-area" :style="{ backgroundImage: 'url(./image/produceIdols/' + produce.id + '.png)' }" @click="$emit('selector-close', idols.getPIdolDetail(produce.id, produce.training_level, produce.blossoming_level, idol.dear_level))">
                   <div class="produce-idol-plan-area">
                     <span class="produce-idol-plan-text">{{ produce.plan_display }}</span>
                     <span class="produce-idol-plan-text">{{ produce.effect_display }}</span>

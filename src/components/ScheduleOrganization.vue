@@ -54,20 +54,20 @@ const buttonProduceIdolSelector = () => {
 const buttonSupportCardSelector = (index) => {
   supportCardSelectorOpen.value = index;
 }
-const closeProduceIdolSelector = (id, trainingLevel, blossomingLevel, dearLevel) => {
-  if (id !== null) {
-    inputData.value['organization']['produce_idol']['id'] = id;
-    inputData.value['organization']['produce_idol']['training_level'] = trainingLevel;
-    inputData.value['organization']['produce_idol']['blossoming_level'] = blossomingLevel;
-    inputData.value['organization']['produce_idol']['dear_level'] = dearLevel;
+const closeProduceIdolSelector = (idolDetail) => {
+  if (idolDetail !== null) {
+    inputData.value['organization']['produce_idol']['id'] = idolDetail['id'];
+    inputData.value['organization']['produce_idol']['idol_id'] = idolDetail['idol_id'];
+    inputData.value['organization']['produce_idol']['training_level'] = idolDetail['training_level'];
+    inputData.value['organization']['produce_idol']['blossoming_level'] = idolDetail['blossoming_level'];
+    inputData.value['organization']['produce_idol']['dear_level'] = idolDetail['dear_level'];
 
     if (inputData.value['produce_type'] === 'nia_master') {
-      let idol = idols.getPIdolDetail(id);
       for (let i = 1; i <= 3; i++) {
         inputData.value['planning']['audition'][i]['fan'] = fanList['nia_master'][i]['max'];
-        inputData.value['planning']['audition'][i]['type_1'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_1'];
-        inputData.value['planning']['audition'][i]['type_2'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_2'];
-        inputData.value['planning']['audition'][i]['type_3'] = parameterList['nia_master'][idol['parameter_type']][i]['max']['type_3'];
+        inputData.value['planning']['audition'][i]['type_1'] = parameterList['nia_master'][idolDetail['parameter_type']][i]['max']['type_1'];
+        inputData.value['planning']['audition'][i]['type_2'] = parameterList['nia_master'][idolDetail['parameter_type']][i]['max']['type_2'];
+        inputData.value['planning']['audition'][i]['type_3'] = parameterList['nia_master'][idolDetail['parameter_type']][i]['max']['type_3'];
       }
     }
     updateInputData();

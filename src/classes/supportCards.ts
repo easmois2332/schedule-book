@@ -144,7 +144,7 @@ export default class SupportCards {
             if (await model.update(saveId, id, level)) {
                 let card = this.getCardDetail(id, level);
                 card.save_id = saveId;
-                let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
+                let index = this.saveList.findIndex((card: any) => (card.save_id === saveId) && (card.enable === 1));
                 if (index !== -1) {
                     this.saveList[index] = card;
                 }
@@ -156,7 +156,7 @@ export default class SupportCards {
         let model = new SupportCardModel();
         if (await model.connect()) {
             if (await model.delete(saveId)) {
-                let index = this.saveList.findIndex((card: any) => (card.save_id == saveId) && (card.enable === 1));
+                let index = this.saveList.findIndex((card: any) => (card.save_id === saveId) && (card.enable === 1));
                 if (index !== -1) {
                     this.saveList[index].enable = 0;
                 }

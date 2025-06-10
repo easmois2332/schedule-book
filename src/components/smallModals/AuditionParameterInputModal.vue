@@ -77,7 +77,7 @@ const buttonCalc = () => {
 </script>
 
 <template>
-  <div class="input-modal-window-area" @click.self="$emit('input-close', inputData['vocal'], inputData['dance'], inputData['visual'], inputData['fan'])">
+  <div class="small-modal-window-area" @click.self="$emit('input-close', inputData['vocal'], inputData['dance'], inputData['visual'], inputData['fan'])">
     <div class="audition-parameter-input-modal">
       <div class="headline-area">
         <div class="headline-title-area">

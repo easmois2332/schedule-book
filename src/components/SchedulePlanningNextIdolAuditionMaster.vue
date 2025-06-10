@@ -3,8 +3,8 @@ import {onBeforeMount, ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
-import CommonInputModal from "@/components/inputModals/CommonInputModal.vue";
-import AuditionParameterInputModal from "@/components/inputModals/AuditionParameterInputModal.vue";
+import CommonInputModal from "@/components/smallModals/CommonInputModal.vue";
+import AuditionParameterInputModal from "@/components/smallModals/AuditionParameterInputModal.vue";
 
 const props = defineProps(['inputData', 'basicData']);
 const emit = defineEmits(['input-data-update']);

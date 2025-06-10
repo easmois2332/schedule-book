@@ -11,8 +11,16 @@ export default class Schedules {
         this.getSaveScheduleData();
     }
 
-    getSaveList() {
+    getAllSaveList() {
         return this.saveList;
+    }
+
+    getSaveListFromFilter(idolId: number, produceType: string) {
+        let data = this.saveList.filter((save: any, index: number) =>
+            save.data.produce_type === produceType &&
+            save.data.organization.produce_idol.idol_id === idolId
+        );
+        return data;
     }
 
     crateNewSchedule(produceType: string) {
@@ -40,8 +48,10 @@ export default class Schedules {
     async getSaveScheduleData() {
         let model = new ScheduleModel();
         if (await model.connect()) {
-            this.saveList = await model.findAll();
-            console.log(this.saveList);
+            let data = await model.findAll();
+            for (let index in data) {
+                this.saveList.push(data[index]);
+            }
         }
     }
 
@@ -49,14 +59,13 @@ export default class Schedules {
         let model = new ScheduleModel();
         if (await model.connect()) {
             if (await model.insert(saveId, name, JSON.parse(JSON.stringify(data)), dataVersion, updateData)) {
-                this.saveList[saveId] = {
+                this.saveList.push({
                     save_id: saveId,
                     name: name,
                     data: JSON.parse(JSON.stringify(data)),
                     data_version: dataVersion,
                     update_data: updateData,
-                };
-                console.log(this.saveList);
+                });
             }
         }
     }
@@ -65,14 +74,28 @@ export default class Schedules {
         let model = new ScheduleModel();
         if (await model.connect()) {
             if (await model.update(saveId, name, JSON.parse(JSON.stringify(data)), dataVersion, updateData)) {
-                this.saveList[saveId] = {
-                    save_id: saveId,
-                    name: name,
-                    data: JSON.parse(JSON.stringify(data)),
-                    data_version: dataVersion,
-                    update_data: updateData,
-                };
-                console.log(this.saveList);
+                let index = this.saveList.findIndex((save: any) => save.save_id === saveId);
+                if (index !== -1) {
+                    this.saveList[index] = {
+                        save_id: saveId,
+                        name: name,
+                        data: JSON.parse(JSON.stringify(data)),
+                        data_version: dataVersion,
+                        update_data: updateData,
+                    };
+                }
+            }
+        }
+    }
+
+    async deleteScheduleData(saveId: number) {
+        let model = new ScheduleModel();
+        if (await model.connect()) {
+            if (await model.delete(saveId)) {
+                let index = this.saveList.findIndex((save: any) => save.save_id === saveId);
+                if (index !== -1) {
+                    this.saveList.splice(index, 1);
+                }
             }
         }
     }
@@ -96,6 +119,7 @@ export default class Schedules {
             organization: {
                 produce_idol: {
                     id: null,
+                    idol_id: null,
                     training_level: null,
                     blossoming_level: null,
                     dear_level: null,

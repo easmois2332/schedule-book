@@ -11,6 +11,7 @@ import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
+import ScheduleOpen from "@/components/modals/ScheduleOpen.vue";
 
 const scheduleViewRef = ref();
 
@@ -22,9 +23,10 @@ let supportCards = new SupportCards();
 
 let scheduleList = ref([]);
 let currentSchedule = ref([]);
-let newScheduleOpen = ref(false);
+let scheduleOpenScroll = ref(false);
 
 let produceTypeSelectOpen = ref(false);
+let saveScheduleOpen = ref(false);
 
 let setting = new Setting();
 let settingOpen = ref(false);
@@ -36,7 +38,7 @@ const buttonHome = () => {
 }
 
 // 新規スケジュール作成
-const buttonNewSchedule = (produceType) => {
+const newSchedule = (produceType) => {
   if (produceType) {
     let newSchedule = schedules.crateNewSchedule(produceType);
     newSchedule.id = schedules.createId();
@@ -45,13 +47,29 @@ const buttonNewSchedule = (produceType) => {
     scheduleList.value.push(newSchedule);
     currentSchedule.value = newSchedule;
     currentComponent.value = ScheduleView;
-    newScheduleOpen.value = true;
+    scheduleOpenScroll.value = true;
   }
   produceTypeSelectOpen.value = false;
 }
 
 // スケジュールを開く
-const buttonOpenSchedule = () => {
+const openSchedule = (scheduleData) => {
+  if (scheduleData !== null) {
+    let index = scheduleList.value.findIndex((schedule) => schedule.save_id === scheduleData.save_id);
+    if (index === -1) {
+      let openSchedule = scheduleData;
+      openSchedule.id = schedules.createId();
+      openSchedule.undo_disabled = true;
+      openSchedule.redo_disabled = true;
+      scheduleList.value.push(openSchedule);
+      currentSchedule.value = openSchedule;
+      currentComponent.value = ScheduleView;
+    } else {
+      currentSchedule.value = scheduleList.value[index];
+      currentComponent.value = ScheduleView;
+    }
+  }
+  saveScheduleOpen.value = false;
 }
 
 // Pアイドル管理
@@ -190,13 +208,13 @@ onMounted(() => {
 });
 
 onUpdated(() => {
-  if (newScheduleOpen.value) {
+  if (scheduleOpenScroll.value) {
     let scheduleTabArea = document.querySelector('.schedule-tab-card-area');
     scheduleTabArea.scroll({
       left: scheduleTabArea.scrollWidth,
       behavior: "smooth"
     });
-    newScheduleOpen.value = false;
+    scheduleOpenScroll.value = false;
   }
 })
 </script>
@@ -217,13 +235,13 @@ onUpdated(() => {
         <div class="header-tab new-schedule">
           <button class="header-tab-button new-schedule" @click="produceTypeSelectOpen = true">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
-              <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h360v80H200v560h560v-360h80v360q0 33-23.5 56.5T760-120H200Zm120-160v-80h320v80H320Zm0-120v-80h320v80H320Zm0-120v-80h320v80H320Zm360-80v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
+              <path d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
             </svg>
             <span class="header-tab-name">新規作成</span>
           </button>
         </div>
         <div class="header-tab open-schedule">
-          <button class="header-tab-button open-schedule" @click="buttonOpenSchedule">
+          <button class="header-tab-button open-schedule" @click="saveScheduleOpen = true">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
               <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/>
             </svg>
@@ -339,6 +357,7 @@ onUpdated(() => {
         v-if="currentComponent === HomeView"
         @component-change="changeCurrentComponent"
         @new-schedule-open="produceTypeSelectOpen = true"
+        @save-schedule-open="saveScheduleOpen = true"
         @setting-open="buttonSetting"
     />
     <IdolView
@@ -371,7 +390,14 @@ onUpdated(() => {
     />
     <ProduceTypeSelect
         v-if="produceTypeSelectOpen"
-        @produce-type-select-close="buttonNewSchedule"
+        @produce-type-select-close="newSchedule"
+    />
+    <ScheduleOpen
+        v-if="saveScheduleOpen"
+        :schedules="schedules"
+        :idols="idols"
+        :schedule-list="scheduleList"
+        @schedule-close="openSchedule"
     />
   </Teleport>
 </template>

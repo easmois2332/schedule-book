@@ -2,7 +2,7 @@
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 
-const emit = defineEmits(['component-change', 'new-schedule-open', 'setting-open']);
+const emit = defineEmits(['component-change', 'new-schedule-open', 'save-schedule-open', 'setting-open']);
 </script>
 
 <template>
@@ -20,13 +20,13 @@ const emit = defineEmits(['component-change', 'new-schedule-open', 'setting-open
       <div class="content new-schedule">
         <button class="content-button new-schedule" @click="$emit('new-schedule-open')">
           <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#333333">
-            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h360v80H200v560h560v-360h80v360q0 33-23.5 56.5T760-120H200Zm120-160v-80h320v80H320Zm0-120v-80h320v80H320Zm0-120v-80h320v80H320Zm360-80v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
+            <path d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
           </svg>
           <span class="content-button-name">新規作成</span>
         </button>
       </div>
       <div class="content open-schedule">
-        <button class="content-button open-schedule">
+        <button class="content-button open-schedule" @click="$emit('save-schedule-open')">
           <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#333333">
             <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/>
           </svg>

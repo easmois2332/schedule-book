@@ -26,6 +26,7 @@ export default class IdolDetail {
         this.pIdol.vocal_priority = this.idol.vocal_priority;
         this.pIdol.dance_priority = this.idol.dance_priority;
         this.pIdol.visual_priority = this.idol.visual_priority;
+        this.pIdol.dear_level = this.idol.dear_level;
 
         switch (this.pIdol.rarity) {
             case rarities.RARITY_SSR:
