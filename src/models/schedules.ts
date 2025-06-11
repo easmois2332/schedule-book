@@ -21,7 +21,7 @@ export default class Schedules extends IndexedDB {
                 }
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject([]);
             }
 
@@ -47,7 +47,7 @@ export default class Schedules extends IndexedDB {
                 resolve(<IDBCursorWithValue>(<IDBRequest>event.target).result);
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
 
@@ -73,7 +73,7 @@ export default class Schedules extends IndexedDB {
                 resolve(true);
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
 
@@ -91,7 +91,7 @@ export default class Schedules extends IndexedDB {
                 resolve(true);
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
 

@@ -205,7 +205,7 @@ const updateHistory = () => {
 }
 const buttonUndo = () => {
   if (undoList.value.length <= 1) {
-    console.log('Undo is disabled.');
+    console.error('Undo is disabled.');
   } else {
     let shifted = undoList.value.shift();
     redoList.value.unshift(shifted);
@@ -217,7 +217,7 @@ const buttonUndo = () => {
 }
 const buttonRedo = () => {
   if (redoList.value.length <= 0) {
-    console.log('Redo is disabled.');
+    console.error('Redo is disabled.');
   } else {
     let shifted = redoList.value.shift();
     undoList.value.unshift(shifted);

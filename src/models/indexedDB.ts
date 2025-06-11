@@ -32,7 +32,7 @@ export default abstract class IndexedDB {
             }
             // エラーが発生した場合
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
         });

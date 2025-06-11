@@ -21,7 +21,7 @@ export default class ProduceIdols extends IndexedDB {
                 }
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject([]);
             }
 
@@ -39,7 +39,7 @@ export default class ProduceIdols extends IndexedDB {
                 resolve(true);
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
 
@@ -57,7 +57,7 @@ export default class ProduceIdols extends IndexedDB {
                 resolve(true);
             }
             request.onerror = (event: any) => {
-                console.log(event.message);
+                console.error(event.message);
                 reject(false);
             }
 
