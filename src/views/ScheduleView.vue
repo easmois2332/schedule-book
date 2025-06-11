@@ -30,11 +30,10 @@ const produceTypeComponentList = {
   }
 }
 
-const scheduleDataName = props.scheduleData.name;
+let scheduleDataSaveId = props.scheduleData.save_id;
+let scheduleDataName = props.scheduleData.name;
 const scheduleData = props.scheduleData.data;
 const produceType = scheduleData.produce_type;
-
-let scheduleDataSaveId = props.scheduleData.save_id;
 
 let inputData = ref(scheduleData);
 let basicData = ref({
@@ -60,8 +59,9 @@ let undoList = ref([JSON.stringify(scheduleData)]);
 let redoList = ref([]);
 let scheduleSaveOpen = ref(false);
 
-const updateSaveId = (saveId) => {
+const updateScheduleData = (saveId, name) => {
   scheduleDataSaveId = saveId;
+  scheduleDataName = name;
 }
 const updateInputData = (data) => {
   inputData.value = data;
@@ -250,7 +250,7 @@ const closeSaveAs = (name) => {
 onBeforeMount(() => {
   updateBasicData();
 })
-defineExpose({buttonUndo, buttonRedo, buttonSave, buttonSaveAs, updateSaveId});
+defineExpose({buttonUndo, buttonRedo, buttonSave, buttonSaveAs, updateScheduleData});
 </script>
 
 <template>

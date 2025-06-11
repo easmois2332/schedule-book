@@ -7,11 +7,12 @@ import SupportCards from "@/classes/supportCards";
 import Setting from "@/classes/setting";
 import HomeView from "@/views/HomeView.vue";
 import ScheduleView from "@/views/ScheduleView.vue";
-import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
+import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import ScheduleOpen from "@/components/modals/ScheduleOpen.vue";
+import SaveProcessing from "@/components/modals/SaveProcessing.vue";
 
 const scheduleViewRef = ref();
 
@@ -27,6 +28,7 @@ let scheduleOpenScroll = ref(false);
 
 let produceTypeSelectOpen = ref(false);
 let saveScheduleOpen = ref(false);
+let SaveProcessingOpen = ref(false);
 
 let setting = new Setting();
 let settingOpen = ref(false);
@@ -108,12 +110,17 @@ const buttonSaveAs = () => {
 
 // スケジュールをDBに保存
 const saveSchedule = async (saveId, name, data) => {
+  SaveProcessingOpen.value = true;
   let date = new Date();
   let dataVersion = schedules.getDataVersion();
   let updateData = date.toLocaleString()
 
+  currentSchedule.value['save_id'] = saveId;
+  currentSchedule.value['name'] = name;
+  currentSchedule.value['data'] = data;
   currentSchedule.value['data_version'] = dataVersion;
   currentSchedule.value['update_data'] = updateData;
+  scheduleViewRef.value[0].updateScheduleData(saveId, name);
 
   await schedules.updateScheduleData(
       saveId,
@@ -122,11 +129,14 @@ const saveSchedule = async (saveId, name, data) => {
       dataVersion,
       updateData,
   );
-  console.log('save schedule');
+  setTimeout(() => {
+    SaveProcessingOpen.value = false
+  }, 500);
 }
 
 // スケジュールをDBに新規保存
 const saveNewSchedule = async (name, data) => {
+  SaveProcessingOpen.value = true;
   let date = new Date();
   let saveId = date.getTime();
   let dataVersion = schedules.getDataVersion();
@@ -137,7 +147,7 @@ const saveNewSchedule = async (name, data) => {
   currentSchedule.value['data'] = data;
   currentSchedule.value['data_version'] = dataVersion;
   currentSchedule.value['update_data'] = updateData;
-  scheduleViewRef.value[0].updateSaveId(saveId);
+  scheduleViewRef.value[0].updateScheduleData(saveId, name);
 
   await schedules.insetScheduleData(
       saveId,
@@ -146,11 +156,14 @@ const saveNewSchedule = async (name, data) => {
       dataVersion,
       updateData,
   );
-  console.log('save new schedule');
+  setTimeout(() => {
+    SaveProcessingOpen.value = false
+  }, 500);
 }
 
 // スケジュールをDBに別名保存
 const saveAsSchedule = async (name, data) => {
+  SaveProcessingOpen.value = true;
   let date = new Date();
   let saveId = date.getTime();
   let dataVersion = schedules.getDataVersion();
@@ -171,16 +184,18 @@ const saveAsSchedule = async (name, data) => {
       dataVersion,
       updateData,
   );
-  console.log('save as schedule');
+  setTimeout(() => {
+    SaveProcessingOpen.value = false
 
-  // 別タブで開き直す
-  scheduleData.id = schedules.createId();
-  scheduleData.undo_disabled = true;
-  scheduleData.redo_disabled = true;
-  scheduleList.value.push(scheduleData);
-  currentSchedule.value = scheduleData;
-  currentComponent.value = ScheduleView;
-  scheduleOpenScroll.value = true;
+    // 別タブで開き直す
+    scheduleData.id = schedules.createId();
+    scheduleData.undo_disabled = true;
+    scheduleData.redo_disabled = true;
+    scheduleList.value.push(scheduleData);
+    currentSchedule.value = scheduleData;
+    currentComponent.value = ScheduleView;
+    scheduleOpenScroll.value = true;
+  }, 500);
 }
 
 // スケジュール編集を元に戻す
@@ -443,6 +458,9 @@ onUpdated(() => {
         :idols="idols"
         :schedule-list="scheduleList"
         @schedule-close="openSchedule"
+    />
+    <SaveProcessing
+        v-if="SaveProcessingOpen"
     />
   </Teleport>
 </template>

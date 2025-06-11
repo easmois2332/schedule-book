@@ -58,6 +58,27 @@
         padding-right: 8px;
     }
 
+    .save-processing-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 60px;
+        margin: 40% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 1000px) {
+            margin: 50% auto;
+        }
+
+        .save-processing-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
     .card-edit-modal {
         display: flex;
         flex-direction: column;
