@@ -10,6 +10,7 @@ import HomeView from "@/views/HomeView.vue";
 import ScheduleView from "@/views/ScheduleView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
+import CalcView from "@/views/CalcView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
 import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import ScheduleOpen from "@/components/modals/ScheduleOpen.vue";
@@ -87,6 +88,7 @@ const buttonSupportCard = () => {
 
 // 各種計算機
 const buttonCalculator = () => {
+  currentComponent.value = CalcView;
 }
 
 // サイト設定
@@ -462,6 +464,10 @@ onUpdated(() => {
           @save-as-schedule="saveAsSchedule"
       />
     </keep-alive>
+    <CalcView
+        v-if="currentComponent === CalcView"
+        :idols="idols"
+    />
   </div>
   <Teleport to="#modal-area">
     <SettingView

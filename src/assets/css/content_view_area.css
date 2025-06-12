@@ -1266,4 +1266,115 @@
             }
         }
     }
+
+    .calc-tab-area {
+        display: flex;
+        padding: 0 16px;
+
+        .calc-tab {
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .calc-tab:hover {
+            background: #efefef;
+        }
+
+        .calc-tab.common-headline {
+            border-bottom: 3px solid;
+        }
+
+        .calc-tab-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            appearance: none;
+        }
+
+        .calc-tab-name {
+            color: #333333;
+            font-size: 20px;
+        }
+    }
+
+    .result-score-area {
+        padding: 16px 16px;
+
+        .result-score {
+            padding: 8px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            grid-column-gap: 64px;
+            grid-row-gap: 16px;
+        }
+
+        .produce-type-area, .calc-area, .result {
+            padding-bottom: 16px;
+        }
+
+        .parameter-area, .score-area, .audition-area, .fan-area, .produce-idols-select {
+            display: flex;
+            flex-direction: row;
+            grid-column-gap: 16px;
+            grid-row-gap: 16px;
+            padding-bottom: 16px;
+        }
+
+        .parameter, .score {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .basic-input-number {
+            width: 100px;
+        }
+
+        .basic-input-number.vocal {
+            background: rgba(251, 0, 130, 0.1);
+        }
+
+        .basic-input-number.dance {
+            background: rgba(0, 134, 240, 0.1);
+        }
+
+        .basic-input-number.visual {
+            background: rgba(250, 169, 0, 0.1);
+        }
+
+        .basic-input-number.score {
+            background: rgba(60, 199, 67, 0.1);
+        }
+
+        .table {
+            .table-header {
+                text-align: start;
+                white-space: nowrap;
+            }
+
+            .table-header {
+                border-bottom: 2px solid #958b7f;
+            }
+
+            .table-header.point {
+                width: 80px;
+            }
+
+            .table-data {
+                text-align: start;
+                white-space: nowrap;
+                background: rgba(149, 139, 127, 0.1);
+            }
+
+            .table-data.number {
+                text-align: end;
+            }
+
+            .table-data:hover {
+                background: rgba(149, 139, 127, 0.3);
+            }
+        }
+    }
 }
