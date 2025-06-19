@@ -464,10 +464,12 @@ onUpdated(() => {
           @save-as-schedule="saveAsSchedule"
       />
     </keep-alive>
-    <CalcView
-        v-if="currentComponent === CalcView"
-        :idols="idols"
-    />
+    <keep-alive>
+      <CalcView
+          v-if="currentComponent === CalcView"
+          :idols="idols"
+      />
+    </keep-alive>
   </div>
   <Teleport to="#modal-area">
     <SettingView
