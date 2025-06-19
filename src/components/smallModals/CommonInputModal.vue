@@ -60,6 +60,9 @@ const buttonPlus = () => {
           </button>
         </div>
       </div>
+      <div class="input-area">
+        <input class="basic-input-range" type="range" v-bind:min="minValue" v-bind:max="maxValue" v-model="inputValue">
+      </div>
     </div>
   </div>
 </div>
