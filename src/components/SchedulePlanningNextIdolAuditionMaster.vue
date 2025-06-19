@@ -55,6 +55,7 @@ const scheduleData = {
   },
   8: {
     coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   9: {
     exam_1: {value: 'exam_1', text: '1次オーディション', parameter: 0, point: 100, hp: 0, fan: 0},
@@ -96,6 +97,7 @@ const scheduleData = {
   },
   16: {
     coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   17: {
     exam_2: {value: 'exam_2', text: '2次オーディション', parameter: 0, point: 150, hp: 0, fan: 0},
