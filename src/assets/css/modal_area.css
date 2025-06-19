@@ -808,6 +808,7 @@
         border-radius: 8px;
 
         @media (max-width: 1000px) {
+            width: 50%;
             margin: 50% auto;
         }
 
@@ -846,6 +847,7 @@
         border-radius: 8px;
 
         @media (max-width: 1000px) {
+            width: 50%;
             margin: 50% auto;
         }
 
@@ -884,7 +886,7 @@
         padding: 16px;
         border-radius: 8px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 1000px) {
             width: 90%;
             max-height: 70%;
         }
