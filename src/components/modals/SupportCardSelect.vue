@@ -18,7 +18,8 @@ let filterEvent = ref([
 let filterAbility = ref([
   'max_hp_up', 'init_p_point', 'sp_lesson_rate', 'init_parameter_up', 'parameter_bonus',
   'lesson_parameter_up', 'normal_lesson_parameter_up', 'sp_lesson_parameter_up',
-  'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up', 'card_delete_parameter_up',
+  'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up',
+  'card_delete_parameter_up', 'active_card_delete_parameter_up', 'mental_card_delete_parameter_up',
   'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
   'sp_lesson_hp_recover',
 ]);
@@ -66,7 +67,8 @@ const buttonFilterReset = () => {
   filterAbility.value = [
     'max_hp_up', 'init_p_point', 'sp_lesson_rate', 'init_parameter_up', 'parameter_bonus',
     'lesson_parameter_up', 'normal_lesson_parameter_up', 'sp_lesson_parameter_up',
-    'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up', 'card_delete_parameter_up',
+    'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up',
+    'card_delete_parameter_up', 'active_card_delete_parameter_up', 'mental_card_delete_parameter_up',
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
@@ -111,7 +113,8 @@ const filterAbilityCheckAll = () => {
   let all = [
     'max_hp_up', 'init_p_point', 'sp_lesson_rate', 'init_parameter_up', 'parameter_bonus',
     'lesson_parameter_up', 'normal_lesson_parameter_up', 'sp_lesson_parameter_up',
-    'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up', 'card_delete_parameter_up',
+    'card_strengthen_parameter_up', 'active_card_strengthen_parameter_up', 'mental_card_strengthen_parameter_up',
+    'card_delete_parameter_up', 'active_card_delete_parameter_up', 'mental_card_delete_parameter_up',
     'class_parameter_up', 'gift_parameter_up', 'outing_parameter_up', 'consultation_parameter_up', 'rest_parameter_up',
     'sp_lesson_hp_recover',
   ];
@@ -307,9 +310,19 @@ const filterAbilityCheckAll = () => {
                     <input class="common-checkbox" type="checkbox" id="card-filter-mental_card_strengthen_parameter_up" value="mental_card_strengthen_parameter_up" v-model="filterAbility">
                     <label for="card-filter-mental_card_strengthen_parameter_up">メンタルスキルカード強化時</label>
                   </div>
+                </div>
+                <div class="card-filter-checkbox-area">
                   <div class="card-filter-checkbox">
                     <input class="common-checkbox" type="checkbox" id="card-filter-card_delete_parameter_up" value="card_delete_parameter_up" v-model="filterAbility">
                     <label for="card-filter-card_delete_parameter_up">スキルカード削除時</label>
+                  </div>
+                  <div class="card-filter-checkbox">
+                    <input class="common-checkbox" type="checkbox" id="card-filter-active_card_delete_parameter_up" value="active_card_delete_parameter_up" v-model="filterAbility">
+                    <label for="card-filter-active_card_delete_parameter_up">アクティブスキルカード削除時</label>
+                  </div>
+                  <div class="card-filter-checkbox">
+                    <input class="common-checkbox" type="checkbox" id="card-filter-mental_card_delete_parameter_up" value="mental_card_delete_parameter_up" v-model="filterAbility">
+                    <label for="card-filter-mental_card_delete_parameter_up">メンタルスキルカード削除時</label>
                   </div>
                 </div>
                 <div class="card-filter-checkbox-area">
