@@ -125,7 +125,7 @@ watch(() => props.basicData, () => {
                 </div>
                 <div class="produce-idol-level dear-level">
                   <label class="basic-input-number-name font-bold">親愛度</label>
-                  <input class="basic-input-number" type="number" v-bind:min="minDearLevel" max="20" v-model="inputData['organization']['produce_idol']['dear_level']" v-bind:disabled="inputData['organization']['produce_idol']['id'] === null" @change="updateInputData">
+                  <input class="basic-input-number" type="number" v-bind:min="minDearLevel" max="27" v-model="inputData['organization']['produce_idol']['dear_level']" v-bind:disabled="inputData['organization']['produce_idol']['id'] === null" @change="updateInputData">
                 </div>
               </div>
             </div>
