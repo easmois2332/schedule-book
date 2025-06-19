@@ -296,7 +296,7 @@ export default class IdolDetail {
     }
 
     private calcParameterSaki() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -422,6 +422,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -431,7 +432,7 @@ export default class IdolDetail {
     }
 
     private calcParameterTemari() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -556,6 +557,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -565,7 +567,7 @@ export default class IdolDetail {
     }
 
     private calcParameterKotone() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -697,6 +699,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -706,7 +709,7 @@ export default class IdolDetail {
     }
 
     private calcParameterMao() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -830,6 +833,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -839,7 +843,7 @@ export default class IdolDetail {
     }
 
     private calcParameterLilja() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -977,6 +981,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -986,7 +991,7 @@ export default class IdolDetail {
     }
 
     private calcParameterChina() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1112,6 +1117,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1121,7 +1127,7 @@ export default class IdolDetail {
     }
 
     private calcParameterSumika() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1239,11 +1245,27 @@ export default class IdolDetail {
             initVo += 10;
             initDa += 30;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1253,7 +1275,7 @@ export default class IdolDetail {
     }
 
     private calcParameterHiro() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1379,6 +1401,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1388,7 +1411,7 @@ export default class IdolDetail {
     }
 
     private calcParameterSena() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1513,6 +1536,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1522,7 +1546,7 @@ export default class IdolDetail {
     }
 
     private calcParameterMisuzu() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1637,6 +1661,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1646,7 +1671,7 @@ export default class IdolDetail {
     }
 
     private calcParameterUme() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1770,6 +1795,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
@@ -1779,7 +1805,7 @@ export default class IdolDetail {
     }
 
     private calcParameterRinami() {
-        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number;
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
 
         // Pアイドル固有値
         switch (this.pIdol.rarity) {
@@ -1920,6 +1946,7 @@ export default class IdolDetail {
         this.pIdol.init_vocal = initVo;
         this.pIdol.init_dance = initDa;
         this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
         this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
         this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
         this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);

@@ -90,7 +90,7 @@ const updateBasicData = () => {
       init_dance: basicData.value['produce_idol']['init_dance'],
       init_visual: basicData.value['produce_idol']['init_visual'],
       init_hp: basicData.value['produce_idol']['init_hp'],
-      init_point: 0,
+      init_point: basicData.value['produce_idol']['init_point'],
       bonus_vocal: basicData.value['produce_idol']['bonus_vocal'] * 10,
       bonus_dance: basicData.value['produce_idol']['bonus_dance'] * 10,
       bonus_visual: basicData.value['produce_idol']['bonus_visual'] * 10,
