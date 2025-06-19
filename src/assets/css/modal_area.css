@@ -40,7 +40,7 @@
             border-radius: 8px;
         }
 
-        .headline-close-button:hover {
+        .headline-close-button:hover, .headline-close-button:focus {
             background: #efefef;
         }
     }

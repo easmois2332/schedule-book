@@ -43,7 +43,7 @@
             align-items: center;
         }
 
-        .content-button:hover {
+        .content-button:hover, .content-button:focus {
             background: #ffffff;
             transition: 0.3s;
         }
