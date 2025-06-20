@@ -274,6 +274,8 @@ defineExpose({buttonUndo, buttonRedo, buttonSave, buttonSaveAs, updateScheduleDa
         :is="produceTypeComponentList[produceType]['planning']"
         :input-data="inputData"
         :basic-data="basicData"
+        :idols="idols"
+        :support-cards="supportCards"
         ref="planningViewRef"
         @input-data-update="updateInputData"
     />

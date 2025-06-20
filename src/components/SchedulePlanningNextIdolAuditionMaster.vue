@@ -5,8 +5,9 @@ import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} fro
 import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/smallModals/CommonInputModal.vue";
 import AuditionParameterInputModal from "@/components/smallModals/AuditionParameterInputModal.vue";
+import ScheduleSupportCardCalc from "@/components/ScheduleSupportCardCalc.vue";
 
-const props = defineProps(['inputData', 'basicData']);
+const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards']);
 const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
@@ -1188,4 +1189,11 @@ defineExpose({updatePlanningData});
       </div>
     </div>
   </div>
+  <ScheduleSupportCardCalc
+      :input-data="inputData"
+      :basic-data="basicData"
+      :schedule-data="scheduleData"
+      :schedule-detail-count="scheduleDetailCount"
+      :support-cards="supportCards"
+  />
 </template>

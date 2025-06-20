@@ -1265,6 +1265,79 @@
                 }
             }
         }
+
+        .support-card-calc-area {
+            .description-area, .calc-setting-area, .calc-setting-button-area {
+                padding-bottom: 16px;
+            }
+
+            .calc-result-area {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                grid-column-gap: 16px;
+                grid-row-gap: 16px;
+            }
+
+            .common-button.calc {
+                width: 80px;
+            }
+
+            .table {
+                .table-header {
+                    text-align: start;
+                    white-space: nowrap;
+                }
+
+                .table-header.vocal {
+                    width: 80px;
+                    border-bottom: 2px solid #fb0082;
+                }
+
+                .table-header.dance {
+                    width: 80px;
+                    border-bottom: 2px solid #0086f0;
+                }
+
+                .table-header.visual {
+                    width: 80px;
+                    border-bottom: 2px solid #faa900;
+                }
+
+                .table-data {
+                    text-align: start;
+                    white-space: nowrap;
+                }
+
+                .table-data.number {
+                    text-align: end;
+                }
+
+                .table-data.vocal {
+                    background: rgba(251, 0, 130, 0.1);
+                }
+
+                .table-data.vocal:hover {
+                    background: rgba(251, 0, 130, 0.3);
+                }
+
+                .table-data.dance {
+                    background: rgba(0, 134, 240, 0.1);
+                }
+
+                .table-data.dance:hover {
+                    background: rgba(0, 134, 240, 0.3);
+                }
+
+                .table-data.visual {
+                    background: rgba(250, 169, 0, 0.1);
+                }
+
+                .table-data.visual:hover {
+                    background: rgba(250, 169, 0, 0.3);
+                }
+            }
+        }
     }
 
     .calc-tab-area {

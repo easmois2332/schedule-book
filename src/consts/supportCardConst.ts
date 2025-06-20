@@ -78,6 +78,8 @@ export const abilities = {
     ACTIVE_CARD_PARAMETER_UP: 'active_card_parameter_up',
     // メンタルスキルカード獲得時パラメータ上昇
     MENTAL_CARD_PARAMETER_UP: 'mental_card_parameter_up',
+    // 元気効果のスキルカード獲得時パラメータ上昇
+    GENKI_CARD_PARAMETER_UP: 'genki_card_parameter_up',
     // 好調効果のスキルカード獲得時パラメータ上昇
     KOTYO_CARD_PARAMETER_UP: 'kotyo_card_parameter_up',
     // 集中効果のスキルカード獲得時パラメータ上昇
@@ -229,6 +231,10 @@ export const abilityExtraParameterUpList = [
     {
         ability: abilities.MENTAL_CARD_PARAMETER_UP,
         text: 'メンタルスキルカード獲得時',
+    },
+    {
+        ability: abilities.GENKI_CARD_PARAMETER_UP,
+        text: '元気効果のスキルカード獲得時',
     },
     {
         ability: abilities.KOTYO_CARD_PARAMETER_UP,

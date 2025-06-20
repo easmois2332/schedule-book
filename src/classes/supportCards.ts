@@ -107,6 +107,52 @@ export default class SupportCards {
         return list
     }
 
+    getCardFromFilterPlan(plan: any, sortType: string = 'sort_id') {
+        let list = this.cardList.filter((card: any) =>
+            plan.includes(card.plan) &&
+            (card.enable === 1)
+        );
+
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
+    }
+
+    getSaveCardFromFilterPlan(plan: any, sortType: string = 'sort_id') {
+        let list = this.saveList.filter((card: any) =>
+            plan.includes(card.plan) &&
+            (card.enable === 1)
+        );
+
+        if (sortType === 'sort_id') {
+            list.sort((a: any, b: any) => {
+                return b.sort_id - a.sort_id
+            });
+        }
+        if (sortType === 'type') {
+            list.sort((a: any, b: any) => {
+                if (a.type === b.type) {
+                    return b.sort_id - a.sort_id;
+                }
+                return this.typeSort[a.type] - this.typeSort[b.type]
+            });
+        }
+
+        return list
+    }
+
     getCardFromId(id: number) {
         return this.cardList.find((card: any) => (card.id === id) && (card.enable === 1));
     }
