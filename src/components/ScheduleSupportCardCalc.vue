@@ -204,12 +204,12 @@ watch(() => props.basicData, () => {
             <label for="event">サポートカードイベントでのパラメータ上昇を考慮する</label>
           </div>
           <div class="calc-setting-checkbox">
-            <input class="common-checkbox" type="checkbox" id="max-level" value="max-level" v-model="setting">
-            <label for="max-level">最大レベルのサポートカードの計算を含める</label>
-          </div>
-          <div class="calc-setting-checkbox">
             <input class="common-checkbox" type="checkbox" id="save-level" value="save-level" v-model="setting">
             <label for="save-level">保存したサポートカードの計算を含める</label>
+          </div>
+          <div class="calc-setting-checkbox">
+            <input class="common-checkbox" type="checkbox" id="max-level" value="max-level" v-model="setting">
+            <label for="max-level">保存していないサポートカードの計算を含める</label>
           </div>
         </div>
       </div>
