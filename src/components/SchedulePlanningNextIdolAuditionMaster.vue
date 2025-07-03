@@ -590,7 +590,7 @@ const updatePlanningData = () => {
 }
 const getPItemCountMaxValue = (id) => {
   let pItem = getPItemDetail(id);
-  if (pItem.event === null) {
+  if (pItem.event === null || pItem.event.includes('parameter_up')) {
     return pItem.event_count;
   } else if (pItem.event.includes('lesson')) {
     return Math.min(pItem.event_count, scheduleDetailCount.value[pItem.event][pItem.type]);
