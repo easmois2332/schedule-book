@@ -29,6 +29,16 @@ let resultListHajimeMaster = ref({});
 let resultListNiaMaster = ref({});
 let resultHajimeMaster = ref('評価ランクD: 0');
 let resultNiaMaster = ref('評価ランクD: 0');
+let resultParameterHajimeMaster = ref({
+  vocal: 0,
+  dance: 0,
+  visual: 0
+});
+let resultParameterNiaMaster = ref({
+  vocal: 0,
+  dance: 0,
+  visual: 0
+});
 
 const getBonusIncludedParameter = (parameter, parameterBonus) => {
   return Math.floor(
@@ -52,12 +62,12 @@ const getResultScoreHajimeMaster = (resultPoint, parameter) => {
   return 0;
 }
 const updateResultHajimeMaster = () => {
+  resultParameterHajimeMaster.value['vocal'] = Math.min(1800, inputHajimeMaster.value['vocal'] + 30);
+  resultParameterHajimeMaster.value['dance'] = Math.min(1800, inputHajimeMaster.value['dance'] + 30);
+  resultParameterHajimeMaster.value['visual'] = Math.min(1800, inputHajimeMaster.value['visual'] + 30);
+
   let parameter = Math.trunc(
-      (
-          Math.min(1800, inputHajimeMaster.value['vocal'] + 30) +
-          Math.min(1800, inputHajimeMaster.value['dance'] + 30) +
-          Math.min(1800, inputHajimeMaster.value['visual'] + 30)
-      ) * 2.3
+      (resultParameterHajimeMaster.value['vocal'] + resultParameterHajimeMaster.value['dance'] + resultParameterHajimeMaster.value['visual']) * 2.3
   );
 
   let score = 0;
@@ -104,12 +114,13 @@ const updateResultNiaMaster = () => {
   let vocal = inputNiaMaster.value['vocal'] + getBonusIncludedParameter(auditionVocal, inputNiaMaster.value['vocal_bonus']) + Math.floor(auditionVocal * inputNiaMaster.value['audition_bonus'] / 100);
   let dance = inputNiaMaster.value['dance'] + getBonusIncludedParameter(auditionDance, inputNiaMaster.value['dance_bonus']) + Math.floor(auditionDance * inputNiaMaster.value['audition_bonus'] / 100);
   let visual = inputNiaMaster.value['visual'] + getBonusIncludedParameter(auditionVisual, inputNiaMaster.value['visual_bonus']) + Math.floor(auditionVisual * inputNiaMaster.value['audition_bonus'] / 100);
+
+  resultParameterNiaMaster.value['vocal'] = Math.min(2300, vocal);
+  resultParameterNiaMaster.value['dance'] = Math.min(2300, dance);
+  resultParameterNiaMaster.value['visual'] = Math.min(2300, visual);
+
   let parameter = Math.trunc(
-      (
-          Math.min(2300, vocal) +
-          Math.min(2300, dance) +
-          Math.min(2300, visual)
-      ) * 2.3
+      (resultParameterNiaMaster.value['vocal'] + resultParameterNiaMaster.value['dance'] + resultParameterNiaMaster.value['visual']) * 2.3
   );
 
   let auditionFan = 0;
@@ -277,6 +288,30 @@ const updateResultNiaMaster = () => {
             <span>※各タイプのパラメータ上昇が最大値の場合</span>
           </div>
         </div>
+        <table class="table result-parameter">
+          <thead>
+          <tr>
+            <th class="table-header vocal"><span class="table-header-text">ボーカル</span></th>
+            <th class="table-header dance"><span class="table-header-text">ダンス</span></th>
+            <th class="table-header visual"><span class="table-header-text">ビジュアル</span></th>
+            <th class="table-header point"><span class="table-header-text">合計値</span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-show="produceType === 'hajime_master'">
+            <td class="table-data number vocal"><span class="table-data-text">{{ resultParameterHajimeMaster['vocal'] }}</span></td>
+            <td class="table-data number dance"><span class="table-data-text">{{ resultParameterHajimeMaster['dance'] }}</span></td>
+            <td class="table-data number visual"><span class="table-data-text">{{ resultParameterHajimeMaster['visual'] }}</span></td>
+            <td class="table-data number point"><span class="table-data-text">{{ resultParameterHajimeMaster['vocal'] + resultParameterHajimeMaster['dance'] + resultParameterHajimeMaster['visual'] }}</span></td>
+          </tr>
+          <tr  v-show="produceType === 'nia_master'">
+            <td class="table-data number vocal"><span class="table-data-text">{{ resultParameterNiaMaster['vocal'] }}</span></td>
+            <td class="table-data number dance"><span class="table-data-text">{{ resultParameterNiaMaster['dance'] }}</span></td>
+            <td class="table-data number visual"><span class="table-data-text">{{ resultParameterNiaMaster['visual'] }}</span></td>
+            <td class="table-data number point"><span class="table-data-text">{{ resultParameterNiaMaster['vocal'] + resultParameterNiaMaster['dance'] + resultParameterNiaMaster['visual'] }}</span></td>
+          </tr>
+          </tbody>
+        </table>
         <table class="table result" v-show="produceType === 'hajime_master'">
           <thead>
           <tr>

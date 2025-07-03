@@ -1422,30 +1422,76 @@
         }
 
         .table {
+            padding-bottom: 16px;
+
             .table-header {
                 text-align: start;
                 white-space: nowrap;
             }
 
-            .table-header {
+            .table-header.vocal {
+                width: 80px;
+                border-bottom: 2px solid #fb0082;
+            }
+
+            .table-header.dance {
+                width: 80px;
+                border-bottom: 2px solid #0086f0;
+            }
+
+            .table-header.visual {
+                width: 80px;
+                border-bottom: 2px solid #faa900;
+            }
+
+            .table-header.detail {
+                width: 164px;
                 border-bottom: 2px solid #958b7f;
             }
 
             .table-header.point {
                 width: 80px;
+                border-bottom: 2px solid #958b7f;
             }
 
             .table-data {
                 text-align: start;
                 white-space: nowrap;
-                background: rgba(149, 139, 127, 0.1);
             }
 
             .table-data.number {
                 text-align: end;
             }
 
-            .table-data:hover {
+            .table-data.vocal {
+                background: rgba(251, 0, 130, 0.1);
+            }
+
+            .table-data.vocal:hover {
+                background: rgba(251, 0, 130, 0.3);
+            }
+
+            .table-data.dance {
+                background: rgba(0, 134, 240, 0.1);
+            }
+
+            .table-data.dance:hover {
+                background: rgba(0, 134, 240, 0.3);
+            }
+
+            .table-data.visual {
+                background: rgba(250, 169, 0, 0.1);
+            }
+
+            .table-data.visual:hover {
+                background: rgba(250, 169, 0, 0.3);
+            }
+
+            .table-data.detail, .table-data.point {
+                background: rgba(149, 139, 127, 0.1);
+            }
+
+            .table-data.detail:hover, .table-data.point:hover {
                 background: rgba(149, 139, 127, 0.3);
             }
         }
