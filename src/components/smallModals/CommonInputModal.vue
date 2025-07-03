@@ -26,7 +26,7 @@ const buttonPlus = () => {
 </script>
 
 <template>
-<div class="small-modal-window-area" @click.self="$emit('input-close', inputValue)">
+<div class="small-modal-window-area" @click.self="$emit('input-close', Number(inputValue))">
   <div class="common-input-modal">
     <div class="headline-area">
       <div class="headline-title-area">

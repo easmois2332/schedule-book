@@ -4,6 +4,7 @@ import Items from "@/classes/items";
 import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} from "@/consts/supportCardConst";
 import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/smallModals/CommonInputModal.vue";
+import ScheduleHpAndPointInputModal from "@/components/smallModals/ScheduleHpAndPointInputModal.vue";
 import ScheduleSupportCardCalc from "@/components/ScheduleSupportCardCalc.vue";
 
 const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards']);
@@ -111,10 +112,9 @@ let scheduleDetailData = ref({});
 let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
 
-let commonInputModalScheduleHpOpen = ref(false);
-let commonInputModalSchedulePointOpen = ref(false);
 let commonInputModalSupportCardPItemOpen = ref(false);
 let commonInputModalSupportCardAbilityOpen = ref(false);
+let scheduleHpAndPointInputModalOpen = ref(false);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -532,25 +532,16 @@ const getPItemCountMaxValue = (id) => {
     return Math.min(pItem.event_count, scheduleDetailCount.value[pItem.event]);
   }
 }
-const inputScheduleHpAdjustment = (index) => {
-  commonInputModalScheduleHpOpen.value = index;
+const inputScheduleHpAndPointAdjustment = (index) => {
+  scheduleHpAndPointInputModalOpen.value = index;
 }
-const closeScheduleHpAdjustment = (inputValue) => {
-  if (inputValue !== null) {
-    inputData.value['planning']['schedule'][commonInputModalScheduleHpOpen.value]['hp'] = inputValue;
+const closeScheduleHpAndPointAdjustment = (hp, point) => {
+  if ((hp !== null) && (point !== null)) {
+    inputData.value['planning']['schedule'][scheduleHpAndPointInputModalOpen.value]['hp'] = hp;
+    inputData.value['planning']['schedule'][scheduleHpAndPointInputModalOpen.value]['point'] = point;
     updateInputData();
   }
-  commonInputModalScheduleHpOpen.value = false;
-}
-const inputSchedulePointAdjustment = (index) => {
-  commonInputModalSchedulePointOpen.value = index;
-}
-const closeSchedulePointAdjustment = (inputValue) => {
-  if (inputValue !== null) {
-    inputData.value['planning']['schedule'][commonInputModalSchedulePointOpen.value]['point'] = inputValue;
-    updateInputData();
-  }
-  commonInputModalSchedulePointOpen.value = false;
+  scheduleHpAndPointInputModalOpen.value = false;
 }
 const inputPItemCount = (index) => {
   if (inputData.value['organization']['support_card'][index]['id'] &&
@@ -651,36 +642,24 @@ defineExpose({updatePlanningData});
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['sum'] }}</span>
                   <span class="table-data-text" v-else>0</span>
                 </td>
-                <td class="table-data number hp input" @click="inputScheduleHpAdjustment(i)">
+                <td class="table-data number hp input" @click="inputScheduleHpAndPointAdjustment(i)">
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['hp'] }}</span>
                   <span class="table-data-text" v-else>0</span>
-                  <Teleport to="#modal-area">
-                    <CommonInputModal
-                        v-if="commonInputModalScheduleHpOpen === i"
-                        :input-value="inputData['planning']['schedule'][i]['hp']"
-                        :min-value="-99"
-                        :max-value="99"
-                        :headline="'体力を調整'"
-                        :description="i + '週目でサポートカードアビリティ、はつぼしブレスレット発動前に消費・回復した体力'"
-                        @input-close="closeScheduleHpAdjustment"
-                    />
-                  </Teleport>
                 </td>
-                <td class="table-data number point input" @click="inputSchedulePointAdjustment(i)">
+                <td class="table-data number point input" @click="inputScheduleHpAndPointAdjustment(i)">
                   <span class="table-data-text" v-if="scheduleDetailData[i]">{{ scheduleDetailData[i]['point'] }}</span>
                   <span class="table-data-text" v-else>0</span>
-                  <Teleport to="#modal-area">
-                    <CommonInputModal
-                        v-if="commonInputModalSchedulePointOpen === i"
-                        :input-value="inputData['planning']['schedule'][i]['point']"
-                        :min-value="-999"
-                        :max-value="999"
-                        :headline="'Pポイントを調整'"
-                        :description="i + '週目で獲得・消費したPポイント'"
-                        @input-close="closeSchedulePointAdjustment"
-                    />
-                  </Teleport>
                 </td>
+                <Teleport to="#modal-area">
+                  <ScheduleHpAndPointInputModal
+                      v-if="scheduleHpAndPointInputModalOpen === i"
+                      :week="i"
+                      :max-hp="basicData['parameter']['init_hp']"
+                      :hp="inputData['planning']['schedule'][i]['hp']"
+                      :point="inputData['planning']['schedule'][i]['point']"
+                      @input-close="closeScheduleHpAndPointAdjustment"
+                  />
+                </Teleport>
               </tr>
               <tr>
                 <th class="table-header"></th>

@@ -930,4 +930,61 @@
             width: 100px;
         }
     }
+
+    .hp-and-point-input-modal {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        width: 50%;
+        max-height: 70%;
+        margin: 25% auto;
+        padding: 16px;
+        border-radius: 8px;
+
+        @media (max-width: 1000px) {
+            width: 90%;
+            max-height: 70%;
+        }
+
+        .description-area {
+            padding-bottom: 16px;
+        }
+
+        .hp-area, .point-area {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-top: 8px;
+            padding-bottom: 16px;
+        }
+
+        .hp-adjustment-button-area, .point-adjustment-button-area {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .input-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .common-button.minus, .common-button.plus {
+            width: 40px;
+            height: 40px;
+            margin: 0 8px;
+        }
+
+        .common-button.percent, .common-button.fixed {
+            width: 100px;
+            height: 40px;
+            margin: 0 8px;
+        }
+
+        .basic-input-number {
+            width: 80px;
+            margin: 0 8px;
+        }
+    }
 }

@@ -77,7 +77,7 @@ const buttonCalc = () => {
 </script>
 
 <template>
-  <div class="small-modal-window-area" @click.self="$emit('input-close', inputData['vocal'], inputData['dance'], inputData['visual'], inputData['fan'])">
+  <div class="small-modal-window-area" @click.self="$emit('input-close', Number(inputData['vocal']), Number(inputData['dance']), Number(inputData['visual']), Number(inputData['fan']))">
     <div class="audition-parameter-input-modal">
       <div class="headline-area">
         <div class="headline-title-area">
@@ -193,7 +193,7 @@ const buttonCalc = () => {
         </div>
         <div class="edit-button-area">
           <div class="edit-button">
-            <button class="common-button" @click="$emit('input-close', inputData['vocal'], inputData['dance'], inputData['visual'], inputData['fan'])">
+            <button class="common-button" @click="$emit('input-close', Number(inputData['vocal']), Number(inputData['dance']), Number(inputData['visual']), Number(inputData['fan']))">
               <span class="common-button-name">保存</span>
             </button>
           </div>
