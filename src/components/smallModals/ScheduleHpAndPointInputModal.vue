@@ -61,7 +61,7 @@ const buttonPointPlus = () => {
       </div>
       <div class="content-area">
         <div class="color-headline">
-          <span class="common-headline-text font-bold">サポートカードアビリティ、はつぼしブレスレット発動前に消費・回復した体力</span>
+          <span class="common-headline-text font-bold">消費・回復した体力</span>
         </div>
         <div class="hp-area">
           <div class="hp-input-area">

@@ -307,15 +307,6 @@ const updateScheduleDetailData = () => {
         parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
       }
 
-      // Pポイント調整処理
-      parameter['point'] += inputScheduleData['point'];
-
-      // 体力調整処理
-      parameter['hp'] += inputScheduleData['hp'];
-      if (parameter['hp'] < 0) {
-        parameter['hp'] = 0;
-      }
-
       // サポートカードアビリティでの獲得パラメータ
       switch (inputScheduleData['schedule_detail']) {
         case 'lesson':
@@ -442,6 +433,15 @@ const updateScheduleDetailData = () => {
       // はつぼしブレスレットでの体力消費
       if (inputData.value['planning']['produce_p_item'][3] === 2 && week >= 18 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
         parameter['hp'] -= 3;
+      }
+
+      // Pポイント調整処理
+      parameter['point'] += inputScheduleData['point'];
+
+      // 体力調整処理
+      parameter['hp'] += inputScheduleData['hp'];
+      if (parameter['hp'] < 0) {
+        parameter['hp'] = 0;
       }
 
       // 最大上限判定
