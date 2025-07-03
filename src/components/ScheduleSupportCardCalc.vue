@@ -1,15 +1,16 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import Items from "@/classes/items";
 import {abilities, events, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['inputData', 'basicData', 'scheduleData', 'scheduleDetailCount', 'supportCards']);
-const inputData = props.inputData;
-const basicData = props.basicData;
 const scheduleData = props.scheduleData;
 const scheduleDetailCount = props.scheduleDetailCount;
 const supportCards = props.supportCards;
 const items = new Items();
+
+let inputData = props.inputData;
+let basicData = props.basicData;
 
 let setting = ref([
   'init-parameter', 'parameter-bonus', 'item', 'event', 'max-level', 'save-level'
@@ -166,6 +167,12 @@ const buttonCalc = () => {
     return b.parameter - a.parameter
   });
 }
+watch(() => props.inputData, () => {
+  inputData = props.inputData;
+});
+watch(() => props.basicData, () => {
+  basicData = props.basicData;
+});
 </script>
 
 <template>
