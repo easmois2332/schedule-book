@@ -1,5 +1,26 @@
 [
   {
+    "id": 65,
+    "sort_id": 2065,
+    "name": "どんな関係なんですか？",
+    "level": 60,
+    "rarity": "ssr",
+    "type": "vocal",
+    "plan": "logic",
+    "p_item_id": 20043,
+    "skill_card_id": null,
+    "event_1": "get_unique_p_item",
+    "event_2": "parameter_up",
+    "event_3": "card_random_strengthen",
+    "ability_1": "init_parameter_up",
+    "ability_2": "sp_lesson_rate",
+    "ability_3": "card_support_rate",
+    "ability_4": "genki_card_parameter_up",
+    "ability_5": "gift_parameter_up",
+    "ability_6": "event_strengthen",
+    "enable": 1
+  },
+  {
     "id": 64,
     "sort_id": 2064,
     "name": "いつも頑張ってるね。",

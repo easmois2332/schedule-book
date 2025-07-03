@@ -768,6 +768,18 @@
     "enable": 1
   },
   {
+    "id": 65,
+    "idol_id": 12,
+    "name": "Campus mode!!",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "yaruki",
+    "ability": "fesu",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

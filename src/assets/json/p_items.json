@@ -1206,6 +1206,24 @@
     "enable": 1
   },
   {
+    "id": 20043,
+    "name": "手作りサブスク弁当",
+    "category": "support_card",
+    "category_type": "lesson",
+    "rarity": "ssr",
+    "type": "vocal",
+    "plan": "logic",
+    "event_text": "【ボーカルレッスン・ボーカルターンのみ】\nターン開始時、元気が30以上の場合、好印象+4\nやる気+4\n元気+2\n（レッスン内1回）",
+    "event": null,
+    "event_parameter": null,
+    "event_p_point": null,
+    "event_hp_recover": null,
+    "event_other": null,
+    "event_count": null,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "美鈴からの贈り物",
     "category": "support_card",

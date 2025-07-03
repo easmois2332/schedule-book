@@ -24,6 +24,7 @@ export default class SupportCardDetail {
         this.calcCardParameterUp();
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
+        this.calcGenkiCardParameterUp();
         this.calcKotyoCardParameterUp();
         this.calcSyutyuCardParameterUp();
         this.calcKoinsyoCardParameterUp();
@@ -491,6 +492,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.MENTAL_CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `メンタルスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 元気効果カード獲得時パラメータ上昇
+     */
+    private calcGenkiCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [2, 3, 3], ssr: [2, 3, 4], ssr_event: [2, 3, 3]};
+        if (this.card.ability_2 === abilities.GENKI_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `元気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.GENKI_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `元気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.GENKI_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `元気効果のスキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

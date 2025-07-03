@@ -1655,6 +1655,10 @@ export default class IdolDetail {
             bonusVo += 40;
         }
         if (this.idol.dear_level >= 20) {
+            initDa += 10;
+            initVi += 10;
+            bonusVo += 10;
+            bonusVi += 20;
         }
 
         this.pIdol.init_hp = initHp;
