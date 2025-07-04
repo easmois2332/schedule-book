@@ -4,13 +4,13 @@ import Items from "@/classes/items";
 import {abilities, events, types} from "@/consts/supportCardConst";
 
 const props = defineProps(['inputData', 'basicData', 'scheduleData', 'scheduleDetailCount', 'supportCards']);
-const scheduleData = props.scheduleData;
-const scheduleDetailCount = props.scheduleDetailCount;
 const supportCards = props.supportCards;
 const items = new Items();
 
 let inputData = props.inputData;
 let basicData = props.basicData;
+let scheduleData = props.scheduleData;
+let scheduleDetailCount = props.scheduleDetailCount;
 
 let setting = ref([
   'init-parameter', 'parameter-bonus', 'item', 'event', 'max-level', 'save-level'
@@ -172,6 +172,12 @@ watch(() => props.inputData, () => {
 });
 watch(() => props.basicData, () => {
   basicData = props.basicData;
+});
+watch(() => props.scheduleData, () => {
+  scheduleData = props.scheduleData;
+});
+watch(() => props.scheduleDetailCount, () => {
+  scheduleDetailCount = props.scheduleDetailCount;
 });
 </script>
 
