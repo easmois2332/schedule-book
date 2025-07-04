@@ -65,7 +65,7 @@ const scheduleData = {
   },
   12: {
     class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
-    class_45: {value: 'class_45', text: '授業 +45', parameter: 454, point: 0, hp: -4},
+    class_45: {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   13: {
