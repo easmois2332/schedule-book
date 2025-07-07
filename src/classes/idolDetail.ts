@@ -1772,8 +1772,14 @@ export default class IdolDetail {
 
                 // 才能開花
                 if (this.pIdol.blossoming_level >= 3) {
-                    bonusVo += 10;
-                    bonusDa += 20;
+                    // 初陣
+                    if (this.pIdol.id === 2024) {
+                        bonusVo += 30;
+                        bonusDa += 50;
+                    } else {
+                        bonusVo += 10;
+                        bonusDa += 20;
+                    }
                 }
                 if (this.pIdol.blossoming_level >= 4) {
                     initHp += 3;

@@ -1174,5 +1174,41 @@
     "p_item_id": null,
     "skill_card_id": null,
     "enable": 1
+  },
+  {
+    "id": 2022,
+    "idol_id": 11,
+    "name": "初陣",
+    "rarity": "r",
+    "plan": "logic",
+    "effect": "yaruki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 2023,
+    "idol_id": 12,
+    "name": "初陣",
+    "rarity": "r",
+    "plan": "logic",
+    "effect": "yaruki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 2024,
+    "idol_id": 10,
+    "name": "初陣",
+    "rarity": "r",
+    "plan": "sense",
+    "effect": "kotyo",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
   }
 ]

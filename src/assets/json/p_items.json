@@ -1224,6 +1224,24 @@
     "enable": 1
   },
   {
+    "id": 20044,
+    "name": "好き嫌い禁止！",
+    "category": "support_card",
+    "category_type": "lesson",
+    "rarity": "ssr",
+    "type": "dance",
+    "plan": "free",
+    "event_text": "【ダンスレッスン・ダンスターンのみ】\nターン開始時、体力が50%以下の場合、固定元気+10\n（レッスン内1回）",
+    "event": null,
+    "event_parameter": null,
+    "event_p_point": null,
+    "event_hp_recover": null,
+    "event_other": null,
+    "event_count": null,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "美鈴からの贈り物",
     "category": "support_card",
