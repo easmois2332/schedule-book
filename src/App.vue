@@ -447,10 +447,12 @@ onUpdated(() => {
         v-if="currentComponent === IdolView"
         :idols="idols"
     />
-    <SupportCardView
-        v-if="currentComponent === SupportCardView"
-        :support-cards="supportCards"
-    />
+    <keep-alive>
+      <SupportCardView
+          v-if="currentComponent === SupportCardView"
+          :support-cards="supportCards"
+      />
+    </keep-alive>
     <keep-alive v-for="schedule in scheduleList" :key="schedule.id">
       <ScheduleView
           v-if="(currentComponent === ScheduleView) && (currentSchedule.id === schedule.id)"
