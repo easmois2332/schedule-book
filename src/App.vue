@@ -11,6 +11,7 @@ import ScheduleView from "@/views/ScheduleView.vue";
 import IdolView from "@/views/IdolView.vue";
 import SupportCardView from "@/views/SupportCardView.vue";
 import CalcView from "@/views/CalcView.vue";
+import HelpView from "@/views/HelpView.vue";
 import SettingView from "@/components/modals/SettingView.vue";
 import ProduceTypeSelect from "@/components/modals/ProduceTypeSelect.vue";
 import ScheduleOpen from "@/components/modals/ScheduleOpen.vue";
@@ -472,6 +473,9 @@ onUpdated(() => {
           :idols="idols"
       />
     </keep-alive>
+    <HelpView
+        v-if="currentComponent === HelpView"
+    />
   </div>
   <Teleport to="#modal-area">
     <SettingView
