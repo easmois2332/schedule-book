@@ -24,7 +24,7 @@
       <span class="common-headline-text font-bold">連絡先</span>
     </div>
     <div class="content-area">
-      <a href="https://x.com/cs32kiy">@cs32kiy</a><span>(X)</span>
+      <a href="https://x.com/cs32kiy" target="_blank">@cs32kiy</a><span>(X)</span>
     </div>
     <div class="common-headline">
       <span class="common-headline-text font-bold">推奨環境</span>
