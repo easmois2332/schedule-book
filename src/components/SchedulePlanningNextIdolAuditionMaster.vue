@@ -977,7 +977,7 @@ defineExpose({updatePlanningData});
                     <span class="table-data-text">3000</span>
                   </td>
                   <td class="table-data number count input" @click="inputPItemNiaKeyHolderCount">
-                    <span class="table-data-text">{{ inputData['planning']['produce_p_item'][1] }}</span>
+                    <span class="table-data-text font-bold">{{ inputData['planning']['produce_p_item'][1] }}</span>
                     <Teleport to="#modal-area">
                       <CommonInputModal
                           v-if="commonInputModalPItemNiaKeyHolderOpen"
