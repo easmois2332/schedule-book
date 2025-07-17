@@ -227,5 +227,24 @@
         「サポートカード固有Pアイテムでのパラメータ上昇を考慮する」は、設定したスケジュール、サポートカードアビリティの内容を踏まえた上で、最大回数発動したものとして計算されます。
       </span>
     </div>
+    <div class="common-headline">
+      <span class="common-headline-text font-bold">更新履歴</span>
+    </div>
+    <div class="content-area">
+      <span class="font-bold">v1.1.0</span><br>
+      <span>
+        「篠澤 広」の親愛度STEP3に対応<br>
+        Pアイドル「サンフェーデッド」の追加<br>
+        サポートカード「放っておけない気になる子」の追加<br>
+        サポートカード「スパルタ＆スパイス」の追加<br>
+        サポートカード「むず×2ふぁっしょんしょー」のアビリティ5の誤りを修正<br>
+      </span>
+    </div>
+    <div class="content-area">
+      <span class="font-bold">v1.0.0</span><br>
+      <span>
+        リリース
+      </span>
+    </div>
   </div>
 </template>

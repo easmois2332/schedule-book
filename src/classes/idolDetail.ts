@@ -417,6 +417,21 @@ export default class IdolDetail {
             bonusDa += 15;
             bonusVi += 25;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
@@ -551,6 +566,21 @@ export default class IdolDetail {
             initDa += 10;
             bonusDa += 5;
             bonusVi += 25;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;
@@ -694,6 +724,21 @@ export default class IdolDetail {
             bonusDa += 5;
             bonusVi += 5;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
@@ -827,6 +872,21 @@ export default class IdolDetail {
             initVo += 15;
             initVi += 10;
             bonusDa += 20;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;
@@ -976,6 +1036,21 @@ export default class IdolDetail {
             initDa += 25;
             initVi += 10;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
@@ -1111,6 +1186,21 @@ export default class IdolDetail {
             initVi += 10;
             bonusDa += 10;
             bonusVi += 15;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;
@@ -1396,6 +1486,21 @@ export default class IdolDetail {
             bonusVo += 10;
             bonusDa += 15;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
@@ -1531,6 +1636,21 @@ export default class IdolDetail {
             bonusDa += 20;
             bonusVi += 25;
         }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
 
         this.pIdol.init_hp = initHp;
         this.pIdol.init_vocal = initVo;
@@ -1659,6 +1779,21 @@ export default class IdolDetail {
             initVi += 10;
             bonusVo += 10;
             bonusVi += 20;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;
@@ -1799,6 +1934,21 @@ export default class IdolDetail {
             initVo += 15;
             initDa += 10;
             initVi += 15;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;
@@ -1950,6 +2100,21 @@ export default class IdolDetail {
         if (this.idol.dear_level >= 20) {
             initDa += 15;
             initVi += 25;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
         }
 
         this.pIdol.init_hp = initHp;

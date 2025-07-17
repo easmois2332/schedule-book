@@ -1,5 +1,26 @@
 [
   {
+    "id": 67,
+    "sort_id": 2067,
+    "name": "放っておけない気になる子",
+    "level": 60,
+    "rarity": "ssr",
+    "type": "vocal",
+    "plan": "anomaly",
+    "p_item_id": 20045,
+    "skill_card_id": null,
+    "event_1": "get_unique_p_item",
+    "event_2": "parameter_up",
+    "event_3": "card_random_strengthen",
+    "ability_1": "init_parameter_up",
+    "ability_2": "card_delete_parameter_up",
+    "ability_3": "card_support_rate",
+    "ability_4": "consultation_drink_parameter_up",
+    "ability_5": "gift_parameter_up",
+    "ability_6": "event_strengthen",
+    "enable": 1
+  },
+  {
     "id": 66,
     "sort_id": 2066,
     "name": "お母さんか！",
@@ -1386,6 +1407,27 @@
     "enable": 1
   },
   {
+    "id": 1051,
+    "sort_id": 1051,
+    "name": "スパルタ＆スパイス",
+    "level": 50,
+    "rarity": "sr",
+    "type": "vocal",
+    "plan": "anomaly",
+    "p_item_id": 21036,
+    "skill_card_id": null,
+    "event_1": "get_unique_p_item",
+    "event_2": "parameter_up",
+    "event_3": "none",
+    "ability_1": "parameter_bonus",
+    "ability_2": "init_p_point",
+    "ability_3": "card_support_rate",
+    "ability_4": "sp_lesson_parameter_up",
+    "ability_5": "onzon_card_parameter_up",
+    "ability_6": "event_strengthen",
+    "enable": 1
+  },
+  {
     "id": 1050,
     "sort_id": 1050,
     "name": "むず×2ふぁっしょんしょー",
@@ -1402,7 +1444,7 @@
     "ability_2": "sp_lesson_hp_recover",
     "ability_3": "card_support_rate",
     "ability_4": "sp_lesson_parameter_up",
-    "ability_5": "tuyoki_card_parameter_up",
+    "ability_5": "syutyu_card_parameter_up",
     "ability_6": "event_strengthen",
     "enable": 1
   },
