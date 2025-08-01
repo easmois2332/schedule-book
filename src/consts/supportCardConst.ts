@@ -74,6 +74,8 @@ export const abilities = {
     SP_LESSON_PARAMETER_UP: 'sp_lesson_parameter_up',
     // スキルカード獲得時パラメータ上昇
     CARD_PARAMETER_UP: 'card_parameter_up',
+    // スキルカード(SSR)獲得時パラメータ上昇
+    SSR_CARD_PARAMETER_UP: 'ssr_card_parameter_up',
     // アクティブスキルカード獲得時パラメータ上昇
     ACTIVE_CARD_PARAMETER_UP: 'active_card_parameter_up',
     // メンタルスキルカード獲得時パラメータ上昇
@@ -223,6 +225,10 @@ export const abilityExtraParameterUpList = [
     {
         ability: abilities.CARD_PARAMETER_UP,
         text: 'スキルカード獲得時',
+    },
+    {
+        ability: abilities.SSR_CARD_PARAMETER_UP,
+        text: 'スキルカード(SSR)獲得時',
     },
     {
         ability: abilities.ACTIVE_CARD_PARAMETER_UP,

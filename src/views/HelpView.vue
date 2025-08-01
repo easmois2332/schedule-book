@@ -231,10 +231,22 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.2.0</span><br>
+      <span>
+        Pアイドル「十王 星南 - Star-mine」の追加<br>
+        Pアイドル「秦谷 美鈴 - Star-mine」の追加<br>
+        Pアイドル「花海 佑芽 - Star-mine」の追加<br>
+        サポートカード「盛り上げてこー！」の追加<br>
+        サポートカード「いつまでも続けばいいのに」の追加<br>
+        サポートカード「仲直りしましょう」の追加<br>
+        サポートカード「今日は見学なんです」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.1.0</span><br>
       <span>
         「篠澤 広」の親愛度STEP3に対応<br>
-        Pアイドル「サンフェーデッド」の追加<br>
+        Pアイドル「篠澤 広 - サンフェーデッド」の追加<br>
         サポートカード「放っておけない気になる子」の追加<br>
         サポートカード「スパルタ＆スパイス」の追加<br>
         サポートカード「むず×2ふぁっしょんしょー」のアビリティ5の誤りを修正<br>

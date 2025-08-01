@@ -22,6 +22,7 @@ export default class SupportCardDetail {
         this.calcNormalLessonParameterUp();
         this.calcSpLessonParameterUp();
         this.calcCardParameterUp();
+        this.calcSsrCardParameterUp();
         this.calcActiveCardParameterUp();
         this.calcMentalCardParameterUp();
         this.calcGenkiCardParameterUp();
@@ -439,7 +440,7 @@ export default class SupportCardDetail {
     }
 
     /**
-     * カード獲得時パラメータ上昇
+     * スキルカード獲得時パラメータ上昇
      */
     private calcCardParameterUp() {
         let parameter = {r: [0, 0, 0], sr: [1, 2, 2], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
@@ -454,6 +455,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.CARD_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `スキルカード獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * スキルカード(SSR)獲得時パラメータ上昇
+     */
+    private calcSsrCardParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [3, 5, 6], ssr_event: [3, 5, 5]};
+        if (this.card.ability_2 === abilities.SSR_CARD_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `スキルカード（SSR）獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.SSR_CARD_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `スキルカード（SSR）獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.SSR_CARD_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `スキルカード（SSR）獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 
