@@ -280,7 +280,6 @@ const updateScheduleDetailData = () => {
         if (inputScheduleData['type'] !== null) {
           parameter[inputScheduleData['type']] += getBonusIncludedParameter(basicParameter, basicData.value['parameter'][`bonus_${inputScheduleData['type']}`]);
         }
-        parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
         parameter['hp'] += scheduleData[week][inputScheduleData['schedule_detail']]['hp'];
         parameter['fan'] += scheduleData[week][inputScheduleData['schedule_detail']]['fan'];
       } else if (inputScheduleData['schedule_detail'] === 'exam_1' || inputScheduleData['schedule_detail'] === 'exam_2' || inputScheduleData['schedule_detail'] === 'exam_3') {

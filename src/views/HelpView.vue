@@ -231,6 +231,12 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.2.1</span><br>
+      <span>
+        「NEXT IDOL AUDITION」のレッスン終了時に獲得できるPポイントの誤りを修正<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.2.0</span><br>
       <span>
         Pアイドル「十王 星南 - Star-mine」の追加<br>
