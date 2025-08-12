@@ -231,6 +231,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.3.0</span><br>
+      <span>
+        「藤田 ことね」の親愛度STEP3に対応<br>
+        Pアイドル「藤田 ことね - 自己肯定感爆上げ↑↑しゅきしゅきソング」の追加<br>
+        サポートカード「おい、来てやったぞ！」の追加<br>
+        サポートカード「ちべたなひととき」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.2.1</span><br>
       <span>
         「NEXT IDOL AUDITION」のレッスン終了時に獲得できるPポイントの誤りを修正<br>
