@@ -24,11 +24,11 @@ const scheduleData = {
   },
   3: {
     gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   4: {
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
   },
   5: {
     sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
@@ -37,7 +37,7 @@ const scheduleData = {
   6: {
     gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   7: {
@@ -49,7 +49,7 @@ const scheduleData = {
   9: {
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
     gift_rng: {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'お出かけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   10: {
@@ -70,7 +70,7 @@ const scheduleData = {
   },
   13: {
     gift: {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   14: {
@@ -87,7 +87,7 @@ const scheduleData = {
   },
   16: {
     gift: {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0},
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },

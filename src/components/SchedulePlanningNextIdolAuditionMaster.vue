@@ -27,7 +27,7 @@ const scheduleData = {
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   3: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
@@ -44,7 +44,7 @@ const scheduleData = {
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   6: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
@@ -63,7 +63,7 @@ const scheduleData = {
     exam_1: {value: 'exam_1', text: '1次オーディション', parameter: 0, point: 100, hp: 0, fan: 0},
   },
   10: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
@@ -80,7 +80,7 @@ const scheduleData = {
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   13: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
     gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 80, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
@@ -105,7 +105,7 @@ const scheduleData = {
     exam_2: {value: 'exam_2', text: '2次オーディション', parameter: 0, point: 150, hp: 0, fan: 0},
   },
   18: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     gift: {value: 'gift', text: '差し入れ', parameter: 0, point: 90, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
@@ -145,7 +145,7 @@ const scheduleData = {
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},
   },
   25: {
-    outing: {value: 'outing', text: 'お出かけ', parameter: 0, point: 0, hp: 0, fan: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0, fan: 0},
     consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0, fan: 0},
     coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0, fan: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0, fan: 0},

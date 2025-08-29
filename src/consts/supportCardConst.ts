@@ -120,7 +120,7 @@ export const abilities = {
     CLASS_PARAMETER_UP: 'class_parameter_up',
     // 活動支給・差し入れ選択時パラメータ上昇
     GIFT_PARAMETER_UP: 'gift_parameter_up',
-    // お出かけ終了時パラメータ上昇
+    // おでかけ終了時パラメータ上昇
     OUTING_PARAMETER_UP: 'outing_parameter_up',
     // 相談選択時パラメータ上昇
     CONSULTATION_PARAMETER_UP: 'consultation_parameter_up',
@@ -202,7 +202,7 @@ export const abilityBasicParameterUpList = [
     {
         ability: abilities.OUTING_PARAMETER_UP,
         schedule: 'outing',
-        text: 'お出かけ終了時',
+        text: 'おでかけ終了時',
     },
     {
         ability: abilities.CONSULTATION_PARAMETER_UP,

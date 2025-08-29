@@ -858,21 +858,21 @@ export default class SupportCardDetail {
     }
 
     /**
-     * お出かけ終了時パラメータ上昇
+     * おでかけ終了時パラメータ上昇
      */
     private calcOutingParameterUp() {
         let parameter = {r: [4, 7, 7], sr: [5, 10, 10], ssr: [8, 11, 15], ssr_event: [8, 11, 11]};
         if (this.card.ability_2 === abilities.OUTING_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
-            this.card.ability_2_display = `お出かけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+            this.card.ability_2_display = `おでかけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
         }
         if (this.card.ability_4 === abilities.OUTING_PARAMETER_UP) {
             this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
-            this.card.ability_4_display = `お出かけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+            this.card.ability_4_display = `おでかけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
         }
         if (this.card.ability_5 === abilities.OUTING_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
-            this.card.ability_5_display = `お出かけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+            this.card.ability_5_display = `おでかけ終了時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

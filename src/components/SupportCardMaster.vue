@@ -302,7 +302,7 @@ const getSkillCardDetail = (id) => {
               </div>
               <div class="card-filter-checkbox">
                 <input class="common-checkbox" type="checkbox" id="card-filter-outing_parameter_up" value="outing_parameter_up" v-model="filterAbility">
-                <label for="card-filter-outing_parameter_up">お出かけ終了時</label>
+                <label for="card-filter-outing_parameter_up">おでかけ終了時</label>
               </div>
               <div class="card-filter-checkbox">
                 <input class="common-checkbox" type="checkbox" id="card-filter-consultation_parameter_up" value="consultation_parameter_up" v-model="filterAbility">
