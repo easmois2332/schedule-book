@@ -231,6 +231,16 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.4.0</span><br>
+      <span>
+        Pアイドル「紫雲 清夏 - ミラクルナナウ(ﾟ∀ﾟ)！」の追加<br>
+        Pアイドル「有村 麻央 - ミラクルナナウ(ﾟ∀ﾟ)！」の追加<br>
+        サポートカード「おっと、危ないよ」の追加<br>
+        サポートカード「師弟の修行」の追加<br>
+        「おでかけ」の表記ブレを修正<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.3.0</span><br>
       <span>
         「藤田 ことね」の親愛度STEP3に対応<br>

@@ -840,6 +840,42 @@
     "enable": 1
   },
   {
+    "id": 71,
+    "idol_id": 7,
+    "name": "ミラクルナナウ(ﾟ∀ﾟ)！",
+    "rarity": "ssr_event",
+    "plan": "logic",
+    "effect": "koinsyo",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 72,
+    "idol_id": 4,
+    "name": "ミラクルナナウ(ﾟ∀ﾟ)！",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "yaruki",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 73,
+    "idol_id": 8,
+    "name": "ミラクルナナウ(ﾟ∀ﾟ)！",
+    "rarity": "ssr",
+    "plan": "",
+    "effect": "",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 0
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

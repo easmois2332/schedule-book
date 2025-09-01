@@ -804,7 +804,7 @@ export default class SupportCardDetail {
      * スキルカードカスタマイズ時パラメータ上昇
      */
     private calcCardCustomizeParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [4, 8, 8], ssr: [6, 8, 11], ssr_event: [6, 8, 8]};
+        let parameter = {r: [0, 0, 0], sr: [5, 8, 8], ssr: [6, 8, 11], ssr_event: [6, 8, 8]};
         if (this.card.ability_2 === abilities.CARD_CUSTOMIZE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `スキルカードカスタマイズ時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
