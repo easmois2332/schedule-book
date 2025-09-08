@@ -231,6 +231,14 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.5.0</span><br>
+      <span>
+        Pアイドル「篠澤 広 - ミラクルナナウ(ﾟ∀ﾟ)！」の追加<br>
+        サポートカード「ｖギャルピーーースッｖ」の追加<br>
+        サポートカード「トゲトゲ注意報」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.4.0</span><br>
       <span>
         Pアイドル「紫雲 清夏 - ミラクルナナウ(ﾟ∀ﾟ)！」の追加<br>
