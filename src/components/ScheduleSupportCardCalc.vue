@@ -98,6 +98,8 @@ const calc = (cardList, saveFlag = false) => {
         parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * scheduleDetailCount['outing']);
       } else if (abilityName === abilities.CONSULTATION_PARAMETER_UP) {
         parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * scheduleDetailCount['consultation']);
+      } else if (abilityName === abilities.COACHING_PARAMETER_UP) {
+        parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * Math.min(3, scheduleDetailCount['coaching']));
       } else if (abilityName === abilities.REST_PARAMETER_UP) {
         parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * scheduleDetailCount['rest']);
       } else if (abilityName === abilities.EXAM_PARAMETER_UP) {

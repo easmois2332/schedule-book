@@ -46,6 +46,7 @@ export default class SupportCardDetail {
         this.calcOutingParameterUp();
         this.calcConsultationParameterUp();
         this.calcConsultationDrinkParameterUp();
+        this.calcCoachingParameterUp();
         this.calcRestParameterUp();
         this.calcExamParameterUp();
         this.calcDrinkParameterUp();
@@ -462,7 +463,7 @@ export default class SupportCardDetail {
      * スキルカード(SSR)獲得時パラメータ上昇
      */
     private calcSsrCardParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [3, 5, 6], ssr_event: [3, 5, 5]};
+        let parameter = {r: [0, 0, 0], sr: [3, 5, 5], ssr: [3, 5, 6], ssr_event: [3, 5, 5]};
         if (this.card.ability_2 === abilities.SSR_CARD_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `スキルカード（SSR）獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -911,6 +912,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.CONSULTATION_DRINK_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `相談でPドリンク交換後、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * 特別指導開始時パラメータ上昇
+     */
+    private calcCoachingParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 8]};
+        if (this.card.ability_2 === abilities.COACHING_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.COACHING_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.COACHING_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

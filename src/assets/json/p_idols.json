@@ -868,12 +868,12 @@
     "idol_id": 8,
     "name": "ミラクルナナウ(ﾟ∀ﾟ)！",
     "rarity": "ssr",
-    "plan": "",
-    "effect": "",
+    "plan": "anomaly",
+    "effect": "zenryoku",
     "ability": "season",
     "p_item_id": null,
     "skill_card_id": null,
-    "enable": 0
+    "enable": 1
   },
   {
     "id": 1001,

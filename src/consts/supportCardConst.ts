@@ -126,6 +126,8 @@ export const abilities = {
     CONSULTATION_PARAMETER_UP: 'consultation_parameter_up',
     // 相談でPドリンク交換後パラメータ上昇
     CONSULTATION_DRINK_PARAMETER_UP: 'consultation_drink_parameter_up',
+    //特別指導開始時パラメータ上昇
+    COACHING_PARAMETER_UP: 'coaching_parameter_up',
     // 休む選択時パラメータ上昇
     REST_PARAMETER_UP: 'rest_parameter_up',
     // Pドリンク獲得時パラメータ上昇
@@ -208,6 +210,11 @@ export const abilityBasicParameterUpList = [
         ability: abilities.CONSULTATION_PARAMETER_UP,
         schedule: 'consultation',
         text: '相談選択時',
+    },
+    {
+        ability: abilities.COACHING_PARAMETER_UP,
+        schedule: 'coaching',
+        text: '特別指導開始時',
     },
     {
         ability: abilities.REST_PARAMETER_UP,

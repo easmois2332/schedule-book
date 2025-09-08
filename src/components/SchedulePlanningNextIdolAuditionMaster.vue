@@ -238,7 +238,9 @@ const updateScheduleDetailCount = () => {
           scheduleDetailCount.value['consultation']++;
           break;
         case 'coaching':
-          scheduleDetailCount.value['coaching']++;
+          if (scheduleDetailCount.value['coaching'] < 3) {
+            scheduleDetailCount.value['coaching']++;
+          }
           break;
         case 'rest':
           scheduleDetailCount.value['rest']++;
