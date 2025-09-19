@@ -231,6 +231,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.6.0</span><br>
+      <span>
+        「姫崎 莉波」の親愛度STEP3に対応<br>
+        Pアイドル「姫崎 莉波 - 36℃ U･B･U」の追加<br>
+        サポートカード「ちょっと詳しいんです！」の追加<br>
+        サポートカード「腹筋で背筋で体幹キープ！」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.5.0</span><br>
       <span>
         Pアイドル「篠澤 広 - ミラクルナナウ(ﾟ∀ﾟ)！」の追加<br>
