@@ -41,6 +41,7 @@ export default class SupportCardDetail {
         this.calcMentalCardDeleteParameterUp();
         this.calcCardChangeParameterUp();
         this.calcCardCustomizeParameterUp();
+        this.calcCardHave20OrMoreParameterUp();
         this.calcClassParameterUp();
         this.calcGiftParameterUp();
         this.calcOutingParameterUp();
@@ -50,6 +51,7 @@ export default class SupportCardDetail {
         this.calcRestParameterUp();
         this.calcExamParameterUp();
         this.calcDrinkParameterUp();
+        this.calcItemParameterUp();
         this.calcLessonPPointUp();
         this.calcSpLessonPPointUp();
         this.calcSpLessonHpRecover();
@@ -821,6 +823,25 @@ export default class SupportCardDetail {
     }
 
     /**
+     * SPレッスン終了時、所持スキルカードが20枚以上の場合パラメータ上昇
+     */
+    private calcCardHave20OrMoreParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 15, 21], ssr_event: [11, 15, 15]};
+        if (this.card.ability_2 === abilities.CARD_HAVE_20_OR_MORE_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `SPレッスン終了時、所持スキルカードが20枚以上の場合、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.CARD_HAVE_20_OR_MORE_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `SPレッスン終了時、所持スキルカードが20枚以上の場合、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.CARD_HAVE_20_OR_MORE_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `SPレッスン終了時、所持スキルカードが20枚以上の場合、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
      * 授業・営業終了時パラメータ上昇
      */
     private calcClassParameterUp() {
@@ -988,6 +1009,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.DRINK_PARAMETER_UP) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `Pドリンク獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * Pアイテム獲得時パラメータ上昇
+     */
+    private calcItemParameterUp() {
+        let parameter = {r: [0, 0, 0], sr: [6, 11, 11], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.ITEM_PARAMETER_UP) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `Pアイテム獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.ITEM_PARAMETER_UP) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `Pアイテム獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.ITEM_PARAMETER_UP) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `Pアイテム獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_5_parameter}</span>`;
         }
     }
 

@@ -116,6 +116,8 @@ export const abilities = {
     MENTAL_CARD_CARD_CHANGE_PARAMETER_UP: 'mental_card_card_change_parameter_up',
     // スキルカードカスタマイズ時パラメータ上昇
     CARD_CUSTOMIZE_PARAMETER_UP: 'card_customize_parameter_up',
+    // 所持スキルカードが20枚以上の場合パラメータ上昇
+    CARD_HAVE_20_OR_MORE_PARAMETER_UP: 'card_have_20_or_more_parameter_up',
     // 授業・営業終了時パラメータ上昇
     CLASS_PARAMETER_UP: 'class_parameter_up',
     // 活動支給・差し入れ選択時パラメータ上昇
@@ -132,6 +134,8 @@ export const abilities = {
     REST_PARAMETER_UP: 'rest_parameter_up',
     // Pドリンク獲得時パラメータ上昇
     DRINK_PARAMETER_UP: 'drink_parameter_up',
+    // Pアイテム獲得時パラメータ上昇
+    ITEM_PARAMETER_UP: 'item_parameter_up',
     // 試験・オーディション終了時パラメータ上昇
     EXAM_PARAMETER_UP: 'exam_parameter_up',
     // レッスン終了時Pポイント獲得量増加
@@ -214,7 +218,7 @@ export const abilityBasicParameterUpList = [
     {
         ability: abilities.COACHING_PARAMETER_UP,
         schedule: 'coaching',
-        text: '特別指導開始時',
+        text: '特別指導開始時(3回)',
     },
     {
         ability: abilities.REST_PARAMETER_UP,
@@ -224,7 +228,7 @@ export const abilityBasicParameterUpList = [
     {
         ability: abilities.EXAM_PARAMETER_UP,
         schedule: 'exam_1',
-        text: '試験・オーディション終了時',
+        text: '試験・オーディション終了時(1回)',
     },
 ]
 
@@ -295,19 +299,23 @@ export const abilityExtraParameterUpList = [
     },
     {
         ability: abilities.ACTIVE_CARD_DELETE_PARAMETER_UP,
-        text: 'アクティブスキルカード削除時',
+        text: 'アクティブスキルカード削除時(3回)',
     },
     {
         ability: abilities.MENTAL_CARD_DELETE_PARAMETER_UP,
-        text: 'メンタルスキルカード削除時',
+        text: 'メンタルスキルカード削除時(3回)',
     },
     {
         ability: abilities.CARD_CHANGE_PARAMETER_UP,
-        text: 'スキルカードチェンジ時',
+        text: 'スキルカードチェンジ時(3回)',
     },
     {
         ability: abilities.CARD_CUSTOMIZE_PARAMETER_UP,
-        text: 'スキルカードカスタマイズ時',
+        text: 'スキルカードカスタマイズ時(6回)',
+    },
+    {
+        ability: abilities.CARD_HAVE_20_OR_MORE_PARAMETER_UP,
+        text: '所持スキルカードが20枚以上の場合(4回)',
     },
     {
         ability: abilities.CONSULTATION_DRINK_PARAMETER_UP,
@@ -316,5 +324,9 @@ export const abilityExtraParameterUpList = [
     {
         ability: abilities.DRINK_PARAMETER_UP,
         text: 'Pドリンク獲得時',
+    },
+    {
+        ability: abilities.ITEM_PARAMETER_UP,
+        text: 'Pアイテム獲得時(6回)',
     },
 ]
