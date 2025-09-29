@@ -144,6 +144,8 @@ export const abilities = {
     SP_LESSON_P_POINT_UP: 'sp_lesson_p_point_up',
     // SPレッスン終了時体力回復
     SP_LESSON_HP_RECOVER: 'sp_lesson_hp_recover',
+    // SPレッスン終了時体力回復
+    ALL_TYPE_SP_LESSON_HP_RECOVER: 'all_type_sp_lesson_hp_recover',
     // 活動支給・差し入れ選択時体力回復
     GIFT_HP_RECOVER: 'gift_hp_recover',
     // 試験・オーディション終了時体力回復

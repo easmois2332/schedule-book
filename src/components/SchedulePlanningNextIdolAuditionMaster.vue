@@ -355,6 +355,9 @@ const updateScheduleDetailData = () => {
           if (basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER]) {
             parameter['hp'] += basicData.value['ability_list'][abilities.SP_LESSON_HP_RECOVER][inputScheduleData['type']];
           }
+          if (basicData.value['ability_list'][abilities.ALL_TYPE_SP_LESSON_HP_RECOVER]) {
+            parameter['hp'] += basicData.value['ability_list'][abilities.ALL_TYPE_SP_LESSON_HP_RECOVER]['vocal'];
+          }
           break;
         case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
           // パラメータ

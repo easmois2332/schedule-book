@@ -888,6 +888,42 @@
     "enable": 1
   },
   {
+    "id": 75,
+    "idol_id": 1,
+    "name": "がむしゃらに行こう！",
+    "rarity": "ssr_event",
+    "plan": "anomaly",
+    "effect": "tuyoki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 76,
+    "idol_id": 3,
+    "name": "がむしゃらに行こう！",
+    "rarity": "ssr",
+    "plan": "sense",
+    "effect": "kotyo",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 77,
+    "idol_id": 2,
+    "name": "がむしゃらに行こう！",
+    "rarity": "ssr",
+    "plan": "",
+    "effect": "",
+    "ability": "season",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 0
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

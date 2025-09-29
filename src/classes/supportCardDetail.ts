@@ -55,6 +55,7 @@ export default class SupportCardDetail {
         this.calcLessonPPointUp();
         this.calcSpLessonPPointUp();
         this.calcSpLessonHpRecover();
+        this.calcAllTypeSpLessonHpRecover();
         this.calcGiftHpRecover();
         this.calcExamHpRecover();
         this.calcConsultationDrinkSale();
@@ -1075,10 +1076,6 @@ export default class SupportCardDetail {
     private calcSpLessonHpRecover() {
         let parameter = {r: [0, 0, 0], sr: [3, 5, 5], ssr: [4, 5, 7], ssr_event: [4, 5, 5]};
         let typeDisplay = this.card.type_display;
-        if (this.card.type === types.ASSIST) {
-            parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
-            typeDisplay = '';
-        }
         if (this.card.ability_2 === abilities.SP_LESSON_HP_RECOVER) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `${typeDisplay}SPレッスン終了時、体力回復<span class="font-bold">${this.card.ability_2_parameter}</span>`;
@@ -1090,6 +1087,25 @@ export default class SupportCardDetail {
         if (this.card.ability_5 === abilities.SP_LESSON_HP_RECOVER) {
             this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
             this.card.ability_5_display = `${typeDisplay}SPレッスン終了時、体力回復<span class="font-bold">${this.card.ability_5_parameter}</span>`;
+        }
+    }
+
+    /**
+     * SPレッスン終了時体力回復
+     */
+    private calcAllTypeSpLessonHpRecover() {
+        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [2, 3, 4], ssr_event: [0, 0, 0]};
+        if (this.card.ability_2 === abilities.ALL_TYPE_SP_LESSON_HP_RECOVER) {
+            this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
+            this.card.ability_2_display = `SPレッスン終了時、体力回復<span class="font-bold">${this.card.ability_2_parameter}</span>`;
+        }
+        if (this.card.ability_4 === abilities.ALL_TYPE_SP_LESSON_HP_RECOVER) {
+            this.card.ability_4_parameter = this.getParameter('ability_4', parameter);
+            this.card.ability_4_display = `SPレッスン終了時、体力回復<span class="font-bold">${this.card.ability_4_parameter}</span>`;
+        }
+        if (this.card.ability_5 === abilities.ALL_TYPE_SP_LESSON_HP_RECOVER) {
+            this.card.ability_5_parameter = this.getParameter('ability_5', parameter);
+            this.card.ability_5_display = `SPレッスン終了時、体力回復<span class="font-bold">${this.card.ability_5_parameter}</span>`;
         }
     }
 
