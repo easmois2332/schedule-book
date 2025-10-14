@@ -231,10 +231,18 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.8.0</span><br>
+      <span>
+        Pアイドル「月村 手毬 - がむしゃらに行こう！」の追加<br>
+        サポートカード「月村手毬、興味深いわね」の追加<br>
+        サポートカード「あったか足ツボマッサージ」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.7.0</span><br>
       <span>
-        Pアイドル「花海 咲季 - がむしゃらに行こう」の追加<br>
-        Pアイドル「藤田 ことね - がむしゃらに行こう」の追加<br>
+        Pアイドル「花海 咲季 - がむしゃらに行こう！」の追加<br>
+        Pアイドル「藤田 ことね - がむしゃらに行こう！」の追加<br>
         サポートカード「大運動会、開催っ！」の追加<br>
         サポートカード「これは――お城ッ！！」の追加<br>
         サポートカード「はっぴぃはろうぃ～～ん！」の追加<br>

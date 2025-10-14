@@ -916,12 +916,12 @@
     "idol_id": 2,
     "name": "がむしゃらに行こう！",
     "rarity": "ssr",
-    "plan": "",
-    "effect": "",
+    "plan": "logic",
+    "effect": "koinsyo",
     "ability": "season",
     "p_item_id": null,
     "skill_card_id": null,
-    "enable": 0
+    "enable": 1
   },
   {
     "id": 1001,
