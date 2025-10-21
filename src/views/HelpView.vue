@@ -231,6 +231,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.9.0</span><br>
+      <span>
+        「倉本 千奈」の親愛度STEP3に対応<br>
+        Pアイドル「倉本 千奈 - 空と約束」の追加<br>
+        サポートカード「クールダウンが大切よ！」の追加<br>
+        サポートカード「ごきげんような挨拶♪」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.8.0</span><br>
       <span>
         Pアイドル「月村 手毬 - がむしゃらに行こう！」の追加<br>

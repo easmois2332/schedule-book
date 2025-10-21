@@ -473,6 +473,17 @@
     "enable": 1
   },
   {
+    "id": 20027,
+    "name": "ほぐれるひととき",
+    "category": "support_card",
+    "rarity": "ssr",
+    "plan": "sense",
+    "card_type": "mental",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "全力サポート",
     "category": "support_card",
