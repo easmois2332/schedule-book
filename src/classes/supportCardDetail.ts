@@ -827,7 +827,7 @@ export default class SupportCardDetail {
      * SPレッスン終了時、所持スキルカードが20枚以上の場合パラメータ上昇
      */
     private calcCardHave20OrMoreParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [0, 0, 0], ssr: [11, 15, 21], ssr_event: [11, 15, 15]};
+        let parameter = {r: [0, 0, 0], sr: [8, 15, 15], ssr: [11, 15, 21], ssr_event: [11, 15, 15]};
         if (this.card.ability_2 === abilities.CARD_HAVE_20_OR_MORE_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `SPレッスン終了時、所持スキルカードが20枚以上の場合、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -941,7 +941,7 @@ export default class SupportCardDetail {
      * 特別指導開始時パラメータ上昇
      */
     private calcCoachingParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 8]};
+        let parameter = {r: [0, 0, 0], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.COACHING_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -1017,7 +1017,7 @@ export default class SupportCardDetail {
      * Pアイテム獲得時パラメータ上昇
      */
     private calcItemParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [6, 11, 11], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        let parameter = {r: [0, 0, 0], sr: [6, 11, 11], ssr: [8, 11, 15], ssr_event: [8, 11, 11]};
         if (this.card.ability_2 === abilities.ITEM_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `Pアイテム獲得時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;

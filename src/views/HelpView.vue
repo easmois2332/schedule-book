@@ -231,6 +231,16 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.10.0</span><br>
+      <span>
+        「有村 麻央」の親愛度STEP3に対応<br>
+        Pアイドル「有村 麻央 - 見て」の追加<br>
+        サポートカード「レディ・セット、ゴー！」の追加<br>
+        サポートカード「眠れる森の王子様」の追加<br>
+        Pアイテム「月刊アニメトーク♪」がプロデュースアイテムになっていた問題を修正
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.9.0</span><br>
       <span>
         「倉本 千奈」の親愛度STEP3に対応<br>
