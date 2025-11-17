@@ -941,7 +941,7 @@ export default class SupportCardDetail {
      * 特別指導開始時パラメータ上昇
      */
     private calcCoachingParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        let parameter = {r: [9, 13, 13], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.COACHING_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;

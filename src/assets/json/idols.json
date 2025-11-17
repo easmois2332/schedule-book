@@ -36,8 +36,20 @@
     "enable": 1
   },
   {
-    "id": 4,
+    "id": 13,
     "sort_id": 4,
+    "name": "雨夜 燕",
+    "first_name": "Tsubame",
+    "parameter_type": "protrusion",
+    "vocal_priority": 2,
+    "dance_priority": 1,
+    "visual_priority": 3,
+    "dear_level": 10,
+    "enable": 1
+  },
+  {
+    "id": 4,
+    "sort_id": 5,
     "name": "有村 麻央",
     "first_name": "Mao",
     "parameter_type": "protrusion",
@@ -49,7 +61,7 @@
   },
   {
     "id": 5,
-    "sort_id": 5,
+    "sort_id": 6,
     "name": "葛城 リーリヤ",
     "first_name": "Lilja",
     "parameter_type": "balance",
@@ -61,7 +73,7 @@
   },
   {
     "id": 6,
-    "sort_id": 6,
+    "sort_id": 7,
     "name": "倉本 千奈",
     "first_name": "China",
     "parameter_type": "protrusion",
@@ -73,7 +85,7 @@
   },
   {
     "id": 7,
-    "sort_id": 7,
+    "sort_id": 8,
     "name": "紫雲 清夏",
     "first_name": "Sumika",
     "parameter_type": "protrusion",
@@ -85,7 +97,7 @@
   },
   {
     "id": 8,
-    "sort_id": 8,
+    "sort_id": 9,
     "name": "篠澤 広",
     "first_name": "Hiro",
     "parameter_type": "balance",
@@ -97,7 +109,7 @@
   },
   {
     "id": 11,
-    "sort_id": 9,
+    "sort_id": 10,
     "name": "十王 星南",
     "first_name": "Sena",
     "parameter_type": "balance",
@@ -109,7 +121,7 @@
   },
   {
     "id": 12,
-    "sort_id": 10,
+    "sort_id": 11,
     "name": "秦谷 美鈴",
     "first_name": "Misuzu",
     "parameter_type": "protrusion",
@@ -121,7 +133,7 @@
   },
   {
     "id": 10,
-    "sort_id": 11,
+    "sort_id": 12,
     "name": "花海 佑芽",
     "first_name": "Ume",
     "parameter_type": "balance",
@@ -133,7 +145,7 @@
   },
   {
     "id": 9,
-    "sort_id": 12,
+    "sort_id": 13,
     "name": "姫崎 莉波",
     "first_name": "Rinami",
     "parameter_type": "balance",

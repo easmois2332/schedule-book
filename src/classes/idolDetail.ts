@@ -101,6 +101,11 @@ export default class IdolDetail {
                 this.calcParameterKotone();
                 break;
 
+            // 雨夜 燕
+            case 13:
+                this.calcParameterTsubame();
+                break;
+
             // 有村麻央
             case 4:
                 this.calcParameterMao();
@@ -723,6 +728,154 @@ export default class IdolDetail {
             bonusVo += 20;
             bonusDa += 5;
             bonusVi += 5;
+        }
+        if (this.idol.dear_level >= 21) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 22) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 24) {
+            initPoint += 10;
+        }
+        if (this.idol.dear_level >= 25) {
+            initHp += 1;
+        }
+        if (this.idol.dear_level >= 26) {
+            initPoint += 10;
+        }
+
+        this.pIdol.init_hp = initHp;
+        this.pIdol.init_vocal = initVo;
+        this.pIdol.init_dance = initDa;
+        this.pIdol.init_visual = initVi;
+        this.pIdol.init_point = initPoint;
+        this.pIdol.bonus_vocal = (bonusVo / 10).toFixed(1);
+        this.pIdol.bonus_dance = (bonusDa / 10).toFixed(1);
+        this.pIdol.bonus_visual = (bonusVi / 10).toFixed(1);
+
+        // SPレッスン発生率
+        this.calcSpLessonRate(types.DANCE);
+    }
+
+    private calcParameterTsubame() {
+        let initHp: number, initVo: number, initDa: number, initVi: number, bonusVo: number, bonusDa: number, bonusVi: number, initPoint: number = 0;
+
+        // Pアイドル固有値
+        switch (this.pIdol.rarity) {
+            case rarities.RARITY_SSR:
+            case rarities.RARITY_SSR_EVENT:
+                initHp = 31;
+                initVo = 80;
+                initDa = 90;
+                initVi = 70;
+                bonusVo = 140;
+                bonusDa = 170;
+                bonusVi = 120;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initVo += 10;
+                    initDa += 10;
+                    initVi += 10;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 15;
+                    initDa += 15;
+                    initVi += 15;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 20;
+                    bonusDa += 40;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            case rarities.RARITY_SR:
+                initHp = 31;
+                initVo = 75;
+                initDa = 85;
+                initVi = 65;
+                bonusVo = 130;
+                bonusDa = 160;
+                bonusVi = 110;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initVo += 10;
+                    initDa += 10;
+                    initVi += 10;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 15;
+                    initDa += 15;
+                    initVi += 15;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 20;
+                    bonusDa += 40;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            case rarities.RARITY_R:
+                initHp = 31;
+                initVo = 70;
+                initDa = 80;
+                initVi = 60;
+                bonusVo = 120;
+                bonusDa = 150;
+                bonusVi = 100;
+
+                // 特訓
+                if (this.pIdol.training_level >= 1) {
+                    initVo += 10;
+                    initDa += 10;
+                    initVi += 10;
+                }
+                if (this.pIdol.training_level >= 4) {
+                    initVo += 15;
+                    initDa += 15;
+                    initVi += 15;
+                }
+                if (this.pIdol.training_level >= 5) {
+                    initHp += 3;
+                }
+
+                // 才能開花
+                if (this.pIdol.blossoming_level >= 3) {
+                    bonusVo += 20;
+                    bonusDa += 40;
+                }
+                if (this.pIdol.blossoming_level >= 4) {
+                    initHp += 3;
+                }
+                break;
+            default:
+                break;
+        }
+
+        // アイドル共通値
+        if (this.idol.dear_level >= 10) {
+            initVo += 10;
+            initDa += 20;
+            bonusVo += 10;
+            bonusDa += 30;
+        }
+        if (this.idol.dear_level >= 20) {
+            // N.I.A未実装
         }
         if (this.idol.dear_level >= 21) {
             initPoint += 10;

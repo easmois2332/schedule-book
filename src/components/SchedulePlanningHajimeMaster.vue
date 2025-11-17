@@ -467,6 +467,9 @@ const getResultScore = (resultPoint, parameter) => {
 
   for (let i in resultCalcList) {
     let requiredScore = Math.trunc((requiredPoint - resultCalcList[i]['addition']) / resultCalcList[i]['magnification']);
+    if (requiredScore >= 200001) {
+      return '不可能';
+    }
     if (requiredScore >= resultCalcList[i]['score']) {
       return requiredScore;
     }

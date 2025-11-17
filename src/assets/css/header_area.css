@@ -22,6 +22,14 @@
     }
 }
 
+.header-area.color-tsubame {
+    background: linear-gradient(to right, #8672fa, #c3b7fb);
+
+    .header-tab-name, .header-tab-button, .header-operation-button, .schedule-tab-scroll-button {
+        color: #ffffff;
+    }
+}
+
 .header-area.color-mao {
     background: linear-gradient(to right, #bf5cc4, #f6aba4);
 

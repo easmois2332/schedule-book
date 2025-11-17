@@ -231,6 +231,20 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.11.0</span><br>
+      <span>
+        アイドル「雨夜 燕」の追加<br>
+        Pアイドル「雨夜 燕 - 理想武装して」の追加（画像は後程追加）<br>
+        Pアイドル「雨夜 燕 - 初志貫徹」の追加（画像は後程追加）<br>
+        Pアイドル「雨夜 燕 - 学園生活」の追加（画像は後程追加）<br>
+        サポートカード「ぜったいに取るんだ！」の追加<br>
+        サポートカード「やっと見つけたぞ！」の追加<br>
+        サポートカード「バディ？」の追加<br>
+        サポートカード「謹厳実直」の追加<br>
+        定期公演『初』の最終プロデュース評価に影響する最終試験スコア調整対応<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.10.0</span><br>
       <span>
         「有村 麻央」の親愛度STEP3に対応<br>

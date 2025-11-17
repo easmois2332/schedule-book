@@ -50,6 +50,11 @@ const buttonColor = (color) => {
             </button>
           </div>
           <div class="setting-color-button">
+            <button class="color-button tsubame" @click="buttonColor('color-tsubame')">
+              <span class="color-button-name tsubame">燕</span>
+            </button>
+          </div>
+          <div class="setting-color-button">
             <button class="color-button mao" @click="buttonColor('color-mao')">
               <span class="color-button-name mao">麻央</span>
             </button>

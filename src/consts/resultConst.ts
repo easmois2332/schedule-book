@@ -15,6 +15,7 @@ export const resultDataList = {
 
 export const resultScoreCalcList = {
     hajime_master: [
+        {score: 200001, magnification: 0, addition: 5250},
         {score: 40001, magnification: 0.01, addition: 3250},
         {score: 30001, magnification: 0.02, addition: 2850},
         {score: 20001, magnification: 0.04, addition: 2250},

@@ -55,6 +55,9 @@ const getResultScoreHajimeMaster = (resultPoint, parameter) => {
 
   for (let i in resultScoreCalcList['hajime_master']) {
     let requiredScore = Math.trunc((requiredPoint - resultScoreCalcList['hajime_master'][i]['addition']) / resultScoreCalcList['hajime_master'][i]['magnification']);
+    if (requiredScore >= 200001) {
+      return '不可能';
+    }
     if (requiredScore >= resultScoreCalcList['hajime_master'][i]['score']) {
       return requiredScore;
     }
