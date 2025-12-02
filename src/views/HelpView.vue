@@ -231,6 +231,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.12.0</span><br>
+      <span>
+        Pアイドル「花海 佑芽 - グースーピー」の追加<br>
+        サポートカード「貸せ、手本を見せてやる！」の追加<br>
+        サポートカード「メリクリ、おねーちゃん♪」の追加<br>
+        サポートカード「ピコピコでポーン」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.11.0</span><br>
       <span>
         アイドル「雨夜 燕」の追加<br>
