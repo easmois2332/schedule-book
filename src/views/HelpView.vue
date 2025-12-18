@@ -231,6 +231,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.13.0</span><br>
+      <span>
+        「葛城 リーリヤ」の親愛度STEP3に対応<br>
+        Pアイドル「葛城 リーリヤ - Atmosphere」の追加<br>
+        サポートカード「なぜこんなところにッ！？」の追加<br>
+        サポートカード「佑芽ソリレース、疾走！」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.12.0</span><br>
       <span>
         Pアイドル「花海 佑芽 - グースーピー」の追加<br>
