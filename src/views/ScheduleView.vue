@@ -1,10 +1,12 @@
 <script setup>
 import {onBeforeMount, ref} from "vue";
 import ScheduleOrganization from "@/components/ScheduleOrganization.vue";
+import SchedulePlanningHajimeLegend from "@/components/SchedulePlanningHajimeLegend.vue";
 import SchedulePlanningHajimeMaster from "@/components/SchedulePlanningHajimeMaster.vue";
 import SchedulePlanningNextIdolAuditionMaster from "@/components/SchedulePlanningNextIdolAuditionMaster.vue";
 import ScheduleSave from "@/components/modals/ScheduleSave.vue";
 import {abilities, types} from "@/consts/supportCardConst";
+import Items from "@/classes/items";
 
 const props = defineProps(['scheduleData', 'idols', 'supportCards']);
 const emit = defineEmits(['undo-redo-disabled', 'save-schedule', 'save-new-schedule', 'save-as-schedule']);
@@ -13,11 +15,19 @@ const idols = props.idols;
 const supportCards = props.supportCards;
 const planningViewRef = ref();
 
+const items = new Items();
+
 const produceTypeDisplayList = {
+  hajime_legend: '定期公演『初』 レジェンド',
   hajime_master: '定期公演『初』 マスター',
   nia_master: 'NEXT IDOL AUDITION マスター',
 }
 const produceTypeComponentList = {
+  hajime_legend: {
+    organization: ScheduleOrganization,
+    planning: SchedulePlanningHajimeLegend,
+    minDearLevel: 10,
+  },
   hajime_master: {
     organization: ScheduleOrganization,
     planning: SchedulePlanningHajimeMaster,
@@ -179,6 +189,23 @@ const updateBasicData = () => {
           default:
             break;
         }
+      }
+    }
+
+    if (inputData.value['produce_type'] === 'hajime_legend') {
+      let challengePItemId = inputData.value['planning']['challenge_p_item'][1];
+      switch (challengePItemId) {
+        case 32001:
+          basicData.value['parameter']['bonus_vocal'] += 8.5 * 10;
+          break;
+        case 32002:
+          basicData.value['parameter']['bonus_dance'] += 8.5 * 10;
+          break;
+        case 32003:
+          basicData.value['parameter']['bonus_visual'] += 8.5 * 10;
+          break;
+        default:
+          break;
       }
     }
   } else {

@@ -12,12 +12,20 @@ export default class Items {
         return this.masterData.filter((item: any) => item.enable === 1);
     }
 
+    getHajimeLegendBasicLessonItem(plan: any) {
+        return this.masterData.filter((item: any) => (item.id >= 27 && item.id <= 32) && plan.includes(item.plan) && (item.enable === 1));
+    }
+
     getHajimeMasterBasicLessonItem(plan: any) {
         return this.masterData.filter((item: any) => (item.id >= 3 && item.id <= 8) && plan.includes(item.plan) && (item.enable === 1));
     }
 
     getNiaMasterBasicLessonItem(plan: any) {
         return this.masterData.filter((item: any) => (item.id >= 20 && item.id <= 25) && plan.includes(item.plan) && (item.enable === 1));
+    }
+
+    getHajimeLegendChallengeItem(categoryType: any, plan: any) {
+        return this.masterData.filter((item: any) => (item.id >= 32001 && item.id <= 32999) && categoryType.includes(item.category_type) && plan.includes(item.plan) && (item.enable === 1));
     }
 
     getHajimeMasterChallengeItem(categoryType: any, plan: any) {

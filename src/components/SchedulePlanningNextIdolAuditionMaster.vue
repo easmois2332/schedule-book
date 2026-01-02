@@ -13,7 +13,7 @@ const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
 
-const maxParameter = 2300;
+const maxParameter = 2600;
 const scheduleData = {
   1: {
     sp_lesson: {value: 'sp_lesson', text: '自主SPレッスン', parameter: 100, point: 20, hp: -8, fan: 0},
@@ -187,6 +187,9 @@ const getBonusIncludedParameter = (parameter, parameterBonus) => {
       parameter * (parameterBonus / 10).toFixed(1) / 100
   );
 };
+const getAuditionParameter = (parameter, parameterBonus, auditionBonus) => {
+  return parameter + Math.floor(parameter * (parameterBonus / 10).toFixed(1) / 100) + Math.floor(parameter * auditionBonus / 100) + Math.floor(Math.floor(parameter * (parameterBonus / 10).toFixed(1) / 100) * auditionBonus / 100);
+}
 const updateScheduleDetailCount = () => {
   scheduleDetailCount.value = {
     lesson: {
@@ -210,7 +213,6 @@ const updateScheduleDetailCount = () => {
     consultation: 0,
     coaching: 0,
     rest: 0,
-    exam_1: 0,
     exam: 0,
   };
   if (inputData.value['organization']['produce_idol']['id'] !== null && basicData.value['produce_idol']) {
@@ -246,10 +248,11 @@ const updateScheduleDetailCount = () => {
           scheduleDetailCount.value['rest']++;
           break;
         case 'exam_1':
-          scheduleDetailCount.value['exam_1']++;
         case 'exam_2':
         case 'exam_3':
-          scheduleDetailCount.value['exam']++;
+          if (scheduleDetailCount.value['exam'] < 2) {
+            scheduleDetailCount.value['exam']++;
+          }
           break;
         default:
           break;
@@ -268,6 +271,7 @@ const updateScheduleDetailData = () => {
       hp: basicData.value['parameter']['init_hp'],
       fan: 0,
     }
+    let coachingCount = 0;
     let niaPassCaseCount = 0;
 
     // 1~26週目
@@ -289,9 +293,9 @@ const updateScheduleDetailData = () => {
         let auditionVocal = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['vocal_priority']}`];
         let auditionDance = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['dance_priority']}`];
         let auditionVisual = inputData.value['planning']['audition'][examIndex][`type_${basicData.value['produce_idol']['visual_priority']}`];
-        parameter['vocal'] += getBonusIncludedParameter(auditionVocal, basicData.value['parameter']['bonus_vocal']) + Math.floor(auditionVocal * challengePItemAuditionBonus.value / 100);
-        parameter['dance'] += getBonusIncludedParameter(auditionDance, basicData.value['parameter']['bonus_dance']) + Math.floor(auditionDance * challengePItemAuditionBonus.value / 100);
-        parameter['visual'] += getBonusIncludedParameter(auditionVisual, basicData.value['parameter']['bonus_visual']) + Math.floor(auditionVisual * challengePItemAuditionBonus.value / 100);
+        parameter['vocal'] += getAuditionParameter(auditionVocal, basicData.value['parameter']['bonus_vocal'], challengePItemAuditionBonus.value);
+        parameter['dance'] += getAuditionParameter(auditionDance, basicData.value['parameter']['bonus_dance'], challengePItemAuditionBonus.value);
+        parameter['visual'] += getAuditionParameter(auditionVisual, basicData.value['parameter']['bonus_visual'], challengePItemAuditionBonus.value);
         parameter['point'] += scheduleData[week][inputScheduleData['schedule_detail']]['point'];
         parameter['hp'] += Math.round(maxHp * 0.5);
         parameter['fan'] += inputData.value['planning']['audition'][examIndex]['fan'];
@@ -377,7 +381,7 @@ const updateScheduleDetailData = () => {
 
           // 体力
           if (basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]) {
-            parameter['hp'] -= basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]['vocal'];
+            parameter['hp'] += basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]['vocal'];
           }
           break;
         case 'outing':
@@ -395,6 +399,15 @@ const updateScheduleDetailData = () => {
             parameter['dance'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['dance'];
             parameter['visual'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['visual'];
           }
+          break;
+        case 'coaching':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP] && coachingCount < 3) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['visual'];
+          }
+          coachingCount++;
           break;
         case 'rest':
           // パラメータ
@@ -417,10 +430,16 @@ const updateScheduleDetailData = () => {
 
           // 体力
           if (basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]) {
-            parameter['hp'] -= basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]['vocal'];
+            parameter['hp'] += basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]['vocal'];
           }
           break;
         case 'exam_2':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['visual'];
+          }
           break;
         case 'exam_3':
           break;

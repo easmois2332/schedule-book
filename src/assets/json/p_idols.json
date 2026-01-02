@@ -984,6 +984,18 @@
     "enable": 1
   },
   {
+    "id": 83,
+    "idol_id": 13,
+    "name": "Campus mode!!",
+    "rarity": "ssr",
+    "plan": "sense",
+    "effect": "kotyo",
+    "ability": "fesu",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

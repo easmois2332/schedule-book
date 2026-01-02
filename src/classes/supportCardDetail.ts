@@ -171,16 +171,28 @@ export default class SupportCardDetail {
             switch (this.card.rarity) {
                 case rarities.RARITY_SSR:
                 case rarities.RARITY_SSR_EVENT:
-                    parameter = 24 + (Math.floor(this.card.level / 5) * 3);
+                    if (this.card.level < 20) {
+                        parameter = 26 + (Math.floor(this.card.level / 5) * 3);
+                    } else if (this.card.level < 35) {
+                        parameter = 26 + (Math.floor(this.card.level / 5) * 3) + 1;
+                    } else if (this.card.level < 50) {
+                        parameter = 26 + (Math.floor(this.card.level / 5) * 3) + 2;
+                    } else {
+                        parameter = 26 + (Math.floor(this.card.level / 5) * 3) + 3;
+                    }
                     break;
                 case rarities.RARITY_SR:
-                    if (this.card.level < 20) {
-                        parameter = 18 + (Math.floor(this.card.level / 5) * 2);
+                    if (this.card.level < 15) {
+                        parameter = 21 + (Math.floor(this.card.level / 5) * 3);
+                    } else if (this.card.level < 30) {
+                        parameter = 21 + (Math.floor(this.card.level / 5) * 3) - 1;
                     } else {
-                        parameter = 18 + (Math.floor(this.card.level / 5) * 3) - 3;
+                        parameter = 21 + (Math.floor(this.card.level / 5) * 3) - 2;
                     }
                     break;
                 case rarities.RARITY_R:
+                    // TODO: 2025/12/26 update 未対応
+                    // Lv.1 +13
                     if (this.card.level < 15) {
                         parameter = 12 + (Math.floor(this.card.level / 5) * 3);
                     } else {
@@ -903,7 +915,7 @@ export default class SupportCardDetail {
      * 相談選択時パラメータ上昇
      */
     private calcConsultationParameterUp() {
-        let parameter = {r: [0, 0, 0], sr: [4, 8, 8], ssr: [6, 8, 11], ssr_event: [6, 8, 8]};
+        let parameter = {r: [0, 0, 0], sr: [7, 14, 14], ssr: [9, 14, 18], ssr_event: [9, 14, 14]};
         if (this.card.ability_2 === abilities.CONSULTATION_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `相談選択時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;
@@ -941,7 +953,7 @@ export default class SupportCardDetail {
      * 特別指導開始時パラメータ上昇
      */
     private calcCoachingParameterUp() {
-        let parameter = {r: [9, 13, 13], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
+        let parameter = {r: [7, 13, 13], sr: [9, 18, 18], ssr: [0, 0, 0], ssr_event: [0, 0, 0]};
         if (this.card.ability_2 === abilities.COACHING_PARAMETER_UP) {
             this.card.ability_2_parameter = this.getParameter('ability_2', parameter);
             this.card.ability_2_display = `特別指導開始時、${this.card.type_display}上昇<span class="font-bold">+${this.card.ability_2_parameter}</span>`;

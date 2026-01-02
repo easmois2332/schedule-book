@@ -5,6 +5,7 @@ import {abilities, abilityBasicParameterUpList, abilityExtraParameterUpList} fro
 import {resultDataList, resultScoreCalcList} from "@/consts/resultConst";
 import CommonInputModal from "@/components/smallModals/CommonInputModal.vue";
 import ScheduleHpAndPointInputModal from "@/components/smallModals/ScheduleHpAndPointInputModal.vue";
+import ExamResultInputModal from "@/components/smallModals/ExamResultInputModal.vue";
 import ScheduleSupportCardCalc from "@/components/ScheduleSupportCardCalc.vue";
 
 const props = defineProps(['inputData', 'basicData', 'idols', 'supportCards']);
@@ -12,94 +13,90 @@ const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
 
-const maxParameter = 1800;
+const maxParameter = 2800;
 const scheduleData = {
   1: {
-    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    class: {value: 'class', text: '授業', parameter: 100, point: 0, hp: -5},
   },
   2: {
-    class_50: {value: 'class_50', text: '授業 +50', parameter: 50, point: 0, hp: -5},
-    class_25: {value: 'class_25', text: '授業 +25', parameter: 25, point: 0, hp: 0},
+    class: {value: 'class', text: '授業', parameter: 100, point: 0, hp: -5},
   },
   3: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: -80, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 180, hp: 0},
   },
   4: {
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    sp_legend_lesson: {value: 'sp_legend_lesson', text: 'SPレジェンドレッスン', parameter: 85, bonus_parameter: 75, point: 80, hp: 0},
+    legend_lesson: {value: 'legend_lesson', text: 'レジェンドレッスン', parameter: 60, bonus_parameter: 60, point: 80, hp: 0},
   },
   5: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 90, point: 27, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 60, point: 14, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: -80, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 180, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   6: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 95, hp: 0},
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    class: {value: 'class', text: '授業', parameter: 150, point: 0, hp: -6},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   7: {
-    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 90, bonus_parameter: 90, point: 28, hp: 0},
+    sp_legend_lesson: {value: 'sp_legend_lesson', text: 'SPレジェンドレッスン', parameter: 120, bonus_parameter: 90, point: 80, hp: 0},
+    legend_lesson: {value: 'legend_lesson', text: 'レジェンドレッスン', parameter: 90, bonus_parameter: 70, point: 80, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   8: {
-    exam_1: {value: 'exam_1', text: '中間試験', parameter: 20, point: 125, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   9: {
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
-    gift_rng: {value: 'gift_rng', text: '活動支給(ランダム)', parameter: 0, point: 145, hp: 0},
-    outing_rng: {value: 'outing_rng', text: 'おでかけ(ランダム)', parameter: 0, point: 0, hp: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   10: {
-    class_80: {value: 'class_80', text: '授業 +80', parameter: 80, point: 0, hp: -8},
-    class_55: {value: 'class_55', text: '授業 +55', parameter: 55, point: 0, hp: -4},
-    class_30: {value: 'class_30', text: '授業 +30', parameter: 30, point: 0, hp: 0},
-    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
+    exam_1: {value: 'exam_1', text: '中間試験', parameter: 80, point: 0, hp: 0},
   },
   11: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 170, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 110, point: 14, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: -80, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 180, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   12: {
-    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: 0},
-    class_45: {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
+    sp_legend_lesson: {value: 'sp_legend_lesson', text: 'SPレジェンドレッスン', parameter: 190, bonus_parameter: 120, point: 80, hp: 0},
+    legend_lesson: {value: 'legend_lesson', text: 'レジェンドレッスン', parameter: 155, bonus_parameter: 175, point: 80, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   13: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 145, hp: 0},
-    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0},
+    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: -80, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 180, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   14: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 200, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 120, point: 14, hp: 0},
+    sp_legend_lesson: {value: 'sp_legend_lesson', text: 'SPレジェンドレッスン', parameter: 280, bonus_parameter: 180, point: 80, hp: 0},
+    legend_lesson: {value: 'legend_lesson', text: 'レジェンドレッスン', parameter: 245, bonus_parameter: 135, point: 80, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   15: {
-    sp_lesson: {value: 'sp_lesson', text: 'SPレッスン', parameter: 220, point: 28, hp: 0},
-    lesson: {value: 'lesson', text: 'レッスン', parameter: 150, point: 14, hp: 0},
-    class_110: {value: 'class_110', text: '授業 +110', parameter: 110, point: 0, hp: -8},
-    class_45: {value: 'class_45', text: '授業 +45', parameter: 45, point: 0, hp: -4},
+    class: {value: 'class', text: '授業', parameter: 200, point: 0, hp: -8},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   16: {
-    gift: {value: 'gift', text: '活動支給', parameter: 0, point: 0, hp: 0},
-    outing: {value: 'outing', text: 'おでかけ', parameter: 0, point: 0, hp: 0},
-    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    sp_legend_lesson: {value: 'sp_legend_lesson', text: 'SPレジェンドレッスン', parameter: 455, bonus_parameter: 255, point: 80, hp: 0},
+    legend_lesson: {value: 'legend_lesson', text: 'レジェンドレッスン', parameter: 395, bonus_parameter: 235, point: 80, hp: 0},
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   17: {
-    push_lesson: {value: 'push_lesson', text: '追い込みレッスン', parameter: 165, bonus_parameter: 145, point: 0, hp: 0},
+    consultation: {value: 'consultation', text: '相談', parameter: 0, point: 0, hp: 0},
+    coaching: {value: 'coaching', text: '特別指導', parameter: 0, point: 0, hp: 0},
+    rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   18: {
-    exam_2: {value: 'exam_2', text: '最終試験', parameter: 30, point: 0, hp: 0},
+    exam_2: {value: 'exam_2', text: '最終試験', parameter: 120, point: 0, hp: 0},
   },
 };
 const resultData = resultDataList;
-const resultCalcList = resultScoreCalcList['hajime_master'];
+const resultCalcList1 = resultScoreCalcList['hajime_legend_exam_1'];
+const resultCalcList2 = resultScoreCalcList['hajime_legend_exam_2'];
 
 const abilityBasicParameterUpListAll = abilityBasicParameterUpList;
 const abilityExtraParameterUpListAll = abilityExtraParameterUpList;
@@ -112,9 +109,11 @@ let scheduleDetailData = ref({});
 let resultScoreList = ref({});
 let challengePItemMaxPushSum = ref(0);
 
+let commonInputModalChallengePItemOpen = ref(false);
 let commonInputModalSupportCardPItemOpen = ref(false);
 let commonInputModalSupportCardAbilityOpen = ref(false);
 let scheduleHpAndPointInputModalOpen = ref(false);
+let examResultInputModalOpen = ref(false);
 
 const updateInputData = () => {
   emit('input-data-update', inputData.value);
@@ -125,6 +124,16 @@ const getBonusIncludedParameter = (parameter, parameterBonus) => {
       parameter * (parameterBonus / 10).toFixed(1) / 100
   );
 };
+const getExamResultScore = (score, resultCalcList) => {
+  let resultScore = 0;
+  for (let i in resultCalcList) {
+    if (score >= resultCalcList[i]['score']) {
+      resultScore = Math.trunc((score * resultCalcList[i]['magnification']) + resultCalcList[i]['addition']);
+      break;
+    }
+  }
+  return resultScore;
+}
 const updateScheduleDetailCount = () => {
   scheduleDetailCount.value = {
     lesson: {
@@ -146,6 +155,7 @@ const updateScheduleDetailCount = () => {
     gift: 0,
     outing: 0,
     consultation: 0,
+    coaching: 0,
     rest: 0,
     exam: 0,
   };
@@ -153,28 +163,28 @@ const updateScheduleDetailCount = () => {
     for (let week = 1; week <= 18; week++) {
       let inputScheduleData = inputData.value['planning']['schedule'][week];
       switch (inputScheduleData['schedule_detail']) {
-        case 'lesson':
+        case 'legend_lesson':
           scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
           scheduleDetailCount.value['normal_lesson'][inputScheduleData['type']]++;
           break;
-        case 'sp_lesson':
+        case 'sp_legend_lesson':
           scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
           scheduleDetailCount.value['sp_lesson'][inputScheduleData['type']]++;
           break;
-        case 'push_lesson':
-          scheduleDetailCount.value['lesson'][inputScheduleData['type']]++;
-          break;
-        case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
+        case 'class':
           scheduleDetailCount.value['class']++;
           break;
-        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+        case 'gift':
           scheduleDetailCount.value['gift']++;
           break;
-        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+        case 'outing':
           scheduleDetailCount.value['outing']++;
           break;
         case 'consultation':
           scheduleDetailCount.value['consultation']++;
+          break;
+        case 'coaching':
+          scheduleDetailCount.value['coaching']++;
           break;
         case 'rest':
           scheduleDetailCount.value['rest']++;
@@ -201,6 +211,7 @@ const updateScheduleDetailData = () => {
       point: basicData.value['parameter']['init_point'],
       hp: basicData.value['parameter']['init_hp'],
     }
+    let coachingCount = 0;
 
     // 1~18週目
     for (let week = 1; week <= 18; week++) {
@@ -210,24 +221,21 @@ const updateScheduleDetailData = () => {
       let pointUpRate = 0;
 
       // スケジュール内容での獲得パラメータ
-      if (inputScheduleData['schedule_detail'] === 'lesson' || inputScheduleData['schedule_detail'] === 'sp_lesson') {
-        basicParameter += challengePItemMaxPushSum.value;
-        if (inputScheduleData['type'] !== null) {
-          parameter[inputScheduleData['type']] += getBonusIncludedParameter(basicParameter, basicData.value['parameter'][`bonus_${inputScheduleData['type']}`]);
-        }
-      } else if (inputScheduleData['schedule_detail'] === 'push_lesson') {
+      if (inputScheduleData['schedule_detail'] === 'legend_lesson' || inputScheduleData['schedule_detail'] === 'sp_legend_lesson') {
+        let bonusParameter = Math.trunc((scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'] + challengePItemMaxPushSum.value) / 3);
+        let bonusParameterRemainder = (scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'] + challengePItemMaxPushSum.value) % 3;
         if (inputScheduleData['type'] === 'vocal') {
-          parameter['vocal'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
+          parameter['vocal'] += getBonusIncludedParameter((basicParameter + bonusParameter + bonusParameterRemainder), basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_visual']);
         } else if (inputScheduleData['type'] === 'dance') {
-          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_visual']);
+          parameter['vocal'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter((basicParameter + bonusParameter + bonusParameterRemainder), basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_visual']);
         } else if (inputScheduleData['type'] === 'visual') {
-          parameter['vocal'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_vocal']);
-          parameter['dance'] += getBonusIncludedParameter(scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter'], basicData.value['parameter']['bonus_dance']);
-          parameter['visual'] += getBonusIncludedParameter((basicParameter + scheduleData[week][inputScheduleData['schedule_detail']]['bonus_parameter']), basicData.value['parameter']['bonus_visual']);
+          parameter['vocal'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_vocal']);
+          parameter['dance'] += getBonusIncludedParameter(bonusParameter, basicData.value['parameter']['bonus_dance']);
+          parameter['visual'] += getBonusIncludedParameter((basicParameter + bonusParameter + bonusParameterRemainder), basicData.value['parameter']['bonus_visual']);
         }
       } else {
         if (inputScheduleData['type'] !== null) {
@@ -243,7 +251,7 @@ const updateScheduleDetailData = () => {
 
       // サポートカードアビリティでの獲得パラメータ
       switch (inputScheduleData['schedule_detail']) {
-        case 'lesson':
+        case 'legend_lesson':
           // パラメータ
           if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
             parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
@@ -262,7 +270,7 @@ const updateScheduleDetailData = () => {
             parameter['point'] += basicPoint;
           }
           break;
-        case 'sp_lesson':
+        case 'sp_legend_lesson':
           // パラメータ
           if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
             parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
@@ -292,26 +300,7 @@ const updateScheduleDetailData = () => {
             parameter['hp'] += basicData.value['ability_list'][abilities.ALL_TYPE_SP_LESSON_HP_RECOVER]['vocal'];
           }
           break;
-        case 'push_lesson':
-          // パラメータ
-          if (basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP]) {
-            parameter[inputScheduleData['type']] += basicData.value['ability_list'][abilities.LESSON_PARAMETER_UP][inputScheduleData['type']];
-          }
-
-          // Pポイント
-          if (basicData.value['ability_list'][abilities.LESSON_P_POINT_UP]) {
-            pointUpRate += basicData.value['ability_list'][abilities.LESSON_P_POINT_UP][inputScheduleData['type']];
-          }
-          if (pointUpRate !== 0) {
-            parameter['point'] += getBonusIncludedParameter(basicPoint, pointUpRate);
-          } else {
-            parameter['point'] += basicPoint;
-          }
-
-          // 体力
-          parameter['hp'] += Math.round(maxHp * 0.7);
-          break;
-        case inputScheduleData['schedule_detail'].includes('class') && inputScheduleData['schedule_detail']:
+        case 'class':
           // パラメータ
           if (basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]) {
             parameter['vocal'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['vocal'];
@@ -319,7 +308,7 @@ const updateScheduleDetailData = () => {
             parameter['visual'] += basicData.value['ability_list'][abilities.CLASS_PARAMETER_UP]['visual'];
           }
           break;
-        case inputScheduleData['schedule_detail'].includes('gift') && inputScheduleData['schedule_detail']:
+        case 'gift':
           // パラメータ
           if (basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]) {
             parameter['vocal'] += basicData.value['ability_list'][abilities.GIFT_PARAMETER_UP]['vocal'];
@@ -332,13 +321,16 @@ const updateScheduleDetailData = () => {
             parameter['hp'] += basicData.value['ability_list'][abilities.GIFT_HP_RECOVER]['vocal'];
           }
           break;
-        case inputScheduleData['schedule_detail'].includes('outing') && inputScheduleData['schedule_detail']:
+        case 'outing':
           // パラメータ
           if (basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]) {
             parameter['vocal'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['vocal'];
             parameter['dance'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['dance'];
             parameter['visual'] += basicData.value['ability_list'][abilities.OUTING_PARAMETER_UP]['visual'];
           }
+
+          // 体力
+          parameter['hp'] += Math.round(maxHp * 0.4);
           break;
         case 'consultation':
           // パラメータ
@@ -347,6 +339,15 @@ const updateScheduleDetailData = () => {
             parameter['dance'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['dance'];
             parameter['visual'] += basicData.value['ability_list'][abilities.CONSULTATION_PARAMETER_UP]['visual'];
           }
+          break;
+        case 'coaching':
+          // パラメータ
+          if (basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP] && coachingCount < 3) {
+            parameter['vocal'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['vocal'];
+            parameter['dance'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['dance'];
+            parameter['visual'] += basicData.value['ability_list'][abilities.COACHING_PARAMETER_UP]['visual'];
+          }
+          coachingCount++;
           break;
         case 'rest':
           // パラメータ
@@ -368,6 +369,7 @@ const updateScheduleDetailData = () => {
           }
 
           // 体力
+          parameter['hp'] += Math.round(maxHp * 0.7);
           if (basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]) {
             parameter['hp'] += basicData.value['ability_list'][abilities.EXAM_HP_RECOVER]['vocal'];
           }
@@ -379,14 +381,12 @@ const updateScheduleDetailData = () => {
             parameter['dance'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['dance'];
             parameter['visual'] += basicData.value['ability_list'][abilities.EXAM_PARAMETER_UP]['visual'];
           }
+
+          // 体力
+          parameter['hp'] += Math.round(maxHp * 0.7);
           break;
         default:
           break;
-      }
-
-      // はつぼしブレスレットでの体力消費
-      if (inputData.value['planning']['produce_p_item'][1] === 2 && week >= 9 && inputScheduleData['schedule_detail'] === 'sp_lesson') {
-        parameter['hp'] -= 3;
       }
 
       // Pポイント調整処理
@@ -415,6 +415,12 @@ const updateScheduleDetailData = () => {
     }
 
     // その他獲得パラメータ
+    // チャレンジPアイテム
+    let challengePItemId = inputData.value['planning']['challenge_p_item'][1];
+    if (challengePItemId >= 32004 && challengePItemId <= 32006) {
+      parameter[getPItemDetail(challengePItemId).type] += getChallengePItemParameterSum(challengePItemId);
+    }
+
     // Pアイテム
     for (let i in inputData.value['planning']['support_card_p_item']) {
       if (basicData.value['support_card'][i]) {
@@ -454,8 +460,11 @@ const updateScheduleDetailData = () => {
     scheduleDetailData.value['other']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
 
     // 最終評価
+    let resultScore1 = getExamResultScore(inputData.value['planning']['exam'][1], resultCalcList1);
+    let resultScore2 = getExamResultScore(inputData.value['planning']['exam'][2], resultCalcList2);
     scheduleDetailData.value['result'] = {...parameter};
     scheduleDetailData.value['result']['sum'] = parameter['vocal'] + parameter['dance'] + parameter['visual'];
+    scheduleDetailData.value['result']['resultScore'] = Math.trunc(scheduleDetailData.value['result']['sum'] * 2.1) + resultScore1 + resultScore2;
   } else {
     scheduleDetailData.value = {};
   }
@@ -469,14 +478,14 @@ const updateScheduleDetail = (week) => {
   updateInputData();
 }
 const getResultScore = (resultPoint, parameter) => {
-  let requiredPoint = resultPoint - Math.trunc(parameter * 2.3) - 1700;
+  let requiredPoint = resultPoint - parameter;
 
-  for (let i in resultCalcList) {
-    let requiredScore = Math.trunc((requiredPoint - resultCalcList[i]['addition']) / resultCalcList[i]['magnification']);
-    if (requiredScore >= 200001) {
+  for (let i in resultCalcList2) {
+    let requiredScore = Math.trunc((requiredPoint - resultCalcList2[i]['addition']) / resultCalcList2[i]['magnification']);
+    if (requiredScore >= 2000001) {
       return '不可能';
     }
-    if (requiredScore >= resultCalcList[i]['score']) {
+    if (requiredScore >= resultCalcList2[i]['score']) {
       return requiredScore;
     }
   }
@@ -484,15 +493,17 @@ const getResultScore = (resultPoint, parameter) => {
 }
 const updateResultScoreList = () => {
   if (scheduleDetailData.value['result']) {
+    let parameter = Math.trunc(scheduleDetailData.value['result']['sum'] * 2.1);
+    let score1 = getExamResultScore(inputData.value['planning']['exam'][1], resultCalcList1);
     for (let rank in resultData) {
-      resultScoreList.value[rank] = getResultScore(resultData[rank]['point'], scheduleDetailData.value['result']['sum']);
+      resultScoreList.value[rank] = getResultScore(resultData[rank]['point'], parameter + score1);
     }
   } else {
     resultScoreList.value = {};
   }
 }
 const getChallengePItemDetail = (categoryType, plan) => {
-  return items.getHajimeMasterChallengeItem(categoryType, plan)
+  return items.getHajimeLegendChallengeItem(categoryType, plan)
 }
 const updateChallengePItemMaxPushSum = () => {
   challengePItemMaxPushSum.value = 0;
@@ -509,6 +520,12 @@ const changeChallengePItem = () => {
 const getPItemDetail = (id) => {
   return items.getItemFromId(id);
 }
+const getChallengePItemParameterSum = (id) => {
+  if (id >= 32004 && id <= 32006) {
+    return getPItemDetail(id).event_parameter * inputData.value['planning']['produce_p_item'][1];
+  }
+  return 0;
+}
 const getPItemParameterSum = (index) => {
   if (!basicData.value['support_card'][index] || basicData.value['support_card'][index]['event_1'] !== 'get_unique_p_item') {
     return 0;
@@ -516,7 +533,7 @@ const getPItemParameterSum = (index) => {
   return getPItemDetail(basicData.value['support_card'][index]['p_item_id']).event_parameter * inputData.value['planning']['support_card_p_item'][index];
 }
 const getBasicPItemDetail = (plan) => {
-  return items.getHajimeMasterBasicLessonItem(plan);
+  return items.getHajimeLegendBasicLessonItem(plan);
 }
 const getSupportCardAbilityParameterSum = (ability, count) => {
   if (!basicData.value['ability_list'][ability]) {
@@ -555,6 +572,16 @@ const closeScheduleHpAndPointAdjustment = (hp, point) => {
   }
   scheduleHpAndPointInputModalOpen.value = false;
 }
+const inputChallengePItemCount = () => {
+  commonInputModalChallengePItemOpen.value = true;
+}
+const closeChallengePItemCount = (inputValue) => {
+  if (inputValue !== null) {
+    inputData.value['planning']['produce_p_item'][1] = inputValue;
+    updateInputData();
+  }
+  commonInputModalChallengePItemOpen.value = false;
+}
 const inputPItemCount = (index) => {
   if (inputData.value['organization']['support_card'][index]['id'] &&
       basicData.value['support_card'][index]['event_1'] === 'get_unique_p_item' &&
@@ -579,6 +606,17 @@ const closeSupportCardAbilityCount = (inputValue) => {
     updateInputData();
   }
   commonInputModalSupportCardAbilityOpen.value = false;
+}
+const inputExamResult = () => {
+  examResultInputModalOpen.value = true;
+}
+const closeExamResult = (score1, score2) => {
+  if (score1 !== null && score2 !== null) {
+    inputData.value['planning']['exam'][1] = score1;
+    inputData.value['planning']['exam'][2] = score2;
+    updateInputData();
+  }
+  examResultInputModalOpen.value = false;
 }
 onBeforeMount(() => {
   updateChallengePItemMaxPushSum();
@@ -699,7 +737,10 @@ defineExpose({updatePlanningData});
               <tr>
                 <th class="table-header last"></th>
                 <td class="table-data detail last"><span class="table-data-text font-bold last">最終評価</span></td>
-                <td class="table-data type last"></td>
+                <td class="table-data type last">
+                  <span class="table-data-text font-bold last" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['resultScore'] }}</span>
+                  <span class="table-data-text font-bold last" v-else>0</span>
+                </td>
                 <td class="table-data number vocal last">
                   <span class="table-data-text font-bold vocal" v-if="scheduleDetailData['result']">{{ scheduleDetailData['result']['vocal'] }}</span>
                   <span class="table-data-text font-bold vocal" v-else>0</span>
@@ -719,6 +760,47 @@ defineExpose({updatePlanningData});
                 <td class="table-data number hp last"></td>
                 <td class="table-data number point last"></td>
               </tr>
+              </tbody>
+            </table>
+            <table class="table exam">
+              <thead>
+              <tr>
+                <th class="table-header detail"><span class="table-header-text"></span></th>
+                <th class="table-header detail"><span class="table-header-text">獲得スコア</span></th>
+                <th class="table-header detail"><span class="table-header-text">獲得評価値</span></th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="table-data detail">
+                    <span class="table-data-text">中間試験</span>
+                  </td>
+                  <td class="table-data detail input" @click="inputExamResult">
+                    <span class="table-data-text">{{ inputData['planning']['exam'][1] }}</span>
+                  </td>
+                  <td class="table-data detail input" @click="inputExamResult">
+                    <span class="table-data-text">{{ getExamResultScore(inputData['planning']['exam'][1], resultCalcList1) }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-data detail">
+                    <span class="table-data-text">最終試験</span>
+                  </td>
+                  <td class="table-data detail input" @click="inputExamResult">
+                    <span class="table-data-text">{{ inputData['planning']['exam'][2] }}</span>
+                  </td>
+                  <td class="table-data detail input" @click="inputExamResult">
+                    <span class="table-data-text">{{ getExamResultScore(inputData['planning']['exam'][2], resultCalcList2) }}</span>
+                  </td>
+                </tr>
+                <Teleport to="#modal-area">
+                  <ExamResultInputModal
+                      v-if="examResultInputModalOpen"
+                      :score_1="inputData['planning']['exam'][1]"
+                      :score_2="inputData['planning']['exam'][2]"
+                      @input-close="closeExamResult"
+                  />
+                </Teleport>
               </tbody>
             </table>
           </div>
@@ -829,10 +911,35 @@ defineExpose({updatePlanningData});
                     <span class="table-data-text">{{ getPItemParameterSum(i) }}</span>
                   </td>
                 </tr>
+                <tr v-if="inputData['planning']['challenge_p_item'][1] >= 32004 && inputData['planning']['challenge_p_item'][1] <= 32006">
+                  <td class="table-data" v-bind:class="getPItemDetail(inputData['planning']['challenge_p_item'][1]).type">
+                    <span class="table-data-text">{{ getPItemDetail(inputData['planning']['challenge_p_item'][1]).name }}</span>
+                  </td>
+                  <td class="table-data number" v-bind:class="getPItemDetail(inputData['planning']['challenge_p_item'][1]).type">
+                    <span class="table-data-text">{{ getPItemDetail(inputData['planning']['challenge_p_item'][1]).event_parameter }}</span>
+                  </td>
+                  <td class="table-data number input" v-bind:class="getPItemDetail(inputData['planning']['challenge_p_item'][1]).type" @click="inputChallengePItemCount">
+                    <span class="table-data-text font-bold">{{ inputData['planning']['produce_p_item'][1] }}</span>
+                    <Teleport to="#modal-area">
+                      <CommonInputModal
+                          v-if="commonInputModalChallengePItemOpen"
+                          :input-value="inputData['planning']['produce_p_item'][1] ? inputData['planning']['produce_p_item'][1] : 0"
+                          :min-value="0"
+                          :max-value="getPItemDetail(inputData['planning']['challenge_p_item'][1]).event_count"
+                          :headline="'発動回数を編集'"
+                          :description="getPItemDetail(inputData['planning']['challenge_p_item'][1]).name + 'の発動回数'"
+                          @input-close="closeChallengePItemCount"
+                      />
+                    </Teleport>
+                  </td>
+                  <td class="table-data number" v-bind:class="getPItemDetail(inputData['planning']['challenge_p_item'][1]).type">
+                    <span class="table-data-text">{{ getChallengePItemParameterSum(inputData['planning']['challenge_p_item'][1]) }}</span>
+                  </td>
+                </tr>
                 <tr>
                   <td class="table-data detail">
-                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][1]" @change="updateInputData">
-                      <option class="table-option" v-bind:value="2">はつぼしブレスレット</option>
+                    <select class="table-select" v-model="inputData['planning']['produce_p_item'][2]" @change="updateInputData">
+                      <option class="table-option" v-bind:value="26">はつぼし記章</option>
                       <option class="table-option" v-bind:value="option.id" v-if="inputData['organization']['produce_idol']['id']" v-for="option in getBasicPItemDetail([basicData['produce_idol']['plan']])">{{ option.name }}</option>
                     </select>
                   </td>

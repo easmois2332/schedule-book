@@ -25,7 +25,7 @@ const getBonusParameter = (parameter, parameterBonus) => {
 const calc = (cardList, saveFlag = false) => {
   // チャレンジPアイテム計算
   let addBaseParameter = 0;
-  if (inputData['produce_type'] === 'hajime_master') {
+  if (inputData['produce_type'] === 'hajime_master' || inputData['produce_type'] === 'hajime_legend') {
     for (let i in inputData['planning']['challenge_p_item']) {
       if (inputData['planning']['challenge_p_item'][i] > 0) {
         addBaseParameter += items.getItemFromId(inputData['planning']['challenge_p_item'][i])['event_other'];
@@ -68,6 +68,15 @@ const calc = (cardList, saveFlag = false) => {
             let baseParameter = scheduleData[week][schedule['schedule_detail']]['parameter'] + addBaseParameter;
             addParameter += (getBonusParameter(baseParameter, bonus + cardList[id][`${abilityList[abilityIndex]}_parameter`] * 10) - getBonusParameter(baseParameter, bonus));
           }
+          // レジェンドレッスン・レジェンドSPレッスン
+          if (schedule['schedule_detail'] === 'legend_lesson' || schedule['schedule_detail'] === 'sp_legend_lesson') {
+            let baseParameter = Math.trunc((scheduleData[week][schedule['schedule_detail']]['bonus_parameter'] + addBaseParameter) / 3);
+            if (schedule['type'] === cardList[id]['type']) {
+              baseParameter += (scheduleData[week][schedule['schedule_detail']]['bonus_parameter'] + addBaseParameter) % 3;
+              baseParameter += scheduleData[week][schedule['schedule_detail']]['parameter'];
+            }
+            addParameter += (getBonusParameter(baseParameter, bonus + cardList[id][`${abilityList[abilityIndex]}_parameter`] * 10) - getBonusParameter(baseParameter, bonus));
+          }
           // 追い込みレッスン
           if (schedule['schedule_detail'] === 'push_lesson') {
             let baseParameter = scheduleData[week][schedule['schedule_detail']]['bonus_parameter'];
@@ -103,7 +112,7 @@ const calc = (cardList, saveFlag = false) => {
       } else if (abilityName === abilities.REST_PARAMETER_UP) {
         parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * scheduleDetailCount['rest']);
       } else if (abilityName === abilities.EXAM_PARAMETER_UP) {
-        parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * scheduleDetailCount['exam_1']);
+        parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * Math.min(2, scheduleDetailCount['exam']));
       } else if (inputData['planning']['support_card_ability'][abilityName]) {
         parameter += (cardList[id][`${abilityList[abilityIndex]}_parameter`] * inputData['planning']['support_card_ability'][abilityName]);
       }

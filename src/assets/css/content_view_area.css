@@ -1052,6 +1052,11 @@
                 min-width: 900px;
             }
 
+            .table.exam {
+                width: 400px;
+                min-width: 400px;
+            }
+
             .table.audition {
                 width: 500px;
                 min-width: 500px;

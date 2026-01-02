@@ -6,7 +6,14 @@ import {parameterList, fanList} from "@/consts/auditionConst";
 const props = defineProps(['idols']);
 const idols = props.idols;
 
-let produceType = ref('hajime_master');
+let produceType = ref('hajime_legend');
+let inputHajimeLegend = ref({
+  vocal: 0,
+  dance: 0,
+  visual: 0,
+  score_1: 0,
+  score_2: 0,
+});
 let inputHajimeMaster = ref({
   vocal: 0,
   dance: 0,
@@ -15,7 +22,7 @@ let inputHajimeMaster = ref({
 });
 let inputNiaMaster = ref({
   idol_id: 1,
-  audition_bonus: 40,
+  audition_bonus: 55,
   vocal: 0,
   dance: 0,
   visual: 0,
@@ -25,10 +32,17 @@ let inputNiaMaster = ref({
   fan: 0,
   score: 0,
 });
+let resultListHajimeLegend = ref({});
 let resultListHajimeMaster = ref({});
 let resultListNiaMaster = ref({});
+let resultHajimeLegend = ref('評価ランクD: 0');
 let resultHajimeMaster = ref('評価ランクD: 0');
 let resultNiaMaster = ref('評価ランクD: 0');
+let resultParameterHajimeLegend = ref({
+  vocal: 0,
+  dance: 0,
+  visual: 0
+});
 let resultParameterHajimeMaster = ref({
   vocal: 0,
   dance: 0,
@@ -40,15 +54,61 @@ let resultParameterNiaMaster = ref({
   visual: 0
 });
 
-const getBonusIncludedParameter = (parameter, parameterBonus) => {
-  return Math.floor(
-      parameter +
-      (parameter * parameterBonus).toFixed(1) / 100
-  );
-};
-const calcLerp = (x, x0, x1, y0, y1) => {
-  return Math.floor(y0 + (y1 - y0) * (x - x0) / (x1 - x0));
+const getResultScoreHajimeLegend = (resultPoint, parameter) => {
+  let requiredPoint = resultPoint - parameter;
+
+  for (let i in resultScoreCalcList['hajime_legend_exam_2']) {
+    let requiredScore = Math.trunc((requiredPoint - resultScoreCalcList['hajime_legend_exam_2'][i]['addition']) / resultScoreCalcList['hajime_legend_exam_2'][i]['magnification']);
+    if (requiredScore >= 2000001) {
+      return '不可能';
+    }
+    if (requiredScore >= resultScoreCalcList['hajime_legend_exam_2'][i]['score']) {
+      return requiredScore;
+    }
+  }
+  return 0;
 }
+const updateResultHajimeLegend = () => {
+  resultParameterHajimeLegend.value['vocal'] = Math.min(2800, inputHajimeLegend.value['vocal'] + 120);
+  resultParameterHajimeLegend.value['dance'] = Math.min(2800, inputHajimeLegend.value['dance'] + 120);
+  resultParameterHajimeLegend.value['visual'] = Math.min(2800, inputHajimeLegend.value['visual'] + 120);
+
+  let parameter = Math.trunc(
+      (resultParameterHajimeLegend.value['vocal'] + resultParameterHajimeLegend.value['dance'] + resultParameterHajimeLegend.value['visual']) * 2.1
+  );
+
+  let score1 = 0;
+  for (let i in resultScoreCalcList['hajime_legend_exam_1']) {
+    if (inputHajimeLegend.value['score_1'] >= resultScoreCalcList['hajime_legend_exam_1'][i]['score']) {
+      score1 = Math.trunc((inputHajimeLegend.value['score_1'] * resultScoreCalcList['hajime_legend_exam_1'][i]['magnification']) + resultScoreCalcList['hajime_legend_exam_1'][i]['addition']);
+      break;
+    }
+  }
+
+  let score2 = 0;
+  for (let i in resultScoreCalcList['hajime_legend_exam_2']) {
+    if (inputHajimeLegend.value['score_2'] >= resultScoreCalcList['hajime_legend_exam_2'][i]['score']) {
+      score2 = Math.trunc((inputHajimeLegend.value['score_2'] * resultScoreCalcList['hajime_legend_exam_2'][i]['magnification']) + resultScoreCalcList['hajime_legend_exam_2'][i]['addition']);
+      break;
+    }
+  }
+
+  let result = parameter + score1 + score2;
+  let rank = 'D';
+
+  for (let i in resultDataList) {
+    if (result >= resultDataList[i]['point']) {
+      rank = resultDataList[i]['rank'];
+      break;
+    }
+  }
+
+  resultHajimeLegend.value = `評価ランク${rank}: ${result}`;
+
+  for (let rank in resultDataList) {
+    resultListHajimeLegend.value[rank] = getResultScoreHajimeLegend(resultDataList[rank]['point'], parameter + score1);
+  }
+};
 
 const getResultScoreHajimeMaster = (resultPoint, parameter) => {
   let requiredPoint = resultPoint - parameter - 1700;
@@ -98,6 +158,14 @@ const updateResultHajimeMaster = () => {
   }
 };
 
+const getAuditionParameter = (parameter, parameterBonus, auditionBonus) => {
+  let a =  parameter + Math.floor(parameter * parameterBonus / 100) + Math.floor(parameter * auditionBonus / 100) + Math.floor(Math.floor(parameter * parameterBonus / 100) * auditionBonus / 100);
+  console.log(parameter, parameterBonus, auditionBonus, a);
+  return a;
+}
+const calcLerp = (x, x0, x1, y0, y1) => {
+  return Math.floor(y0 + (y1 - y0) * (x - x0) / (x1 - x0));
+}
 const getResultScoreNiaMaster = (resultPoint, parameter) => {
   let requiredPoint = resultPoint - parameter;
 
@@ -114,13 +182,13 @@ const updateResultNiaMaster = () => {
   let auditionVocal = parameterList['nia_master'][idol['parameter_type']][3]['max'][`type_${idol['vocal_priority']}`];
   let auditionDance = parameterList['nia_master'][idol['parameter_type']][3]['max'][`type_${idol['dance_priority']}`];
   let auditionVisual = parameterList['nia_master'][idol['parameter_type']][3]['max'][`type_${idol['visual_priority']}`];
-  let vocal = inputNiaMaster.value['vocal'] + getBonusIncludedParameter(auditionVocal, inputNiaMaster.value['vocal_bonus']) + Math.floor(auditionVocal * inputNiaMaster.value['audition_bonus'] / 100);
-  let dance = inputNiaMaster.value['dance'] + getBonusIncludedParameter(auditionDance, inputNiaMaster.value['dance_bonus']) + Math.floor(auditionDance * inputNiaMaster.value['audition_bonus'] / 100);
-  let visual = inputNiaMaster.value['visual'] + getBonusIncludedParameter(auditionVisual, inputNiaMaster.value['visual_bonus']) + Math.floor(auditionVisual * inputNiaMaster.value['audition_bonus'] / 100);
+  let vocal = inputNiaMaster.value['vocal'] + getAuditionParameter(auditionVocal, inputNiaMaster.value['vocal_bonus'], inputNiaMaster.value['audition_bonus']);
+  let dance = inputNiaMaster.value['dance'] + getAuditionParameter(auditionDance, inputNiaMaster.value['dance_bonus'], inputNiaMaster.value['audition_bonus']);
+  let visual = inputNiaMaster.value['visual'] + getAuditionParameter(auditionVisual, inputNiaMaster.value['visual_bonus'], inputNiaMaster.value['audition_bonus']);
 
-  resultParameterNiaMaster.value['vocal'] = Math.min(2300, vocal);
-  resultParameterNiaMaster.value['dance'] = Math.min(2300, dance);
-  resultParameterNiaMaster.value['visual'] = Math.min(2300, visual);
+  resultParameterNiaMaster.value['vocal'] = Math.min(2600, vocal);
+  resultParameterNiaMaster.value['dance'] = Math.min(2600, dance);
+  resultParameterNiaMaster.value['visual'] = Math.min(2600, visual);
 
   let parameter = Math.trunc(
       (resultParameterNiaMaster.value['vocal'] + resultParameterNiaMaster.value['dance'] + resultParameterNiaMaster.value['visual']) * 2.3
@@ -193,9 +261,39 @@ const updateResultNiaMaster = () => {
           <span class="font-bold">プロデュース選択</span>
           <div class="produce-type-select">
             <select class="basic-select" v-model="produceType">
+              <option value="hajime_legend">定期公演『初』 レジェンド</option>
               <option value="hajime_master">定期公演『初』 マスター</option>
               <option value="nia_master">NEXT IDOL AUDITION マスター</option>
             </select>
+          </div>
+        </div>
+        <div class="calc-area hajime-master" v-show="produceType === 'hajime_legend'">
+          <span class="font-bold">最終試験直前のパラメータ</span>
+          <div class="parameter-area">
+            <div class="parameter vocal">
+              <label class="basic-input-number-name font-bold">ボーカル</label>
+              <input class="basic-input-number vocal" type="number" min="0" max="2800" v-model="inputHajimeLegend['vocal']" @change="updateResultHajimeLegend">
+            </div>
+            <div class="parameter dance">
+              <label class="basic-input-number-name font-bold">ダンス</label>
+              <input class="basic-input-number dance" type="number" min="0" max="2800" v-model="inputHajimeLegend['dance']" @change="updateResultHajimeLegend">
+            </div>
+            <div class="parameter visual">
+              <label class="basic-input-number-name font-bold">ビジュアル</label>
+              <input class="basic-input-number visual" type="number" min="0" max="2800" v-model="inputHajimeLegend['visual']" @change="updateResultHajimeLegend">
+            </div>
+          </div>
+          <span class="font-bold">中間試験で獲得したスコア</span>
+          <div class="score-area">
+            <div class="score">
+              <input class="basic-input-number score" type="number" min="0" v-model="inputHajimeLegend['score_1']" @change="updateResultHajimeLegend">
+            </div>
+          </div>
+          <span class="font-bold">最終試験で獲得したスコア</span>
+          <div class="score-area">
+            <div class="score">
+              <input class="basic-input-number score" type="number" min="0" v-model="inputHajimeLegend['score_2']" @change="updateResultHajimeLegend">
+            </div>
           </div>
         </div>
         <div class="calc-area hajime-master" v-show="produceType === 'hajime_master'">
@@ -231,22 +329,22 @@ const updateResultNiaMaster = () => {
           <span class="font-bold">オーディションボーナス</span>
           <div class="audition-area">
             <div class="audition">
-              <input class="basic-input-number" type="number" min="0" max="40" step="5" v-model="inputNiaMaster['audition_bonus']" @change="updateResultNiaMaster">
+              <input class="basic-input-number" type="number" min="0" max="55" step="5" v-model="inputNiaMaster['audition_bonus']" @change="updateResultNiaMaster">
             </div>
           </div>
           <span class="font-bold">最終オーディション直前のパラメータ</span>
           <div class="parameter-area">
             <div class="parameter vocal">
               <label class="basic-input-number-name font-bold">ボーカル</label>
-              <input class="basic-input-number vocal" type="number" min="0" max="2300" v-model="inputNiaMaster['vocal']" @change="updateResultNiaMaster">
+              <input class="basic-input-number vocal" type="number" min="0" max="2600" v-model="inputNiaMaster['vocal']" @change="updateResultNiaMaster">
             </div>
             <div class="parameter dance">
               <label class="basic-input-number-name font-bold">ダンス</label>
-              <input class="basic-input-number dance" type="number" min="0" max="2300" v-model="inputNiaMaster['dance']" @change="updateResultNiaMaster">
+              <input class="basic-input-number dance" type="number" min="0" max="2600" v-model="inputNiaMaster['dance']" @change="updateResultNiaMaster">
             </div>
             <div class="parameter visual">
               <label class="basic-input-number-name font-bold">ビジュアル</label>
-              <input class="basic-input-number visual" type="number" min="0" max="2300" v-model="inputNiaMaster['visual']" @change="updateResultNiaMaster">
+              <input class="basic-input-number visual" type="number" min="0" max="2600" v-model="inputNiaMaster['visual']" @change="updateResultNiaMaster">
             </div>
           </div>
           <span class="font-bold">パラメータボーナス</span>
@@ -279,6 +377,12 @@ const updateResultNiaMaster = () => {
         </div>
       </div>
       <div class="result-area">
+        <div class="result" v-show="produceType === 'hajime_legend'">
+          <span class="common-headline font-bold">{{ resultHajimeLegend }}</span>
+          <div class="annotation-area">
+            <span>※最終試験順位が1位の場合</span>
+          </div>
+        </div>
         <div class="result" v-show="produceType === 'hajime_master'">
           <span class="common-headline font-bold">{{ resultHajimeMaster }}</span>
           <div class="annotation-area">
@@ -301,6 +405,12 @@ const updateResultNiaMaster = () => {
           </tr>
           </thead>
           <tbody>
+          <tr v-show="produceType === 'hajime_legend'">
+            <td class="table-data number vocal"><span class="table-data-text">{{ resultParameterHajimeLegend['vocal'] }}</span></td>
+            <td class="table-data number dance"><span class="table-data-text">{{ resultParameterHajimeLegend['dance'] }}</span></td>
+            <td class="table-data number visual"><span class="table-data-text">{{ resultParameterHajimeLegend['visual'] }}</span></td>
+            <td class="table-data number point"><span class="table-data-text">{{ resultParameterHajimeLegend['vocal'] + resultParameterHajimeLegend['dance'] + resultParameterHajimeLegend['visual'] }}</span></td>
+          </tr>
           <tr v-show="produceType === 'hajime_master'">
             <td class="table-data number vocal"><span class="table-data-text">{{ resultParameterHajimeMaster['vocal'] }}</span></td>
             <td class="table-data number dance"><span class="table-data-text">{{ resultParameterHajimeMaster['dance'] }}</span></td>
@@ -315,10 +425,33 @@ const updateResultNiaMaster = () => {
           </tr>
           </tbody>
         </table>
+        <table class="table result" v-show="produceType === 'hajime_legend'">
+          <thead>
+          <tr>
+            <th class="table-header detail"><span class="table-header-text">最終試験必要スコア</span></th>
+            <th class="table-header point"><span class="table-header-text">評価ランク</span></th>
+            <th class="table-header point"><span class="table-header-text">評価値</span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="result in resultDataList">
+            <td class="table-data number detail">
+              <span class="table-data-text" v-if="resultListHajimeLegend[result.rank]">{{ resultListHajimeLegend[result.rank] }}</span>
+              <span class="table-data-text" v-else>0</span>
+            </td>
+            <td class="table-data point">
+              <span class="table-data-text">{{ result.rank }}</span>
+            </td>
+            <td class="table-data number point">
+              <span class="table-data-text">{{ result.point }}</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
         <table class="table result" v-show="produceType === 'hajime_master'">
           <thead>
           <tr>
-            <th class="table-header detail"><span class="table-header-text">最終試験獲得スコア</span></th>
+            <th class="table-header detail"><span class="table-header-text">最終試験必要スコア</span></th>
             <th class="table-header point"><span class="table-header-text">評価ランク</span></th>
             <th class="table-header point"><span class="table-header-text">評価値</span></th>
           </tr>

@@ -229,8 +229,8 @@ export const abilityBasicParameterUpList = [
     },
     {
         ability: abilities.EXAM_PARAMETER_UP,
-        schedule: 'exam_1',
-        text: '試験・オーディション終了時(1回)',
+        schedule: 'exam',
+        text: '試験・オーディション終了時(2回)',
     },
 ]
 

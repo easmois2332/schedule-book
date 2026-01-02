@@ -115,6 +115,9 @@ export default class Schedules {
     private setData(produceType: string) {
         let planning: any;
         switch (produceType) {
+            case 'hajime_legend':
+                planning = this.setPlanningHajimeLegend();
+                break;
             case 'hajime_master':
                 planning = this.setPlanningHajimeMaster();
                 break;
@@ -222,6 +225,151 @@ export default class Schedules {
                 },
             },
             planning: planning
+        }
+    }
+
+    private setPlanningHajimeLegend() {
+        return {
+            schedule: {
+                1: {
+                    schedule_detail: 'class',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                2: {
+                    schedule_detail: 'class',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                3: {
+                    schedule_detail: 'gift',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                4: {
+                    schedule_detail: 'sp_legend_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                5: {
+                    schedule_detail: 'gift',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                6: {
+                    schedule_detail: 'class',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                7: {
+                    schedule_detail: 'sp_legend_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                8: {
+                    schedule_detail: 'consultation',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                9: {
+                    schedule_detail: 'coaching',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                10: {
+                    schedule_detail: 'exam_1',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                11: {
+                    schedule_detail: 'gift',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                12: {
+                    schedule_detail: 'sp_legend_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                13: {
+                    schedule_detail: 'gift',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                14: {
+                    schedule_detail: 'sp_legend_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                15: {
+                    schedule_detail: 'class',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                16: {
+                    schedule_detail: 'sp_legend_lesson',
+                    type: 'vocal',
+                    hp: 0,
+                    point: 0,
+                },
+                17: {
+                    schedule_detail: 'consultation',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+                18: {
+                    schedule_detail: 'exam_2',
+                    type: null,
+                    hp: 0,
+                    point: 0,
+                },
+            },
+            exam: {
+                1: 200001,
+                2: 2000001,
+            },
+            challenge_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+            },
+            produce_p_item: {
+                1: 0,
+                2: 26,
+            },
+            support_card_p_item: {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                6: 0,
+            },
+            support_card_event: {
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+                6: false,
+            },
+            support_card_ability: {},
         }
     }
 
@@ -381,7 +529,7 @@ export default class Schedules {
                     point: 0,
                 },
                 3: {
-                    schedule_detail: 'outing',
+                    schedule_detail: 'gift',
                     type: null,
                     hp: 0,
                     point: 0,
@@ -423,7 +571,7 @@ export default class Schedules {
                     point: 0,
                 },
                 10: {
-                    schedule_detail: 'outing',
+                    schedule_detail: 'gift',
                     type: null,
                     hp: 0,
                     point: 0,
@@ -441,7 +589,7 @@ export default class Schedules {
                     point: 0,
                 },
                 13: {
-                    schedule_detail: 'outing',
+                    schedule_detail: 'gift',
                     type: null,
                     hp: 0,
                     point: 0,
@@ -471,7 +619,7 @@ export default class Schedules {
                     point: 0,
                 },
                 18: {
-                    schedule_detail: 'outing',
+                    schedule_detail: 'gift',
                     type: null,
                     hp: 0,
                     point: 0,

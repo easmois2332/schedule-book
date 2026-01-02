@@ -12,14 +12,31 @@ const scheduleList = props.scheduleList;
 
 const allIdolList = idols.getAllIdol();
 
+let saveListHajimeLegend = [];
 let saveListHajimeMaster = [];
 let saveListNiaMaster = [];
 for (let index in allIdolList) {
+  saveListHajimeLegend[allIdolList[index]['id']] = schedules.getSaveListFromFilter(allIdolList[index]['id'], 'hajime_legend');
   saveListHajimeMaster[allIdolList[index]['id']] = schedules.getSaveListFromFilter(allIdolList[index]['id'], 'hajime_master');
   saveListNiaMaster[allIdolList[index]['id']] = schedules.getSaveListFromFilter(allIdolList[index]['id'], 'nia_master');
 }
 
 let folderOpenList = ref({
+  hajime_legend: {
+    flag: true,
+    saki: true,
+    temari: true,
+    kotone: true,
+    mao: true,
+    lilja: true,
+    china: true,
+    sumika: true,
+    hiro: true,
+    sena: true,
+    misuzu: true,
+    ume: true,
+    rinami: true,
+  },
   hajime_master: {
     flag: true,
     saki: true,
@@ -56,6 +73,10 @@ let scheduleDeleteOpen = ref(false);
 let scheduleEdit = ref([]);
 
 const produceType = {
+  hajime_legend: {
+    name: '定期公演『初』 レジェンド',
+    save_list: saveListHajimeLegend,
+  },
   hajime_master: {
     name: '定期公演『初』 マスター',
     save_list: saveListHajimeMaster,

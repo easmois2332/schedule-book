@@ -21,16 +21,27 @@ const emit = defineEmits(['produce-type-select-close']);
         </div>
       </div>
       <div class="content-area">
+        <div class="common-headline">
+          <span class="common-headline-text">定期公演『初』</span>
+        </div>
         <div class="produce-type-button-area">
           <div class="produce-type-button">
-            <button class="common-button hajime-master" @click="$emit('produce-type-select-close', 'hajime_master')">
-              <span class="common-button-name">定期公演『初』</span>
-              <span class="common-button-name">マスター</span>
+            <button class="common-button hajime-master" @click="$emit('produce-type-select-close', 'hajime_legend')">
+              <span class="common-button-name">レジェンド</span>
             </button>
           </div>
           <div class="produce-type-button">
+            <button class="common-button hajime-master" @click="$emit('produce-type-select-close', 'hajime_master')">
+              <span class="common-button-name">マスター</span>
+            </button>
+          </div>
+        </div>
+        <div class="common-headline">
+          <span class="common-headline-text">NEXT IDOL AUDITION</span>
+        </div>
+        <div class="produce-type-button-area">
+          <div class="produce-type-button">
             <button class="common-button nia" @click="$emit('produce-type-select-close', 'nia_master')">
-              <span class="common-button-name">NEXT IDOL AUDITION</span>
               <span class="common-button-name">マスター</span>
             </button>
           </div>

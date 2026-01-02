@@ -1,4 +1,5 @@
 export const resultDataList = {
+    'S4': {rank: 'S4', point: 26000},
     'SSS+': {rank: 'SSS+', point: 23000},
     'SSS': {rank: 'SSS', point: 20000},
     'SS+': {rank: 'SS+', point: 18000},
@@ -22,6 +23,19 @@ export const resultScoreCalcList = {
         {score: 10001, magnification: 0.08, addition: 1450},
         {score: 5001, magnification: 0.15, addition: 750},
         {score: 0, magnification: 0.30, addition: 0},
+    ],
+    hajime_legend_exam_1: [
+        {score: 200001, magnification: 0, addition: 2670},
+        {score: 60001, magnification: 0.001, addition: 2470},
+        {score: 50001, magnification: 0.002, addition: 2410},
+        {score: 40001, magnification: 0.003, addition: 2360},
+        {score: 0, magnification: 0.008, addition: 2160},
+    ],
+    hajime_legend_exam_2: [
+        {score: 2000001, magnification: 0, addition: 10400},
+        {score: 600001, magnification: 0.001, addition: 8400},
+        {score: 500001, magnification: 0.008, addition: 4200},
+        {score: 0, magnification: 0.01, addition: 3200},
     ],
     nia_master: [
         {fan: 140001, magnification: 0.030, addition: 5200},
