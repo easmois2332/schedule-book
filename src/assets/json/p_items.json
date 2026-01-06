@@ -1566,6 +1566,24 @@
     "enable": 1
   },
   {
+    "id": 20056,
+    "name": "ぴったしコレクション",
+    "category": "support_card",
+    "category_type": "lesson",
+    "rarity": "ssr",
+    "type": "visual",
+    "plan": "sense",
+    "event_text": "【ビジュアルレッスン・ビジュアルターンのみ】\nアクティブスキルカード使用時、好調が3ターン以上の場合、集中+2\nパラメータ+4\n（レッスン内1回）",
+    "event": null,
+    "event_parameter": null,
+    "event_p_point": null,
+    "event_hp_recover": null,
+    "event_other": null,
+    "event_count": null,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "美鈴からの贈り物",
     "category": "support_card",

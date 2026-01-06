@@ -996,6 +996,18 @@
     "enable": 1
   },
   {
+    "id": 84,
+    "idol_id": 12,
+    "name": "Superlative",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "koinsyo",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

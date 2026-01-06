@@ -232,6 +232,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.15.0</span><br>
+      <span>
+        Pアイドル「秦谷 美鈴 - Superlative」の追加<br>
+        サポートカード「オシャレもメイクも♪」の追加<br>
+        サポートカード「堂々とサボってる！？」の追加<br>
+        サポートカード「ぐつぐつ、いいにおい♪」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.14.0</span><br>
       <span>
         「雨夜 燕」の親愛度STEP2に対応<br>
