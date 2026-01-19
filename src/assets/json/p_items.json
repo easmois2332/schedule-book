@@ -2448,6 +2448,24 @@
     "enable": 1
   },
   {
+    "id": 21049,
+    "name": "そっくりワンワン",
+    "category": "support_card",
+    "category_type": "produce",
+    "rarity": "sr",
+    "type": "dance",
+    "plan": "anomaly",
+    "event_text": "温存効果のスキルカード獲得時、ダンスが700以上の場合、ダンス上昇+20\nランダムなPドリンクを獲得\n（プロデュース中2回）",
+    "event": "onzon_card_parameter_up",
+    "event_parameter": 20,
+    "event_p_point": 0,
+    "event_hp_recover": 0,
+    "event_other": 0,
+    "event_count": 2,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 30001,
     "name": "強化グリッパー",
     "category": "challenge",

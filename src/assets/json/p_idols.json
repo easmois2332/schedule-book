@@ -1008,6 +1008,18 @@
     "enable": 1
   },
   {
+    "id": 85,
+    "idol_id": 2,
+    "name": "一体いつから",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "zenryoku",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

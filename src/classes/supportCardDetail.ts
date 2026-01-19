@@ -191,12 +191,16 @@ export default class SupportCardDetail {
                     }
                     break;
                 case rarities.RARITY_R:
-                    // TODO: 2025/12/26 update 未対応
-                    // Lv.1 +13
-                    if (this.card.level < 15) {
-                        parameter = 12 + (Math.floor(this.card.level / 5) * 3);
+                    if (this.card.level < 10) {
+                        parameter = 13 + (Math.floor(this.card.level / 5) * 3);
+                    } else if (this.card.level < 20)  {
+                        parameter = 13 + (Math.floor(this.card.level / 5) * 3) - 1;
+                    } else if (this.card.level < 30)  {
+                        parameter = 13 + (Math.floor(this.card.level / 5) * 3) - 2;
+                    } else if (this.card.level < 40)  {
+                        parameter = 13 + (Math.floor(this.card.level / 5) * 3) - 3;
                     } else {
-                        parameter = 12 + (Math.floor(this.card.level / 5) * 2) + 2;
+                        parameter = 13 + (Math.floor(this.card.level / 5) * 3) - 4;
                     }
                     break;
                 default:

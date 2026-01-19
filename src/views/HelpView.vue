@@ -232,6 +232,16 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.16.0</span><br>
+      <span>
+        「月村 手毬」の親愛度STEP3に対応<br>
+        Pアイドル「月村 手毬 - 一体いつから」の追加<br>
+        サポートカード「手毬のリサイタル、だね」の追加<br>
+        サポートカード「おひさま笑顔、満開ふたつ」の追加<br>
+        一部サポートカード(R)の効果の上方修正に対応<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.15.0</span><br>
       <span>
         Pアイドル「秦谷 美鈴 - Superlative」の追加<br>
