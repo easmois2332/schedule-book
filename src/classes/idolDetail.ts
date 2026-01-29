@@ -280,7 +280,7 @@ export default class IdolDetail {
             dance += 10;
             visual += 10;
         }
-        if (this.pIdol.ability === abilities.SEASON || this.pIdol.ability === abilities.UNIT) {
+        if ((this.pIdol.blossoming_level >= 1) && (this.pIdol.ability === abilities.SEASON || this.pIdol.ability === abilities.UNIT)) {
             switch (type) {
                 case types.VOCAL:
                     vocal += 15;

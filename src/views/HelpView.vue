@@ -232,6 +232,17 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.17.0</span><br>
+      <span>
+        Pアイドル「倉本 千奈毬 - みちなるひろがる」の追加<br>
+        Pアイドル「篠澤 広 - みちなるひろがる」の追加<br>
+        サポートカード「みいつけた。」の追加<br>
+        サポートカード「思い出の宝箱だ、ね」の追加<br>
+        サポートカード「仲良しの証」の追加<br>
+        シーズン限定アイドル・ユニットアイドルで才能開花0でもSPレッスン発生率+15%が加算されていた問題を修正<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.16.0</span><br>
       <span>
         「月村 手毬」の親愛度STEP3に対応<br>

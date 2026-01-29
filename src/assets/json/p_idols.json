@@ -1020,6 +1020,30 @@
     "enable": 1
   },
   {
+    "id": 86,
+    "idol_id": 6,
+    "name": "みちなるひろがる",
+    "rarity": "ssr",
+    "plan": "sense",
+    "effect": "syutyu",
+    "ability": "unit",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 87,
+    "idol_id": 8,
+    "name": "みちなるひろがる",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "koinsyo",
+    "ability": "unit",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",
