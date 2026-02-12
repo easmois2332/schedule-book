@@ -2502,6 +2502,24 @@
     "enable": 1
   },
   {
+    "id": 21051,
+    "name": "幸せの詰め合わせ",
+    "category": "support_card",
+    "category_type": "produce",
+    "rarity": "sr",
+    "type": "vocal",
+    "plan": "logic",
+    "event_text": "ボーカルSPレッスン終了時、ボーカルが700以上の場合、ボーカル上昇+20\nPポイント+20\n（プロデュース中2回）",
+    "event": "sp_lesson",
+    "event_parameter": 20,
+    "event_p_point": 20,
+    "event_hp_recover": 0,
+    "event_other": 0,
+    "event_count": 2,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 30001,
     "name": "強化グリッパー",
     "category": "challenge",

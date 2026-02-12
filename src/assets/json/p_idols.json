@@ -1044,6 +1044,18 @@
     "enable": 1
   },
   {
+    "id": 88,
+    "idol_id": 11,
+    "name": "赤裸々",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "yaruki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

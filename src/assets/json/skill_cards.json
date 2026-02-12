@@ -550,6 +550,17 @@
     "enable": 1
   },
   {
+    "id": 20034,
+    "name": "お姉ちゃん、参戦！",
+    "category": "support_card",
+    "rarity": "ssr",
+    "plan": "logic",
+    "card_type": "active",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "全力サポート",
     "category": "support_card",

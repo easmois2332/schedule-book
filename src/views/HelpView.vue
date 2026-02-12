@@ -232,6 +232,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.18.0</span><br>
+      <span>
+        「十王 星南」の親愛度STEP3に対応<br>
+        Pアイドル「十王 星南 - 赤裸々」の追加<br>
+        サポートカード「かかってらっしゃい！」の追加<br>
+        サポートカード「一番星と王子様」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.17.0</span><br>
       <span>
         Pアイドル「倉本 千奈毬 - みちなるひろがる」の追加<br>
