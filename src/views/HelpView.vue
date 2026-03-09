@@ -232,6 +232,18 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.19.0</span><br>
+      <span>
+        Pアイドル「花海 佑芽 - ENDLESS DANCE」の追加<br>
+        Pアイドル「秦谷 美鈴 - ENDLESS DANCE」の追加<br>
+        Pアイドル「十王 星南 - ENDLESS DANCE」の追加<br>
+        サポートカード「合格おめでとう！」の追加<br>
+        サポートカード「洗濯物のバランスタワー」の追加<br>
+        サポートカード「あたしの勝ち、ですね～！」の追加<br>
+        サポートカード「お近づきの印☆」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.18.0</span><br>
       <span>
         「十王 星南」の親愛度STEP3に対応<br>
