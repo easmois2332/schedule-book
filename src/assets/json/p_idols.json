@@ -1092,6 +1092,42 @@
     "enable": 1
   },
   {
+    "id": 92,
+    "idol_id": 1,
+    "name": "Wildest Flower",
+    "rarity": "ssr",
+    "plan": "logic",
+    "effect": "koinsyo",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 93,
+    "idol_id": 5,
+    "name": "ときめきエモーション",
+    "rarity": "ssr",
+    "plan": "sense",
+    "effect": "kotyo",
+    "ability": "unit",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
+    "id": 94,
+    "idol_id": 7,
+    "name": "ときめきエモーション",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "tuyoki",
+    "ability": "unit",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

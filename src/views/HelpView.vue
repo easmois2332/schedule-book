@@ -232,6 +232,20 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.20.0</span><br>
+      <span>
+        「花海 咲季」の親愛度STEP3に対応<br>
+        Pアイドル「花海 咲季 - Wildest Flower」の追加<br>
+        サポートカード「進化したお弁当、気になる」の追加<br>
+        サポートカード「騎士とおてんば姫」の追加<br>
+        Pアイドル「葛城 リーリヤ - ときめきエモーション」の追加<br>
+        Pアイドル「紫雲 清夏 - ときめきエモーション」の追加<br>
+        サポートカード「パーティ楽しみだねっ！」の追加<br>
+        サポートカード「長旅おつかれさま！」の追加<br>
+        サポートカード「ひっぱりじゅーなん」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.19.0</span><br>
       <span>
         Pアイドル「花海 佑芽 - ENDLESS DANCE」の追加<br>
