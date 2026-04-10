@@ -232,6 +232,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.21.0</span><br>
+      <span>
+        「花海 佑芽」の親愛度STEP3に対応<br>
+        Pアイドル「花海 佑芽 - 真っ白いページと水彩の主人公」の追加<br>
+        サポートカード「上かッ！！」の追加<br>
+        サポートカード「パクパクもぐもぐ」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.20.0</span><br>
       <span>
         「花海 咲季」の親愛度STEP3に対応<br>

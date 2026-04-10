@@ -572,6 +572,17 @@
     "enable": 1
   },
   {
+    "id": 20036,
+    "name": "頭上に注意！",
+    "category": "support_card",
+    "rarity": "ssr",
+    "plan": "logic",
+    "card_type": "mental",
+    "effect": null,
+    "effect_strengthened": null,
+    "enable": 1
+  },
+  {
     "id": 21001,
     "name": "全力サポート",
     "category": "support_card",

@@ -2664,6 +2664,24 @@
     "enable": 1
   },
   {
+    "id": 21056,
+    "name": "もぐもぐ定食",
+    "category": "support_card",
+    "category_type": "produce",
+    "rarity": "sr",
+    "type": "visual",
+    "plan": "logic",
+    "event_text": "やる気効果のスキルカード獲得時、ビジュアルが400以上の場合、スキルカードを選択して異なるスキルカードにチェンジ\n（プロデュース中2回）",
+    "event": "yaruki_card_parameter_up",
+    "event_parameter": 0,
+    "event_p_point": 0,
+    "event_hp_recover": 0,
+    "event_other": 0,
+    "event_count": 2,
+    "lesson_effect": null,
+    "enable": 1
+  },
+  {
     "id": 30001,
     "name": "強化グリッパー",
     "category": "challenge",
