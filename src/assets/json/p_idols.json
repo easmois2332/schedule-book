@@ -1140,6 +1140,18 @@
     "enable": 1
   },
   {
+    "id": 96,
+    "idol_id": 12,
+    "name": "VEIL",
+    "rarity": "ssr",
+    "plan": "anomaly",
+    "effect": "tuyoki",
+    "ability": "basic",
+    "p_item_id": null,
+    "skill_card_id": null,
+    "enable": 1
+  },
+  {
     "id": 1001,
     "idol_id": 1,
     "name": "わたしが一番！",

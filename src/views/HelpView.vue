@@ -232,6 +232,15 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.22.0</span><br>
+      <span>
+        「秦谷 美鈴」の親愛度STEP3に対応<br>
+        Pアイドル「秦谷 美鈴 - VEIL」の追加<br>
+        サポートカード「あなたとふたり、電車で」の追加<br>
+        サポートカード「のんびり美味しいひととき」の追加<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.21.0</span><br>
       <span>
         「花海 佑芽」の親愛度STEP3に対応<br>
