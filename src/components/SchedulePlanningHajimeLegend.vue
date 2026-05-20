@@ -13,7 +13,7 @@ const emit = defineEmits(['input-data-update']);
 
 const items = new Items();
 
-const maxParameter = 2800;
+const maxParameter = 3000;
 const scheduleData = {
   1: {
     class: {value: 'class', text: '授業', parameter: 100, point: 0, hp: -5},
@@ -91,7 +91,7 @@ const scheduleData = {
     rest: {value: 'rest', text: '休む', parameter: 0, point: 0, hp: 0},
   },
   18: {
-    exam_2: {value: 'exam_2', text: '最終試験', parameter: 120, point: 0, hp: 0},
+    exam_2: {value: 'exam_2', text: '最終試験', parameter: 160, point: 0, hp: 0},
   },
 };
 const resultData = resultDataList;

@@ -276,9 +276,9 @@ export default class IdolDetail {
             visual += 5;
         }
         if (this.pIdol.training_level >= 6) {
-            vocal += 10;
-            dance += 10;
-            visual += 10;
+            vocal += 5;
+            dance += 5;
+            visual += 5;
         }
         if ((this.pIdol.blossoming_level >= 1) && (this.pIdol.ability === abilities.SEASON || this.pIdol.ability === abilities.UNIT)) {
             switch (type) {

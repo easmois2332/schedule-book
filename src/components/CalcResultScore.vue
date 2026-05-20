@@ -69,9 +69,9 @@ const getResultScoreHajimeLegend = (resultPoint, parameter) => {
   return 0;
 }
 const updateResultHajimeLegend = () => {
-  resultParameterHajimeLegend.value['vocal'] = Math.min(2800, inputHajimeLegend.value['vocal'] + 120);
-  resultParameterHajimeLegend.value['dance'] = Math.min(2800, inputHajimeLegend.value['dance'] + 120);
-  resultParameterHajimeLegend.value['visual'] = Math.min(2800, inputHajimeLegend.value['visual'] + 120);
+  resultParameterHajimeLegend.value['vocal'] = Math.min(3000, inputHajimeLegend.value['vocal'] + 160);
+  resultParameterHajimeLegend.value['dance'] = Math.min(3000, inputHajimeLegend.value['dance'] + 160);
+  resultParameterHajimeLegend.value['visual'] = Math.min(3000, inputHajimeLegend.value['visual'] + 160);
 
   let parameter = Math.trunc(
       (resultParameterHajimeLegend.value['vocal'] + resultParameterHajimeLegend.value['dance'] + resultParameterHajimeLegend.value['visual']) * 2.1
@@ -272,15 +272,15 @@ const updateResultNiaMaster = () => {
           <div class="parameter-area">
             <div class="parameter vocal">
               <label class="basic-input-number-name font-bold">ボーカル</label>
-              <input class="basic-input-number vocal" type="number" min="0" max="2800" v-model="inputHajimeLegend['vocal']" @change="updateResultHajimeLegend">
+              <input class="basic-input-number vocal" type="number" min="0" max="3000" v-model="inputHajimeLegend['vocal']" @change="updateResultHajimeLegend">
             </div>
             <div class="parameter dance">
               <label class="basic-input-number-name font-bold">ダンス</label>
-              <input class="basic-input-number dance" type="number" min="0" max="2800" v-model="inputHajimeLegend['dance']" @change="updateResultHajimeLegend">
+              <input class="basic-input-number dance" type="number" min="0" max="3000" v-model="inputHajimeLegend['dance']" @change="updateResultHajimeLegend">
             </div>
             <div class="parameter visual">
               <label class="basic-input-number-name font-bold">ビジュアル</label>
-              <input class="basic-input-number visual" type="number" min="0" max="2800" v-model="inputHajimeLegend['visual']" @change="updateResultHajimeLegend">
+              <input class="basic-input-number visual" type="number" min="0" max="3000" v-model="inputHajimeLegend['visual']" @change="updateResultHajimeLegend">
             </div>
           </div>
           <span class="font-bold">中間試験で獲得したスコア</span>

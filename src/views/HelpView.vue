@@ -232,6 +232,13 @@
       <span class="common-headline-text font-bold">更新履歴</span>
     </div>
     <div class="content-area">
+      <span class="font-bold">v1.23.0</span><br>
+      <span>
+        「定期公演『初』 レジェンド」の一部調整に対応<br>
+        アイドルの特訓段階6でSPレッスン発生率が+10%されていた問題を修正<br>
+      </span>
+    </div>
+    <div class="content-area">
       <span class="font-bold">v1.22.0</span><br>
       <span>
         「秦谷 美鈴」の親愛度STEP3に対応<br>
